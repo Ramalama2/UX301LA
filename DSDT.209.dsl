@@ -2219,114 +2219,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 })
                 Name (OPTS, Zero)
                 Name (RPAV, Zero)
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (T_1, Zero)  // _T_x: Emitted by ASL Compiler
-                    Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    While (One)
-                    {
-                        Store (ToInteger (Arg0), T_0)
-                        If (LEqual (T_0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                        {
-                            While (One)
-                            {
-                                Store (ToInteger (Arg2), T_1)
-                                If (LEqual (T_1, Zero))
-                                {
-                                    If (LEqual (Arg1, 0x02))
-                                    {
-                                        Store (One, OPTS)
-                                        If (LTRE)
-                                        {
-                                            Or (OPTS, 0x40, OPTS)
-                                        }
-
-                                        If (OBFF)
-                                        {
-                                            Or (OPTS, 0x10, OPTS)
-                                        }
-
-                                        Return (OPTS)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                                Else
-                                {
-                                    If (LEqual (T_1, 0x04))
-                                    {
-                                        If (LEqual (Arg1, 0x02))
-                                        {
-                                            If (OBFF)
-                                            {
-                                                Return (Buffer (0x10)
-                                                {
-                                                    /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                    /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                                })
-                                            }
-                                            Else
-                                            {
-                                                Return (Buffer (0x10)
-                                                {
-                                                    /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                    /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                                })
-                                            }
-                                        }
-                                    }
-                                    Else
-                                    {
-                                        If (LEqual (T_1, 0x06))
-                                        {
-                                            If (LEqual (Arg1, 0x02))
-                                            {
-                                                If (LTRE)
-                                                {
-                                                    Name (MLTR, Zero)
-                                                    If (LEqual (PCHS, One))
-                                                    {
-                                                        Store (0x0846, MLTR)
-                                                    }
-                                                    Else
-                                                    {
-                                                        If (LEqual (PCHS, 0x02))
-                                                        {
-                                                            Store (0x1003, MLTR)
-                                                        }
-                                                    }
-
-                                                    Store (And (ShiftRight (MLTR, 0x0A), 0x07), Index (LTRV, 
-                                                        Zero))
-                                                    Store (And (MLTR, 0x03FF), Index (LTRV, One))
-                                                    Store (And (ShiftRight (MLTR, 0x0A), 0x07), Index (LTRV, 
-                                                        0x02))
-                                                    Store (And (MLTR, 0x03FF), Index (LTRV, 0x03))
-                                                    Return (LTRV)
-                                                }
-                                                Else
-                                                {
-                                                    Return (Zero)
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-
-                                Break
-                            }
-                        }
-
-                        Break
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (PXSX)
                 {
@@ -2467,114 +2360,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 })
                 Name (OPTS, Zero)
                 Name (RPAV, Zero)
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (T_1, Zero)  // _T_x: Emitted by ASL Compiler
-                    Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    While (One)
-                    {
-                        Store (ToInteger (Arg0), T_0)
-                        If (LEqual (T_0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                        {
-                            While (One)
-                            {
-                                Store (ToInteger (Arg2), T_1)
-                                If (LEqual (T_1, Zero))
-                                {
-                                    If (LEqual (Arg1, 0x02))
-                                    {
-                                        Store (One, OPTS)
-                                        If (LTRE)
-                                        {
-                                            Or (OPTS, 0x40, OPTS)
-                                        }
-
-                                        If (OBFF)
-                                        {
-                                            Or (OPTS, 0x10, OPTS)
-                                        }
-
-                                        Return (OPTS)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                                Else
-                                {
-                                    If (LEqual (T_1, 0x04))
-                                    {
-                                        If (LEqual (Arg1, 0x02))
-                                        {
-                                            If (OBFF)
-                                            {
-                                                Return (Buffer (0x10)
-                                                {
-                                                    /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                    /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                                })
-                                            }
-                                            Else
-                                            {
-                                                Return (Buffer (0x10)
-                                                {
-                                                    /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                    /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                                })
-                                            }
-                                        }
-                                    }
-                                    Else
-                                    {
-                                        If (LEqual (T_1, 0x06))
-                                        {
-                                            If (LEqual (Arg1, 0x02))
-                                            {
-                                                If (LTRE)
-                                                {
-                                                    Name (MLTR, Zero)
-                                                    If (LEqual (PCHS, One))
-                                                    {
-                                                        Store (0x0846, MLTR)
-                                                    }
-                                                    Else
-                                                    {
-                                                        If (LEqual (PCHS, 0x02))
-                                                        {
-                                                            Store (0x1003, MLTR)
-                                                        }
-                                                    }
-
-                                                    Store (And (ShiftRight (MLTR, 0x0A), 0x07), Index (LTRV, 
-                                                        Zero))
-                                                    Store (And (MLTR, 0x03FF), Index (LTRV, One))
-                                                    Store (And (ShiftRight (MLTR, 0x0A), 0x07), Index (LTRV, 
-                                                        0x02))
-                                                    Store (And (MLTR, 0x03FF), Index (LTRV, 0x03))
-                                                    Return (LTRV)
-                                                }
-                                                Else
-                                                {
-                                                    Return (Zero)
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-
-                                Break
-                            }
-                        }
-
-                        Break
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (PXSX)
                 {
@@ -2705,114 +2491,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 })
                 Name (OPTS, Zero)
                 Name (RPAV, Zero)
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (T_1, Zero)  // _T_x: Emitted by ASL Compiler
-                    Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    While (One)
-                    {
-                        Store (ToInteger (Arg0), T_0)
-                        If (LEqual (T_0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                        {
-                            While (One)
-                            {
-                                Store (ToInteger (Arg2), T_1)
-                                If (LEqual (T_1, Zero))
-                                {
-                                    If (LEqual (Arg1, 0x02))
-                                    {
-                                        Store (One, OPTS)
-                                        If (LTRE)
-                                        {
-                                            Or (OPTS, 0x40, OPTS)
-                                        }
-
-                                        If (OBFF)
-                                        {
-                                            Or (OPTS, 0x10, OPTS)
-                                        }
-
-                                        Return (OPTS)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                                Else
-                                {
-                                    If (LEqual (T_1, 0x04))
-                                    {
-                                        If (LEqual (Arg1, 0x02))
-                                        {
-                                            If (OBFF)
-                                            {
-                                                Return (Buffer (0x10)
-                                                {
-                                                    /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                    /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                                })
-                                            }
-                                            Else
-                                            {
-                                                Return (Buffer (0x10)
-                                                {
-                                                    /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                    /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                                })
-                                            }
-                                        }
-                                    }
-                                    Else
-                                    {
-                                        If (LEqual (T_1, 0x06))
-                                        {
-                                            If (LEqual (Arg1, 0x02))
-                                            {
-                                                If (LTRE)
-                                                {
-                                                    Name (MLTR, Zero)
-                                                    If (LEqual (PCHS, One))
-                                                    {
-                                                        Store (0x0846, MLTR)
-                                                    }
-                                                    Else
-                                                    {
-                                                        If (LEqual (PCHS, 0x02))
-                                                        {
-                                                            Store (0x1003, MLTR)
-                                                        }
-                                                    }
-
-                                                    Store (And (ShiftRight (MLTR, 0x0A), 0x07), Index (LTRV, 
-                                                        Zero))
-                                                    Store (And (MLTR, 0x03FF), Index (LTRV, One))
-                                                    Store (And (ShiftRight (MLTR, 0x0A), 0x07), Index (LTRV, 
-                                                        0x02))
-                                                    Store (And (MLTR, 0x03FF), Index (LTRV, 0x03))
-                                                    Return (LTRV)
-                                                }
-                                                Else
-                                                {
-                                                    Return (Zero)
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-
-                                Break
-                            }
-                        }
-
-                        Break
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (PXSX)
                 {
@@ -2943,114 +2622,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 })
                 Name (OPTS, Zero)
                 Name (RPAV, Zero)
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (T_1, Zero)  // _T_x: Emitted by ASL Compiler
-                    Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    While (One)
-                    {
-                        Store (ToInteger (Arg0), T_0)
-                        If (LEqual (T_0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                        {
-                            While (One)
-                            {
-                                Store (ToInteger (Arg2), T_1)
-                                If (LEqual (T_1, Zero))
-                                {
-                                    If (LEqual (Arg1, 0x02))
-                                    {
-                                        Store (One, OPTS)
-                                        If (LTRE)
-                                        {
-                                            Or (OPTS, 0x40, OPTS)
-                                        }
-
-                                        If (OBFF)
-                                        {
-                                            Or (OPTS, 0x10, OPTS)
-                                        }
-
-                                        Return (OPTS)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                                Else
-                                {
-                                    If (LEqual (T_1, 0x04))
-                                    {
-                                        If (LEqual (Arg1, 0x02))
-                                        {
-                                            If (OBFF)
-                                            {
-                                                Return (Buffer (0x10)
-                                                {
-                                                    /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                    /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                                })
-                                            }
-                                            Else
-                                            {
-                                                Return (Buffer (0x10)
-                                                {
-                                                    /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                    /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                                })
-                                            }
-                                        }
-                                    }
-                                    Else
-                                    {
-                                        If (LEqual (T_1, 0x06))
-                                        {
-                                            If (LEqual (Arg1, 0x02))
-                                            {
-                                                If (LTRE)
-                                                {
-                                                    Name (MLTR, Zero)
-                                                    If (LEqual (PCHS, One))
-                                                    {
-                                                        Store (0x0846, MLTR)
-                                                    }
-                                                    Else
-                                                    {
-                                                        If (LEqual (PCHS, 0x02))
-                                                        {
-                                                            Store (0x1003, MLTR)
-                                                        }
-                                                    }
-
-                                                    Store (And (ShiftRight (MLTR, 0x0A), 0x07), Index (LTRV, 
-                                                        Zero))
-                                                    Store (And (MLTR, 0x03FF), Index (LTRV, One))
-                                                    Store (And (ShiftRight (MLTR, 0x0A), 0x07), Index (LTRV, 
-                                                        0x02))
-                                                    Store (And (MLTR, 0x03FF), Index (LTRV, 0x03))
-                                                    Return (LTRV)
-                                                }
-                                                Else
-                                                {
-                                                    Return (Zero)
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-
-                                Break
-                            }
-                        }
-
-                        Break
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (PXSX)
                 {
@@ -3181,114 +2753,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 })
                 Name (OPTS, Zero)
                 Name (RPAV, Zero)
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (T_1, Zero)  // _T_x: Emitted by ASL Compiler
-                    Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    While (One)
-                    {
-                        Store (ToInteger (Arg0), T_0)
-                        If (LEqual (T_0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                        {
-                            While (One)
-                            {
-                                Store (ToInteger (Arg2), T_1)
-                                If (LEqual (T_1, Zero))
-                                {
-                                    If (LEqual (Arg1, 0x02))
-                                    {
-                                        Store (One, OPTS)
-                                        If (LTRE)
-                                        {
-                                            Or (OPTS, 0x40, OPTS)
-                                        }
-
-                                        If (OBFF)
-                                        {
-                                            Or (OPTS, 0x10, OPTS)
-                                        }
-
-                                        Return (OPTS)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                                Else
-                                {
-                                    If (LEqual (T_1, 0x04))
-                                    {
-                                        If (LEqual (Arg1, 0x02))
-                                        {
-                                            If (OBFF)
-                                            {
-                                                Return (Buffer (0x10)
-                                                {
-                                                    /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                    /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                                })
-                                            }
-                                            Else
-                                            {
-                                                Return (Buffer (0x10)
-                                                {
-                                                    /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                    /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                                })
-                                            }
-                                        }
-                                    }
-                                    Else
-                                    {
-                                        If (LEqual (T_1, 0x06))
-                                        {
-                                            If (LEqual (Arg1, 0x02))
-                                            {
-                                                If (LTRE)
-                                                {
-                                                    Name (MLTR, Zero)
-                                                    If (LEqual (PCHS, One))
-                                                    {
-                                                        Store (0x0846, MLTR)
-                                                    }
-                                                    Else
-                                                    {
-                                                        If (LEqual (PCHS, 0x02))
-                                                        {
-                                                            Store (0x1003, MLTR)
-                                                        }
-                                                    }
-
-                                                    Store (And (ShiftRight (MLTR, 0x0A), 0x07), Index (LTRV, 
-                                                        Zero))
-                                                    Store (And (MLTR, 0x03FF), Index (LTRV, One))
-                                                    Store (And (ShiftRight (MLTR, 0x0A), 0x07), Index (LTRV, 
-                                                        0x02))
-                                                    Store (And (MLTR, 0x03FF), Index (LTRV, 0x03))
-                                                    Return (LTRV)
-                                                }
-                                                Else
-                                                {
-                                                    Return (Zero)
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-
-                                Break
-                            }
-                        }
-
-                        Break
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (PXSX)
                 {
@@ -3419,114 +2884,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 })
                 Name (OPTS, Zero)
                 Name (RPAV, Zero)
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (T_1, Zero)  // _T_x: Emitted by ASL Compiler
-                    Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    While (One)
-                    {
-                        Store (ToInteger (Arg0), T_0)
-                        If (LEqual (T_0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                        {
-                            While (One)
-                            {
-                                Store (ToInteger (Arg2), T_1)
-                                If (LEqual (T_1, Zero))
-                                {
-                                    If (LEqual (Arg1, 0x02))
-                                    {
-                                        Store (One, OPTS)
-                                        If (LTRE)
-                                        {
-                                            Or (OPTS, 0x40, OPTS)
-                                        }
-
-                                        If (OBFF)
-                                        {
-                                            Or (OPTS, 0x10, OPTS)
-                                        }
-
-                                        Return (OPTS)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                                Else
-                                {
-                                    If (LEqual (T_1, 0x04))
-                                    {
-                                        If (LEqual (Arg1, 0x02))
-                                        {
-                                            If (OBFF)
-                                            {
-                                                Return (Buffer (0x10)
-                                                {
-                                                    /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                    /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                                })
-                                            }
-                                            Else
-                                            {
-                                                Return (Buffer (0x10)
-                                                {
-                                                    /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                    /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                                })
-                                            }
-                                        }
-                                    }
-                                    Else
-                                    {
-                                        If (LEqual (T_1, 0x06))
-                                        {
-                                            If (LEqual (Arg1, 0x02))
-                                            {
-                                                If (LTRE)
-                                                {
-                                                    Name (MLTR, Zero)
-                                                    If (LEqual (PCHS, One))
-                                                    {
-                                                        Store (0x0846, MLTR)
-                                                    }
-                                                    Else
-                                                    {
-                                                        If (LEqual (PCHS, 0x02))
-                                                        {
-                                                            Store (0x1003, MLTR)
-                                                        }
-                                                    }
-
-                                                    Store (And (ShiftRight (MLTR, 0x0A), 0x07), Index (LTRV, 
-                                                        Zero))
-                                                    Store (And (MLTR, 0x03FF), Index (LTRV, One))
-                                                    Store (And (ShiftRight (MLTR, 0x0A), 0x07), Index (LTRV, 
-                                                        0x02))
-                                                    Store (And (MLTR, 0x03FF), Index (LTRV, 0x03))
-                                                    Return (LTRV)
-                                                }
-                                                Else
-                                                {
-                                                    Return (Zero)
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-
-                                Break
-                            }
-                        }
-
-                        Break
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (PXSX)
                 {
@@ -4862,114 +4220,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 })
                 Name (OPTS, Zero)
                 Name (RPAV, Zero)
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (T_1, Zero)  // _T_x: Emitted by ASL Compiler
-                    Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    While (One)
-                    {
-                        Store (ToInteger (Arg0), T_0)
-                        If (LEqual (T_0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                        {
-                            While (One)
-                            {
-                                Store (ToInteger (Arg2), T_1)
-                                If (LEqual (T_1, Zero))
-                                {
-                                    If (LEqual (Arg1, 0x02))
-                                    {
-                                        Store (One, OPTS)
-                                        If (LTRE)
-                                        {
-                                            Or (OPTS, 0x40, OPTS)
-                                        }
-
-                                        If (OBFF)
-                                        {
-                                            Or (OPTS, 0x10, OPTS)
-                                        }
-
-                                        Return (OPTS)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                                Else
-                                {
-                                    If (LEqual (T_1, 0x04))
-                                    {
-                                        If (LEqual (Arg1, 0x02))
-                                        {
-                                            If (OBFF)
-                                            {
-                                                Return (Buffer (0x10)
-                                                {
-                                                    /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                    /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                                })
-                                            }
-                                            Else
-                                            {
-                                                Return (Buffer (0x10)
-                                                {
-                                                    /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                    /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                                })
-                                            }
-                                        }
-                                    }
-                                    Else
-                                    {
-                                        If (LEqual (T_1, 0x06))
-                                        {
-                                            If (LEqual (Arg1, 0x02))
-                                            {
-                                                If (LTRE)
-                                                {
-                                                    Name (MLTR, Zero)
-                                                    If (LEqual (PCHS, One))
-                                                    {
-                                                        Store (0x0846, MLTR)
-                                                    }
-                                                    Else
-                                                    {
-                                                        If (LEqual (PCHS, 0x02))
-                                                        {
-                                                            Store (0x1003, MLTR)
-                                                        }
-                                                    }
-
-                                                    Store (And (ShiftRight (MLTR, 0x0A), 0x07), Index (LTRV, 
-                                                        Zero))
-                                                    Store (And (MLTR, 0x03FF), Index (LTRV, One))
-                                                    Store (And (ShiftRight (MLTR, 0x0A), 0x07), Index (LTRV, 
-                                                        0x02))
-                                                    Store (And (MLTR, 0x03FF), Index (LTRV, 0x03))
-                                                    Return (LTRV)
-                                                }
-                                                Else
-                                                {
-                                                    Return (Zero)
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-
-                                Break
-                            }
-                        }
-
-                        Break
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (PXSX)
                 {
@@ -5129,114 +4380,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             
                 Name (OPTS, Zero)
                 Name (RPAV, Zero)
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                {
-                    Name (T_1, Zero)  // _T_x: Emitted by ASL Compiler
-                    Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                    While (One)
-                    {
-                        Store (ToInteger (Arg0), T_0)
-                        If (LEqual (T_0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
-                        {
-                            While (One)
-                            {
-                                Store (ToInteger (Arg2), T_1)
-                                If (LEqual (T_1, Zero))
-                                {
-                                    If (LEqual (Arg1, 0x02))
-                                    {
-                                        Store (One, OPTS)
-                                        If (LTRE)
-                                        {
-                                            Or (OPTS, 0x40, OPTS)
-                                        }
-
-                                        If (OBFF)
-                                        {
-                                            Or (OPTS, 0x10, OPTS)
-                                        }
-
-                                        Return (OPTS)
-                                    }
-                                    Else
-                                    {
-                                        Return (Zero)
-                                    }
-                                }
-                                Else
-                                {
-                                    If (LEqual (T_1, 0x04))
-                                    {
-                                        If (LEqual (Arg1, 0x02))
-                                        {
-                                            If (OBFF)
-                                            {
-                                                Return (Buffer (0x10)
-                                                {
-                                                    /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                    /* 0008 */  0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00 
-                                                })
-                                            }
-                                            Else
-                                            {
-                                                Return (Buffer (0x10)
-                                                {
-                                                    /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                    /* 0008 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                                })
-                                            }
-                                        }
-                                    }
-                                    Else
-                                    {
-                                        If (LEqual (T_1, 0x06))
-                                        {
-                                            If (LEqual (Arg1, 0x02))
-                                            {
-                                                If (LTRE)
-                                                {
-                                                    Name (MLTR, Zero)
-                                                    If (LEqual (PCHS, One))
-                                                    {
-                                                        Store (0x0846, MLTR)
-                                                    }
-                                                    Else
-                                                    {
-                                                        If (LEqual (PCHS, 0x02))
-                                                        {
-                                                            Store (0x1003, MLTR)
-                                                        }
-                                                    }
-
-                                                    Store (And (ShiftRight (MLTR, 0x0A), 0x07), Index (LTRV, 
-                                                        Zero))
-                                                    Store (And (MLTR, 0x03FF), Index (LTRV, One))
-                                                    Store (And (ShiftRight (MLTR, 0x0A), 0x07), Index (LTRV, 
-                                                        0x02))
-                                                    Store (And (MLTR, 0x03FF), Index (LTRV, 0x03))
-                                                    Return (LTRV)
-                                                }
-                                                Else
-                                                {
-                                                    Return (Zero)
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-
-                                Break
-                            }
-                        }
-
-                        Break
-                    }
-
-                    Return (Buffer (One)
-                    {
-                         0x00                                           
-                    })
-                }
+                
 
                 Device (ARPT)
                 {
@@ -5247,6 +4391,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     {
                         Return (HPCE)
                     }
+                    
                     Method (_DSM, 4, NotSerialized)
                     {
                         If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
@@ -5259,7 +4404,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                             "name", Buffer (0x0D) { "pci14e4,43a3" }
                         })
                     }
-                    
                     
                 }
 
@@ -5369,49 +4513,9 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 }
             }
 
-            Device (UHC3)
-            {
-                Name (_ADR, 0x001D0000)  // _ADR: Address
-                Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x0D, 0x03 }) }
-                Method (_DSM, 4, NotSerialized)
-                {
-                    If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
-                    Return (Package()
-                    {
-                        "AAPL,clock-id", Buffer() { 0x01 },
-                        "built-in", Buffer() { 0x00 },
-                        "subsystem-id", Buffer() { 0x70, 0x72, 0x00, 0x00 },
-                        "subsystem-vendor-id", Buffer() { 0x86, 0x80, 0x00, 0x00 },
-                        "AAPL,current-available", 2100,
-                        "AAPL,current-extra", 2200,
-                        "AAPL,current-extra-in-sleep", 1600,
-                        "AAPL,max-port-current-in-sleep", 2100,
-                    })
-                }
-                
-            }
+            
 
-            Device (XHC1)
-            {
-                Name (_ADR, 0x00140000)  // _ADR: Address
-                Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x0D, 0x03 }) }
-                Method (_DSM, 4, NotSerialized)
-                {
-                    If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
-                    Return (Package()
-                    {
-                        "AAPL,clock-id", Buffer() { 0x02 },
-                        "built-in", Buffer() { 0x00 },
-                        "subsystem-id", Buffer() { 0x70, 0x72, 0x00, 0x00 },
-                        "subsystem-vendor-id", Buffer() { 0x86, 0x80, 0x00, 0x00 },
-                        "AAPL,current-available", 2100,
-                        "AAPL,current-extra", 2200,
-                        "AAPL,current-extra-in-sleep", 1600,
-                        "AAPL,max-port-current-in-sleep", 2100,
-                    })
-                }
-                
-            }
+            
             Device (MCHC)
             {
                 Name (_ADR, Zero)
@@ -5424,8 +4528,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     If (LEqual (Arg2, Zero)) { Return (Buffer(One) { 0x03 } ) }
                     Return (Package()
                     {
-                        "device-id", Buffer() { 0x3A, 0x9C, 0x00, 0x00 },
-                        "name", Buffer() { "pci8086,9c3a" },
                         "subsystem-id", Buffer() { 0x70, 0x72, 0x00, 0x00 },
                         "subsystem-vendor-id", Buffer() { 0x86, 0x80, 0x00, 0x00 },
                     })
@@ -5798,2661 +4900,11 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         Name (OBFF, Zero)
         Name (LMSL, Zero)
         Name (LNSL, Zero)
-        Device (EHC1)
-        {
-            Name (_ADR, 0x001D0000)  // _ADR: Address
-            OperationRegion (PWKE, PCI_Config, 0x54, 0x12)
-            Field (PWKE, DWordAcc, NoLock, Preserve)
-            {
-                Offset (0x01), 
-                PMEE,   1, 
-                    ,   6, 
-                PMES,   1, 
-                Offset (0x0E), 
-                    ,   1, 
-                PWUC,   8
-            }
+        
 
-            Method (_PSW, 1, NotSerialized)  // _PSW: Power State Wake
-            {
-                If (Arg0)
-                {
-                    Store (Ones, PWUC)
-                }
-                Else
-                {
-                    Store (Zero, PWUC)
-                }
-            }
+        
 
-            Method (_S3D, 0, NotSerialized)  // _S3D: S3 Device State
-            {
-                Return (0x02)
-            }
-
-            Method (_S4D, 0, NotSerialized)  // _S4D: S4 Device State
-            {
-                Return (0x02)
-            }
-
-            Device (HUBN)
-            {
-                Name (_ADR, Zero)  // _ADR: Address
-                Device (PR01)
-                {
-                    Name (_ADR, One)  // _ADR: Address
-                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                    {
-                        Name (UPCA, Package (0x04)
-                        {
-                            0xFF, 
-                            Zero, 
-                            Zero, 
-                            Zero
-                        })
-                        Return (UPCA)
-                    }
-
-                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                    {
-                        Name (PLDP, Package (One)
-                        {
-                            Buffer (0x10)
-                            {
-                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                            }
-                        })
-                        Return (PLDP)
-                    }
-
-                    Device (PR11)
-                    {
-                        Name (_ADR, One)  // _ADR: Address
-                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                        {
-                            Name (UPCP, Package (0x04)
-                            {
-                                0xFF, 
-                                0xFF, 
-                                Zero, 
-                                Zero
-                            })
-                            Return (UPCP)
-                        }
-
-                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                        {
-                            Name (PLDP, Package (One)
-                            {
-                                Buffer (0x10)
-                                {
-                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                    /* 0008 */  0xE1, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                }
-                            })
-                            Return (PLDP)
-                        }
-                    }
-
-                    Device (PR12)
-                    {
-                        Name (_ADR, 0x02)  // _ADR: Address
-                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                        {
-                            Name (UPCP, Package (0x04)
-                            {
-                                0xFF, 
-                                0xFF, 
-                                Zero, 
-                                Zero
-                            })
-                            Return (UPCP)
-                        }
-
-                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                        {
-                            Name (PLDP, Package (One)
-                            {
-                                Buffer (0x10)
-                                {
-                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                    /* 0008 */  0xE1, 0x1D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                }
-                            })
-                            Return (PLDP)
-                        }
-                    }
-
-                    Device (PR13)
-                    {
-                        Name (_ADR, 0x03)  // _ADR: Address
-                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                        {
-                            Name (UPCP, Package (0x04)
-                            {
-                                0xFF, 
-                                0xFF, 
-                                Zero, 
-                                Zero
-                            })
-                            Return (UPCP)
-                        }
-
-                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                        {
-                            Name (PLDP, Package (One)
-                            {
-                                Buffer (0x10)
-                                {
-                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                    /* 0008 */  0xE1, 0x1D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                }
-                            })
-                            CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
-                            If (LEqual (And (CDID, 0xF000), 0x9000))
-                            {
-                                And (VIS, Zero, VIS)
-                            }
-
-                            Return (PLDP)
-                        }
-                    }
-
-                    Device (PR14)
-                    {
-                        Name (_ADR, 0x04)  // _ADR: Address
-                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                        {
-                            Name (UPCP, Package (0x04)
-                            {
-                                0xFF, 
-                                0xFF, 
-                                Zero, 
-                                Zero
-                            })
-                            Return (UPCP)
-                        }
-
-                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                        {
-                            Name (PLDP, Package (One)
-                            {
-                                Buffer (0x10)
-                                {
-                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                    /* 0008 */  0xE1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                }
-                            })
-                            Return (PLDP)
-                        }
-
-                        Alias (SBV1, SDGV)
-                        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                        {
-                            Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                            If (LEqual (Arg0, ToUUID ("a5fc708f-8775-4ba6-bd0c-ba90a1ec72f8")))
-                            {
-                                While (One)
-                                {
-                                    Store (ToInteger (Arg2), T_0)
-                                    If (LEqual (T_0, Zero))
-                                    {
-                                        If (LEqual (Arg1, One))
-                                        {
-                                            Return (Buffer (One)
-                                            {
-                                                 0x07                                           
-                                            })
-                                        }
-                                        Else
-                                        {
-                                            Return (Buffer (One)
-                                            {
-                                                 0x00                                           
-                                            })
-                                        }
-                                    }
-                                    Else
-                                    {
-                                        If (LEqual (T_0, One))
-                                        {
-                                            If (LEqual (SDGV, 0xFF))
-                                            {
-                                                Return (Zero)
-                                            }
-                                            Else
-                                            {
-                                                Return (One)
-                                            }
-                                        }
-                                        Else
-                                        {
-                                            If (LEqual (T_0, 0x02))
-                                            {
-                                                Return (SDGV)
-                                            }
-                                        }
-                                    }
-
-                                    Break
-                                }
-                            }
-
-                            Return (Zero)
-                        }
-                    }
-
-                    Device (PR15)
-                    {
-                        Name (_ADR, 0x05)  // _ADR: Address
-                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                        {
-                            Name (UPCP, Package (0x04)
-                            {
-                                0xFF, 
-                                0xFF, 
-                                Zero, 
-                                Zero
-                            })
-                            Return (UPCP)
-                        }
-
-                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                        {
-                            Name (PLDP, Package (One)
-                            {
-                                Buffer (0x10)
-                                {
-                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                    /* 0008 */  0xB1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                }
-                            })
-                            Return (PLDP)
-                        }
-
-                        Alias (SBV2, SDGV)
-                        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                        {
-                            Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                            If (LEqual (Arg0, ToUUID ("a5fc708f-8775-4ba6-bd0c-ba90a1ec72f8")))
-                            {
-                                While (One)
-                                {
-                                    Store (ToInteger (Arg2), T_0)
-                                    If (LEqual (T_0, Zero))
-                                    {
-                                        If (LEqual (Arg1, One))
-                                        {
-                                            Return (Buffer (One)
-                                            {
-                                                 0x07                                           
-                                            })
-                                        }
-                                        Else
-                                        {
-                                            Return (Buffer (One)
-                                            {
-                                                 0x00                                           
-                                            })
-                                        }
-                                    }
-                                    Else
-                                    {
-                                        If (LEqual (T_0, One))
-                                        {
-                                            If (LEqual (SDGV, 0xFF))
-                                            {
-                                                Return (Zero)
-                                            }
-                                            Else
-                                            {
-                                                Return (One)
-                                            }
-                                        }
-                                        Else
-                                        {
-                                            If (LEqual (T_0, 0x02))
-                                            {
-                                                Return (SDGV)
-                                            }
-                                        }
-                                    }
-
-                                    Break
-                                }
-                            }
-
-                            Return (Zero)
-                        }
-                    }
-
-                    Device (PR16)
-                    {
-                        Name (_ADR, 0x06)  // _ADR: Address
-                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                        {
-                            Name (UPCP, Package (0x04)
-                            {
-                                0xFF, 
-                                0xFF, 
-                                Zero, 
-                                Zero
-                            })
-                            Return (UPCP)
-                        }
-
-                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                        {
-                            Name (PLDP, Package (One)
-                            {
-                                Buffer (0x10)
-                                {
-                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                    /* 0008 */  0xB1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                }
-                            })
-                            Return (PLDP)
-                        }
-
-                        Alias (SBV1, SDGV)
-                        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                        {
-                            Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                            If (LEqual (Arg0, ToUUID ("a5fc708f-8775-4ba6-bd0c-ba90a1ec72f8")))
-                            {
-                                While (One)
-                                {
-                                    Store (ToInteger (Arg2), T_0)
-                                    If (LEqual (T_0, Zero))
-                                    {
-                                        If (LEqual (Arg1, One))
-                                        {
-                                            Return (Buffer (One)
-                                            {
-                                                 0x07                                           
-                                            })
-                                        }
-                                        Else
-                                        {
-                                            Return (Buffer (One)
-                                            {
-                                                 0x00                                           
-                                            })
-                                        }
-                                    }
-                                    Else
-                                    {
-                                        If (LEqual (T_0, One))
-                                        {
-                                            If (LEqual (SDGV, 0xFF))
-                                            {
-                                                Return (Zero)
-                                            }
-                                            Else
-                                            {
-                                                Return (One)
-                                            }
-                                        }
-                                        Else
-                                        {
-                                            If (LEqual (T_0, 0x02))
-                                            {
-                                                Return (SDGV)
-                                            }
-                                        }
-                                    }
-
-                                    Break
-                                }
-                            }
-
-                            Return (Zero)
-                        }
-                    }
-
-                    Device (PR17)
-                    {
-                        Name (_ADR, 0x07)  // _ADR: Address
-                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                        {
-                            Name (UPCP, Package (0x04)
-                            {
-                                0xFF, 
-                                0xFF, 
-                                Zero, 
-                                Zero
-                            })
-                            Return (UPCP)
-                        }
-
-                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                        {
-                            Name (PLDP, Package (One)
-                            {
-                                Buffer (0x10)
-                                {
-                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                    /* 0008 */  0xB1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                }
-                            })
-                            Return (PLDP)
-                        }
-
-                        Alias (SBV2, SDGV)
-                        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                        {
-                            Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                            If (LEqual (Arg0, ToUUID ("a5fc708f-8775-4ba6-bd0c-ba90a1ec72f8")))
-                            {
-                                While (One)
-                                {
-                                    Store (ToInteger (Arg2), T_0)
-                                    If (LEqual (T_0, Zero))
-                                    {
-                                        If (LEqual (Arg1, One))
-                                        {
-                                            Return (Buffer (One)
-                                            {
-                                                 0x07                                           
-                                            })
-                                        }
-                                        Else
-                                        {
-                                            Return (Buffer (One)
-                                            {
-                                                 0x00                                           
-                                            })
-                                        }
-                                    }
-                                    Else
-                                    {
-                                        If (LEqual (T_0, One))
-                                        {
-                                            If (LEqual (SDGV, 0xFF))
-                                            {
-                                                Return (Zero)
-                                            }
-                                            Else
-                                            {
-                                                Return (One)
-                                            }
-                                        }
-                                        Else
-                                        {
-                                            If (LEqual (T_0, 0x02))
-                                            {
-                                                Return (SDGV)
-                                            }
-                                        }
-                                    }
-
-                                    Break
-                                }
-                            }
-
-                            Return (Zero)
-                        }
-                    }
-
-                    Device (PR18)
-                    {
-                        Name (_ADR, 0x08)  // _ADR: Address
-                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                        {
-                            Name (UPCP, Package (0x04)
-                            {
-                                0xFF, 
-                                0xFF, 
-                                Zero, 
-                                Zero
-                            })
-                            Return (UPCP)
-                        }
-
-                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                        {
-                            Name (PLDP, Package (One)
-                            {
-                                Buffer (0x10)
-                                {
-                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                    /* 0008 */  0xB1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                }
-                            })
-                            Return (PLDP)
-                        }
-                    }
-                }
-            }
-
-            Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x0D, 0x03 }) }
-        }
-
-        Device (EHC2)
-        {
-            Name (_ADR, 0x001A0000)  // _ADR: Address
-            OperationRegion (PWKE, PCI_Config, 0x54, 0x12)
-            Field (PWKE, DWordAcc, NoLock, Preserve)
-            {
-                Offset (0x01), 
-                PMEE,   1, 
-                    ,   6, 
-                PMES,   1, 
-                Offset (0x0E), 
-                    ,   1, 
-                PWUC,   6
-            }
-
-            Method (_PSW, 1, NotSerialized)  // _PSW: Power State Wake
-            {
-                If (Arg0)
-                {
-                    Store (Ones, PWUC)
-                }
-                Else
-                {
-                    Store (Zero, PWUC)
-                }
-            }
-
-            Method (_S3D, 0, NotSerialized)  // _S3D: S3 Device State
-            {
-                Return (0x02)
-            }
-
-            Method (_S4D, 0, NotSerialized)  // _S4D: S4 Device State
-            {
-                Return (0x02)
-            }
-
-            Device (HUBN)
-            {
-                Name (_ADR, Zero)  // _ADR: Address
-                Device (PR01)
-                {
-                    Name (_ADR, One)  // _ADR: Address
-                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                    {
-                        Name (UPCA, Package (0x04)
-                        {
-                            0xFF, 
-                            Zero, 
-                            Zero, 
-                            Zero
-                        })
-                        Return (UPCA)
-                    }
-
-                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                    {
-                        Name (PLDP, Package (One)
-                        {
-                            Buffer (0x10)
-                            {
-                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                            }
-                        })
-                        Return (PLDP)
-                    }
-
-                    Device (PR11)
-                    {
-                        Name (_ADR, One)  // _ADR: Address
-                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                        {
-                            Name (UPCP, Package (0x04)
-                            {
-                                0xFF, 
-                                0xFF, 
-                                Zero, 
-                                Zero
-                            })
-                            Return (UPCP)
-                        }
-
-                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                        {
-                            Name (PLDP, Package (One)
-                            {
-                                Buffer (0x10)
-                                {
-                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                    /* 0008 */  0xE1, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                }
-                            })
-                            Return (PLDP)
-                        }
-                    }
-
-                    Device (PR12)
-                    {
-                        Name (_ADR, 0x02)  // _ADR: Address
-                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                        {
-                            Name (UPCP, Package (0x04)
-                            {
-                                0xFF, 
-                                0xFF, 
-                                Zero, 
-                                Zero
-                            })
-                            Return (UPCP)
-                        }
-
-                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                        {
-                            Name (PLDP, Package (One)
-                            {
-                                Buffer (0x10)
-                                {
-                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                    /* 0008 */  0xE1, 0x1D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                }
-                            })
-                            Return (PLDP)
-                        }
-
-                        Alias (SBV1, SDGV)
-                        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                        {
-                            Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                            If (LEqual (Arg0, ToUUID ("a5fc708f-8775-4ba6-bd0c-ba90a1ec72f8")))
-                            {
-                                While (One)
-                                {
-                                    Store (ToInteger (Arg2), T_0)
-                                    If (LEqual (T_0, Zero))
-                                    {
-                                        If (LEqual (Arg1, One))
-                                        {
-                                            Return (Buffer (One)
-                                            {
-                                                 0x07                                           
-                                            })
-                                        }
-                                        Else
-                                        {
-                                            Return (Buffer (One)
-                                            {
-                                                 0x00                                           
-                                            })
-                                        }
-                                    }
-                                    Else
-                                    {
-                                        If (LEqual (T_0, One))
-                                        {
-                                            If (LEqual (SDGV, 0xFF))
-                                            {
-                                                Return (Zero)
-                                            }
-                                            Else
-                                            {
-                                                Return (One)
-                                            }
-                                        }
-                                        Else
-                                        {
-                                            If (LEqual (T_0, 0x02))
-                                            {
-                                                Return (SDGV)
-                                            }
-                                        }
-                                    }
-
-                                    Break
-                                }
-                            }
-
-                            Return (Zero)
-                        }
-                    }
-
-                    Device (PR13)
-                    {
-                        Name (_ADR, 0x03)  // _ADR: Address
-                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                        {
-                            Name (UPCP, Package (0x04)
-                            {
-                                0xFF, 
-                                0xFF, 
-                                Zero, 
-                                Zero
-                            })
-                            Return (UPCP)
-                        }
-
-                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                        {
-                            Name (PLDP, Package (One)
-                            {
-                                Buffer (0x10)
-                                {
-                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                    /* 0008 */  0xE1, 0x1D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                }
-                            })
-                            CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
-                            If (LEqual (And (CDID, 0xF000), 0x9000))
-                            {
-                                And (VIS, Zero, VIS)
-                            }
-
-                            Return (PLDP)
-                        }
-
-                        Alias (SBV2, SDGV)
-                        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-                        {
-                            Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                            If (LEqual (Arg0, ToUUID ("a5fc708f-8775-4ba6-bd0c-ba90a1ec72f8")))
-                            {
-                                While (One)
-                                {
-                                    Store (ToInteger (Arg2), T_0)
-                                    If (LEqual (T_0, Zero))
-                                    {
-                                        If (LEqual (Arg1, One))
-                                        {
-                                            Return (Buffer (One)
-                                            {
-                                                 0x07                                           
-                                            })
-                                        }
-                                        Else
-                                        {
-                                            Return (Buffer (One)
-                                            {
-                                                 0x00                                           
-                                            })
-                                        }
-                                    }
-                                    Else
-                                    {
-                                        If (LEqual (T_0, One))
-                                        {
-                                            If (LEqual (SDGV, 0xFF))
-                                            {
-                                                Return (Zero)
-                                            }
-                                            Else
-                                            {
-                                                Return (One)
-                                            }
-                                        }
-                                        Else
-                                        {
-                                            If (LEqual (T_0, 0x02))
-                                            {
-                                                Return (SDGV)
-                                            }
-                                        }
-                                    }
-
-                                    Break
-                                }
-                            }
-
-                            Return (Zero)
-                        }
-                    }
-
-                    Device (PR14)
-                    {
-                        Name (_ADR, 0x04)  // _ADR: Address
-                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                        {
-                            Name (UPCP, Package (0x04)
-                            {
-                                0xFF, 
-                                0xFF, 
-                                Zero, 
-                                Zero
-                            })
-                            Return (UPCP)
-                        }
-
-                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                        {
-                            Name (PLDP, Package (One)
-                            {
-                                Buffer (0x10)
-                                {
-                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                    /* 0008 */  0xE1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                }
-                            })
-                            Return (PLDP)
-                        }
-                    }
-
-                    Device (PR15)
-                    {
-                        Name (_ADR, 0x05)  // _ADR: Address
-                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                        {
-                            Name (UPCP, Package (0x04)
-                            {
-                                0xFF, 
-                                0xFF, 
-                                Zero, 
-                                Zero
-                            })
-                            Return (UPCP)
-                        }
-
-                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                        {
-                            Name (PLDP, Package (One)
-                            {
-                                Buffer (0x10)
-                                {
-                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                    /* 0008 */  0xB1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                }
-                            })
-                            Return (PLDP)
-                        }
-                    }
-
-                    Device (PR16)
-                    {
-                        Name (_ADR, 0x06)  // _ADR: Address
-                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                        {
-                            Name (UPCP, Package (0x04)
-                            {
-                                0xFF, 
-                                0xFF, 
-                                Zero, 
-                                Zero
-                            })
-                            Return (UPCP)
-                        }
-
-                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                        {
-                            Name (PLDP, Package (One)
-                            {
-                                Buffer (0x10)
-                                {
-                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                    /* 0008 */  0xB1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                                }
-                            })
-                            Return (PLDP)
-                        }
-                    }
-                }
-            }
-
-            Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x0D, 0x03 }) }
-            Method (_DSM, 4, NotSerialized)
-            {
-                If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
-                Return (Package()
-                {
-                    "AAPL,clock-id", Buffer() { 0x01 },
-                    "built-in", Buffer() { 0x00 },
-                    "subsystem-id", Buffer() { 0x70, 0x72, 0x00, 0x00 },
-                    "subsystem-vendor-id", Buffer() { 0x86, 0x80, 0x00, 0x00 },
-                    "AAPL,current-available", 2100,
-                    "AAPL,current-extra", 2200,
-                    "AAPL,current-extra-in-sleep", 1600,
-                    "AAPL,max-port-current-in-sleep", 2100,
-                })
-            }
-            
-        }
-
-        Device (XHC)
-        {
-            Name (_ADR, 0x00140000)  // _ADR: Address
-            Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
-            {
-                    Return (Package (Zero) {})
-            }
-
-            OperationRegion (XPRT, PCI_Config, Zero, 0x0100)
-            Field (XPRT, AnyAcc, NoLock, Preserve)
-            {
-                DVID,   16, 
-                Offset (0x40), 
-                    ,   11, 
-                SWAI,   1, 
-                Offset (0x44), 
-                    ,   12, 
-                SAIP,   2, 
-                Offset (0x48), 
-                Offset (0x74), 
-                D0D3,   2, 
-                Offset (0x75), 
-                PMEE,   1, 
-                    ,   6, 
-                PMES,   1, 
-                Offset (0xB0), 
-                    ,   13, 
-                MB13,   1, 
-                MB14,   1, 
-                Offset (0xB4), 
-                Offset (0xD0), 
-                PR2,    32, 
-                PR2M,   32, 
-                PR3,    32, 
-                PR3M,   32
-            }
-
-            OperationRegion (XHCP, SystemMemory, Add (PEBS, 0x000A0000), 0x0100)
-            Field (XHCP, AnyAcc, Lock, Preserve)
-            {
-                Offset (0x04), 
-                PDBM,   16, 
-                Offset (0x10), 
-                MEMB,   64
-            }
-
-            Method (PR2S, 1, Serialized)
-            {
-                Name (T_1, Zero)  // _T_x: Emitted by ASL Compiler
-                Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                If (LEqual (And (CDID, 0xF000), 0x8000))
-                {
-                    While (One)
-                    {
-                        Store (Arg0, T_0)
-                        If (LEqual (T_0, One))
-                        {
-                            Return (One)
-                        }
-                        Else
-                        {
-                            If (LEqual (T_0, 0x02))
-                            {
-                                Return (0x02)
-                            }
-                            Else
-                            {
-                                If (LEqual (T_0, 0x03))
-                                {
-                                    Return (0x04)
-                                }
-                                Else
-                                {
-                                    If (LEqual (T_0, 0x04))
-                                    {
-                                        Return (0x08)
-                                    }
-                                    Else
-                                    {
-                                        If (LEqual (T_0, 0x05))
-                                        {
-                                            Return (0x0100)
-                                        }
-                                        Else
-                                        {
-                                            If (LEqual (T_0, 0x06))
-                                            {
-                                                Return (0x0200)
-                                            }
-                                            Else
-                                            {
-                                                If (LEqual (T_0, 0x07))
-                                                {
-                                                    Return (0x0400)
-                                                }
-                                                Else
-                                                {
-                                                    If (LEqual (T_0, 0x08))
-                                                    {
-                                                        Return (0x0800)
-                                                    }
-                                                    Else
-                                                    {
-                                                        If (LEqual (T_0, 0x09))
-                                                        {
-                                                            Return (0x10)
-                                                        }
-                                                        Else
-                                                        {
-                                                            If (LEqual (T_0, 0x0A))
-                                                            {
-                                                                Return (0x20)
-                                                            }
-                                                            Else
-                                                            {
-                                                                If (LEqual (T_0, 0x0B))
-                                                                {
-                                                                    Return (0x1000)
-                                                                }
-                                                                Else
-                                                                {
-                                                                    If (LEqual (T_0, 0x0C))
-                                                                    {
-                                                                        Return (0x2000)
-                                                                    }
-                                                                    Else
-                                                                    {
-                                                                        If (LEqual (T_0, 0x0D))
-                                                                        {
-                                                                            Return (0x40)
-                                                                        }
-                                                                        Else
-                                                                        {
-                                                                            If (LEqual (T_0, 0x0E))
-                                                                            {
-                                                                                Return (0x80)
-                                                                            }
-                                                                            Else
-                                                                            {
-                                                                                If (LEqual (T_0, 0x0F))
-                                                                                {
-                                                                                    Return (0x4000)
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
-                        Break
-                    }
-                }
-                Else
-                {
-                    While (One)
-                    {
-                        Store (Arg0, T_1)
-                        If (LEqual (T_1, One))
-                        {
-                            Return (One)
-                        }
-                        Else
-                        {
-                            If (LEqual (T_1, 0x02))
-                            {
-                                Return (0x02)
-                            }
-                            Else
-                            {
-                                If (LEqual (T_1, 0x03))
-                                {
-                                    Return (0x04)
-                                }
-                                Else
-                                {
-                                    If (LEqual (T_1, 0x04))
-                                    {
-                                        Return (0x08)
-                                    }
-                                    Else
-                                    {
-                                        If (LEqual (T_1, 0x05))
-                                        {
-                                            Return (0x10)
-                                        }
-                                        Else
-                                        {
-                                            If (LEqual (T_1, 0x06))
-                                            {
-                                                Return (0x20)
-                                            }
-                                            Else
-                                            {
-                                                If (LEqual (T_1, 0x07))
-                                                {
-                                                    Return (0x40)
-                                                }
-                                                Else
-                                                {
-                                                    If (LEqual (T_1, 0x08))
-                                                    {
-                                                        Return (0x80)
-                                                    }
-                                                    Else
-                                                    {
-                                                        If (LEqual (T_1, 0x09))
-                                                        {
-                                                            Return (0x0100)
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
-                        Break
-                    }
-                }
-                Return (Zero)
-            }
-
-            Name (XRST, Zero)
-            Method (_PS0, 0, Serialized)  // _PS0: Power State 0
-            {
-                If (LEqual (DVID, 0xFFFF))
-                {
-                    Return (Zero)
-                }
-
-                Store (MEMB, Local2)
-                Store (PDBM, Local1)
-                And (PDBM, 0xFFFFFFFFFFFFFFF9, PDBM)
-                Store (D0D3, Local3)
-                Store (Zero, D0D3)
-                Store (SRMB, MEMB)
-                Or (PDBM, 0x02, PDBM)
-                OperationRegion (MCA1, SystemMemory, SRMB, 0x9000)
-                Field (MCA1, DWordAcc, Lock, Preserve)
-                {
-                    Offset (0x510), 
-                    PSC1,   32, 
-                    Offset (0x520), 
-                    PSC2,   32, 
-                    Offset (0x530), 
-                    PSC3,   32, 
-                    Offset (0x540), 
-                    PSC4,   32, 
-                    Offset (0x80E0), 
-                        ,   15, 
-                    AX15,   1, 
-                    Offset (0x8154), 
-                        ,   31, 
-                    CLK2,   1, 
-                    Offset (0x816C), 
-                        ,   2, 
-                    CLK0,   1, 
-                        ,   11, 
-                    CLK1,   1
-                }
-
-                If (LEqual (PCHS, 0x02))
-                {
-                    Store (Zero, MB13)
-                    Store (Zero, MB14)
-                    Store (Zero, CLK0)
-                    Store (Zero, CLK1)
-                }
-
-                Store (One, CLK2)
-                If (LEqual (PCHS, 0x02))
-                {
-                    While (LOr (LOr (LEqual (And (PSC1, 0x03F8), 0x02E0), LEqual (
-                        And (PSC2, 0x03F8), 0x02E0)), LOr (LEqual (And (PSC3, 0x03F8), 
-                        0x02E0), LEqual (And (PSC4, 0x03F8), 0x02E0))))
-                    {
-                        Stall (0x0A)
-                    }
-
-                    Store (Zero, Local4)
-                    And (PSC1, 0xFFFFFFFFFFFFFFFD, Local0)
-                    If (LEqual (And (Local0, 0x000203F9), 0x02A0))
-                    {
-                        Or (Local0, 0x80000000, PSC1)
-                        Or (Local4, One, Local4)
-                    }
-
-                    And (PSC2, 0xFFFFFFFFFFFFFFFD, Local0)
-                    If (LEqual (And (Local0, 0x000203F9), 0x02A0))
-                    {
-                        Or (Local0, 0x80000000, PSC2)
-                        Or (Local4, 0x02, Local4)
-                    }
-
-                    And (PSC3, 0xFFFFFFFFFFFFFFFD, Local0)
-                    If (LEqual (And (Local0, 0x000203F9), 0x02A0))
-                    {
-                        Or (Local0, 0x80000000, PSC3)
-                        Or (Local4, 0x04, Local4)
-                    }
-
-                    And (PSC4, 0xFFFFFFFFFFFFFFFD, Local0)
-                    If (LEqual (And (Local0, 0x000203F9), 0x02A0))
-                    {
-                        Or (Local0, 0x80000000, PSC4)
-                        Or (Local4, 0x08, Local4)
-                    }
-
-                    If (Local4)
-                    {
-                        If (LLess (MSOS (), OSW8))
-                        {
-                            Stall (0x65)
-                        }
-                        Else
-                        {
-                            Sleep (0x65)
-                        }
-
-                        If (And (Local4, One))
-                        {
-                            And (PSC1, 0xFFFFFFFFFFFFFFFD, Local0)
-                            Or (Local0, 0x00FE0000, PSC1)
-                        }
-
-                        If (And (Local4, 0x02))
-                        {
-                            And (PSC2, 0xFFFFFFFFFFFFFFFD, Local0)
-                            Or (Local0, 0x00FE0000, PSC2)
-                        }
-
-                        If (And (Local4, 0x04))
-                        {
-                            And (PSC3, 0xFFFFFFFFFFFFFFFD, Local0)
-                            Or (Local0, 0x00FE0000, PSC3)
-                        }
-
-                        If (And (Local4, 0x08))
-                        {
-                            And (PSC4, 0xFFFFFFFFFFFFFFFD, Local0)
-                            Or (Local0, 0x00FE0000, PSC4)
-                        }
-                    }
-
-                    Store (One, AX15)
-                }
-
-                Store (Zero, SWAI)
-                Store (Zero, SAIP)
-                And (PDBM, 0xFFFFFFFFFFFFFFFD, PDBM)
-                Store (Local2, MEMB)
-                Store (Local1, PDBM)
-                Return (Zero)
-            }
-
-            Method (_PS3, 0, Serialized)  // _PS3: Power State 3
-            {
-                If (LEqual (DVID, 0xFFFF))
-                {
-                    Return (Zero)
-                }
-
-                Store (One, PMES)
-                Store (One, PMEE)
-                Store (MEMB, Local2)
-                Store (PDBM, Local1)
-                And (PDBM, 0xFFFFFFFFFFFFFFF9, PDBM)
-                Store (SRMB, MEMB)
-                Or (PDBM, 0x02, PDBM)
-                OperationRegion (MCA1, SystemMemory, SRMB, 0x9000)
-                Field (MCA1, DWordAcc, Lock, Preserve)
-                {
-                    Offset (0x80E0), 
-                        ,   15, 
-                    AX15,   1, 
-                    Offset (0x8154), 
-                        ,   31, 
-                    CLK2,   1, 
-                    Offset (0x816C), 
-                        ,   2, 
-                    CLK0,   1, 
-                        ,   11, 
-                    CLK1,   1, 
-                    Offset (0x8170)
-                }
-
-                Store (D0D3, Local3)
-                If (LEqual (Local3, 0x03))
-                {
-                    Store (Zero, D0D3)
-                }
-
-                If (LEqual (PCHS, 0x02))
-                {
-                    Store (One, MB13)
-                    Store (One, MB14)
-                    Store (One, CLK0)
-                    Store (One, CLK1)
-                }
-
-                Store (Zero, CLK2)
-                If (LEqual (PCHS, 0x02))
-                {
-                    Store (Zero, AX15)
-                }
-
-                Store (One, SWAI)
-                Store (One, SAIP)
-                If (LEqual (Local3, 0x03))
-                {
-                    Store (0x03, D0D3)
-                }
-
-                And (PDBM, 0xFFFFFFFFFFFFFFFD, PDBM)
-                Store (Local2, MEMB)
-                Store (Local1, PDBM)
-                Return (Zero)
-            }
-
-            Method (CUID, 1, Serialized)
-            {
-                If (LEqual (Arg0, ToUUID ("7c9512a9-1705-4cb4-af7d-506a2423ab71")))
-                {
-                    Return (One)
-                }
-
-                Return (Zero)
-            }
-
-            Method (POSC, 3, Serialized)
-            {
-                CreateDWordField (Arg2, Zero, CDW1)
-                CreateDWordField (Arg2, 0x08, CDW3)
-                If (LEqual (XHCI, Zero))
-                {
-                    Or (CDW1, 0x02, CDW1)
-                }
-
-                If (LNot (And (CDW1, One)))
-                {
-                    If (And (CDW3, One))
-                    {
-                        ESEL ()
-                    }
-                    Else
-                    {
-                        If (LEqual (And (CDID, 0xF000), 0x8000))
-                        {
-                            If (LGreater (Arg0, One))
-                            {
-                                XSEL ()
-                            }
-                            Else
-                            {
-                                Or (CDW1, 0x0A, CDW1)
-                            }
-                        }
-                        Else
-                        {
-                            If (LGreater (Arg0, 0x02))
-                            {
-                                XSEL ()
-                            }
-                            Else
-                            {
-                                Or (CDW1, 0x0A, CDW1)
-                            }
-                        }
-                    }
-                }
-
-                Return (Arg2)
-            }
-
-            Method (XSEL, 0, Serialized)
-            {
-                If (LOr (LEqual (XHCI, 0x02), LEqual (XHCI, 0x03)))
-                {
-                    Store (One, XUSB)
-                    Store (One, XRST)
-                    Store (Zero, Local0)
-                    And (PR3, 0xFFFFFFC0, Local0)
-                    Or (Local0, PR3M, PR3)
-                    Store (Zero, Local0)
-                    And (PR2, 0xFFFF8000, Local0)
-                    Or (Local0, PR2M, PR2)
-                }
-            }
-
-            Method (ESEL, 0, Serialized)
-            {
-                If (LOr (LEqual (XHCI, 0x02), LEqual (XHCI, 0x03)))
-                {
-                    And (PR3, 0xFFFFFFC0, PR3)
-                    And (PR2, 0xFFFF8000, PR2)
-                    Store (Zero, XUSB)
-                    Store (Zero, XRST)
-                }
-            }
-
-            Method (XWAK, 0, Serialized)
-            {
-                If (LOr (LEqual (XUSB, One), LEqual (XRST, One)))
-                {
-                    XSEL ()
-                }
-            }
-
-            Method (_S3D, 0, NotSerialized)  // _S3D: S3 Device State
-            {
-                Return (0x02)
-            }
-
-            Method (_S4D, 0, NotSerialized)  // _S4D: S4 Device State
-            {
-                Return (0x02)
-            }
-
-            Device (RHUB)
-            {
-                Name (_ADR, Zero)  // _ADR: Address
-                Device (HS01)
-                {
-                    Name (_ADR, One)  // _ADR: Address
-                    Name (_STA, 0x0F)  // _STA: Status
-                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                    {
-                        Name (UPCP, Package (0x04)
-                        {
-                            0xFF, 
-                            0x03, 
-                            Zero, 
-                            Zero
-                        })
-                        If (LNot (And (PR2S (One), PR2)))
-                        {
-                            Store (Zero, Index (UPCP, Zero))
-                        }
-
-                        Store (DerefOf (Index (CNTB, Zero)), Local0)
-                        Store (Local0, Index (UPCP, Zero))
-                        Return (UPCP)
-                    }
-
-                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                    {
-                        Name (PLDP, Package (One)
-                        {
-                            Buffer (0x10)
-                            {
-                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x69, 0x0C, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00 
-                            }
-                        })
-                        Store (DerefOf (Index (VISB, Zero)), Local0)
-                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
-                            Local1)
-                        And (Local1, 0xFE, Local1)
-                        Or (Local1, Local0, Local1)
-                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
-                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
-                        If (LNot (And (PR2S (One), PR2)))
-                        {
-                            And (VIS, Zero, VIS)
-                        }
-
-                        Return (PLDP)
-                    }
-                }
-
-                Device (HS02)
-                {
-                    Name (_ADR, 0x02)  // _ADR: Address
-                    Name (_STA, 0x0F)  // _STA: Status
-                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                    {
-                        Name (UPCP, Package (0x04)
-                        {
-                            0xFF, 
-                            0x03, 
-                            Zero, 
-                            Zero
-                        })
-                        If (LNot (And (PR2S (0x02), PR2)))
-                        {
-                            Store (Zero, Index (UPCP, Zero))
-                        }
-
-                        Store (DerefOf (Index (CNTB, One)), Local0)
-                        Store (Local0, Index (UPCP, Zero))
-                        Return (UPCP)
-                    }
-
-                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                    {
-                        Name (PLDP, Package (One)
-                        {
-                            Buffer (0x10)
-                            {
-                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x69, 0x0C, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00 
-                            }
-                        })
-                        Store (DerefOf (Index (VISB, One)), Local0)
-                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
-                            Local1)
-                        And (Local1, 0xFE, Local1)
-                        Or (Local1, Local0, Local1)
-                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
-                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
-                        If (LNot (And (PR2S (0x02), PR2)))
-                        {
-                            And (VIS, Zero, VIS)
-                        }
-
-                        Return (PLDP)
-                    }
-                }
-
-                Device (HS03)
-                {
-                    Name (_ADR, 0x03)  // _ADR: Address
-                    Name (_STA, 0x0F)  // _STA: Status
-                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                    {
-                        Name (UPCP, Package (0x04)
-                        {
-                            0xFF, 
-                            0x03, 
-                            Zero, 
-                            Zero
-                        })
-                        If (LNot (And (PR2S (0x03), PR2)))
-                        {
-                            Store (Zero, Index (UPCP, Zero))
-                        }
-
-                        Store (DerefOf (Index (CNTB, 0x02)), Local0)
-                        Store (Local0, Index (UPCP, Zero))
-                        Return (UPCP)
-                    }
-
-                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                    {
-                        Name (PLDP, Package (One)
-                        {
-                            Buffer (0x10)
-                            {
-                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x71, 0x0C, 0x80, 0x01, 0x00, 0x00, 0x00, 0x00 
-                            }
-                        })
-                        Store (DerefOf (Index (VISB, 0x02)), Local0)
-                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
-                            Local1)
-                        And (Local1, 0xFE, Local1)
-                        Or (Local1, Local0, Local1)
-                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
-                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
-                        If (LNot (And (PR2S (0x03), PR2)))
-                        {
-                            And (VIS, Zero, VIS)
-                        }
-
-                        Return (PLDP)
-                    }
-                }
-
-                Device (HS04)
-                {
-                    Name (_ADR, 0x04)  // _ADR: Address
-                    Name (_STA, 0x0F)  // _STA: Status
-                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                    {
-                        Name (UPCP, Package (0x04)
-                        {
-                            0xFF, 
-                            0x03, 
-                            Zero, 
-                            Zero
-                        })
-                        If (LNot (And (PR2S (0x04), PR2)))
-                        {
-                            Store (Zero, Index (UPCP, Zero))
-                        }
-
-                        Store (DerefOf (Index (CNTB, 0x03)), Local0)
-                        Store (Local0, Index (UPCP, Zero))
-                        Return (UPCP)
-                    }
-
-                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                    {
-                        Name (PLDP, Package (One)
-                        {
-                            Buffer (0x10)
-                            {
-                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x71, 0x0C, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00 
-                            }
-                        })
-                        Store (DerefOf (Index (VISB, 0x03)), Local0)
-                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
-                            Local1)
-                        And (Local1, 0xFE, Local1)
-                        Or (Local1, Local0, Local1)
-                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
-                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
-                        If (LNot (And (PR2S (0x04), PR2)))
-                        {
-                            And (VIS, Zero, VIS)
-                        }
-
-                        Return (PLDP)
-                    }
-                }
-
-                Device (HS05)
-                {
-                    Name (_ADR, 0x05)  // _ADR: Address
-                    Name (_STA, 0x0F)  // _STA: Status
-                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                    {
-                        Name (UPCP, Package (0x04)
-                        {
-                            0xFF, 
-                            Zero, 
-                            Zero, 
-                            Zero
-                        })
-                        If (LNot (And (PR2S (0x05), PR2)))
-                        {
-                            Store (Zero, Index (UPCP, Zero))
-                        }
-
-                        Store (DerefOf (Index (CNTB, 0x04)), Local0)
-                        Store (Local0, Index (UPCP, Zero))
-                        Return (UPCP)
-                    }
-
-                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                    {
-                        Name (PLDP, Package (One)
-                        {
-                            Buffer (0x10)
-                            {
-                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x69, 0x0C, 0x80, 0x02, 0x00, 0x00, 0x00, 0x00 
-                            }
-                        })
-                        Store (DerefOf (Index (VISB, 0x04)), Local0)
-                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
-                            Local1)
-                        And (Local1, 0xFE, Local1)
-                        Or (Local1, Local0, Local1)
-                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
-                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
-                        If (LNot (And (PR2S (0x05), PR2)))
-                        {
-                            And (VIS, Zero, VIS)
-                        }
-
-                        Return (PLDP)
-                    }
-                }
-
-                Device (HS06)
-                {
-                    Name (_ADR, 0x06)  // _ADR: Address
-                    Name (_STA, 0x0F)  // _STA: Status
-                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                    {
-                        Name (UPCP, Package (0x04)
-                        {
-                            0xFF, 
-                            Zero, 
-                            Zero, 
-                            Zero
-                        })
-                        If (LNot (And (PR2S (0x06), PR2)))
-                        {
-                            Store (Zero, Index (UPCP, Zero))
-                        }
-
-                        Store (DerefOf (Index (CNTB, 0x05)), Local0)
-                        Store (Local0, Index (UPCP, Zero))
-                        Return (UPCP)
-                    }
-
-                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                    {
-                        Name (PLDP, Package (One)
-                        {
-                            Buffer (0x10)
-                            {
-                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x69, 0x0C, 0x00, 0x03, 0x00, 0x00, 0x00, 0x00 
-                            }
-                        })
-                        Store (DerefOf (Index (VISB, 0x05)), Local0)
-                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
-                            Local1)
-                        And (Local1, 0xFE, Local1)
-                        Or (Local1, Local0, Local1)
-                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
-                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
-                        If (LNot (And (PR2S (0x06), PR2)))
-                        {
-                            And (VIS, Zero, VIS)
-                        }
-
-                        Return (PLDP)
-                    }
-                }
-
-                Device (HS07)
-                {
-                    Name (_ADR, 0x07)  // _ADR: Address
-                    Name (_STA, 0x0F)  // _STA: Status
-                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                    {
-                        Name (UPCP, Package (0x04)
-                        {
-                            0xFF, 
-                            Zero, 
-                            Zero, 
-                            Zero
-                        })
-                        If (LNot (And (PR2S (0x07), PR2)))
-                        {
-                            Store (Zero, Index (UPCP, Zero))
-                        }
-
-                        Store (DerefOf (Index (CNTB, 0x06)), Local0)
-                        Store (Local0, Index (UPCP, Zero))
-                        Return (UPCP)
-                    }
-
-                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                    {
-                        Name (PLDP, Package (One)
-                        {
-                            Buffer (0x10)
-                            {
-                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x71, 0x0C, 0x80, 0x03, 0x00, 0x00, 0x00, 0x00 
-                            }
-                        })
-                        Store (DerefOf (Index (VISB, 0x06)), Local0)
-                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
-                            Local1)
-                        And (Local1, 0xFE, Local1)
-                        Or (Local1, Local0, Local1)
-                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
-                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
-                        If (LNot (And (PR2S (0x07), PR2)))
-                        {
-                            And (VIS, Zero, VIS)
-                        }
-
-                        Return (PLDP)
-                    }
-                }
-
-                Device (HS08)
-                {
-                    Name (_ADR, 0x08)  // _ADR: Address
-                    Name (_STA, 0x0F)  // _STA: Status
-                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                    {
-                        Name (UPCP, Package (0x04)
-                        {
-                            0xFF, 
-                            Zero, 
-                            Zero, 
-                            Zero
-                        })
-                        If (LNot (And (PR2S (0x08), PR2)))
-                        {
-                            Store (Zero, Index (UPCP, Zero))
-                        }
-
-                        Store (DerefOf (Index (CNTB, 0x07)), Local0)
-                        Store (Local0, Index (UPCP, Zero))
-                        Return (UPCP)
-                    }
-
-                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                    {
-                        Name (PLDP, Package (One)
-                        {
-                            Buffer (0x10)
-                            {
-                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x71, 0x0C, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00 
-                            }
-                        })
-                        Store (DerefOf (Index (VISB, 0x07)), Local0)
-                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
-                            Local1)
-                        And (Local1, 0xFE, Local1)
-                        Or (Local1, Local0, Local1)
-                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
-                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
-                        If (LNot (And (PR2S (0x08), PR2)))
-                        {
-                            And (VIS, Zero, VIS)
-                        }
-
-                        Return (PLDP)
-                    }
-                }
-
-                Device (HS09)
-                {
-                    Name (_ADR, 0x09)  // _ADR: Address
-                    Name (_STA, 0x0F)  // _STA: Status
-                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                    {
-                        Name (UPCP, Package (0x04)
-                        {
-                            0xFF, 
-                            0x03, 
-                            Zero, 
-                            Zero
-                        })
-                        If (LNot (And (PR2S (0x09), PR2)))
-                        {
-                            Store (Zero, Index (UPCP, Zero))
-                        }
-
-                        Store (DerefOf (Index (CNTB, 0x08)), Local0)
-                        Store (Local0, Index (UPCP, Zero))
-                        Return (UPCP)
-                    }
-
-                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                    {
-                        Name (PLDP, Package (One)
-                        {
-                            Buffer (0x10)
-                            {
-                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x71, 0x0C, 0x80, 0x04, 0x00, 0x00, 0x00, 0x00 
-                            }
-                        })
-                        Store (DerefOf (Index (VISB, 0x08)), Local0)
-                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
-                            Local1)
-                        And (Local1, 0xFE, Local1)
-                        Or (Local1, Local0, Local1)
-                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
-                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
-                        If (LNot (And (PR2S (0x09), PR2)))
-                        {
-                            And (VIS, Zero, VIS)
-                        }
-
-                        If (LEqual (And (CDID, 0xF000), 0x9000))
-                        {
-                            And (VIS, Zero, VIS)
-                        }
-
-                        Return (PLDP)
-                    }
-                }
-
-                Device (HS10)
-                {
-                    Method (_ADR, 0, Serialized)  // _ADR: Address
-                    {
-                        If (LEqual (And (CDID, 0xF000), 0x8000))
-                        {
-                            Return (0x0A)
-                        }
-                        Else
-                        {
-                            Return (0xFA)
-                        }
-                    }
-
-                    Method (_STA, 0, Serialized)  // _STA: Status
-                    {
-                        If (LEqual (And (CDID, 0xF000), 0x8000))
-                        {
-                            Return (0x0F)
-                        }
-                        Else
-                        {
-                            Return (Zero)
-                        }
-                    }
-
-                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                    {
-                        Name (UPCP, Package (0x04)
-                        {
-                            0xFF, 
-                            0x03, 
-                            Zero, 
-                            Zero
-                        })
-                        If (LNot (And (PR2S (0x0A), PR2)))
-                        {
-                            Store (Zero, Index (UPCP, Zero))
-                        }
-
-                        Store (DerefOf (Index (CNTB, 0x09)), Local0)
-                        Store (Local0, Index (UPCP, Zero))
-                        Return (UPCP)
-                    }
-
-                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                    {
-                        Name (PLDP, Package (One)
-                        {
-                            Buffer (0x10)
-                            {
-                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x71, 0x0C, 0x00, 0x05, 0x00, 0x00, 0x00, 0x00 
-                            }
-                        })
-                        Store (DerefOf (Index (VISB, 0x09)), Local0)
-                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
-                            Local1)
-                        And (Local1, 0xFE, Local1)
-                        Or (Local1, Local0, Local1)
-                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
-                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
-                        If (LNot (And (PR2S (0x0A), PR2)))
-                        {
-                            And (VIS, Zero, VIS)
-                        }
-
-                        Return (PLDP)
-                    }
-                }
-
-                Device (HS11)
-                {
-                    Method (_ADR, 0, Serialized)  // _ADR: Address
-                    {
-                        If (LEqual (And (CDID, 0xF000), 0x8000))
-                        {
-                            Return (0x0B)
-                        }
-                        Else
-                        {
-                            Return (0xFB)
-                        }
-                    }
-
-                    Method (_STA, 0, Serialized)  // _STA: Status
-                    {
-                        If (LEqual (And (CDID, 0xF000), 0x8000))
-                        {
-                            Return (0x0F)
-                        }
-                        Else
-                        {
-                            Return (Zero)
-                        }
-                    }
-
-                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                    {
-                        Name (UPCP, Package (0x04)
-                        {
-                            0xFF, 
-                            0xFF, 
-                            Zero, 
-                            Zero
-                        })
-                        If (LNot (And (PR2S (0x0B), PR2)))
-                        {
-                            Store (Zero, Index (UPCP, Zero))
-                        }
-
-                        Store (DerefOf (Index (CNTB, 0x0A)), Local0)
-                        Store (Local0, Index (UPCP, Zero))
-                        Return (UPCP)
-                    }
-
-                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                    {
-                        Name (PLDP, Package (One)
-                        {
-                            Buffer (0x10)
-                            {
-                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                            }
-                        })
-                        Store (DerefOf (Index (VISB, 0x0A)), Local0)
-                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
-                            Local1)
-                        And (Local1, 0xFE, Local1)
-                        Or (Local1, Local0, Local1)
-                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
-                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
-                        If (LNot (And (PR2S (0x0B), PR2)))
-                        {
-                            And (VIS, Zero, VIS)
-                        }
-
-                        Return (PLDP)
-                    }
-                }
-
-                Device (HS12)
-                {
-                    Method (_ADR, 0, Serialized)  // _ADR: Address
-                    {
-                        If (LEqual (And (CDID, 0xF000), 0x8000))
-                        {
-                            Return (0x0C)
-                        }
-                        Else
-                        {
-                            Return (0xFC)
-                        }
-                    }
-
-                    Method (_STA, 0, Serialized)  // _STA: Status
-                    {
-                        If (LEqual (And (CDID, 0xF000), 0x8000))
-                        {
-                            Return (0x0F)
-                        }
-                        Else
-                        {
-                            Return (Zero)
-                        }
-                    }
-
-                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                    {
-                        Name (UPCP, Package (0x04)
-                        {
-                            0xFF, 
-                            0xFF, 
-                            Zero, 
-                            Zero
-                        })
-                        If (LNot (And (PR2S (0x0C), PR2)))
-                        {
-                            Store (Zero, Index (UPCP, Zero))
-                        }
-
-                        Store (DerefOf (Index (CNTB, 0x0B)), Local0)
-                        Store (Local0, Index (UPCP, Zero))
-                        Return (UPCP)
-                    }
-
-                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                    {
-                        Name (PLDP, Package (One)
-                        {
-                            Buffer (0x10)
-                            {
-                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                            }
-                        })
-                        Store (DerefOf (Index (VISB, 0x0B)), Local0)
-                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
-                            Local1)
-                        And (Local1, 0xFE, Local1)
-                        Or (Local1, Local0, Local1)
-                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
-                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
-                        If (LNot (And (PR2S (0x0C), PR2)))
-                        {
-                            And (VIS, Zero, VIS)
-                        }
-
-                        Return (PLDP)
-                    }
-                }
-
-                Device (HS13)
-                {
-                    Method (_ADR, 0, Serialized)  // _ADR: Address
-                    {
-                        If (LEqual (And (CDID, 0xF000), 0x8000))
-                        {
-                            Return (0x0D)
-                        }
-                        Else
-                        {
-                            Return (0xFD)
-                        }
-                    }
-
-                    Method (_STA, 0, Serialized)  // _STA: Status
-                    {
-                        If (LEqual (And (CDID, 0xF000), 0x8000))
-                        {
-                            Return (0x0F)
-                        }
-                        Else
-                        {
-                            Return (Zero)
-                        }
-                    }
-
-                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                    {
-                        Name (UPCP, Package (0x04)
-                        {
-                            0xFF, 
-                            0xFF, 
-                            Zero, 
-                            Zero
-                        })
-                        If (LNot (And (PR2S (0x0D), PR2)))
-                        {
-                            Store (Zero, Index (UPCP, Zero))
-                        }
-
-                        Store (DerefOf (Index (CNTB, 0x0C)), Local0)
-                        Store (Local0, Index (UPCP, Zero))
-                        Return (UPCP)
-                    }
-
-                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                    {
-                        Name (PLDP, Package (One)
-                        {
-                            Buffer (0x10)
-                            {
-                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                            }
-                        })
-                        Store (DerefOf (Index (VISB, 0x0C)), Local0)
-                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
-                            Local1)
-                        And (Local1, 0xFE, Local1)
-                        Or (Local1, Local0, Local1)
-                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
-                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
-                        If (LNot (And (PR2S (0x0D), PR2)))
-                        {
-                            And (VIS, Zero, VIS)
-                        }
-
-                        Return (PLDP)
-                    }
-                }
-
-                Device (HS14)
-                {
-                    Name (_ADR, 0x0E)  // _ADR: Address
-                    Method (_STA, 0, Serialized)  // _STA: Status
-                    {
-                        If (LEqual (And (CDID, 0xF000), 0x8000))
-                        {
-                            Return (0x0F)
-                        }
-                        Else
-                        {
-                            Return (Zero)
-                        }
-                    }
-
-                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                    {
-                        Name (UPCP, Package (0x04)
-                        {
-                            0xFF, 
-                            0xFF, 
-                            Zero, 
-                            Zero
-                        })
-                        If (LNot (And (PR2S (0x0E), PR2)))
-                        {
-                            Store (Zero, Index (UPCP, Zero))
-                        }
-
-                        Store (DerefOf (Index (CNTB, 0x0D)), Local0)
-                        Store (Local0, Index (UPCP, Zero))
-                        Return (UPCP)
-                    }
-
-                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                    {
-                        Name (PLDP, Package (One)
-                        {
-                            Buffer (0x10)
-                            {
-                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                            }
-                        })
-                        Store (DerefOf (Index (VISB, 0x0D)), Local0)
-                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
-                            Local1)
-                        And (Local1, 0xFE, Local1)
-                        Or (Local1, Local0, Local1)
-                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
-                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
-                        If (LNot (And (PR2S (0x0E), PR2)))
-                        {
-                            And (VIS, Zero, VIS)
-                        }
-
-                        Return (PLDP)
-                    }
-                }
-
-                Device (HS15)
-                {
-                    Name (_ADR, 0x0F)  // _ADR: Address
-                    Method (_STA, 0, Serialized)  // _STA: Status
-                    {
-                        If (LEqual (And (CDID, 0xF000), 0x8000))
-                        {
-                            Return (0x0F)
-                        }
-                        Else
-                        {
-                            Return (Zero)
-                        }
-                    }
-
-                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                    {
-                        Name (UPCP, Package (0x04)
-                        {
-                            Zero, 
-                            Zero, 
-                            Zero, 
-                            Zero
-                        })
-                        If (LNot (And (PR2S (0x0F), PR2)))
-                        {
-                            Store (Zero, Index (UPCP, Zero))
-                        }
-
-                        Store (DerefOf (Index (CNTB, 0x0E)), Local0)
-                        Store (Local0, Index (UPCP, Zero))
-                        Return (UPCP)
-                    }
-
-                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                    {
-                        Name (PLDP, Package (One)
-                        {
-                            Buffer (0x10)
-                            {
-                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-                            }
-                        })
-                        Store (DerefOf (Index (VISB, 0x0E)), Local0)
-                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
-                            Local1)
-                        And (Local1, 0xFE, Local1)
-                        Or (Local1, Local0, Local1)
-                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
-                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
-                        If (LNot (And (PR2S (0x0F), PR2)))
-                        {
-                            And (VIS, Zero, VIS)
-                        }
-
-                        Return (PLDP)
-                    }
-                }
-
-                Device (SSP1)
-                {
-                    Method (_ADR, 0, Serialized)  // _ADR: Address
-                    {
-                        If (LEqual (And (CDID, 0xF000), 0x8000))
-                        {
-                            Return (0x10)
-                        }
-                        Else
-                        {
-                            Return (0x0A)
-                        }
-                    }
-
-                    Name (_STA, 0x0F)  // _STA: Status
-                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                    {
-                        Name (UPCP, Package (0x04)
-                        {
-                            0xFF, 
-                            0x03, 
-                            Zero, 
-                            Zero
-                        })
-                        If (LNot (And (PR3, One)))
-                        {
-                            Store (Zero, Index (UPCP, Zero))
-                        }
-
-                        Store (DerefOf (Index (CNTB, Zero)), Local0)
-                        Store (Local0, Index (UPCP, Zero))
-                        Return (UPCP)
-                    }
-
-                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                    {
-                        Name (PLDP, Package (One)
-                        {
-                            Buffer (0x10)
-                            {
-                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x69, 0x0C, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00 
-                            }
-                        })
-                        Store (DerefOf (Index (VISB, Zero)), Local0)
-                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
-                            Local1)
-                        And (Local1, 0xFE, Local1)
-                        Or (Local1, Local0, Local1)
-                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
-                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
-                        If (LNot (And (PR3, One)))
-                        {
-                            And (VIS, Zero, VIS)
-                        }
-
-                        Return (PLDP)
-                    }
-                }
-
-                Device (SSP2)
-                {
-                    Method (_ADR, 0, Serialized)  // _ADR: Address
-                    {
-                        If (LEqual (And (CDID, 0xF000), 0x8000))
-                        {
-                            Return (0x11)
-                        }
-                        Else
-                        {
-                            Return (0x0B)
-                        }
-                    }
-
-                    Name (_STA, 0x0F)  // _STA: Status
-                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                    {
-                        Name (UPCP, Package (0x04)
-                        {
-                            0xFF, 
-                            0x03, 
-                            Zero, 
-                            Zero
-                        })
-                        If (LNot (And (PR3, 0x02)))
-                        {
-                            Store (Zero, Index (UPCP, Zero))
-                        }
-
-                        Store (DerefOf (Index (CNTB, One)), Local0)
-                        Store (Local0, Index (UPCP, Zero))
-                        Return (UPCP)
-                    }
-
-                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                    {
-                        Name (PLDP, Package (One)
-                        {
-                            Buffer (0x10)
-                            {
-                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x69, 0x0C, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00 
-                            }
-                        })
-                        Store (DerefOf (Index (VISB, One)), Local0)
-                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
-                            Local1)
-                        And (Local1, 0xFE, Local1)
-                        Or (Local1, Local0, Local1)
-                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
-                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
-                        If (LNot (And (PR3, 0x02)))
-                        {
-                            And (VIS, Zero, VIS)
-                        }
-
-                        Return (PLDP)
-                    }
-                }
-
-                Device (SSP3)
-                {
-                    Method (_ADR, 0, Serialized)  // _ADR: Address
-                    {
-                        If (LEqual (And (CDID, 0xF000), 0x8000))
-                        {
-                            Return (0x12)
-                        }
-                        Else
-                        {
-                            Return (0x0C)
-                        }
-                    }
-
-                    Name (_STA, 0x0F)  // _STA: Status
-                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                    {
-                        Name (UPCP, Package (0x04)
-                        {
-                            0xFF, 
-                            0x03, 
-                            Zero, 
-                            Zero
-                        })
-                        If (LNot (And (PR3, 0x04)))
-                        {
-                            Store (Zero, Index (UPCP, Zero))
-                        }
-
-                        Store (DerefOf (Index (CNTB, 0x02)), Local0)
-                        Store (Local0, Index (UPCP, Zero))
-                        Return (UPCP)
-                    }
-
-                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                    {
-                        Name (PLDP, Package (One)
-                        {
-                            Buffer (0x10)
-                            {
-                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x71, 0x0C, 0x80, 0x01, 0x00, 0x00, 0x00, 0x00 
-                            }
-                        })
-                        Store (DerefOf (Index (VISB, 0x02)), Local0)
-                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
-                            Local1)
-                        And (Local1, 0xFE, Local1)
-                        Or (Local1, Local0, Local1)
-                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
-                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
-                        If (LNot (And (PR3, 0x04)))
-                        {
-                            And (VIS, Zero, VIS)
-                        }
-
-                        Return (PLDP)
-                    }
-                }
-
-                Device (SSP4)
-                {
-                    Method (_ADR, 0, Serialized)  // _ADR: Address
-                    {
-                        If (LEqual (And (CDID, 0xF000), 0x8000))
-                        {
-                            Return (0x13)
-                        }
-                        Else
-                        {
-                            Return (0x0D)
-                        }
-                    }
-
-                    Name (_STA, 0x0F)  // _STA: Status
-                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                    {
-                        Name (UPCP, Package (0x04)
-                        {
-                            0xFF, 
-                            0x03, 
-                            Zero, 
-                            Zero
-                        })
-                        If (LNot (And (PR3, 0x08)))
-                        {
-                            Store (Zero, Index (UPCP, Zero))
-                        }
-
-                        Store (DerefOf (Index (CNTB, 0x03)), Local0)
-                        Store (Local0, Index (UPCP, Zero))
-                        Return (UPCP)
-                    }
-
-                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                    {
-                        Name (PLDP, Package (One)
-                        {
-                            Buffer (0x10)
-                            {
-                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x71, 0x0C, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00 
-                            }
-                        })
-                        Store (DerefOf (Index (VISB, 0x03)), Local0)
-                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
-                            Local1)
-                        And (Local1, 0xFE, Local1)
-                        Or (Local1, Local0, Local1)
-                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
-                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
-                        If (LNot (And (PR3, 0x08)))
-                        {
-                            And (VIS, Zero, VIS)
-                        }
-
-                        Return (PLDP)
-                    }
-                }
-
-                Device (SSP5)
-                {
-                    Name (_ADR, 0x14)  // _ADR: Address
-                    Method (_STA, 0, Serialized)  // _STA: Status
-                    {
-                        If (LEqual (And (CDID, 0xF000), 0x8000))
-                        {
-                            Return (0x0F)
-                        }
-                        Else
-                        {
-                            Return (Zero)
-                        }
-                    }
-
-                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                    {
-                        Name (UPCP, Package (0x04)
-                        {
-                            0xFF, 
-                            0x03, 
-                            Zero, 
-                            Zero
-                        })
-                        If (LNot (And (PR3, 0x10)))
-                        {
-                            Store (Zero, Index (UPCP, Zero))
-                        }
-
-                        Store (DerefOf (Index (CNTB, 0x04)), Local0)
-                        Store (Local0, Index (UPCP, Zero))
-                        Return (UPCP)
-                    }
-
-                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                    {
-                        Name (PLDP, Package (One)
-                        {
-                            Buffer (0x10)
-                            {
-                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x71, 0x0C, 0x80, 0x02, 0x00, 0x00, 0x00, 0x00 
-                            }
-                        })
-                        Store (DerefOf (Index (VISB, 0x04)), Local0)
-                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
-                            Local1)
-                        And (Local1, 0xFE, Local1)
-                        Or (Local1, Local0, Local1)
-                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
-                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
-                        If (LNot (And (PR3, 0x10)))
-                        {
-                            And (VIS, Zero, VIS)
-                        }
-
-                        Return (PLDP)
-                    }
-                }
-
-                Device (SSP6)
-                {
-                    Name (_ADR, 0x15)  // _ADR: Address
-                    Method (_STA, 0, Serialized)  // _STA: Status
-                    {
-                        If (LEqual (And (CDID, 0xF000), 0x8000))
-                        {
-                            Return (0x0F)
-                        }
-                        Else
-                        {
-                            Return (Zero)
-                        }
-                    }
-
-                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-                    {
-                        Name (UPCP, Package (0x04)
-                        {
-                            0xFF, 
-                            0x03, 
-                            Zero, 
-                            Zero
-                        })
-                        If (LNot (And (PR3, 0x20)))
-                        {
-                            Store (Zero, Index (UPCP, Zero))
-                        }
-
-                        Store (DerefOf (Index (CNTB, 0x05)), Local0)
-                        Store (Local0, Index (UPCP, Zero))
-                        Return (UPCP)
-                    }
-
-                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-                    {
-                        Name (PLDP, Package (One)
-                        {
-                            Buffer (0x10)
-                            {
-                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x71, 0x0C, 0x00, 0x03, 0x00, 0x00, 0x00, 0x00 
-                            }
-                        })
-                        Store (DerefOf (Index (VISB, 0x05)), Local0)
-                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
-                            Local1)
-                        And (Local1, 0xFE, Local1)
-                        Or (Local1, Local0, Local1)
-                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
-                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
-                        If (LNot (And (PR3, 0x20)))
-                        {
-                            And (VIS, Zero, VIS)
-                        }
-
-                        Return (PLDP)
-                    }
-                }
-            }
-
-            Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x0D, 0x03 }) }
-        }
+        
         Device (DPTF)
         {
             Name (_ADR, 0x00040000)  // _ADR: Address
@@ -13693,16 +10145,11 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
 
             Device (SDMA)
             {
-                Name (_HID, "INTL9C60")  // _HID: Hardware ID
-                Name (_UID, One)  // _UID: Unique ID
                 Name (_ADR, 0x00150000)  // _ADR: Address
+                Name (_UID, 0x01)  // _UID: Unique ID
                 Name (RBUF, ResourceTemplate ()
                 {
-                    Memory32Fixed (ReadWrite,
-                        0x00000000,         // Address Base
-                        0x00001000,         // Address Length
-                        _Y1F)
-                    Interrupt (ResourceConsumer, Level, ActiveLow, Exclusive, ,, )
+                    Interrupt (ResourceConsumer, Level, ActiveLow, Shared, ,, )
                     {
                         0x00000014,
                     }
@@ -13712,653 +10159,23 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
                     Return (RBUF)
                 }
 
-                Method (_HRV, 0, NotSerialized)  // _HRV: Hardware Revision
-                {
-                    Return (CRID)
-                }
-
-                Method (PTD3, 0, NotSerialized)
-                {
-                    If (LNotEqual (^^SIRC.CNTR (One), Zero))
-                    {
-                        Add (^^SIRC.CNTR (One), 0x84, Local0)
-                        OperationRegion (DMB1, SystemMemory, Local0, 0x04)
-                        Field (DMB1, DWordAcc, NoLock, Preserve)
-                        {
-                            TEMP,   32
-                        }
-
-                        Or (TEMP, 0x03, TEMP)
-                    }
-                }
-
-                CreateDWordField (RBUF, _Y1F._BAS, BVAL)  // _BAS: Base Address
                 Method (_STA, 0, NotSerialized)  // _STA: Status
                 {
-                    If (LEqual (BVAL, Zero))
-                    {
-                        Return (Zero)
-                    }
-
-                    If (LLess (OSYS, 0x07DC))
-                    {
-                        Return (Zero)
-                    }
-
-                    If (LAnd (LEqual (DOSD, 0x02), LEqual (OSYS, 0x07DC)))
-                    {
-                        PTD3 ()
-                        Return (Zero)
-                    }
-
-                    If (LEqual (S0ID, One))
-                    {
                         Return (0x0F)
-                    }
-
-                    Return (Zero)
                 }
             }
 
-            Device (I2C0)
-            {
-                Name (_HID, "INT33C2")  // _HID: Hardware ID
-                Name (_CID, "INT33C2")  // _CID: Compatible ID
-                Name (_UID, One)  // _UID: Unique ID
-                Name (_ADR, 0x00150001)  // _ADR: Address
-                Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
-                {
-                        Return (Package (Zero) {})
-                }
+            
 
-                Method (SSCN, 0, NotSerialized)
-                {
-                    Name (PKG, Package (0x03)
-                    {
-                        0x01B0, 
-                        0x01FB, 
-                        0x09
-                    })
-                    Store (SSH0, Index (PKG, Zero))
-                    Store (SSL0, Index (PKG, One))
-                    Store (SSD0, Index (PKG, 0x02))
-                    Return (PKG)
-                }
-
-                Method (FMCN, 0, NotSerialized)
-                {
-                    Name (PKG, Package (0x03)
-                    {
-                        0x48, 
-                        0xA0, 
-                        0x09
-                    })
-                    Store (FMH0, Index (PKG, Zero))
-                    Store (FML0, Index (PKG, One))
-                    Store (FMD0, Index (PKG, 0x02))
-                    Return (PKG)
-                }
-
-                Method (FPCN, 0, NotSerialized)
-                {
-                    Name (PKG, Package (0x03)
-                    {
-                        0x1A, 
-                        0x32, 
-                        0x05
-                    })
-                    Store (FPH0, Index (PKG, Zero))
-                    Store (FPL0, Index (PKG, One))
-                    Store (FPD0, Index (PKG, 0x02))
-                    Return (PKG)
-                }
-
-                Method (M0D3, 0, NotSerialized)
-                {
-                    Name (PKG, Package (One)
-                    {
-                        0xC8
-                    })
-                    Store (M0C0, Index (PKG, Zero))
-                    Return (PKG)
-                }
-
-                Method (M1D3, 0, NotSerialized)
-                {
-                    Name (PKG, Package (One)
-                    {
-                        0x07D0
-                    })
-                    Store (M1C0, Index (PKG, Zero))
-                    Return (PKG)
-                }
-
-                Method (M0D0, 0, NotSerialized)
-                {
-                    Name (PKG, Package (One)
-                    {
-                        Zero
-                    })
-                    Store (M2C0, Index (PKG, Zero))
-                    Return (PKG)
-                }
-
-                Name (RBUF, ResourceTemplate ()
-                {
-                    Memory32Fixed (ReadWrite,
-                        0x00000000,         // Address Base
-                        0x00001000,         // Address Length
-                        _Y20)
-                    Interrupt (ResourceConsumer, Level, ActiveLow, Shared, ,, )
-                    {
-                        0x00000015,
-                    }
-                })
-                Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-                {
-                    Name (DBUF, ResourceTemplate ()
-                    {
-                        FixedDMA (0x0018, 0x0004, Width32bit, )
-                        FixedDMA (0x0019, 0x0005, Width32bit, )
-                    })
-                    If (LNotEqual (^^SDMA._STA (), Zero))
-                    {
-                        Return (ConcatenateResTemplate (RBUF, DBUF))
-                    }
-                    Else
-                    {
-                        Return (RBUF)
-                    }
-                }
-
-                Method (_HRV, 0, NotSerialized)  // _HRV: Hardware Revision
-                {
-                    Return (CRID)
-                }
-
-                CreateDWordField (RBUF, _Y20._BAS, BVAL)  // _BAS: Base Address
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (LEqual (BVAL, Zero))
-                    {
-                        Return (Zero)
-                    }
-
-                    If (LLess (OSYS, 0x07DC))
-                    {
-                        Return (Zero)
-                    }
-
-                    If (LEqual (S0ID, One))
-                    {
-                        Return (0x0F)
-                    }
-
-                    Return (Zero)
-                }
-
-                Method (_PS0, 0, Serialized)  // _PS0: Power State 0
-                {
-                    
-                    If (LNotEqual (^^SIRC.CNTR (0x02), Zero))
-                    {
-                        Add (^^SIRC.CNTR (0x02), 0x84, Local0)
-                        OperationRegion (ICB1, SystemMemory, Local0, 0x04)
-                        Field (ICB1, DWordAcc, NoLock, Preserve)
-                        {
-                            TEMP,   32
-                        }
-
-                        And (TEMP, 0xFFFFFFFC, TEMP)
-                        Store (TEMP, Local0)
-                    }
-                }
-
-                Method (_PS3, 0, Serialized)  // _PS3: Power State 3
-                {
-                    
-                    If (LNotEqual (^^SIRC.CNTR (0x02), Zero))
-                    {
-                        Add (^^SIRC.CNTR (0x02), 0x84, Local0)
-                        OperationRegion (ICB1, SystemMemory, Local0, 0x04)
-                        Field (ICB1, DWordAcc, NoLock, Preserve)
-                        {
-                            TEMP,   32
-                        }
-
-                        Or (TEMP, 0x03, TEMP)
-                        Store (TEMP, Local0)
-                    }
-                }
-            }
-
-            Device (I2C1)
-            {
-                Name (_HID, "INT33C3")  // _HID: Hardware ID
-                Name (_CID, "INT33C3")  // _CID: Compatible ID
-                Name (_UID, 0x02)  // _UID: Unique ID
-                Name (_ADR, 0x00150002)  // _ADR: Address
-                Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
-                {
-                        Return (Package (Zero) {})
-                }
-
-                Method (SSCN, 0, NotSerialized)
-                {
-                    Name (PKG, Package (0x03)
-                    {
-                        0x01B0, 
-                        0x01FB, 
-                        0x09
-                    })
-                    Store (SSH1, Index (PKG, Zero))
-                    Store (SSL1, Index (PKG, One))
-                    Store (SSD1, Index (PKG, 0x02))
-                    Return (PKG)
-                }
-
-                Method (FMCN, 0, NotSerialized)
-                {
-                    Name (PKG, Package (0x03)
-                    {
-                        0x48, 
-                        0xA0, 
-                        0x09
-                    })
-                    Store (FMH1, Index (PKG, Zero))
-                    Store (FML1, Index (PKG, One))
-                    Store (FMD1, Index (PKG, 0x02))
-                    Return (PKG)
-                }
-
-                Method (FPCN, 0, NotSerialized)
-                {
-                    Name (PKG, Package (0x03)
-                    {
-                        0x1A, 
-                        0x32, 
-                        0x05
-                    })
-                    Store (FPH1, Index (PKG, Zero))
-                    Store (FPL1, Index (PKG, One))
-                    Store (FPD1, Index (PKG, 0x02))
-                    Return (PKG)
-                }
-
-                Method (M0D3, 0, NotSerialized)
-                {
-                    Name (PKG, Package (One)
-                    {
-                        0xC8
-                    })
-                    Store (M0C1, Index (PKG, Zero))
-                    Return (PKG)
-                }
-
-                Method (M1D3, 0, NotSerialized)
-                {
-                    Name (PKG, Package (One)
-                    {
-                        0x07D0
-                    })
-                    Store (M1C1, Index (PKG, Zero))
-                    Return (PKG)
-                }
-
-                Method (M0D0, 0, NotSerialized)
-                {
-                    Name (PKG, Package (One)
-                    {
-                        Zero
-                    })
-                    Store (M2C1, Index (PKG, Zero))
-                    Return (PKG)
-                }
-
-                Name (RBUF, ResourceTemplate ()
-                {
-                    Memory32Fixed (ReadWrite,
-                        0x00000000,         // Address Base
-                        0x00001000,         // Address Length
-                        _Y21)
-                    Interrupt (ResourceConsumer, Level, ActiveLow, Shared, ,, )
-                    {
-                        0x00000015,
-                    }
-                })
-                Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-                {
-                    Name (DBUF, ResourceTemplate ()
-                    {
-                        FixedDMA (0x001A, 0x0006, Width32bit, )
-                        FixedDMA (0x001B, 0x0007, Width32bit, )
-                    })
-                    If (LNotEqual (^^SDMA._STA (), Zero))
-                    {
-                        Return (ConcatenateResTemplate (RBUF, DBUF))
-                    }
-                    Else
-                    {
-                        Return (RBUF)
-                    }
-                }
-
-                Method (_HRV, 0, NotSerialized)  // _HRV: Hardware Revision
-                {
-                    Return (CRID)
-                }
-
-                CreateDWordField (RBUF, _Y21._BAS, BVAL)  // _BAS: Base Address
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (LEqual (BVAL, Zero))
-                    {
-                        Return (Zero)
-                    }
-
-                    If (LLess (OSYS, 0x07DC))
-                    {
-                        Return (Zero)
-                    }
-
-                    If (LEqual (S0ID, One))
-                    {
-                        Return (0x0F)
-                    }
-
-                    Return (Zero)
-                }
-
-                Method (_PS0, 0, Serialized)  // _PS0: Power State 0
-                {
-                    
-                    If (LNotEqual (^^SIRC.CNTR (0x03), Zero))
-                    {
-                        Add (^^SIRC.CNTR (0x03), 0x84, Local0)
-                        OperationRegion (ICB1, SystemMemory, Local0, 0x04)
-                        Field (ICB1, DWordAcc, NoLock, Preserve)
-                        {
-                            TEMP,   32
-                        }
-
-                        And (TEMP, 0xFFFFFFFC, TEMP)
-                        Store (TEMP, Local0)
-                    }
-                }
-
-                Method (_PS3, 0, Serialized)  // _PS3: Power State 3
-                {
-                    
-                    If (LNotEqual (^^SIRC.CNTR (0x03), Zero))
-                    {
-                        Add (^^SIRC.CNTR (0x03), 0x84, Local0)
-                        OperationRegion (ICB1, SystemMemory, Local0, 0x04)
-                        Field (ICB1, DWordAcc, NoLock, Preserve)
-                        {
-                            TEMP,   32
-                        }
-
-                        Or (TEMP, 0x03, TEMP)
-                        Store (TEMP, Local0)
-                    }
-                }
-            }
-
-            Device (SPI0)
-            {
-                Name (_HID, "INT33C0")  // _HID: Hardware ID
-                Name (_CID, "INT33C0")  // _CID: Compatible ID
-                Name (_UID, One)  // _UID: Unique ID
-                Name (_ADR, 0x00150003)  // _ADR: Address
-                Method (M0D3, 0, NotSerialized)
-                {
-                    Name (PKG, Package (One)
-                    {
-                        0xC8
-                    })
-                    Store (M0C2, Index (PKG, Zero))
-                    Return (PKG)
-                }
-
-                Method (M1D3, 0, NotSerialized)
-                {
-                    Name (PKG, Package (One)
-                    {
-                        0x07D0
-                    })
-                    Store (M1C2, Index (PKG, Zero))
-                    Return (PKG)
-                }
-
-                Name (RBUF, ResourceTemplate ()
-                {
-                    Memory32Fixed (ReadWrite,
-                        0x00000000,         // Address Base
-                        0x00001000,         // Address Length
-                        _Y22)
-                    Interrupt (ResourceConsumer, Level, ActiveLow, Shared, ,, )
-                    {
-                        0x00000015,
-                    }
-                })
-                Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-                {
-                    Return (RBUF)
-                }
-
-                Method (_HRV, 0, NotSerialized)  // _HRV: Hardware Revision
-                {
-                    Return (CRID)
-                }
-
-                CreateDWordField (RBUF, _Y22._BAS, BVAL)  // _BAS: Base Address
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (LEqual (BVAL, Zero))
-                    {
-                        Return (Zero)
-                    }
-
-                    If (LLess (OSYS, 0x07DC))
-                    {
-                        Return (Zero)
-                    }
-
-                    If (LEqual (S0ID, One))
-                    {
-                        Return (0x0F)
-                    }
-
-                    Return (Zero)
-                }
-
-                Method (_PS0, 0, Serialized)  // _PS0: Power State 0
-                {
-                    
-                    If (LNotEqual (^^SIRC.CNTR (0x04), Zero))
-                    {
-                        Add (^^SIRC.CNTR (0x04), 0x84, Local0)
-                        OperationRegion (ICB1, SystemMemory, Local0, 0x04)
-                        Field (ICB1, DWordAcc, NoLock, Preserve)
-                        {
-                            TEMP,   32
-                        }
-
-                        And (TEMP, 0xFFFFFFFC, TEMP)
-                        Store (TEMP, Local0)
-                    }
-                }
-
-                Method (_PS3, 0, Serialized)  // _PS3: Power State 3
-                {
-                    
-                    If (LNotEqual (^^SIRC.CNTR (0x04), Zero))
-                    {
-                        Add (^^SIRC.CNTR (0x04), 0x84, Local0)
-                        OperationRegion (ICB1, SystemMemory, Local0, 0x04)
-                        Field (ICB1, DWordAcc, NoLock, Preserve)
-                        {
-                            TEMP,   32
-                        }
-
-                        Or (TEMP, 0x03, TEMP)
-                        Store (TEMP, Local0)
-                    }
-                }
-            }
-
+            
             Device (SPI1)
             {
-                Name (_HID, "INT33C1")  // _HID: Hardware ID
-                Name (_CID, "INT33C1")  // _CID: Compatible ID
-                Name (_UID, 0x02)  // _UID: Unique ID
                 Name (_ADR, 0x00150004)  // _ADR: Address
-                Method (M0D3, 0, NotSerialized)
-                {
-                    Name (PKG, Package (One)
-                    {
-                        0xC8
-                    })
-                    Store (M0C3, Index (PKG, Zero))
-                    Return (PKG)
-                }
-
-                Method (M1D3, 0, NotSerialized)
-                {
-                    Name (PKG, Package (One)
-                    {
-                        0x07D0
-                    })
-                    Store (M1C3, Index (PKG, Zero))
-                    Return (PKG)
-                }
-
+                Name (_CID, "INT33C1")  // _CID: Compatible ID
+                Name (_DDN, "Intel(R) Low Power Subsystem SPI Host Controller - 9C66")  // _DDN: DOS Device Name
+                Name (_UID, 0x02)  // _UID: Unique ID
                 Name (RBUF, ResourceTemplate ()
                 {
-                    Memory32Fixed (ReadWrite,
-                        0x00000000,         // Address Base
-                        0x00001000,         // Address Length
-                        _Y23)
-                    Interrupt (ResourceConsumer, Level, ActiveLow, Shared, ,, )
-                    {
-                        0x00000015,
-                    }
-                })
-                Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-                {
-                    Name (DBUF, ResourceTemplate ()
-                    {
-                        FixedDMA (0x0010, 0x0000, Width32bit, )
-                        FixedDMA (0x0011, 0x0001, Width32bit, )
-                    })
-                    If (LNotEqual (^^SDMA._STA (), Zero))
-                    {
-                        Return (ConcatenateResTemplate (RBUF, DBUF))
-                    }
-                    Else
-                    {
-                        Return (RBUF)
-                    }
-                }
-
-                Method (_HRV, 0, NotSerialized)  // _HRV: Hardware Revision
-                {
-                    Return (CRID)
-                }
-
-                CreateDWordField (RBUF, _Y23._BAS, BVAL)  // _BAS: Base Address
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (LEqual (BVAL, Zero))
-                    {
-                        Return (Zero)
-                    }
-
-                    If (LLess (OSYS, 0x07DC))
-                    {
-                        Return (Zero)
-                    }
-
-                    If (LEqual (S0ID, One))
-                    {
-                        Return (0x0F)
-                    }
-
-                    Return (Zero)
-                }
-
-                Method (_PS0, 0, Serialized)  // _PS0: Power State 0
-                {
-                    
-                    If (LNotEqual (^^SIRC.CNTR (0x05), Zero))
-                    {
-                        Add (^^SIRC.CNTR (0x05), 0x84, Local0)
-                        OperationRegion (ICB1, SystemMemory, Local0, 0x04)
-                        Field (ICB1, DWordAcc, NoLock, Preserve)
-                        {
-                            TEMP,   32
-                        }
-
-                        And (TEMP, 0xFFFFFFFC, TEMP)
-                        Store (TEMP, Local0)
-                    }
-                }
-
-                Method (_PS3, 0, Serialized)  // _PS3: Power State 3
-                {
-                    
-                    If (LNotEqual (^^SIRC.CNTR (0x05), Zero))
-                    {
-                        Add (^^SIRC.CNTR (0x05), 0x84, Local0)
-                        OperationRegion (ICB1, SystemMemory, Local0, 0x04)
-                        Field (ICB1, DWordAcc, NoLock, Preserve)
-                        {
-                            TEMP,   32
-                        }
-
-                        Or (TEMP, 0x03, TEMP)
-                        Store (TEMP, Local0)
-                    }
-                }
-            }
-
-            Device (UA00)
-            {
-                Name (_HID, "INT33C4")  // _HID: Hardware ID
-                Name (_CID, "INT33C4")  // _CID: Compatible ID
-                Name (_UID, One)  // _UID: Unique ID
-                Name (_ADR, 0x00150005)  // _ADR: Address
-                Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
-                {
-                        Return (Package (Zero) {})
-                }
-
-                Method (M0D3, 0, NotSerialized)
-                {
-                    Name (PKG, Package (One)
-                    {
-                        0xC8
-                    })
-                    Store (M0C4, Index (PKG, Zero))
-                    Return (PKG)
-                }
-
-                Method (M1D3, 0, NotSerialized)
-                {
-                    Name (PKG, Package (One)
-                    {
-                        0xC8
-                    })
-                    Store (M1C4, Index (PKG, Zero))
-                    Return (PKG)
-                }
-
-                Name (RBUF, ResourceTemplate ()
-                {
-                    Memory32Fixed (ReadWrite,
-                        0x00000000,         // Address Base
-                        0x00001000,         // Address Length
-                        _Y24)
                     Interrupt (ResourceConsumer, Level, ActiveLow, Shared, ,, )
                     {
                         0x00000015,
@@ -14369,193 +10186,180 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
                     Return (RBUF)
                 }
 
-                Method (_HRV, 0, NotSerialized)  // _HRV: Hardware Revision
-                {
-                    Return (CRID)
-                }
-
-                CreateDWordField (RBUF, _Y24._BAS, BVAL)  // _BAS: Base Address
                 Method (_STA, 0, NotSerialized)  // _STA: Status
                 {
-                    If (LEqual (BVAL, Zero))
-                    {
-                        Return (Zero)
-                    }
-
-                    If (LLess (OSYS, 0x07DC))
-                    {
-                        Return (Zero)
-                    }
-
-                    If (LEqual (S0ID, One))
-                    {
                         Return (0x0F)
-                    }
-
-                    Return (Zero)
                 }
 
-                Method (_PS0, 0, Serialized)  // _PS0: Power State 0
+                Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
                 {
-                    
-                    If (LNotEqual (^^SIRC.CNTR (0x06), Zero))
+                    If (LEqual (Arg0, Buffer (0x10)
+                            {
+                                /* 0000 */   0xC6, 0xB7, 0xB5, 0xA0, 0x18, 0x13, 0x1C, 0x44,
+                                /* 0008 */   0xB0, 0xC9, 0xFE, 0x69, 0x5E, 0xAF, 0x94, 0x9B
+                            }))
                     {
-                        Add (^^SIRC.CNTR (0x06), 0x84, Local0)
-                        OperationRegion (ICB1, SystemMemory, Local0, 0x04)
-                        Field (ICB1, DWordAcc, NoLock, Preserve)
+                        Store (Package (0x08)
+                            {
+                                "spi-pin-cs", 
+                                Buffer (0x08)
+                                {
+                                     0x57, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                                }, 
+
+                                "spi-pin-clk", 
+                                Buffer (0x08)
+                                {
+                                     0x58, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                                }, 
+
+                                "spi-pin-mosi", 
+                                Buffer (0x08)
+                                {
+                                     0x5A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                                }, 
+
+                                "spi-pin-miso", 
+                                Buffer (0x08)
+                                {
+                                     0x59, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+                                }
+                            }, Local0)
+                        DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
+                        Return (Local0)
+                    }
+
+                    Return (0x00)
+                }
+
+                Method (ISOL, 1, Serialized)
+                {
+                    If (LLessEqual (Arg0, 0x01))
+                    {
+                        If (LEqual (Arg0, 0x01))
                         {
-                            TEMP,   32
+                            Store (0x01, GP87)
+                            Store (0x00, GP88)
+                            Store (0x00, GP89)
+                            Store (0x00, GP90)
+                            Store (0x00, GD87)
+                            Store (0x00, GD88)
+                            Store (0x01, GD89)
+                            Store (0x00, GD90)
+                            Store (0x01, GU87)
+                            Store (0x01, GU88)
+                            Store (0x01, GU89)
+                            Store (0x01, GU90)
+                            Store (GP87, Local0)
+                        }
+                        Else
+                        {
+                            Store (0x00, GU87)
+                            Store (0x00, GU88)
+                            Store (0x00, GU89)
+                            Store (0x00, GU90)
+                            Store (0x00, GP87)
+                            Store (0x00, GP88)
+                            Store (0x00, GP89)
+                            Store (0x00, GP90)
+                            Store (0x00, GD87)
+                            Store (0x00, GD88)
+                            Store (0x00, GD89)
+                            Store (0x00, GD90)
+                            Store (GU87, Local0)
                         }
 
-                        And (TEMP, 0xFFFFFFFC, TEMP)
-                        Store (TEMP, Local0)
+                        Return (0x00)
                     }
+
+                    Return (0xFFFFFFFF)
                 }
 
-                Method (_PS3, 0, Serialized)  // _PS3: Power State 3
+                Device (SPIT)
                 {
-                    
-                    If (LNotEqual (^^SIRC.CNTR (0x06), Zero))
+                    Name (_HID, EisaId ("APP000D"))  // _HID: Hardware ID
+                    Name (_CID, "apple-spi-topcase")  // _CID: Compatible ID
+                    Name (_GPE, 0x1C)  // _GPE: General Purpose Events
+                    Name (_UID, 0x01)  // _UID: Unique ID
+                    Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
                     {
-                        Add (^^SIRC.CNTR (0x06), 0x84, Local0)
-                        OperationRegion (ICB1, SystemMemory, Local0, 0x04)
-                        Field (ICB1, DWordAcc, NoLock, Preserve)
+                        Return (Package (0x02)
                         {
-                            TEMP,   32
-                        }
-
-                        Or (TEMP, 0x03, TEMP)
-                        Store (TEMP, Local0)
-                    }
-                }
-            }
-
-            Device (UA01)
-            {
-                Name (_HID, "INT33C5")  // _HID: Hardware ID
-                Name (_CID, "INT33C5")  // _CID: Compatible ID
-                Name (_UID, 0x02)  // _UID: Unique ID
-                Name (_ADR, 0x00150006)  // _ADR: Address
-                Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
-                {
-                        Return (Package (Zero) {})
-                }
-
-                Method (M0D3, 0, NotSerialized)
-                {
-                    Name (PKG, Package (One)
-                    {
-                        0xC8
-                    })
-                    Store (M0C5, Index (PKG, Zero))
-                    Return (PKG)
-                }
-
-                Method (M1D3, 0, NotSerialized)
-                {
-                    Name (PKG, Package (One)
-                    {
-                        0xC8
-                    })
-                    Store (M1C5, Index (PKG, Zero))
-                    Return (PKG)
-                }
-
-                Name (RBUF, ResourceTemplate ()
-                {
-                    Memory32Fixed (ReadWrite,
-                        0x00000000,         // Address Base
-                        0x00001000,         // Address Length
-                        _Y25)
-                    Interrupt (ResourceConsumer, Level, ActiveLow, Shared, ,, )
-                    {
-                        0x00000015,
-                    }
-                })
-                Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-                {
-                    Name (DBUF, ResourceTemplate ()
-                    {
-                        FixedDMA (0x0016, 0x0002, Width32bit, )
-                        FixedDMA (0x0017, 0x0003, Width32bit, )
-                    })
-                    If (LNotEqual (^^SDMA._STA (), Zero))
-                    {
-                        Return (ConcatenateResTemplate (RBUF, DBUF))
-                    }
-                    Else
-                    {
-                        Return (RBUF)
-                    }
-                }
-
-                Method (_HRV, 0, NotSerialized)  // _HRV: Hardware Revision
-                {
-                    Return (CRID)
-                }
-
-                CreateDWordField (RBUF, _Y25._BAS, BVAL)  // _BAS: Base Address
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (LEqual (BVAL, Zero))
-                    {
-                        Return (Zero)
+                            0x1C, 
+                            0x03
+                        })
                     }
 
-                    If (LLess (OSYS, 0x07DC))
+                    Method (_STA, 0, NotSerialized)  // _STA: Status
                     {
-                        Return (Zero)
+                            Return (0x0F)
                     }
 
-                    If (LEqual (S0ID, One))
+                    Method (UIEN, 1, Serialized)
                     {
-                        Return (0x0F)
-                    }
-
-                    Return (Zero)
-                }
-
-                Method (_PS0, 0, Serialized)  // _PS0: Power State 0
-                {
-                    
-                    If (LNotEqual (^^SIRC.CNTR (0x07), Zero))
-                    {
-                        Add (^^SIRC.CNTR (0x07), 0x84, Local0)
-                        OperationRegion (ICB1, SystemMemory, Local0, 0x04)
-                        Field (ICB1, DWordAcc, NoLock, Preserve)
+                        If (LLessEqual (Arg0, 0x01))
                         {
-                            TEMP,   32
+                            If (LEqual (Arg0, 0x01))
+                            {
+                                Store (0x01, GD26)
+                            }
+                            Else
+                            {
+                                Store (0x00, GP26)
+                                Store (0x00, GD26)
+                            }
                         }
-
-                        And (TEMP, 0xFFFFFFFC, TEMP)
-                        Store (TEMP, Local0)
                     }
-                }
 
-                Method (_PS3, 0, Serialized)  // _PS3: Power State 3
-                {
-                    
-                    If (LNotEqual (^^SIRC.CNTR (0x07), Zero))
+                    Method (UIST, 0, Serialized)
                     {
-                        Add (^^SIRC.CNTR (0x07), 0x84, Local0)
-                        OperationRegion (ICB1, SystemMemory, Local0, 0x04)
-                        Field (ICB1, DWordAcc, NoLock, Preserve)
+                        Store (GD26, Local0)
+                        If (LEqual (Local0, 0x01))
                         {
-                            TEMP,   32
+                            Return (GL26)
                         }
+                        Else
+                        {
+                            Return (GP26)
+                        }
+                    }
 
-                        Or (TEMP, 0x03, TEMP)
-                        Store (TEMP, Local0)
+                    Method (SIEN, 1, Serialized)
+                    {
+                        If (LLessEqual (Arg0, 0x01))
+                        {
+                            If (LEqual (Arg0, 0x01))
+                            {
+                                Store (0x01, GP13)
+                                Store (0x00, GD13)
+                            }
+                            Else
+                            {
+                                Store (0x01, GD13)
+                            }
+                        }
+                    }
+
+                    Method (SIST, 0, Serialized)
+                    {
+                        Store (GD13, Local0)
+                        If (LEqual (Local0, 0x01))
+                        {
+                            Return (GL13)
+                        }
+                        Else
+                        {
+                            Return (GP13)
+                        }
                     }
                 }
             }
 
             Device (SDHC)
             {
-                Name (_HID, "INT33C6")  // _HID: Hardware ID
-                Name (_CID, "PNP0D40")  // _CID: Compatible ID
-                Name (_UID, One)  // _UID: Unique ID
                 Name (_ADR, 0x00170000)  // _ADR: Address
+                Name (_UID, One)  // _UID: Unique ID
+                Name (_CID, "PNP0D40")  // _CID: Compatible ID
                 Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
                 {
                         Return (Package (Zero) {})
@@ -14585,11 +10389,6 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
                         Return (Zero)
                     }
 
-                    If (LLess (OSYS, 0x07DC))
-                    {
-                        Return (Zero)
-                    }
-
                     If (LEqual (S0ID, One))
                     {
                         Return (0x0F)
@@ -14632,1430 +10431,6 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
                     }
                 }
             }
-
-        Scope (I2C0)
-        {
-            Device (ACD0)
-            {
-                Name (_ADR, 0x1C)  // _ADR: Address
-                Name (_HID, "INT33CA")  // _HID: Hardware ID
-                Name (_CID, "INT33CA")  // _CID: Compatible ID
-                Name (_DDN, "Intel(R) Smart Sound Technology Audio Codec - INT33CA")  // _DDN: DOS Device Name
-                Name (_UID, One)  // _UID: Unique ID
-                Name (MCLK, Zero)
-                Name (SCLK, 0x09)
-                Name (SSPM, Zero)
-                Name (RBUF, ResourceTemplate ()
-                {
-                    I2cSerialBus (0x001C, ControllerInitiated, 0x00061A80,
-                        AddressingMode7Bit, "\\_SB.PCI0.I2C0",
-                        0x00, ResourceConsumer, ,
-                        )
-                    Interrupt (ResourceConsumer, Level, ActiveLow, ExclusiveAndWake, ,, )
-                    {
-                        0x00000025,
-                    }
-                })
-                Name (EOD, One)
-                Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-                {
-                    Return (RBUF)
-                }
-
-                Method (_SRS, 1, Serialized)  // _SRS: Set Resource Settings
-                {
-                    Store (One, EOD)
-                }
-
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (LOr (LNotEqual (CODS, Zero), LNotEqual (ADSD, Zero)))
-                    {
-                        Return (Zero)
-                    }
-
-                    If (And (EOD, One, EOD))
-                    {
-                        Return (0x0F)
-                    }
-                    Else
-                    {
-                        Return (0x0D)
-                    }
-                }
-
-                Method (_DIS, 0, NotSerialized)  // _DIS: Disable Device
-                {
-                    Store (Zero, EOD)
-                }
-            }
-
-            Device (ACD1)
-            {
-                Name (_ADR, 0x4A)  // _ADR: Address
-                Name (_HID, "INT33C9")  // _HID: Hardware ID
-                Name (_CID, "INT33C9")  // _CID: Compatible ID
-                Name (_DDN, "Intel(R) Smart Sound Technology Audio Codec - INT33C9")  // _DDN: DOS Device Name
-                Name (_UID, One)  // _UID: Unique ID
-                Name (MCLK, 0x06)
-                Name (SCLK, Zero)
-                Name (SSPM, One)
-                Name (RBUF, ResourceTemplate ()
-                {
-                    I2cSerialBus (0x004A, ControllerInitiated, 0x00061A80,
-                        AddressingMode7Bit, "\\_SB.PCI0.I2C0",
-                        0x00, ResourceConsumer, ,
-                        )
-                })
-                Name (EOD, One)
-                Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-                {
-                    Store (One, EOD)
-                    Return (RBUF)
-                }
-
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (LOr (LNotEqual (CODS, One), LNotEqual (ADSD, Zero)))
-                    {
-                        Return (Zero)
-                    }
-
-                    If (And (EOD, One, EOD))
-                    {
-                        Return (0x0F)
-                    }
-                    Else
-                    {
-                        Return (0x0D)
-                    }
-                }
-
-                Method (_DIS, 0, NotSerialized)  // _DIS: Disable Device
-                {
-                    Store (Zero, EOD)
-                }
-            }
-
-            Device (ACD2)
-            {
-                Name (_ADR, 0x69)  // _ADR: Address
-                Name (_HID, "INT33CB")  // _HID: Hardware ID
-                Name (_CID, "INT33CB")  // _CID: Compatible ID
-                Name (_DDN, "Intel(R) Smart Sound Technology Audio Codec - INT33CB")  // _DDN: DOS Device Name
-                Name (_UID, One)  // _UID: Unique ID
-                Name (MCLK, 0x18)
-                Name (SCLK, 0x09)
-                Name (SSPM, Zero)
-                Name (RBUF, ResourceTemplate ()
-                {
-                    I2cSerialBus (0x0069, ControllerInitiated, 0x00061A80,
-                        AddressingMode7Bit, "\\_SB.PCI0.I2C0",
-                        0x00, ResourceConsumer, ,
-                        )
-                    GpioIo (Exclusive, PullDefault, 0x0000, 0x0000, IoRestrictionInputOnly,
-                        "\\_SB.PCI0.GPI0", 0x00, ResourceConsumer, ,
-                        )
-                        {   // Pin list
-                            0x0033
-                        }
-                    GpioIo (Exclusive, PullDefault, 0x0000, 0x0000, IoRestrictionInputOnly,
-                        "\\_SB.PCI0.GPI0", 0x00, ResourceConsumer, ,
-                        )
-                        {   // Pin list
-                            0x0035
-                        }
-                    Interrupt (ResourceConsumer, Edge, ActiveHigh, ExclusiveAndWake, ,, )
-                    {
-                        0x00000023,
-                    }
-                    Interrupt (ResourceConsumer, Edge, ActiveHigh, ExclusiveAndWake, ,, )
-                    {
-                        0x00000025,
-                    }
-                })
-                Name (EOD, One)
-                Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-                {
-                    Return (RBUF)
-                }
-
-                Method (_SRS, 1, Serialized)  // _SRS: Set Resource Settings
-                {
-                    Store (One, EOD)
-                }
-
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (LOr (LNotEqual (CODS, 0x02), LNotEqual (ADSD, Zero)))
-                    {
-                        Return (Zero)
-                    }
-
-                    If (And (EOD, One, EOD))
-                    {
-                        Return (0x0F)
-                    }
-                    Else
-                    {
-                        Return (0x0D)
-                    }
-                }
-
-                Method (_DIS, 0, NotSerialized)  // _DIS: Disable Device
-                {
-                    Store (Zero, EOD)
-                }
-            }
-
-            Device (SHUB)
-            {
-                Name (_HID, "INT33D1")  // _HID: Hardware ID
-                Name (_CID, "PNP0C50")  // _CID: Compatible ID
-                Name (_ADR, Zero)  // _ADR: Address
-                Name (_UID, One)  // _UID: Unique ID
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (LNotEqual (And (SDS0, One), One))
-                    {
-                        Return (Zero)
-                    }
-
-                    If (LAnd (LEqual (RDGP (0x2C), One), LEqual (_HID, "INT33D1")))
-                    {
-                        Return (0x0F)
-                    }
-
-                    If (LAnd (LEqual (RDGP (0x2C), Zero), LEqual (_HID, "INT33D7")))
-                    {
-                        Return (0x0F)
-                    }
-
-                    Return (Zero)
-                }
-
-                Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-                {
-                    If (LEqual (Arg0, ToUUID ("3cdff6f7-4267-4555-ad05-b30a3d8938de") /* HID I2C Device */))
-                    {
-                        If (LEqual (Arg2, Zero))
-                        {
-                            If (LEqual (Arg1, One))
-                            {
-                                Return (Buffer (One)
-                                {
-                                     0x03                                           
-                                })
-                            }
-                        }
-
-                        If (LEqual (Arg2, One))
-                        {
-                            Return (One)
-                        }
-                    }
-                    Else
-                    {
-                        Return (Buffer (One)
-                        {
-                             0x00                                           
-                        })
-                    }
-                    Return (Zero)
-                }
-
-                Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-                {
-                    Name (SBFI, ResourceTemplate ()
-                    {
-                        I2cSerialBus (0x0040, ControllerInitiated, 0x00061A80,
-                            AddressingMode7Bit, "\\_SB.PCI0.I2C0",
-                            0x00, ResourceConsumer, ,
-                            )
-                        Interrupt (ResourceConsumer, Level, ActiveLow, Exclusive, ,, )
-                        {
-                            0x0000001C,
-                        }
-                    })
-                    Return (SBFI)
-                }
-            }
-
-            Device (DFUD)
-            {
-                Name (_HID, "INT33D7")  // _HID: Hardware ID
-                Name (_ADR, Zero)  // _ADR: Address
-                Name (_UID, One)  // _UID: Unique ID
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (LNotEqual (And (SDS0, One), One))
-                    {
-                        Return (Zero)
-                    }
-
-                    If (LAnd (LEqual (RDGP (0x2C), One), LEqual (_HID, "INT33D1")))
-                    {
-                        Return (0x0F)
-                    }
-
-                    If (LAnd (LEqual (RDGP (0x2C), Zero), LEqual (_HID, "INT33D7")))
-                    {
-                        Return (0x0F)
-                    }
-
-                    Return (Zero)
-                }
-
-                Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-                {
-                    If (LEqual (Arg0, ToUUID ("3cdff6f7-4267-4555-ad05-b30a3d8938de") /* HID I2C Device */))
-                    {
-                        If (LEqual (Arg2, Zero))
-                        {
-                            If (LEqual (Arg1, One))
-                            {
-                                Return (Buffer (One)
-                                {
-                                     0x03                                           
-                                })
-                            }
-                        }
-
-                        If (LEqual (Arg2, One))
-                        {
-                            Return (One)
-                        }
-                    }
-                    Else
-                    {
-                        Return (Buffer (One)
-                        {
-                             0x00                                           
-                        })
-                    }
-                    Return (Zero)
-                }
-
-                Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-                {
-                    Name (SBFI, ResourceTemplate ()
-                    {
-                        I2cSerialBus (0x0040, ControllerInitiated, 0x00061A80,
-                            AddressingMode7Bit, "\\_SB.PCI0.I2C0",
-                            0x00, ResourceConsumer, ,
-                            )
-                        Interrupt (ResourceConsumer, Level, ActiveLow, Exclusive, ,, )
-                        {
-                            0x0000001C,
-                        }
-                    })
-                    Return (SBFI)
-                }
-            }
-
-            Device (TPD4)
-            {
-                Name (_ADR, Zero)  // _ADR: Address
-                Name (_HID, "MSFT1111")  // _HID: Hardware ID
-                Name (_CID, "PNP0C50")  // _CID: Compatible ID
-                Name (_UID, One)  // _UID: Unique ID
-                Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-                {
-                    If (LEqual (Arg0, ToUUID ("3cdff6f7-4267-4555-ad05-b30a3d8938de") /* HID I2C Device */))
-                    {
-                        If (LEqual (Arg2, Zero))
-                        {
-                            If (LEqual (Arg1, One))
-                            {
-                                Return (Buffer (One)
-                                {
-                                     0x03                                           
-                                })
-                            }
-                        }
-
-                        If (LEqual (Arg2, One))
-                        {
-                            Return (One)
-                        }
-                    }
-                    Else
-                    {
-                        Return (Buffer (One)
-                        {
-                             0x00                                           
-                        })
-                    }
-                    Return (Zero)
-                }
-
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (LEqual (And (SDS0, 0x04), 0x04))
-                    {
-                        Return (0x0F)
-                    }
-                    Else
-                    {
-                        Return (Zero)
-                    }
-                }
-
-                Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-                {
-                    Name (SBFI, ResourceTemplate ()
-                    {
-                        I2cSerialBus (0x0060, ControllerInitiated, 0x00061A80,
-                            AddressingMode7Bit, "\\_SB.PCI0.I2C0",
-                            0x00, ResourceConsumer, ,
-                            )
-                        Interrupt (ResourceConsumer, Level, ActiveLow, Exclusive, ,, )
-                        {
-                            0x0000001C,
-                        }
-                    })
-                    Return (SBFI)
-                }
-
-                Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-                {
-                    Return (Package (0x02)
-                    {
-                        0x0E, 
-                        0x04
-                    })
-                }
-
-                Method (_S3W, 0, NotSerialized)  // _S3W: S3 Device Wake State
-                {
-                    Return (0x03)
-                }
-
-                Method (_S4W, 0, NotSerialized)  // _S4W: S4 Device Wake State
-                {
-                    Return (0x03)
-                }
-
-                Method (_PS0, 0, Serialized)  // _PS0: Power State 0
-                {
-                    
-                    WTIN (0x0E, Zero)
-                    Store (One, GO14)
-                }
-
-                Method (_PS3, 0, Serialized)  // _PS3: Power State 3
-                {
-                    
-                    WTIN (0x0E, One)
-                    Store (Zero, GO14)
-                }
-            }
-        }
-
-        Scope (I2C1)
-        {
-            Device (TPL0)
-            {
-                Name (_ADR, Zero)  // _ADR: Address
-                Name (_HID, "ATML1000")  // _HID: Hardware ID
-                Name (_CID, "PNP0C50")  // _CID: Compatible ID
-                Name (_UID, One)  // _UID: Unique ID
-                Name (_S0W, 0x04)  // _S0W: S0 Device Wake State
-                Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-                {
-                    If (LEqual (Arg0, ToUUID ("3cdff6f7-4267-4555-ad05-b30a3d8938de") /* HID I2C Device */))
-                    {
-                        If (LEqual (Arg2, Zero))
-                        {
-                            If (LEqual (Arg1, One))
-                            {
-                                Return (Buffer (One)
-                                {
-                                     0x03                                           
-                                })
-                            }
-                            Else
-                            {
-                                Return (Buffer (One)
-                                {
-                                     0x00                                           
-                                })
-                            }
-                        }
-
-                        If (LEqual (Arg2, One))
-                        {
-                            Return (Zero)
-                        }
-                    }
-                    Else
-                    {
-                        Return (Buffer (One)
-                        {
-                             0x00                                           
-                        })
-                    }
-                    Return (Zero)
-                }
-
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (LEqual (And (SDS1, One), One))
-                    {
-                        Return (0x0F)
-                    }
-                    Else
-                    {
-                        Return (Zero)
-                    }
-                }
-
-                Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-                {
-                    Name (SBFI, ResourceTemplate ()
-                    {
-                        I2cSerialBus (0x004C, ControllerInitiated, 0x00061A80,
-                            AddressingMode7Bit, "\\_SB.PCI0.I2C1",
-                            0x00, ResourceConsumer, ,
-                            )
-                        Interrupt (ResourceConsumer, Level, ActiveLow, Exclusive, ,, )
-                        {
-                            0x00000022,
-                        }
-                    })
-                    Return (SBFI)
-                }
-            }
-
-            Device (TPFU)
-            {
-                Name (_ADR, Zero)  // _ADR: Address
-                Name (_HID, "ATML2000")  // _HID: Hardware ID
-                Name (_CID, "PNP0C02")  // _CID: Compatible ID
-                Name (_UID, 0x0A)  // _UID: Unique ID
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (LAnd (And (SDS1, One), And (APFU, One)))
-                    {
-                        Return (0x0F)
-                    }
-                    Else
-                    {
-                        Return (Zero)
-                    }
-                }
-
-                Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-                {
-                    Name (SBFI, ResourceTemplate ()
-                    {
-                        I2cSerialBus (0x0026, ControllerInitiated, 0x00061A80,
-                            AddressingMode7Bit, "\\_SB.PCI0.I2C1",
-                            0x00, ResourceConsumer, ,
-                            )
-                        I2cSerialBus (0x0027, ControllerInitiated, 0x00061A80,
-                            AddressingMode7Bit, "\\_SB.PCI0.I2C1",
-                            0x00, ResourceConsumer, ,
-                            )
-                    })
-                    Return (SBFI)
-                }
-            }
-
-            Device (TPL1)
-            {
-                Name (_HID, "ELAN1001")  // _HID: Hardware ID
-                Name (_CID, "PNP0C50")  // _CID: Compatible ID
-                Name (_UID, One)  // _UID: Unique ID
-                Name (_S0W, 0x04)  // _S0W: S0 Device Wake State
-                Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-                {
-                    If (LEqual (Arg0, ToUUID ("3cdff6f7-4267-4555-ad05-b30a3d8938de") /* HID I2C Device */))
-                    {
-                        If (LEqual (Arg2, Zero))
-                        {
-                            If (LEqual (Arg1, One))
-                            {
-                                Return (Buffer (One)
-                                {
-                                     0x03                                           
-                                })
-                            }
-                            Else
-                            {
-                                Return (Buffer (One)
-                                {
-                                     0x00                                           
-                                })
-                            }
-                        }
-
-                        If (LEqual (Arg2, One))
-                        {
-                            Return (One)
-                        }
-                    }
-                    Else
-                    {
-                        Return (Buffer (One)
-                        {
-                             0x00                                           
-                        })
-                    }
-                    Return (Zero)
-                }
-
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (LEqual (And (SDS1, 0x02), 0x02))
-                    {
-                        Return (0x0F)
-                    }
-                    Else
-                    {
-                        Return (Zero)
-                    }
-                }
-
-                Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-                {
-                    Name (SBFI, ResourceTemplate ()
-                    {
-                        I2cSerialBus (0x0010, ControllerInitiated, 0x00061A80,
-                            AddressingMode7Bit, "\\_SB.PCI0.I2C1",
-                            0x00, ResourceConsumer, ,
-                            )
-                        Interrupt (ResourceConsumer, Level, ActiveLow, Exclusive, ,, )
-                        {
-                            0x00000022,
-                        }
-                    })
-                    Return (SBFI)
-                }
-            }
-
-            Device (TPL2)
-            {
-                Name (_ADR, One)  // _ADR: Address
-                Name (_HID, "NTRG0001")  // _HID: Hardware ID
-                Name (_CID, "PNP0C50")  // _CID: Compatible ID
-                Name (_UID, One)  // _UID: Unique ID
-                Name (_S0W, 0x04)  // _S0W: S0 Device Wake State
-                Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-                {
-                    If (LEqual (Arg0, ToUUID ("3cdff6f7-4267-4555-ad05-b30a3d8938de") /* HID I2C Device */))
-                    {
-                        If (LEqual (Arg2, Zero))
-                        {
-                            If (LEqual (Arg1, One))
-                            {
-                                Return (Buffer (One)
-                                {
-                                     0x03                                           
-                                })
-                            }
-                            Else
-                            {
-                                Return (Buffer (One)
-                                {
-                                     0x00                                           
-                                })
-                            }
-                        }
-
-                        If (LEqual (Arg2, One))
-                        {
-                            Return (One)
-                        }
-                    }
-                    Else
-                    {
-                        Return (Buffer (One)
-                        {
-                             0x00                                           
-                        })
-                    }
-                    Return (Zero)
-                }
-
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (LEqual (And (SDS1, 0x20), 0x20))
-                    {
-                        Return (0x0F)
-                    }
-                    Else
-                    {
-                        Return (Zero)
-                    }
-                }
-
-                Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-                {
-                    Name (SBFI, ResourceTemplate ()
-                    {
-                        I2cSerialBus (0x0007, ControllerInitiated, 0x00061A80,
-                            AddressingMode7Bit, "\\_SB.PCI0.I2C1",
-                            0x00, ResourceConsumer, ,
-                            )
-                        Interrupt (ResourceConsumer, Level, ActiveLow, Exclusive, ,, )
-                        {
-                            0x00000022,
-                        }
-                    })
-                    Return (SBFI)
-                }
-            }
-
-            Device (TPL3)
-            {
-                Name (_ADR, One)  // _ADR: Address
-                Name (_HID, "EETI7900")  // _HID: Hardware ID
-                Name (_CID, "PNP0C50")  // _CID: Compatible ID
-                Name (_UID, One)  // _UID: Unique ID
-                Name (_S0W, 0x04)  // _S0W: S0 Device Wake State
-                Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-                {
-                    If (LEqual (Arg0, ToUUID ("3cdff6f7-4267-4555-ad05-b30a3d8938de") /* HID I2C Device */))
-                    {
-                        If (LEqual (Arg2, Zero))
-                        {
-                            If (LEqual (Arg1, One))
-                            {
-                                Return (Buffer (One)
-                                {
-                                     0x03                                           
-                                })
-                            }
-                            Else
-                            {
-                                Return (Buffer (One)
-                                {
-                                     0x00                                           
-                                })
-                            }
-                        }
-
-                        If (LEqual (Arg2, One))
-                        {
-                            Return (0x0F)
-                        }
-                    }
-                    Else
-                    {
-                        Return (Buffer (One)
-                        {
-                             0x00                                           
-                        })
-                    }
-                    Return (Zero)
-                }
-
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (LEqual (And (SDS1, 0x40), 0x40))
-                    {
-                        Return (0x0F)
-                    }
-                    Else
-                    {
-                        Return (Zero)
-                    }
-                }
-
-                Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-                {
-                    Name (SBFI, ResourceTemplate ()
-                    {
-                        I2cSerialBus (0x002A, ControllerInitiated, 0x00061A80,
-                            AddressingMode7Bit, "\\_SB.PCI0.I2C1",
-                            0x00, ResourceConsumer, ,
-                            )
-                        Interrupt (ResourceConsumer, Level, ActiveLow, Exclusive, ,, )
-                        {
-                            0x00000022,
-                        }
-                    })
-                    Return (SBFI)
-                }
-            }
-
-            Device (TPD0)
-            {
-                Name (_ADR, One)  // _ADR: Address
-                Name (_HID, "ELAN1000")  // _HID: Hardware ID
-                Name (_CID, "PNP0C50")  // _CID: Compatible ID
-                Name (_UID, One)  // _UID: Unique ID
-                Name (_S0W, 0x04)  // _S0W: S0 Device Wake State
-                Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-                {
-                    If (LEqual (Arg0, ToUUID ("3cdff6f7-4267-4555-ad05-b30a3d8938de") /* HID I2C Device */))
-                    {
-                        If (LEqual (Arg2, Zero))
-                        {
-                            If (LEqual (Arg1, One))
-                            {
-                                Return (Buffer (One)
-                                {
-                                     0x03                                           
-                                })
-                            }
-                            Else
-                            {
-                                Return (Buffer (One)
-                                {
-                                     0x00                                           
-                                })
-                            }
-                        }
-
-                        If (LEqual (Arg2, One))
-                        {
-                            Return (One)
-                        }
-                    }
-                    Else
-                    {
-                        Return (Buffer (One)
-                        {
-                             0x00                                           
-                        })
-                    }
-                    Return (Zero)
-                }
-
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (LEqual (And (SDS1, 0x04), 0x04))
-                    {
-                        Return (0x0F)
-                    }
-                    Else
-                    {
-                        Return (Zero)
-                    }
-                }
-
-                Method (_CRS, 0, Serialized)  // _CRS: Current Resource Settings
-                {
-                    Name (SBFI, ResourceTemplate ()
-                    {
-                        I2cSerialBus (0x0015, ControllerInitiated, 0x00061A80,
-                            AddressingMode7Bit, "\\_SB.PCI0.I2C1",
-                            0x00, ResourceConsumer, ,
-                            )
-                        Interrupt (ResourceConsumer, Level, ActiveLow, Exclusive, ,, _Y27)
-                        {
-                            0x00000019,
-                        }
-                    })
-                    If (LEqual (GR13, One))
-                    {
-                        CreateDWordField (SBFI, _Y27._INT, VAL3)  // _INT: Interrupts
-                        Store (0x1B, VAL3)
-                    }
-
-                    Return (SBFI)
-                }
-            }
-
-            Device (TPD1)
-            {
-                Name (_ADR, One)  // _ADR: Address
-                Name (_HID, "MSFT0001")  // _HID: Hardware ID
-                Name (_CID, "PNP0C50")  // _CID: Compatible ID
-                Name (_UID, One)  // _UID: Unique ID
-                Name (_S0W, 0x04)  // _S0W: S0 Device Wake State
-                Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-                {
-                    If (LEqual (Arg0, ToUUID ("3cdff6f7-4267-4555-ad05-b30a3d8938de") /* HID I2C Device */))
-                    {
-                        If (LEqual (Arg2, Zero))
-                        {
-                            If (LEqual (Arg1, One))
-                            {
-                                Return (Buffer (One)
-                                {
-                                     0x03                                           
-                                })
-                            }
-                            Else
-                            {
-                                Return (Buffer (One)
-                                {
-                                     0x00                                           
-                                })
-                            }
-                        }
-
-                        If (LEqual (Arg2, One))
-                        {
-                            Return (0x20)
-                        }
-                    }
-                    Else
-                    {
-                        Return (Buffer (One)
-                        {
-                             0x00                                           
-                        })
-                    }
-                    Return (Zero)
-                }
-
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (LEqual (And (SDS1, 0x08), 0x08))
-                    {
-                        Return (0x0F)
-                    }
-                    Else
-                    {
-                        Return (Zero)
-                    }
-                }
-
-                Method (_CRS, 0, Serialized)  // _CRS: Current Resource Settings
-                {
-                    Name (SBFI, ResourceTemplate ()
-                    {
-                        I2cSerialBus (0x0020, ControllerInitiated, 0x00061A80,
-                            AddressingMode7Bit, "\\_SB.PCI0.I2C1",
-                            0x00, ResourceConsumer, ,
-                            )
-                        Interrupt (ResourceConsumer, Level, ActiveLow, Exclusive, ,, _Y28)
-                        {
-                            0x00000019,
-                        }
-                    })
-                    If (LEqual (GR13, One))
-                    {
-                        CreateDWordField (SBFI, _Y28._INT, VAL3)  // _INT: Interrupts
-                        Store (0x1B, VAL3)
-                    }
-
-                    Return (SBFI)
-                }
-            }
-
-            Device (TPD2)
-            {
-                Name (_ADR, One)  // _ADR: Address
-                Name (_HID, "ALP0001")  // _HID: Hardware ID
-                Name (_CID, "PNP0C50")  // _CID: Compatible ID
-                Name (_UID, One)  // _UID: Unique ID
-                Name (_S0W, 0x04)  // _S0W: S0 Device Wake State
-                Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-                {
-                    If (LEqual (Arg0, ToUUID ("3cdff6f7-4267-4555-ad05-b30a3d8938de") /* HID I2C Device */))
-                    {
-                        If (LEqual (Arg2, Zero))
-                        {
-                            If (LEqual (Arg1, One))
-                            {
-                                Return (Buffer (One)
-                                {
-                                     0x03                                           
-                                })
-                            }
-                            Else
-                            {
-                                Return (Buffer (One)
-                                {
-                                     0x00                                           
-                                })
-                            }
-                        }
-
-                        If (LEqual (Arg2, One))
-                        {
-                            Return (One)
-                        }
-                    }
-                    Else
-                    {
-                        Return (Buffer (One)
-                        {
-                             0x00                                           
-                        })
-                    }
-                    Return (Zero)
-                }
-
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (LEqual (And (SDS1, 0x80), 0x80))
-                    {
-                        Return (0x0F)
-                    }
-                    Else
-                    {
-                        Return (Zero)
-                    }
-                }
-
-                Method (_CRS, 0, Serialized)  // _CRS: Current Resource Settings
-                {
-                    Name (SBFI, ResourceTemplate ()
-                    {
-                        I2cSerialBus (0x002A, ControllerInitiated, 0x00061A80,
-                            AddressingMode7Bit, "\\_SB.PCI0.I2C1",
-                            0x00, ResourceConsumer, ,
-                            )
-                        Interrupt (ResourceConsumer, Level, ActiveLow, Exclusive, ,, _Y29)
-                        {
-                            0x00000019,
-                        }
-                    })
-                    If (LEqual (GR13, One))
-                    {
-                        CreateDWordField (SBFI, _Y29._INT, VAL3)  // _INT: Interrupts
-                        Store (0x1B, VAL3)
-                    }
-
-                    Return (SBFI)
-                }
-            }
-
-            Device (TPD3)
-            {
-                Name (_ADR, One)  // _ADR: Address
-                Name (_HID, "CYP0001")  // _HID: Hardware ID
-                Name (_CID, "PNP0C50")  // _CID: Compatible ID
-                Name (_UID, One)  // _UID: Unique ID
-                Name (_S0W, 0x04)  // _S0W: S0 Device Wake State
-                Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-                {
-                    If (LEqual (Arg0, ToUUID ("3cdff6f7-4267-4555-ad05-b30a3d8938de") /* HID I2C Device */))
-                    {
-                        If (LEqual (Arg2, Zero))
-                        {
-                            If (LEqual (Arg1, One))
-                            {
-                                Return (Buffer (One)
-                                {
-                                     0x03                                           
-                                })
-                            }
-                            Else
-                            {
-                                Return (Buffer (One)
-                                {
-                                     0x00                                           
-                                })
-                            }
-                        }
-
-                        If (LEqual (Arg2, One))
-                        {
-                            Return (One)
-                        }
-                    }
-                    Else
-                    {
-                        Return (Buffer (One)
-                        {
-                             0x00                                           
-                        })
-                    }
-                    Return (Zero)
-                }
-
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (LEqual (And (SDS1, 0x0100), 0x0100))
-                    {
-                        Return (0x0F)
-                    }
-                    Else
-                    {
-                        Return (Zero)
-                    }
-                }
-
-                Method (_CRS, 0, Serialized)  // _CRS: Current Resource Settings
-                {
-                    Name (SBFI, ResourceTemplate ()
-                    {
-                        I2cSerialBus (0x0024, ControllerInitiated, 0x00061A80,
-                            AddressingMode7Bit, "\\_SB.PCI0.I2C1",
-                            0x00, ResourceConsumer, ,
-                            )
-                        Interrupt (ResourceConsumer, Level, ActiveLow, Exclusive, ,, _Y2A)
-                        {
-                            0x00000019,
-                        }
-                    })
-                    If (LEqual (GR13, One))
-                    {
-                        CreateDWordField (SBFI, _Y2A._INT, VAL3)  // _INT: Interrupts
-                        Store (0x1B, VAL3)
-                    }
-
-                    Return (SBFI)
-                }
-            }
-
-            Device (TPD7)
-            {
-                Name (_ADR, One)  // _ADR: Address
-                Name (_HID, "ELAN1010")  // _HID: Hardware ID
-                Name (_CID, "PNP0C50")  // _CID: Compatible ID
-                Name (_UID, One)  // _UID: Unique ID
-                Name (_S0W, 0x03)  // _S0W: S0 Device Wake State
-                Method (_S3W, 0, NotSerialized)  // _S3W: S3 Device Wake State
-                {
-                    If (LEqual (S0ID, Zero))
-                    {
-                        Return (0x03)
-                    }
-                    Else
-                    {
-                        Return (Zero)
-                    }
-                }
-
-                Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-                {
-                    If (LEqual (Arg0, ToUUID ("3cdff6f7-4267-4555-ad05-b30a3d8938de") /* HID I2C Device */))
-                    {
-                        If (LEqual (Arg2, Zero))
-                        {
-                            If (LEqual (Arg1, One))
-                            {
-                                Return (Buffer (One)
-                                {
-                                     0x03                                           
-                                })
-                            }
-                            Else
-                            {
-                                Return (Buffer (One)
-                                {
-                                     0x00                                           
-                                })
-                            }
-                        }
-
-                        If (LEqual (Arg2, One))
-                        {
-                            Return (One)
-                        }
-                    }
-                    Else
-                    {
-                        Return (Buffer (One)
-                        {
-                             0x00                                           
-                        })
-                    }
-                    Return (Zero)
-                }
-
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (LEqual (And (SDS1, 0x0800), 0x0800))
-                    {
-                        Return (0x0F)
-                    }
-                    Else
-                    {
-                        Return (Zero)
-                    }
-                }
-
-                Method (_CRS, 0, Serialized)  // _CRS: Current Resource Settings
-                {
-                    Name (SBFI, ResourceTemplate ()
-                    {
-                        I2cSerialBus (0x0015, ControllerInitiated, 0x00061A80,
-                            AddressingMode7Bit, "\\_SB.PCI0.I2C1",
-                            0x00, ResourceConsumer, ,
-                            )
-                        Interrupt (ResourceConsumer, Level, ActiveLow, ExclusiveAndWake, ,, _Y2B)
-                        {
-                            0x00000019,
-                        }
-                    })
-                    If (LEqual (GR13, One))
-                    {
-                        CreateDWordField (SBFI, _Y2B._INT, VAL3)  // _INT: Interrupts
-                        Store (0x1B, VAL3)
-                        If (LEqual (S0ID, Zero))
-                        {
-                            CreateByteField (SBFI, 0x24, VAL4)
-                            And (VAL4, 0xE7, VAL4)
-                        }
-                    }
-
-                    Return (SBFI)
-                }
-
-                Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-                {
-                    If (LAnd (LEqual (S0ID, Zero), LEqual (GR13, One)))
-                    {
-                        Return (Package (0x02)
-                        {
-                            0x0D, 
-                            0x03
-                        })
-                    }
-
-                    Return (Package (0x02)
-                    {
-                        Zero, 
-                        Zero
-                    })
-                }
-            }
-
-            Device (TPD8)
-            {
-                Name (_ADR, One)  // _ADR: Address
-                Name (_HID, "SYNA2393")  // _HID: Hardware ID
-                Name (_CID, "PNP0C50")  // _CID: Compatible ID
-                Name (_UID, One)  // _UID: Unique ID
-                Name (_S0W, 0x03)  // _S0W: S0 Device Wake State
-                Method (_S3W, 0, NotSerialized)  // _S3W: S3 Device Wake State
-                {
-                    If (LEqual (S0ID, Zero))
-                    {
-                        Return (0x03)
-                    }
-                    Else
-                    {
-                        Return (Zero)
-                    }
-                }
-
-                Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-                {
-                    If (LEqual (Arg0, ToUUID ("3cdff6f7-4267-4555-ad05-b30a3d8938de") /* HID I2C Device */))
-                    {
-                        If (LEqual (Arg2, Zero))
-                        {
-                            If (LEqual (Arg1, One))
-                            {
-                                Return (Buffer (One)
-                                {
-                                     0x03                                           
-                                })
-                            }
-                            Else
-                            {
-                                Return (Buffer (One)
-                                {
-                                     0x00                                           
-                                })
-                            }
-                        }
-
-                        If (LEqual (Arg2, One))
-                        {
-                            Return (0x20)
-                        }
-                    }
-                    Else
-                    {
-                        Return (Buffer (One)
-                        {
-                             0x00                                           
-                        })
-                    }
-                    Return (Zero)
-                }
-
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (LEqual (And (SDS1, 0x1000), 0x1000))
-                    {
-                        Return (0x0F)
-                    }
-                    Else
-                    {
-                        Return (Zero)
-                    }
-                }
-
-                Method (_CRS, 0, Serialized)  // _CRS: Current Resource Settings
-                {
-                    Name (SBFI, ResourceTemplate ()
-                    {
-                        I2cSerialBus (0x0020, ControllerInitiated, 0x00061A80,
-                            AddressingMode7Bit, "\\_SB.PCI0.I2C1",
-                            0x00, ResourceConsumer, ,
-                            )
-                        Interrupt (ResourceConsumer, Level, ActiveLow, ExclusiveAndWake, ,, _Y2C)
-                        {
-                            0x00000019,
-                        }
-                    })
-                    If (LEqual (GR13, One))
-                    {
-                        CreateDWordField (SBFI, _Y2C._INT, VAL3)  // _INT: Interrupts
-                        Store (0x1B, VAL3)
-                        If (LEqual (S0ID, Zero))
-                        {
-                            CreateByteField (SBFI, 0x24, VAL4)
-                            And (VAL4, 0xE7, VAL4)
-                        }
-                    }
-
-                    Return (SBFI)
-                }
-
-                Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-                {
-                    If (LAnd (LEqual (S0ID, Zero), LEqual (GR13, One)))
-                    {
-                        Return (Package (0x02)
-                        {
-                            0x0D, 
-                            0x03
-                        })
-                    }
-
-                    Return (Package (0x02)
-                    {
-                        Zero, 
-                        Zero
-                    })
-                }
-            }
-        }
-
-        Scope (UA00)
-        {
-            Device (BTH0)
-            {
-                Name (_HID, "INT33E0")  // _HID: Hardware ID
-                Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-                {
-                    Name (UBUF, ResourceTemplate ()
-                    {
-                        UartSerialBus (0x0001C200, DataBitsEight, StopBitsOne,
-                            0xC0, LittleEndian, ParityTypeNone, FlowControlHardware,
-                            0x0020, 0x0020, "\\_SB.PCI0.UA00",
-                            0x00, ResourceConsumer, ,
-                            )
-                    })
-                    Return (UBUF)
-                }
-
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (LEqual (And (SDS4, One), One))
-                    {
-                        Return (0x0F)
-                    }
-                    Else
-                    {
-                        Return (Zero)
-                    }
-                }
-            }
-        }
-
-        Scope (UA01)
-        {
-            Device (BTH1)
-            {
-                Name (_HID, "INT33E0")  // _HID: Hardware ID
-                Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-                {
-                    Name (UBUF, ResourceTemplate ()
-                    {
-                        UartSerialBus (0x0001C200, DataBitsEight, StopBitsOne,
-                            0xC0, LittleEndian, ParityTypeNone, FlowControlHardware,
-                            0x0020, 0x0020, "\\_SB.PCI0.UA01",
-                            0x00, ResourceConsumer, ,
-                            )
-                        Interrupt (ResourceConsumer, Level, ActiveLow, SharedAndWake, ,, )
-                        {
-                            0x00000019,
-                        }
-                        GpioIo (Exclusive, PullDefault, 0x0000, 0x0000, IoRestrictionOutputOnly,
-                            "\\_SB.PCI0.GPI0", 0x00, ResourceConsumer, ,
-                            )
-                            {   // Pin list
-                                0x0057
-                            }
-                    })
-                    Return (UBUF)
-                }
-
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (LEqual (And (SDS5, One), One))
-                    {
-                        Return (0x0F)
-                    }
-                    Else
-                    {
-                        Return (Zero)
-                    }
-                }
-            }
-
-            Device (BTH2)
-            {
-                Method (_HID, 0, NotSerialized)  // _HID: Hardware ID
-                {
-                    If (LEqual (BCV4, Zero))
-                    {
-                        Return ("BCM2E20")
-                    }
-                    Else
-                    {
-                        Return ("BCM2E40")
-                    }
-                }
-
-                Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-                {
-                    Name (UBUF, ResourceTemplate ()
-                    {
-                        UartSerialBus (0x0001C200, DataBitsEight, StopBitsOne,
-                            0xC0, LittleEndian, ParityTypeNone, FlowControlHardware,
-                            0x0020, 0x0020, "\\_SB.PCI0.UA01",
-                            0x00, ResourceConsumer, ,
-                            )
-                        Interrupt (ResourceConsumer, Edge, ActiveLow, Exclusive, ,, )
-                        {
-                            0x00000019,
-                        }
-                        GpioIo (Exclusive, PullDefault, 0x0000, 0x0000, IoRestrictionOutputOnly,
-                            "\\_SB.PCI0.GPI0", 0x00, ResourceConsumer, ,
-                            )
-                            {   // Pin list
-                                0x0039
-                            }
-                        GpioIo (Exclusive, PullDefault, 0x0000, 0x0000, IoRestrictionOutputOnly,
-                            "\\_SB.PCI0.GPI0", 0x00, ResourceConsumer, ,
-                            )
-                            {   // Pin list
-                                0x0057
-                            }
-                    })
-                    Return (UBUF)
-                }
-
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (LEqual (And (SDS5, 0x02), 0x02))
-                    {
-                        Return (0x0F)
-                    }
-                    Else
-                    {
-                        Return (Zero)
-                    }
-                }
-
-                Name (_S0W, 0x02)  // _S0W: S0 Device Wake State
-            }
-        }
 
         Scope (SDHC)
         {
@@ -16114,128 +10489,6 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
 
                     Return (RBUF)
                 }
-            }
-        }
-
-        Device (ADSP)
-        {
-            Name (_ADR, Zero)  // _ADR: Address
-            Name (_HID, "INT33C8")  // _HID: Hardware ID
-            Name (_CID, "INT33C8")  // _CID: Compatible ID
-            Name (_DDN, "Intel(R) Smart Sound Technology Host Controller - INT33C8")  // _DDN: DOS Device Name
-            Name (_UID, One)  // _UID: Unique ID
-            Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
-            {
-                    Return (Package (Zero) {})
-            }
-
-            Name (MCLK, Zero)
-            Name (SCLK, 0x09)
-            Name (SSPM, Zero)
-            Name (ABTH, Zero)
-            Name (RBUF, ResourceTemplate ()
-            {
-                Memory32Fixed (ReadWrite,
-                    0x00000000,         // Address Base
-                    0x00100000,         // Address Length
-                    _Y2E)
-                Memory32Fixed (ReadWrite,
-                    0x00000000,         // Address Base
-                    0x00001000,         // Address Length
-                    )
-                Interrupt (ResourceConsumer, Level, ActiveLow, Exclusive, ,, )
-                {
-                    0x00000003,
-                }
-            })
-            Name (EOD, One)
-            Method (_CRS, 0, Serialized)  // _CRS: Current Resource Settings
-            {
-                Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                While (One)
-                {
-                    Store (ToInteger (CODS), T_0)
-                    If (LEqual (T_0, Zero))
-                    {
-                        Store (^^I2C0.ACD0.MCLK, MCLK)
-                        Store (^^I2C0.ACD0.SCLK, SCLK)
-                        Store (^^I2C0.ACD0.SSPM, SSPM)
-                    }
-                    Else
-                    {
-                        If (LEqual (T_0, One))
-                        {
-                            Store (^^I2C0.ACD1.MCLK, MCLK)
-                            Store (^^I2C0.ACD1.SCLK, SCLK)
-                            Store (^^I2C0.ACD1.SSPM, SSPM)
-                        }
-                        Else
-                        {
-                            If (LEqual (T_0, 0x02))
-                            {
-                                Store (^^I2C0.ACD2.MCLK, MCLK)
-                                Store (^^I2C0.ACD2.SCLK, SCLK)
-                                Store (^^I2C0.ACD2.SSPM, SSPM)
-                            }
-                            Else
-                            {
-                                Store (^^I2C0.ACD0.MCLK, MCLK)
-                                Store (^^I2C0.ACD0.SCLK, SCLK)
-                                Store (^^I2C0.ACD0.SSPM, SSPM)
-                            }
-                        }
-                    }
-
-                    Break
-                }
-
-                Return (RBUF)
-            }
-
-            Method (_SRS, 1, Serialized)  // _SRS: Set Resource Settings
-            {
-                Store (One, EOD)
-            }
-
-            Method (_STA, 0, NotSerialized)  // _STA: Status
-            {
-                If (LGreaterEqual (OSYS, 0x07DC))
-                {
-                    If (LEqual (S0ID, One))
-                    {
-                        CreateDWordField (RBUF, ^_Y2E._BAS, BVAL)  // _BAS: Base Address
-                        If (LEqual (BVAL, Zero))
-                        {
-                            Return (Zero)
-                        }
-
-                        If (And (EOD, One, EOD))
-                        {
-                            Return (0x0F)
-                        }
-                        Else
-                        {
-                            Return (0x0D)
-                        }
-                    }
-                }
-
-                Return (Zero)
-            }
-
-            Method (_DIS, 0, NotSerialized)  // _DIS: Disable Device
-            {
-                Store (Zero, EOD)
-            }
-
-            Device (I2S0)
-            {
-                Name (_ADR, Zero)  // _ADR: Address
-            }
-
-            Device (I2S1)
-            {
-                Name (_ADR, One)  // _ADR: Address
             }
         }
 
@@ -16729,7 +10982,2948 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
             CLCK,   1, 
             TAR,    8
         }
+        Device (EHC1)
+        {
+            Name (_ADR, 0x001D0000)  // _ADR: Address
+            OperationRegion (PWKE, PCI_Config, 0x54, 0x12)
+            Field (PWKE, DWordAcc, NoLock, Preserve)
+            {
+                Offset (0x01), 
+                PMEE,   1, 
+                    ,   6, 
+                PMES,   1, 
+                Offset (0x0E), 
+                    ,   1, 
+                PWUC,   8
+            }
 
+            Method (_PSW, 1, NotSerialized)  // _PSW: Power State Wake
+            {
+                If (Arg0)
+                {
+                    Store (Ones, PWUC)
+                }
+                Else
+                {
+                    Store (Zero, PWUC)
+                }
+            }
+
+            Method (_S3D, 0, NotSerialized)  // _S3D: S3 Device State
+            {
+                Return (0x02)
+            }
+
+            Method (_S4D, 0, NotSerialized)  // _S4D: S4 Device State
+            {
+                Return (0x02)
+            }
+
+            Device (HUBN)
+            {
+                Name (_ADR, Zero)  // _ADR: Address
+                Device (PR01)
+                {
+                    Name (_ADR, One)  // _ADR: Address
+                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                    {
+                        Name (UPCA, Package (0x04)
+                        {
+                            0xFF, 
+                            Zero, 
+                            Zero, 
+                            Zero
+                        })
+                        Return (UPCA)
+                    }
+
+                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                    {
+                        Name (PLDP, Package (One)
+                        {
+                            Buffer (0x10)
+                            {
+                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                /* 0008 */  0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
+                            }
+                        })
+                        Return (PLDP)
+                    }
+
+                    Device (PR11)
+                    {
+                        Name (_ADR, One)  // _ADR: Address
+                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                        {
+                            Name (UPCP, Package (0x04)
+                            {
+                                0xFF, 
+                                0xFF, 
+                                Zero, 
+                                Zero
+                            })
+                            Return (UPCP)
+                        }
+
+                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                        {
+                            Name (PLDP, Package (One)
+                            {
+                                Buffer (0x10)
+                                {
+                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                    /* 0008 */  0xE1, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
+                                }
+                            })
+                            Return (PLDP)
+                        }
+                    }
+
+                    Device (PR12)
+                    {
+                        Name (_ADR, 0x02)  // _ADR: Address
+                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                        {
+                            Name (UPCP, Package (0x04)
+                            {
+                                0xFF, 
+                                0xFF, 
+                                Zero, 
+                                Zero
+                            })
+                            Return (UPCP)
+                        }
+
+                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                        {
+                            Name (PLDP, Package (One)
+                            {
+                                Buffer (0x10)
+                                {
+                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                    /* 0008 */  0xE1, 0x1D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
+                                }
+                            })
+                            Return (PLDP)
+                        }
+                    }
+
+                    Device (PR13)
+                    {
+                        Name (_ADR, 0x03)  // _ADR: Address
+                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                        {
+                            Name (UPCP, Package (0x04)
+                            {
+                                0xFF, 
+                                0xFF, 
+                                Zero, 
+                                Zero
+                            })
+                            Return (UPCP)
+                        }
+
+                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                        {
+                            Name (PLDP, Package (One)
+                            {
+                                Buffer (0x10)
+                                {
+                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                    /* 0008 */  0xE1, 0x1D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
+                                }
+                            })
+                            CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
+                            If (LEqual (And (CDID, 0xF000), 0x9000))
+                            {
+                                And (VIS, Zero, VIS)
+                            }
+
+                            Return (PLDP)
+                        }
+                    }
+
+                    Device (PR14)
+                    {
+                        Name (_ADR, 0x04)  // _ADR: Address
+                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                        {
+                            Name (UPCP, Package (0x04)
+                            {
+                                0xFF, 
+                                0xFF, 
+                                Zero, 
+                                Zero
+                            })
+                            Return (UPCP)
+                        }
+
+                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                        {
+                            Name (PLDP, Package (One)
+                            {
+                                Buffer (0x10)
+                                {
+                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                    /* 0008 */  0xE1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
+                                }
+                            })
+                            Return (PLDP)
+                        }
+
+                        Alias (SBV1, SDGV)
+                        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+                        {
+                            Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                            If (LEqual (Arg0, ToUUID ("a5fc708f-8775-4ba6-bd0c-ba90a1ec72f8")))
+                            {
+                                While (One)
+                                {
+                                    Store (ToInteger (Arg2), T_0)
+                                    If (LEqual (T_0, Zero))
+                                    {
+                                        If (LEqual (Arg1, One))
+                                        {
+                                            Return (Buffer (One)
+                                            {
+                                                 0x07                                           
+                                            })
+                                        }
+                                        Else
+                                        {
+                                            Return (Buffer (One)
+                                            {
+                                                 0x00                                           
+                                            })
+                                        }
+                                    }
+                                    Else
+                                    {
+                                        If (LEqual (T_0, One))
+                                        {
+                                            If (LEqual (SDGV, 0xFF))
+                                            {
+                                                Return (Zero)
+                                            }
+                                            Else
+                                            {
+                                                Return (One)
+                                            }
+                                        }
+                                        Else
+                                        {
+                                            If (LEqual (T_0, 0x02))
+                                            {
+                                                Return (SDGV)
+                                            }
+                                        }
+                                    }
+
+                                    Break
+                                }
+                            }
+
+                            Return (Zero)
+                        }
+                    }
+
+                    Device (PR15)
+                    {
+                        Name (_ADR, 0x05)  // _ADR: Address
+                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                        {
+                            Name (UPCP, Package (0x04)
+                            {
+                                0xFF, 
+                                0xFF, 
+                                Zero, 
+                                Zero
+                            })
+                            Return (UPCP)
+                        }
+
+                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                        {
+                            Name (PLDP, Package (One)
+                            {
+                                Buffer (0x10)
+                                {
+                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                    /* 0008 */  0xB1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
+                                }
+                            })
+                            Return (PLDP)
+                        }
+
+                        Alias (SBV2, SDGV)
+                        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+                        {
+                            Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                            If (LEqual (Arg0, ToUUID ("a5fc708f-8775-4ba6-bd0c-ba90a1ec72f8")))
+                            {
+                                While (One)
+                                {
+                                    Store (ToInteger (Arg2), T_0)
+                                    If (LEqual (T_0, Zero))
+                                    {
+                                        If (LEqual (Arg1, One))
+                                        {
+                                            Return (Buffer (One)
+                                            {
+                                                 0x07                                           
+                                            })
+                                        }
+                                        Else
+                                        {
+                                            Return (Buffer (One)
+                                            {
+                                                 0x00                                           
+                                            })
+                                        }
+                                    }
+                                    Else
+                                    {
+                                        If (LEqual (T_0, One))
+                                        {
+                                            If (LEqual (SDGV, 0xFF))
+                                            {
+                                                Return (Zero)
+                                            }
+                                            Else
+                                            {
+                                                Return (One)
+                                            }
+                                        }
+                                        Else
+                                        {
+                                            If (LEqual (T_0, 0x02))
+                                            {
+                                                Return (SDGV)
+                                            }
+                                        }
+                                    }
+
+                                    Break
+                                }
+                            }
+
+                            Return (Zero)
+                        }
+                    }
+
+                    Device (PR16)
+                    {
+                        Name (_ADR, 0x06)  // _ADR: Address
+                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                        {
+                            Name (UPCP, Package (0x04)
+                            {
+                                0xFF, 
+                                0xFF, 
+                                Zero, 
+                                Zero
+                            })
+                            Return (UPCP)
+                        }
+
+                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                        {
+                            Name (PLDP, Package (One)
+                            {
+                                Buffer (0x10)
+                                {
+                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                    /* 0008 */  0xB1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
+                                }
+                            })
+                            Return (PLDP)
+                        }
+
+                        Alias (SBV1, SDGV)
+                        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+                        {
+                            Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                            If (LEqual (Arg0, ToUUID ("a5fc708f-8775-4ba6-bd0c-ba90a1ec72f8")))
+                            {
+                                While (One)
+                                {
+                                    Store (ToInteger (Arg2), T_0)
+                                    If (LEqual (T_0, Zero))
+                                    {
+                                        If (LEqual (Arg1, One))
+                                        {
+                                            Return (Buffer (One)
+                                            {
+                                                 0x07                                           
+                                            })
+                                        }
+                                        Else
+                                        {
+                                            Return (Buffer (One)
+                                            {
+                                                 0x00                                           
+                                            })
+                                        }
+                                    }
+                                    Else
+                                    {
+                                        If (LEqual (T_0, One))
+                                        {
+                                            If (LEqual (SDGV, 0xFF))
+                                            {
+                                                Return (Zero)
+                                            }
+                                            Else
+                                            {
+                                                Return (One)
+                                            }
+                                        }
+                                        Else
+                                        {
+                                            If (LEqual (T_0, 0x02))
+                                            {
+                                                Return (SDGV)
+                                            }
+                                        }
+                                    }
+
+                                    Break
+                                }
+                            }
+
+                            Return (Zero)
+                        }
+                    }
+
+                    Device (PR17)
+                    {
+                        Name (_ADR, 0x07)  // _ADR: Address
+                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                        {
+                            Name (UPCP, Package (0x04)
+                            {
+                                0xFF, 
+                                0xFF, 
+                                Zero, 
+                                Zero
+                            })
+                            Return (UPCP)
+                        }
+
+                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                        {
+                            Name (PLDP, Package (One)
+                            {
+                                Buffer (0x10)
+                                {
+                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                    /* 0008 */  0xB1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
+                                }
+                            })
+                            Return (PLDP)
+                        }
+
+                        Alias (SBV2, SDGV)
+                        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+                        {
+                            Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                            If (LEqual (Arg0, ToUUID ("a5fc708f-8775-4ba6-bd0c-ba90a1ec72f8")))
+                            {
+                                While (One)
+                                {
+                                    Store (ToInteger (Arg2), T_0)
+                                    If (LEqual (T_0, Zero))
+                                    {
+                                        If (LEqual (Arg1, One))
+                                        {
+                                            Return (Buffer (One)
+                                            {
+                                                 0x07                                           
+                                            })
+                                        }
+                                        Else
+                                        {
+                                            Return (Buffer (One)
+                                            {
+                                                 0x00                                           
+                                            })
+                                        }
+                                    }
+                                    Else
+                                    {
+                                        If (LEqual (T_0, One))
+                                        {
+                                            If (LEqual (SDGV, 0xFF))
+                                            {
+                                                Return (Zero)
+                                            }
+                                            Else
+                                            {
+                                                Return (One)
+                                            }
+                                        }
+                                        Else
+                                        {
+                                            If (LEqual (T_0, 0x02))
+                                            {
+                                                Return (SDGV)
+                                            }
+                                        }
+                                    }
+
+                                    Break
+                                }
+                            }
+
+                            Return (Zero)
+                        }
+                    }
+
+                    Device (PR18)
+                    {
+                        Name (_ADR, 0x08)  // _ADR: Address
+                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                        {
+                            Name (UPCP, Package (0x04)
+                            {
+                                0xFF, 
+                                0xFF, 
+                                Zero, 
+                                Zero
+                            })
+                            Return (UPCP)
+                        }
+
+                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                        {
+                            Name (PLDP, Package (One)
+                            {
+                                Buffer (0x10)
+                                {
+                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                    /* 0008 */  0xB1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
+                                }
+                            })
+                            Return (PLDP)
+                        }
+                    }
+                }
+            }
+            Device (RHUB)
+        {
+            Name (_ADR, Zero)  // _ADR: Address
+            Device (PRT1)
+            {
+                Name (_ADR, One)  // _ADR: Address
+                Name (_UPC, Package (0x04)  // _UPC: USB Port Capabilities
+                {
+                    Zero, 
+                    0xFF, 
+                    Zero, 
+                    Zero
+                })
+                Device (PRT1)
+                {
+                    Name (_ADR, One)  // _ADR: Address
+                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
+                    {
+                        OUPC (Zero)
+                        Return (BUPC)
+                    }
+
+                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
+                    {
+                        OPLD (Zero)
+                        Return (BPLD)
+                    }
+                }
+
+                Device (PRT2)
+                {
+                    Name (_ADR, 0x02)  // _ADR: Address
+                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
+                    {
+                        OUPC (One)
+                        Return (BUPC)
+                    }
+
+                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
+                    {
+                        OPLD (One)
+                        Return (BPLD)
+                    }
+                }
+
+                Device (PRT3)
+                {
+                    Name (_ADR, 0x03)  // _ADR: Address
+                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
+                    {
+                        OUPC (0x02)
+                        Return (BUPC)
+                    }
+
+                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
+                    {
+                        OPLD (0x02)
+                        Return (BPLD)
+                    }
+                }
+
+                Device (PRT4)
+                {
+                    Name (_ADR, 0x04)  // _ADR: Address
+                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
+                    {
+                        OUPC (0x03)
+                        Return (BUPC)
+                    }
+
+                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
+                    {
+                        OPLD (0x03)
+                        Return (BPLD)
+                    }
+                }
+
+                Device (PRT5)
+                {
+                    Name (_ADR, 0x05)  // _ADR: Address
+                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
+                    {
+                        OUPC (0x04)
+                        Return (BUPC)
+                    }
+
+                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
+                    {
+                        OPLD (0x04)
+                        Return (BPLD)
+                    }
+                }
+
+                Device (PRT6)
+                {
+                    Name (_ADR, 0x06)  // _ADR: Address
+                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
+                    {
+                        OUPC (0x05)
+                        Return (BUPC)
+                    }
+
+                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
+                    {
+                        OPLD (0x05)
+                        Return (BPLD)
+                    }
+                }
+
+                Device (PRT7)
+                {
+                    Name (_ADR, 0x07)  // _ADR: Address
+                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
+                    {
+                        OUPC (0x06)
+                        Return (BUPC)
+                    }
+
+                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
+                    {
+                        OPLD (0x06)
+                        Return (BPLD)
+                    }
+                }
+
+                Device (PRT8)
+                {
+                    Name (_ADR, 0x08)  // _ADR: Address
+                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
+                    {
+                        OUPC (0x07)
+                        Return (BUPC)
+                    }
+
+                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
+                    {
+                        OPLD (0x07)
+                        Return (BPLD)
+                    }
+                }
+            }
+        }
+
+            Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x0D, 0x03 }) }
+            Method (_DSM, 4, NotSerialized)
+            {
+                If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
+                Return (Package()
+                {
+                    "AAPL,clock-id", Buffer() { 0x01 },
+                    "built-in", Buffer() { 0x00 },
+                    "subsystem-id", Buffer() { 0x70, 0x72, 0x00, 0x00 },
+                    "subsystem-vendor-id", Buffer() { 0x86, 0x80, 0x00, 0x00 },
+                    "AAPL,current-available", 2100,
+                    "AAPL,current-extra", 2200,
+                    "AAPL,current-extra-in-sleep", 1600,
+                    "AAPL,device-internal", 0x02,
+                    "AAPL,max-port-current-in-sleep", 2100,
+                })
+            }
+            
+        }
+
+        Device (EHC2)
+        {
+            Name (_ADR, 0x001A0000)  // _ADR: Address
+            OperationRegion (PWKE, PCI_Config, 0x54, 0x12)
+            Field (PWKE, DWordAcc, NoLock, Preserve)
+            {
+                Offset (0x01), 
+                PMEE,   1, 
+                    ,   6, 
+                PMES,   1, 
+                Offset (0x0E), 
+                    ,   1, 
+                PWUC,   6
+            }
+
+            Method (_PSW, 1, NotSerialized)  // _PSW: Power State Wake
+            {
+                If (Arg0)
+                {
+                    Store (Ones, PWUC)
+                }
+                Else
+                {
+                    Store (Zero, PWUC)
+                }
+            }
+
+            Method (_S3D, 0, NotSerialized)  // _S3D: S3 Device State
+            {
+                Return (0x02)
+            }
+
+            Method (_S4D, 0, NotSerialized)  // _S4D: S4 Device State
+            {
+                Return (0x02)
+            }
+
+            Device (HUBN)
+            {
+                Name (_ADR, Zero)  // _ADR: Address
+                Device (PR01)
+                {
+                    Name (_ADR, One)  // _ADR: Address
+                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                    {
+                        Name (UPCA, Package (0x04)
+                        {
+                            0xFF, 
+                            Zero, 
+                            Zero, 
+                            Zero
+                        })
+                        Return (UPCA)
+                    }
+
+                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                    {
+                        Name (PLDP, Package (One)
+                        {
+                            Buffer (0x10)
+                            {
+                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                /* 0008 */  0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
+                            }
+                        })
+                        Return (PLDP)
+                    }
+
+                    Device (PR11)
+                    {
+                        Name (_ADR, One)  // _ADR: Address
+                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                        {
+                            Name (UPCP, Package (0x04)
+                            {
+                                0xFF, 
+                                0xFF, 
+                                Zero, 
+                                Zero
+                            })
+                            Return (UPCP)
+                        }
+
+                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                        {
+                            Name (PLDP, Package (One)
+                            {
+                                Buffer (0x10)
+                                {
+                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                    /* 0008 */  0xE1, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
+                                }
+                            })
+                            Return (PLDP)
+                        }
+                    }
+
+                    Device (PR12)
+                    {
+                        Name (_ADR, 0x02)  // _ADR: Address
+                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                        {
+                            Name (UPCP, Package (0x04)
+                            {
+                                0xFF, 
+                                0xFF, 
+                                Zero, 
+                                Zero
+                            })
+                            Return (UPCP)
+                        }
+
+                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                        {
+                            Name (PLDP, Package (One)
+                            {
+                                Buffer (0x10)
+                                {
+                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                    /* 0008 */  0xE1, 0x1D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
+                                }
+                            })
+                            Return (PLDP)
+                        }
+
+                        Alias (SBV1, SDGV)
+                        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+                        {
+                            Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                            If (LEqual (Arg0, ToUUID ("a5fc708f-8775-4ba6-bd0c-ba90a1ec72f8")))
+                            {
+                                While (One)
+                                {
+                                    Store (ToInteger (Arg2), T_0)
+                                    If (LEqual (T_0, Zero))
+                                    {
+                                        If (LEqual (Arg1, One))
+                                        {
+                                            Return (Buffer (One)
+                                            {
+                                                 0x07                                           
+                                            })
+                                        }
+                                        Else
+                                        {
+                                            Return (Buffer (One)
+                                            {
+                                                 0x00                                           
+                                            })
+                                        }
+                                    }
+                                    Else
+                                    {
+                                        If (LEqual (T_0, One))
+                                        {
+                                            If (LEqual (SDGV, 0xFF))
+                                            {
+                                                Return (Zero)
+                                            }
+                                            Else
+                                            {
+                                                Return (One)
+                                            }
+                                        }
+                                        Else
+                                        {
+                                            If (LEqual (T_0, 0x02))
+                                            {
+                                                Return (SDGV)
+                                            }
+                                        }
+                                    }
+
+                                    Break
+                                }
+                            }
+
+                            Return (Zero)
+                        }
+                    }
+
+                    Device (PR13)
+                    {
+                        Name (_ADR, 0x03)  // _ADR: Address
+                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                        {
+                            Name (UPCP, Package (0x04)
+                            {
+                                0xFF, 
+                                0xFF, 
+                                Zero, 
+                                Zero
+                            })
+                            Return (UPCP)
+                        }
+
+                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                        {
+                            Name (PLDP, Package (One)
+                            {
+                                Buffer (0x10)
+                                {
+                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                    /* 0008 */  0xE1, 0x1D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
+                                }
+                            })
+                            CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
+                            If (LEqual (And (CDID, 0xF000), 0x9000))
+                            {
+                                And (VIS, Zero, VIS)
+                            }
+
+                            Return (PLDP)
+                        }
+
+                        Alias (SBV2, SDGV)
+                        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+                        {
+                            Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                            If (LEqual (Arg0, ToUUID ("a5fc708f-8775-4ba6-bd0c-ba90a1ec72f8")))
+                            {
+                                While (One)
+                                {
+                                    Store (ToInteger (Arg2), T_0)
+                                    If (LEqual (T_0, Zero))
+                                    {
+                                        If (LEqual (Arg1, One))
+                                        {
+                                            Return (Buffer (One)
+                                            {
+                                                 0x07                                           
+                                            })
+                                        }
+                                        Else
+                                        {
+                                            Return (Buffer (One)
+                                            {
+                                                 0x00                                           
+                                            })
+                                        }
+                                    }
+                                    Else
+                                    {
+                                        If (LEqual (T_0, One))
+                                        {
+                                            If (LEqual (SDGV, 0xFF))
+                                            {
+                                                Return (Zero)
+                                            }
+                                            Else
+                                            {
+                                                Return (One)
+                                            }
+                                        }
+                                        Else
+                                        {
+                                            If (LEqual (T_0, 0x02))
+                                            {
+                                                Return (SDGV)
+                                            }
+                                        }
+                                    }
+
+                                    Break
+                                }
+                            }
+
+                            Return (Zero)
+                        }
+                    }
+
+                    Device (PR14)
+                    {
+                        Name (_ADR, 0x04)  // _ADR: Address
+                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                        {
+                            Name (UPCP, Package (0x04)
+                            {
+                                0xFF, 
+                                0xFF, 
+                                Zero, 
+                                Zero
+                            })
+                            Return (UPCP)
+                        }
+
+                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                        {
+                            Name (PLDP, Package (One)
+                            {
+                                Buffer (0x10)
+                                {
+                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                    /* 0008 */  0xE1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
+                                }
+                            })
+                            Return (PLDP)
+                        }
+                    }
+
+                    Device (PR15)
+                    {
+                        Name (_ADR, 0x05)  // _ADR: Address
+                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                        {
+                            Name (UPCP, Package (0x04)
+                            {
+                                0xFF, 
+                                0xFF, 
+                                Zero, 
+                                Zero
+                            })
+                            Return (UPCP)
+                        }
+
+                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                        {
+                            Name (PLDP, Package (One)
+                            {
+                                Buffer (0x10)
+                                {
+                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                    /* 0008 */  0xB1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
+                                }
+                            })
+                            Return (PLDP)
+                        }
+                    }
+
+                    Device (PR16)
+                    {
+                        Name (_ADR, 0x06)  // _ADR: Address
+                        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                        {
+                            Name (UPCP, Package (0x04)
+                            {
+                                0xFF, 
+                                0xFF, 
+                                Zero, 
+                                Zero
+                            })
+                            Return (UPCP)
+                        }
+
+                        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                        {
+                            Name (PLDP, Package (One)
+                            {
+                                Buffer (0x10)
+                                {
+                                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                    /* 0008 */  0xB1, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
+                                }
+                            })
+                            Return (PLDP)
+                        }
+                    }
+                }
+            }
+            Device (RHUB)
+        {
+            Name (_ADR, Zero)  // _ADR: Address
+            Device (PRT1)
+            {
+                Name (_ADR, One)  // _ADR: Address
+                Name (_UPC, Package (0x04)  // _UPC: USB Port Capabilities
+                {
+                    Zero, 
+                    0xFF, 
+                    Zero, 
+                    Zero
+                })
+                Device (PRT1)
+                {
+                    Name (_ADR, One)  // _ADR: Address
+                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
+                    {
+                        OUPC (0x08)
+                        Return (BUPC)
+                    }
+
+                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
+                    {
+                        OPLD (0x08)
+                        Return (BPLD)
+                    }
+                }
+
+                Device (PRT2)
+                {
+                    Name (_ADR, 0x02)  // _ADR: Address
+                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
+                    {
+                        OUPC (0x09)
+                        Return (BUPC)
+                    }
+
+                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
+                    {
+                        OPLD (0x09)
+                        Return (BPLD)
+                    }
+                }
+
+                Device (PRT3)
+                {
+                    Name (_ADR, 0x03)  // _ADR: Address
+                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
+                    {
+                        OUPC (0x0A)
+                        Return (BUPC)
+                    }
+
+                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
+                    {
+                        OPLD (0x0A)
+                        Return (BPLD)
+                    }
+                }
+
+                Device (PRT4)
+                {
+                    Name (_ADR, 0x04)  // _ADR: Address
+                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
+                    {
+                        OUPC (0x0B)
+                        Return (BUPC)
+                    }
+
+                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
+                    {
+                        OPLD (0x0B)
+                        Return (BPLD)
+                    }
+                }
+
+                Device (PRT5)
+                {
+                    Name (_ADR, 0x05)  // _ADR: Address
+                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
+                    {
+                        OUPC (0x0C)
+                        Return (BUPC)
+                    }
+
+                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
+                    {
+                        OPLD (0x0C)
+                        Return (BPLD)
+                    }
+                }
+
+                Device (PRT6)
+                {
+                    Name (_ADR, 0x06)  // _ADR: Address
+                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
+                    {
+                        OUPC (0x0D)
+                        Return (BUPC)
+                    }
+
+                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
+                    {
+                        OPLD (0x0D)
+                        Return (BPLD)
+                    }
+                }
+            }
+        }
+
+            Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x0D, 0x03 }) }
+            Method (_DSM, 4, NotSerialized)
+            {
+                If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
+                Return (Package()
+                {
+                    "AAPL,clock-id", Buffer() { 0x01 },
+                    "built-in", Buffer() { 0x00 },
+                    "subsystem-id", Buffer() { 0x70, 0x72, 0x00, 0x00 },
+                    "subsystem-vendor-id", Buffer() { 0x86, 0x80, 0x00, 0x00 },
+                    "AAPL,current-available", 2100,
+                    "AAPL,current-extra", 2200,
+                    "AAPL,current-extra-in-sleep", 1600,
+                    "AAPL,device-internal", 0x02,
+                    "AAPL,max-port-current-in-sleep", 2100,
+                })
+            }
+            
+        }
+
+        Device (XHC1)
+        {
+            Name (_ADR, 0x00140000)  // _ADR: Address
+            Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
+            {
+                    Return (Package (Zero) {})
+            }
+
+            OperationRegion (XPRT, PCI_Config, Zero, 0x0100)
+            Field (XPRT, AnyAcc, NoLock, Preserve)
+            {
+                DVID,   16, 
+                Offset (0x40), 
+                    ,   11, 
+                SWAI,   1, 
+                Offset (0x44), 
+                    ,   12, 
+                SAIP,   2, 
+                Offset (0x48), 
+                Offset (0x74), 
+                D0D3,   2, 
+                Offset (0x75), 
+                PMEE,   1, 
+                    ,   6, 
+                PMES,   1, 
+                Offset (0xB0), 
+                    ,   13, 
+                MB13,   1, 
+                MB14,   1, 
+                Offset (0xB4), 
+                Offset (0xD0), 
+                PR2,    32, 
+                PR2M,   32, 
+                PR3,    32, 
+                PR3M,   32
+            }
+
+            OperationRegion (XHCP, SystemMemory, Add (PEBS, 0x000A0000), 0x0100)
+            Field (XHCP, AnyAcc, Lock, Preserve)
+            {
+                Offset (0x04), 
+                PDBM,   16, 
+                Offset (0x10), 
+                MEMB,   64
+            }
+
+            Method (PR2S, 1, Serialized)
+            {
+                Name (T_1, Zero)  // _T_x: Emitted by ASL Compiler
+                Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                If (LEqual (And (CDID, 0xF000), 0x8000))
+                {
+                    While (One)
+                    {
+                        Store (Arg0, T_0)
+                        If (LEqual (T_0, One))
+                        {
+                            Return (One)
+                        }
+                        Else
+                        {
+                            If (LEqual (T_0, 0x02))
+                            {
+                                Return (0x02)
+                            }
+                            Else
+                            {
+                                If (LEqual (T_0, 0x03))
+                                {
+                                    Return (0x04)
+                                }
+                                Else
+                                {
+                                    If (LEqual (T_0, 0x04))
+                                    {
+                                        Return (0x08)
+                                    }
+                                    Else
+                                    {
+                                        If (LEqual (T_0, 0x05))
+                                        {
+                                            Return (0x0100)
+                                        }
+                                        Else
+                                        {
+                                            If (LEqual (T_0, 0x06))
+                                            {
+                                                Return (0x0200)
+                                            }
+                                            Else
+                                            {
+                                                If (LEqual (T_0, 0x07))
+                                                {
+                                                    Return (0x0400)
+                                                }
+                                                Else
+                                                {
+                                                    If (LEqual (T_0, 0x08))
+                                                    {
+                                                        Return (0x0800)
+                                                    }
+                                                    Else
+                                                    {
+                                                        If (LEqual (T_0, 0x09))
+                                                        {
+                                                            Return (0x10)
+                                                        }
+                                                        Else
+                                                        {
+                                                            If (LEqual (T_0, 0x0A))
+                                                            {
+                                                                Return (0x20)
+                                                            }
+                                                            Else
+                                                            {
+                                                                If (LEqual (T_0, 0x0B))
+                                                                {
+                                                                    Return (0x1000)
+                                                                }
+                                                                Else
+                                                                {
+                                                                    If (LEqual (T_0, 0x0C))
+                                                                    {
+                                                                        Return (0x2000)
+                                                                    }
+                                                                    Else
+                                                                    {
+                                                                        If (LEqual (T_0, 0x0D))
+                                                                        {
+                                                                            Return (0x40)
+                                                                        }
+                                                                        Else
+                                                                        {
+                                                                            If (LEqual (T_0, 0x0E))
+                                                                            {
+                                                                                Return (0x80)
+                                                                            }
+                                                                            Else
+                                                                            {
+                                                                                If (LEqual (T_0, 0x0F))
+                                                                                {
+                                                                                    Return (0x4000)
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        Break
+                    }
+                }
+                Else
+                {
+                    While (One)
+                    {
+                        Store (Arg0, T_1)
+                        If (LEqual (T_1, One))
+                        {
+                            Return (One)
+                        }
+                        Else
+                        {
+                            If (LEqual (T_1, 0x02))
+                            {
+                                Return (0x02)
+                            }
+                            Else
+                            {
+                                If (LEqual (T_1, 0x03))
+                                {
+                                    Return (0x04)
+                                }
+                                Else
+                                {
+                                    If (LEqual (T_1, 0x04))
+                                    {
+                                        Return (0x08)
+                                    }
+                                    Else
+                                    {
+                                        If (LEqual (T_1, 0x05))
+                                        {
+                                            Return (0x10)
+                                        }
+                                        Else
+                                        {
+                                            If (LEqual (T_1, 0x06))
+                                            {
+                                                Return (0x20)
+                                            }
+                                            Else
+                                            {
+                                                If (LEqual (T_1, 0x07))
+                                                {
+                                                    Return (0x40)
+                                                }
+                                                Else
+                                                {
+                                                    If (LEqual (T_1, 0x08))
+                                                    {
+                                                        Return (0x80)
+                                                    }
+                                                    Else
+                                                    {
+                                                        If (LEqual (T_1, 0x09))
+                                                        {
+                                                            Return (0x0100)
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        Break
+                    }
+                }
+                Return (Zero)
+            }
+
+            Name (XRST, Zero)
+            Method (_PS0, 0, Serialized)  // _PS0: Power State 0
+            {
+                If (LEqual (DVID, 0xFFFF))
+                {
+                    Return (Zero)
+                }
+
+                Store (MEMB, Local2)
+                Store (PDBM, Local1)
+                And (PDBM, 0xFFFFFFFFFFFFFFF9, PDBM)
+                Store (D0D3, Local3)
+                Store (Zero, D0D3)
+                Store (SRMB, MEMB)
+                Or (PDBM, 0x02, PDBM)
+                OperationRegion (MCA1, SystemMemory, SRMB, 0x9000)
+                Field (MCA1, DWordAcc, Lock, Preserve)
+                {
+                    Offset (0x510), 
+                    PSC1,   32, 
+                    Offset (0x520), 
+                    PSC2,   32, 
+                    Offset (0x530), 
+                    PSC3,   32, 
+                    Offset (0x540), 
+                    PSC4,   32, 
+                    Offset (0x80E0), 
+                        ,   15, 
+                    AX15,   1, 
+                    Offset (0x8154), 
+                        ,   31, 
+                    CLK2,   1, 
+                    Offset (0x816C), 
+                        ,   2, 
+                    CLK0,   1, 
+                        ,   11, 
+                    CLK1,   1
+                }
+
+                If (LEqual (PCHS, 0x02))
+                {
+                    Store (Zero, MB13)
+                    Store (Zero, MB14)
+                    Store (Zero, CLK0)
+                    Store (Zero, CLK1)
+                }
+
+                Store (One, CLK2)
+                If (LEqual (PCHS, 0x02))
+                {
+                    While (LOr (LOr (LEqual (And (PSC1, 0x03F8), 0x02E0), LEqual (
+                        And (PSC2, 0x03F8), 0x02E0)), LOr (LEqual (And (PSC3, 0x03F8), 
+                        0x02E0), LEqual (And (PSC4, 0x03F8), 0x02E0))))
+                    {
+                        Stall (0x0A)
+                    }
+
+                    Store (Zero, Local4)
+                    And (PSC1, 0xFFFFFFFFFFFFFFFD, Local0)
+                    If (LEqual (And (Local0, 0x000203F9), 0x02A0))
+                    {
+                        Or (Local0, 0x80000000, PSC1)
+                        Or (Local4, One, Local4)
+                    }
+
+                    And (PSC2, 0xFFFFFFFFFFFFFFFD, Local0)
+                    If (LEqual (And (Local0, 0x000203F9), 0x02A0))
+                    {
+                        Or (Local0, 0x80000000, PSC2)
+                        Or (Local4, 0x02, Local4)
+                    }
+
+                    And (PSC3, 0xFFFFFFFFFFFFFFFD, Local0)
+                    If (LEqual (And (Local0, 0x000203F9), 0x02A0))
+                    {
+                        Or (Local0, 0x80000000, PSC3)
+                        Or (Local4, 0x04, Local4)
+                    }
+
+                    And (PSC4, 0xFFFFFFFFFFFFFFFD, Local0)
+                    If (LEqual (And (Local0, 0x000203F9), 0x02A0))
+                    {
+                        Or (Local0, 0x80000000, PSC4)
+                        Or (Local4, 0x08, Local4)
+                    }
+
+                    If (Local4)
+                    {
+                        If (LLess (MSOS (), OSW8))
+                        {
+                            Stall (0x65)
+                        }
+                        Else
+                        {
+                            Sleep (0x65)
+                        }
+
+                        If (And (Local4, One))
+                        {
+                            And (PSC1, 0xFFFFFFFFFFFFFFFD, Local0)
+                            Or (Local0, 0x00FE0000, PSC1)
+                        }
+
+                        If (And (Local4, 0x02))
+                        {
+                            And (PSC2, 0xFFFFFFFFFFFFFFFD, Local0)
+                            Or (Local0, 0x00FE0000, PSC2)
+                        }
+
+                        If (And (Local4, 0x04))
+                        {
+                            And (PSC3, 0xFFFFFFFFFFFFFFFD, Local0)
+                            Or (Local0, 0x00FE0000, PSC3)
+                        }
+
+                        If (And (Local4, 0x08))
+                        {
+                            And (PSC4, 0xFFFFFFFFFFFFFFFD, Local0)
+                            Or (Local0, 0x00FE0000, PSC4)
+                        }
+                    }
+
+                    Store (One, AX15)
+                }
+
+                Store (Zero, SWAI)
+                Store (Zero, SAIP)
+                And (PDBM, 0xFFFFFFFFFFFFFFFD, PDBM)
+                Store (Local2, MEMB)
+                Store (Local1, PDBM)
+                Return (Zero)
+            }
+
+            Method (_PS3, 0, Serialized)  // _PS3: Power State 3
+            {
+                If (LEqual (DVID, 0xFFFF))
+                {
+                    Return (Zero)
+                }
+
+                Store (One, PMES)
+                Store (One, PMEE)
+                Store (MEMB, Local2)
+                Store (PDBM, Local1)
+                And (PDBM, 0xFFFFFFFFFFFFFFF9, PDBM)
+                Store (SRMB, MEMB)
+                Or (PDBM, 0x02, PDBM)
+                OperationRegion (MCA1, SystemMemory, SRMB, 0x9000)
+                Field (MCA1, DWordAcc, Lock, Preserve)
+                {
+                    Offset (0x80E0), 
+                        ,   15, 
+                    AX15,   1, 
+                    Offset (0x8154), 
+                        ,   31, 
+                    CLK2,   1, 
+                    Offset (0x816C), 
+                        ,   2, 
+                    CLK0,   1, 
+                        ,   11, 
+                    CLK1,   1, 
+                    Offset (0x8170)
+                }
+
+                Store (D0D3, Local3)
+                If (LEqual (Local3, 0x03))
+                {
+                    Store (Zero, D0D3)
+                }
+
+                If (LEqual (PCHS, 0x02))
+                {
+                    Store (One, MB13)
+                    Store (One, MB14)
+                    Store (One, CLK0)
+                    Store (One, CLK1)
+                }
+
+                Store (Zero, CLK2)
+                If (LEqual (PCHS, 0x02))
+                {
+                    Store (Zero, AX15)
+                }
+
+                Store (One, SWAI)
+                Store (One, SAIP)
+                If (LEqual (Local3, 0x03))
+                {
+                    Store (0x03, D0D3)
+                }
+
+                And (PDBM, 0xFFFFFFFFFFFFFFFD, PDBM)
+                Store (Local2, MEMB)
+                Store (Local1, PDBM)
+                Return (Zero)
+            }
+
+            Method (CUID, 1, Serialized)
+            {
+                If (LEqual (Arg0, ToUUID ("7c9512a9-1705-4cb4-af7d-506a2423ab71")))
+                {
+                    Return (One)
+                }
+
+                Return (Zero)
+            }
+
+            Method (POSC, 3, Serialized)
+            {
+                CreateDWordField (Arg2, Zero, CDW1)
+                CreateDWordField (Arg2, 0x08, CDW3)
+                If (LEqual (XHCI, Zero))
+                {
+                    Or (CDW1, 0x02, CDW1)
+                }
+
+                If (LNot (And (CDW1, One)))
+                {
+                    If (And (CDW3, One))
+                    {
+                        ESEL ()
+                    }
+                    Else
+                    {
+                        If (LEqual (And (CDID, 0xF000), 0x8000))
+                        {
+                            If (LGreater (Arg0, One))
+                            {
+                                XSEL ()
+                            }
+                            Else
+                            {
+                                Or (CDW1, 0x0A, CDW1)
+                            }
+                        }
+                        Else
+                        {
+                            If (LGreater (Arg0, 0x02))
+                            {
+                                XSEL ()
+                            }
+                            Else
+                            {
+                                Or (CDW1, 0x0A, CDW1)
+                            }
+                        }
+                    }
+                }
+
+                Return (Arg2)
+            }
+
+            Method (XSEL, 0, Serialized)
+            {
+                If (LOr (LEqual (XHCI, 0x02), LEqual (XHCI, 0x03)))
+                {
+                    Store (One, XUSB)
+                    Store (One, XRST)
+                    Store (Zero, Local0)
+                    And (PR3, 0xFFFFFFC0, Local0)
+                    Or (Local0, PR3M, PR3)
+                    Store (Zero, Local0)
+                    And (PR2, 0xFFFF8000, Local0)
+                    Or (Local0, PR2M, PR2)
+                }
+            }
+
+            Method (ESEL, 0, Serialized)
+            {
+                If (LOr (LEqual (XHCI, 0x02), LEqual (XHCI, 0x03)))
+                {
+                    And (PR3, 0xFFFFFFC0, PR3)
+                    And (PR2, 0xFFFF8000, PR2)
+                    Store (Zero, XUSB)
+                    Store (Zero, XRST)
+                }
+            }
+
+            Method (XWAK, 0, Serialized)
+            {
+                If (LOr (LEqual (XUSB, One), LEqual (XRST, One)))
+                {
+                    XSEL ()
+                }
+            }
+
+            Method (_S3D, 0, NotSerialized)  // _S3D: S3 Device State
+            {
+                Return (0x02)
+            }
+
+            Method (_S4D, 0, NotSerialized)  // _S4D: S4 Device State
+            {
+                Return (0x02)
+            }
+
+            Device (RHUB)
+            {
+                Name (_ADR, Zero)  // _ADR: Address
+                Device (HS01)
+                {
+                    Name (_ADR, One)  // _ADR: Address
+                    Name (_STA, 0x0F)  // _STA: Status
+                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                    {
+                        Name (UPCP, Package (0x04)
+                        {
+                            0xFF, 
+                            0x03, 
+                            Zero, 
+                            Zero
+                        })
+                        If (LNot (And (PR2S (One), PR2)))
+                        {
+                            Store (Zero, Index (UPCP, Zero))
+                        }
+
+                        Store (DerefOf (Index (CNTB, Zero)), Local0)
+                        Store (Local0, Index (UPCP, Zero))
+                        Return (UPCP)
+                    }
+
+                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                    {
+                        Name (PLDP, Package (One)
+                        {
+                            Buffer (0x10)
+                            {
+                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                /* 0008 */  0x69, 0x0C, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00 
+                            }
+                        })
+                        Store (DerefOf (Index (VISB, Zero)), Local0)
+                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
+                            Local1)
+                        And (Local1, 0xFE, Local1)
+                        Or (Local1, Local0, Local1)
+                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
+                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
+                        If (LNot (And (PR2S (One), PR2)))
+                        {
+                            And (VIS, Zero, VIS)
+                        }
+
+                        Return (PLDP)
+                    }
+                }
+
+                Device (HS02)
+                {
+                    Name (_ADR, 0x02)  // _ADR: Address
+                    Name (_STA, 0x0F)  // _STA: Status
+                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                    {
+                        Name (UPCP, Package (0x04)
+                        {
+                            0xFF, 
+                            0x03, 
+                            Zero, 
+                            Zero
+                        })
+                        If (LNot (And (PR2S (0x02), PR2)))
+                        {
+                            Store (Zero, Index (UPCP, Zero))
+                        }
+
+                        Store (DerefOf (Index (CNTB, One)), Local0)
+                        Store (Local0, Index (UPCP, Zero))
+                        Return (UPCP)
+                    }
+
+                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                    {
+                        Name (PLDP, Package (One)
+                        {
+                            Buffer (0x10)
+                            {
+                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                /* 0008 */  0x69, 0x0C, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00 
+                            }
+                        })
+                        Store (DerefOf (Index (VISB, One)), Local0)
+                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
+                            Local1)
+                        And (Local1, 0xFE, Local1)
+                        Or (Local1, Local0, Local1)
+                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
+                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
+                        If (LNot (And (PR2S (0x02), PR2)))
+                        {
+                            And (VIS, Zero, VIS)
+                        }
+
+                        Return (PLDP)
+                    }
+                }
+
+                Device (HS03)
+                {
+                    Name (_ADR, 0x03)  // _ADR: Address
+                    Name (_STA, 0x0F)  // _STA: Status
+                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                    {
+                        Name (UPCP, Package (0x04)
+                        {
+                            0xFF, 
+                            0x03, 
+                            Zero, 
+                            Zero
+                        })
+                        If (LNot (And (PR2S (0x03), PR2)))
+                        {
+                            Store (Zero, Index (UPCP, Zero))
+                        }
+
+                        Store (DerefOf (Index (CNTB, 0x02)), Local0)
+                        Store (Local0, Index (UPCP, Zero))
+                        Return (UPCP)
+                    }
+
+                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                    {
+                        Name (PLDP, Package (One)
+                        {
+                            Buffer (0x10)
+                            {
+                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                /* 0008 */  0x71, 0x0C, 0x80, 0x01, 0x00, 0x00, 0x00, 0x00 
+                            }
+                        })
+                        Store (DerefOf (Index (VISB, 0x02)), Local0)
+                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
+                            Local1)
+                        And (Local1, 0xFE, Local1)
+                        Or (Local1, Local0, Local1)
+                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
+                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
+                        If (LNot (And (PR2S (0x03), PR2)))
+                        {
+                            And (VIS, Zero, VIS)
+                        }
+
+                        Return (PLDP)
+                    }
+                }
+
+                Device (HS04)
+                {
+                    Name (_ADR, 0x04)  // _ADR: Address
+                    Name (_STA, 0x0F)  // _STA: Status
+                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                    {
+                        Name (UPCP, Package (0x04)
+                        {
+                            0xFF, 
+                            0x03, 
+                            Zero, 
+                            Zero
+                        })
+                        If (LNot (And (PR2S (0x04), PR2)))
+                        {
+                            Store (Zero, Index (UPCP, Zero))
+                        }
+
+                        Store (DerefOf (Index (CNTB, 0x03)), Local0)
+                        Store (Local0, Index (UPCP, Zero))
+                        Return (UPCP)
+                    }
+
+                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                    {
+                        Name (PLDP, Package (One)
+                        {
+                            Buffer (0x10)
+                            {
+                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                /* 0008 */  0x71, 0x0C, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00 
+                            }
+                        })
+                        Store (DerefOf (Index (VISB, 0x03)), Local0)
+                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
+                            Local1)
+                        And (Local1, 0xFE, Local1)
+                        Or (Local1, Local0, Local1)
+                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
+                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
+                        If (LNot (And (PR2S (0x04), PR2)))
+                        {
+                            And (VIS, Zero, VIS)
+                        }
+
+                        Return (PLDP)
+                    }
+                }
+
+                Device (HS05)
+                {
+                    Name (_ADR, 0x05)  // _ADR: Address
+                    Name (_STA, 0x0F)  // _STA: Status
+                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                    {
+                        Name (UPCP, Package (0x04)
+                        {
+                            0xFF, 
+                            Zero, 
+                            Zero, 
+                            Zero
+                        })
+                        If (LNot (And (PR2S (0x05), PR2)))
+                        {
+                            Store (Zero, Index (UPCP, Zero))
+                        }
+
+                        Store (DerefOf (Index (CNTB, 0x04)), Local0)
+                        Store (Local0, Index (UPCP, Zero))
+                        Return (UPCP)
+                    }
+
+                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                    {
+                        Name (PLDP, Package (One)
+                        {
+                            Buffer (0x10)
+                            {
+                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                /* 0008 */  0x69, 0x0C, 0x80, 0x02, 0x00, 0x00, 0x00, 0x00 
+                            }
+                        })
+                        Store (DerefOf (Index (VISB, 0x04)), Local0)
+                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
+                            Local1)
+                        And (Local1, 0xFE, Local1)
+                        Or (Local1, Local0, Local1)
+                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
+                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
+                        If (LNot (And (PR2S (0x05), PR2)))
+                        {
+                            And (VIS, Zero, VIS)
+                        }
+
+                        Return (PLDP)
+                    }
+                }
+
+                Device (HS06)
+                {
+                    Name (_ADR, 0x06)  // _ADR: Address
+                    Name (_STA, 0x0F)  // _STA: Status
+                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                    {
+                        Name (UPCP, Package (0x04)
+                        {
+                            0xFF, 
+                            Zero, 
+                            Zero, 
+                            Zero
+                        })
+                        If (LNot (And (PR2S (0x06), PR2)))
+                        {
+                            Store (Zero, Index (UPCP, Zero))
+                        }
+
+                        Store (DerefOf (Index (CNTB, 0x05)), Local0)
+                        Store (Local0, Index (UPCP, Zero))
+                        Return (UPCP)
+                    }
+
+                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                    {
+                        Name (PLDP, Package (One)
+                        {
+                            Buffer (0x10)
+                            {
+                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                /* 0008 */  0x69, 0x0C, 0x00, 0x03, 0x00, 0x00, 0x00, 0x00 
+                            }
+                        })
+                        Store (DerefOf (Index (VISB, 0x05)), Local0)
+                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
+                            Local1)
+                        And (Local1, 0xFE, Local1)
+                        Or (Local1, Local0, Local1)
+                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
+                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
+                        If (LNot (And (PR2S (0x06), PR2)))
+                        {
+                            And (VIS, Zero, VIS)
+                        }
+
+                        Return (PLDP)
+                    }
+                }
+
+                Device (HS07)
+                {
+                    Name (_ADR, 0x07)  // _ADR: Address
+                    Name (_STA, 0x0F)  // _STA: Status
+                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                    {
+                        Name (UPCP, Package (0x04)
+                        {
+                            0xFF, 
+                            Zero, 
+                            Zero, 
+                            Zero
+                        })
+                        If (LNot (And (PR2S (0x07), PR2)))
+                        {
+                            Store (Zero, Index (UPCP, Zero))
+                        }
+
+                        Store (DerefOf (Index (CNTB, 0x06)), Local0)
+                        Store (Local0, Index (UPCP, Zero))
+                        Return (UPCP)
+                    }
+
+                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                    {
+                        Name (PLDP, Package (One)
+                        {
+                            Buffer (0x10)
+                            {
+                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                /* 0008 */  0x71, 0x0C, 0x80, 0x03, 0x00, 0x00, 0x00, 0x00 
+                            }
+                        })
+                        Store (DerefOf (Index (VISB, 0x06)), Local0)
+                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
+                            Local1)
+                        And (Local1, 0xFE, Local1)
+                        Or (Local1, Local0, Local1)
+                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
+                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
+                        If (LNot (And (PR2S (0x07), PR2)))
+                        {
+                            And (VIS, Zero, VIS)
+                        }
+
+                        Return (PLDP)
+                    }
+                }
+
+                Device (HS08)
+                {
+                    Name (_ADR, 0x08)  // _ADR: Address
+                    Name (_STA, 0x0F)  // _STA: Status
+                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                    {
+                        Name (UPCP, Package (0x04)
+                        {
+                            0xFF, 
+                            Zero, 
+                            Zero, 
+                            Zero
+                        })
+                        If (LNot (And (PR2S (0x08), PR2)))
+                        {
+                            Store (Zero, Index (UPCP, Zero))
+                        }
+
+                        Store (DerefOf (Index (CNTB, 0x07)), Local0)
+                        Store (Local0, Index (UPCP, Zero))
+                        Return (UPCP)
+                    }
+
+                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                    {
+                        Name (PLDP, Package (One)
+                        {
+                            Buffer (0x10)
+                            {
+                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                /* 0008 */  0x71, 0x0C, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00 
+                            }
+                        })
+                        Store (DerefOf (Index (VISB, 0x07)), Local0)
+                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
+                            Local1)
+                        And (Local1, 0xFE, Local1)
+                        Or (Local1, Local0, Local1)
+                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
+                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
+                        If (LNot (And (PR2S (0x08), PR2)))
+                        {
+                            And (VIS, Zero, VIS)
+                        }
+
+                        Return (PLDP)
+                    }
+                }
+
+                Device (HS09)
+                {
+                    Name (_ADR, 0x09)  // _ADR: Address
+                    Name (_STA, 0x0F)  // _STA: Status
+                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                    {
+                        Name (UPCP, Package (0x04)
+                        {
+                            0xFF, 
+                            0x03, 
+                            Zero, 
+                            Zero
+                        })
+                        If (LNot (And (PR2S (0x09), PR2)))
+                        {
+                            Store (Zero, Index (UPCP, Zero))
+                        }
+
+                        Store (DerefOf (Index (CNTB, 0x08)), Local0)
+                        Store (Local0, Index (UPCP, Zero))
+                        Return (UPCP)
+                    }
+
+                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                    {
+                        Name (PLDP, Package (One)
+                        {
+                            Buffer (0x10)
+                            {
+                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                /* 0008 */  0x71, 0x0C, 0x80, 0x04, 0x00, 0x00, 0x00, 0x00 
+                            }
+                        })
+                        Store (DerefOf (Index (VISB, 0x08)), Local0)
+                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
+                            Local1)
+                        And (Local1, 0xFE, Local1)
+                        Or (Local1, Local0, Local1)
+                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
+                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
+                        If (LNot (And (PR2S (0x09), PR2)))
+                        {
+                            And (VIS, Zero, VIS)
+                        }
+
+                        If (LEqual (And (CDID, 0xF000), 0x9000))
+                        {
+                            And (VIS, Zero, VIS)
+                        }
+
+                        Return (PLDP)
+                    }
+                }
+
+                Device (HS10)
+                {
+                    Method (_ADR, 0, Serialized)  // _ADR: Address
+                    {
+                        If (LEqual (And (CDID, 0xF000), 0x8000))
+                        {
+                            Return (0x0A)
+                        }
+                        Else
+                        {
+                            Return (0xFA)
+                        }
+                    }
+
+                    Method (_STA, 0, Serialized)  // _STA: Status
+                    {
+                        If (LEqual (And (CDID, 0xF000), 0x8000))
+                        {
+                            Return (0x0F)
+                        }
+                        Else
+                        {
+                            Return (Zero)
+                        }
+                    }
+
+                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                    {
+                        Name (UPCP, Package (0x04)
+                        {
+                            0xFF, 
+                            0x03, 
+                            Zero, 
+                            Zero
+                        })
+                        If (LNot (And (PR2S (0x0A), PR2)))
+                        {
+                            Store (Zero, Index (UPCP, Zero))
+                        }
+
+                        Store (DerefOf (Index (CNTB, 0x09)), Local0)
+                        Store (Local0, Index (UPCP, Zero))
+                        Return (UPCP)
+                    }
+
+                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                    {
+                        Name (PLDP, Package (One)
+                        {
+                            Buffer (0x10)
+                            {
+                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                /* 0008 */  0x71, 0x0C, 0x00, 0x05, 0x00, 0x00, 0x00, 0x00 
+                            }
+                        })
+                        Store (DerefOf (Index (VISB, 0x09)), Local0)
+                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
+                            Local1)
+                        And (Local1, 0xFE, Local1)
+                        Or (Local1, Local0, Local1)
+                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
+                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
+                        If (LNot (And (PR2S (0x0A), PR2)))
+                        {
+                            And (VIS, Zero, VIS)
+                        }
+
+                        Return (PLDP)
+                    }
+                }
+
+                Device (HS11)
+                {
+                    Method (_ADR, 0, Serialized)  // _ADR: Address
+                    {
+                        If (LEqual (And (CDID, 0xF000), 0x8000))
+                        {
+                            Return (0x0B)
+                        }
+                        Else
+                        {
+                            Return (0xFB)
+                        }
+                    }
+
+                    Method (_STA, 0, Serialized)  // _STA: Status
+                    {
+                        If (LEqual (And (CDID, 0xF000), 0x8000))
+                        {
+                            Return (0x0F)
+                        }
+                        Else
+                        {
+                            Return (Zero)
+                        }
+                    }
+
+                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                    {
+                        Name (UPCP, Package (0x04)
+                        {
+                            0xFF, 
+                            0xFF, 
+                            Zero, 
+                            Zero
+                        })
+                        If (LNot (And (PR2S (0x0B), PR2)))
+                        {
+                            Store (Zero, Index (UPCP, Zero))
+                        }
+
+                        Store (DerefOf (Index (CNTB, 0x0A)), Local0)
+                        Store (Local0, Index (UPCP, Zero))
+                        Return (UPCP)
+                    }
+
+                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                    {
+                        Name (PLDP, Package (One)
+                        {
+                            Buffer (0x10)
+                            {
+                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                /* 0008 */  0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
+                            }
+                        })
+                        Store (DerefOf (Index (VISB, 0x0A)), Local0)
+                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
+                            Local1)
+                        And (Local1, 0xFE, Local1)
+                        Or (Local1, Local0, Local1)
+                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
+                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
+                        If (LNot (And (PR2S (0x0B), PR2)))
+                        {
+                            And (VIS, Zero, VIS)
+                        }
+
+                        Return (PLDP)
+                    }
+                }
+
+                Device (HS12)
+                {
+                    Method (_ADR, 0, Serialized)  // _ADR: Address
+                    {
+                        If (LEqual (And (CDID, 0xF000), 0x8000))
+                        {
+                            Return (0x0C)
+                        }
+                        Else
+                        {
+                            Return (0xFC)
+                        }
+                    }
+
+                    Method (_STA, 0, Serialized)  // _STA: Status
+                    {
+                        If (LEqual (And (CDID, 0xF000), 0x8000))
+                        {
+                            Return (0x0F)
+                        }
+                        Else
+                        {
+                            Return (Zero)
+                        }
+                    }
+
+                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                    {
+                        Name (UPCP, Package (0x04)
+                        {
+                            0xFF, 
+                            0xFF, 
+                            Zero, 
+                            Zero
+                        })
+                        If (LNot (And (PR2S (0x0C), PR2)))
+                        {
+                            Store (Zero, Index (UPCP, Zero))
+                        }
+
+                        Store (DerefOf (Index (CNTB, 0x0B)), Local0)
+                        Store (Local0, Index (UPCP, Zero))
+                        Return (UPCP)
+                    }
+
+                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                    {
+                        Name (PLDP, Package (One)
+                        {
+                            Buffer (0x10)
+                            {
+                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                /* 0008 */  0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
+                            }
+                        })
+                        Store (DerefOf (Index (VISB, 0x0B)), Local0)
+                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
+                            Local1)
+                        And (Local1, 0xFE, Local1)
+                        Or (Local1, Local0, Local1)
+                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
+                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
+                        If (LNot (And (PR2S (0x0C), PR2)))
+                        {
+                            And (VIS, Zero, VIS)
+                        }
+
+                        Return (PLDP)
+                    }
+                }
+
+                Device (HS13)
+                {
+                    Method (_ADR, 0, Serialized)  // _ADR: Address
+                    {
+                        If (LEqual (And (CDID, 0xF000), 0x8000))
+                        {
+                            Return (0x0D)
+                        }
+                        Else
+                        {
+                            Return (0xFD)
+                        }
+                    }
+
+                    Method (_STA, 0, Serialized)  // _STA: Status
+                    {
+                        If (LEqual (And (CDID, 0xF000), 0x8000))
+                        {
+                            Return (0x0F)
+                        }
+                        Else
+                        {
+                            Return (Zero)
+                        }
+                    }
+
+                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                    {
+                        Name (UPCP, Package (0x04)
+                        {
+                            0xFF, 
+                            0xFF, 
+                            Zero, 
+                            Zero
+                        })
+                        If (LNot (And (PR2S (0x0D), PR2)))
+                        {
+                            Store (Zero, Index (UPCP, Zero))
+                        }
+
+                        Store (DerefOf (Index (CNTB, 0x0C)), Local0)
+                        Store (Local0, Index (UPCP, Zero))
+                        Return (UPCP)
+                    }
+
+                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                    {
+                        Name (PLDP, Package (One)
+                        {
+                            Buffer (0x10)
+                            {
+                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                /* 0008 */  0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
+                            }
+                        })
+                        Store (DerefOf (Index (VISB, 0x0C)), Local0)
+                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
+                            Local1)
+                        And (Local1, 0xFE, Local1)
+                        Or (Local1, Local0, Local1)
+                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
+                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
+                        If (LNot (And (PR2S (0x0D), PR2)))
+                        {
+                            And (VIS, Zero, VIS)
+                        }
+
+                        Return (PLDP)
+                    }
+                }
+
+                Device (HS14)
+                {
+                    Name (_ADR, 0x0E)  // _ADR: Address
+                    Method (_STA, 0, Serialized)  // _STA: Status
+                    {
+                        If (LEqual (And (CDID, 0xF000), 0x8000))
+                        {
+                            Return (0x0F)
+                        }
+                        Else
+                        {
+                            Return (Zero)
+                        }
+                    }
+
+                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                    {
+                        Name (UPCP, Package (0x04)
+                        {
+                            0xFF, 
+                            0xFF, 
+                            Zero, 
+                            Zero
+                        })
+                        If (LNot (And (PR2S (0x0E), PR2)))
+                        {
+                            Store (Zero, Index (UPCP, Zero))
+                        }
+
+                        Store (DerefOf (Index (CNTB, 0x0D)), Local0)
+                        Store (Local0, Index (UPCP, Zero))
+                        Return (UPCP)
+                    }
+
+                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                    {
+                        Name (PLDP, Package (One)
+                        {
+                            Buffer (0x10)
+                            {
+                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                /* 0008 */  0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
+                            }
+                        })
+                        Store (DerefOf (Index (VISB, 0x0D)), Local0)
+                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
+                            Local1)
+                        And (Local1, 0xFE, Local1)
+                        Or (Local1, Local0, Local1)
+                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
+                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
+                        If (LNot (And (PR2S (0x0E), PR2)))
+                        {
+                            And (VIS, Zero, VIS)
+                        }
+
+                        Return (PLDP)
+                    }
+                }
+
+                Device (HS15)
+                {
+                    Name (_ADR, 0x0F)  // _ADR: Address
+                    Method (_STA, 0, Serialized)  // _STA: Status
+                    {
+                        If (LEqual (And (CDID, 0xF000), 0x8000))
+                        {
+                            Return (0x0F)
+                        }
+                        Else
+                        {
+                            Return (Zero)
+                        }
+                    }
+
+                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                    {
+                        Name (UPCP, Package (0x04)
+                        {
+                            Zero, 
+                            Zero, 
+                            Zero, 
+                            Zero
+                        })
+                        If (LNot (And (PR2S (0x0F), PR2)))
+                        {
+                            Store (Zero, Index (UPCP, Zero))
+                        }
+
+                        Store (DerefOf (Index (CNTB, 0x0E)), Local0)
+                        Store (Local0, Index (UPCP, Zero))
+                        Return (UPCP)
+                    }
+
+                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                    {
+                        Name (PLDP, Package (One)
+                        {
+                            Buffer (0x10)
+                            {
+                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                /* 0008 */  0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
+                            }
+                        })
+                        Store (DerefOf (Index (VISB, 0x0E)), Local0)
+                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
+                            Local1)
+                        And (Local1, 0xFE, Local1)
+                        Or (Local1, Local0, Local1)
+                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
+                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
+                        If (LNot (And (PR2S (0x0F), PR2)))
+                        {
+                            And (VIS, Zero, VIS)
+                        }
+
+                        Return (PLDP)
+                    }
+                }
+
+                Device (SSP1)
+                {
+                    Method (_ADR, 0, Serialized)  // _ADR: Address
+                    {
+                        If (LEqual (And (CDID, 0xF000), 0x8000))
+                        {
+                            Return (0x10)
+                        }
+                        Else
+                        {
+                            Return (0x0A)
+                        }
+                    }
+
+                    Name (_STA, 0x0F)  // _STA: Status
+                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                    {
+                        Name (UPCP, Package (0x04)
+                        {
+                            0xFF, 
+                            0x03, 
+                            Zero, 
+                            Zero
+                        })
+                        If (LNot (And (PR3, One)))
+                        {
+                            Store (Zero, Index (UPCP, Zero))
+                        }
+
+                        Store (DerefOf (Index (CNTB, Zero)), Local0)
+                        Store (Local0, Index (UPCP, Zero))
+                        Return (UPCP)
+                    }
+
+                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                    {
+                        Name (PLDP, Package (One)
+                        {
+                            Buffer (0x10)
+                            {
+                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                /* 0008 */  0x69, 0x0C, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00 
+                            }
+                        })
+                        Store (DerefOf (Index (VISB, Zero)), Local0)
+                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
+                            Local1)
+                        And (Local1, 0xFE, Local1)
+                        Or (Local1, Local0, Local1)
+                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
+                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
+                        If (LNot (And (PR3, One)))
+                        {
+                            And (VIS, Zero, VIS)
+                        }
+
+                        Return (PLDP)
+                    }
+                }
+
+                Device (SSP2)
+                {
+                    Method (_ADR, 0, Serialized)  // _ADR: Address
+                    {
+                        If (LEqual (And (CDID, 0xF000), 0x8000))
+                        {
+                            Return (0x11)
+                        }
+                        Else
+                        {
+                            Return (0x0B)
+                        }
+                    }
+
+                    Name (_STA, 0x0F)  // _STA: Status
+                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                    {
+                        Name (UPCP, Package (0x04)
+                        {
+                            0xFF, 
+                            0x03, 
+                            Zero, 
+                            Zero
+                        })
+                        If (LNot (And (PR3, 0x02)))
+                        {
+                            Store (Zero, Index (UPCP, Zero))
+                        }
+
+                        Store (DerefOf (Index (CNTB, One)), Local0)
+                        Store (Local0, Index (UPCP, Zero))
+                        Return (UPCP)
+                    }
+
+                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                    {
+                        Name (PLDP, Package (One)
+                        {
+                            Buffer (0x10)
+                            {
+                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                /* 0008 */  0x69, 0x0C, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00 
+                            }
+                        })
+                        Store (DerefOf (Index (VISB, One)), Local0)
+                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
+                            Local1)
+                        And (Local1, 0xFE, Local1)
+                        Or (Local1, Local0, Local1)
+                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
+                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
+                        If (LNot (And (PR3, 0x02)))
+                        {
+                            And (VIS, Zero, VIS)
+                        }
+
+                        Return (PLDP)
+                    }
+                }
+
+                Device (SSP3)
+                {
+                    Method (_ADR, 0, Serialized)  // _ADR: Address
+                    {
+                        If (LEqual (And (CDID, 0xF000), 0x8000))
+                        {
+                            Return (0x12)
+                        }
+                        Else
+                        {
+                            Return (0x0C)
+                        }
+                    }
+
+                    Name (_STA, 0x0F)  // _STA: Status
+                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                    {
+                        Name (UPCP, Package (0x04)
+                        {
+                            0xFF, 
+                            0x03, 
+                            Zero, 
+                            Zero
+                        })
+                        If (LNot (And (PR3, 0x04)))
+                        {
+                            Store (Zero, Index (UPCP, Zero))
+                        }
+
+                        Store (DerefOf (Index (CNTB, 0x02)), Local0)
+                        Store (Local0, Index (UPCP, Zero))
+                        Return (UPCP)
+                    }
+
+                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                    {
+                        Name (PLDP, Package (One)
+                        {
+                            Buffer (0x10)
+                            {
+                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                /* 0008 */  0x71, 0x0C, 0x80, 0x01, 0x00, 0x00, 0x00, 0x00 
+                            }
+                        })
+                        Store (DerefOf (Index (VISB, 0x02)), Local0)
+                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
+                            Local1)
+                        And (Local1, 0xFE, Local1)
+                        Or (Local1, Local0, Local1)
+                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
+                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
+                        If (LNot (And (PR3, 0x04)))
+                        {
+                            And (VIS, Zero, VIS)
+                        }
+
+                        Return (PLDP)
+                    }
+                }
+
+                Device (SSP4)
+                {
+                    Method (_ADR, 0, Serialized)  // _ADR: Address
+                    {
+                        If (LEqual (And (CDID, 0xF000), 0x8000))
+                        {
+                            Return (0x13)
+                        }
+                        Else
+                        {
+                            Return (0x0D)
+                        }
+                    }
+
+                    Name (_STA, 0x0F)  // _STA: Status
+                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                    {
+                        Name (UPCP, Package (0x04)
+                        {
+                            0xFF, 
+                            0x03, 
+                            Zero, 
+                            Zero
+                        })
+                        If (LNot (And (PR3, 0x08)))
+                        {
+                            Store (Zero, Index (UPCP, Zero))
+                        }
+
+                        Store (DerefOf (Index (CNTB, 0x03)), Local0)
+                        Store (Local0, Index (UPCP, Zero))
+                        Return (UPCP)
+                    }
+
+                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                    {
+                        Name (PLDP, Package (One)
+                        {
+                            Buffer (0x10)
+                            {
+                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                /* 0008 */  0x71, 0x0C, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00 
+                            }
+                        })
+                        Store (DerefOf (Index (VISB, 0x03)), Local0)
+                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
+                            Local1)
+                        And (Local1, 0xFE, Local1)
+                        Or (Local1, Local0, Local1)
+                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
+                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
+                        If (LNot (And (PR3, 0x08)))
+                        {
+                            And (VIS, Zero, VIS)
+                        }
+
+                        Return (PLDP)
+                    }
+                }
+
+                Device (SSP5)
+                {
+                    Name (_ADR, 0x14)  // _ADR: Address
+                    Method (_STA, 0, Serialized)  // _STA: Status
+                    {
+                        If (LEqual (And (CDID, 0xF000), 0x8000))
+                        {
+                            Return (0x0F)
+                        }
+                        Else
+                        {
+                            Return (Zero)
+                        }
+                    }
+
+                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                    {
+                        Name (UPCP, Package (0x04)
+                        {
+                            0xFF, 
+                            0x03, 
+                            Zero, 
+                            Zero
+                        })
+                        If (LNot (And (PR3, 0x10)))
+                        {
+                            Store (Zero, Index (UPCP, Zero))
+                        }
+
+                        Store (DerefOf (Index (CNTB, 0x04)), Local0)
+                        Store (Local0, Index (UPCP, Zero))
+                        Return (UPCP)
+                    }
+
+                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                    {
+                        Name (PLDP, Package (One)
+                        {
+                            Buffer (0x10)
+                            {
+                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                /* 0008 */  0x71, 0x0C, 0x80, 0x02, 0x00, 0x00, 0x00, 0x00 
+                            }
+                        })
+                        Store (DerefOf (Index (VISB, 0x04)), Local0)
+                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
+                            Local1)
+                        And (Local1, 0xFE, Local1)
+                        Or (Local1, Local0, Local1)
+                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
+                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
+                        If (LNot (And (PR3, 0x10)))
+                        {
+                            And (VIS, Zero, VIS)
+                        }
+
+                        Return (PLDP)
+                    }
+                }
+
+                Device (SSP6)
+                {
+                    Name (_ADR, 0x15)  // _ADR: Address
+                    Method (_STA, 0, Serialized)  // _STA: Status
+                    {
+                        If (LEqual (And (CDID, 0xF000), 0x8000))
+                        {
+                            Return (0x0F)
+                        }
+                        Else
+                        {
+                            Return (Zero)
+                        }
+                    }
+
+                    Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
+                    {
+                        Name (UPCP, Package (0x04)
+                        {
+                            0xFF, 
+                            0x03, 
+                            Zero, 
+                            Zero
+                        })
+                        If (LNot (And (PR3, 0x20)))
+                        {
+                            Store (Zero, Index (UPCP, Zero))
+                        }
+
+                        Store (DerefOf (Index (CNTB, 0x05)), Local0)
+                        Store (Local0, Index (UPCP, Zero))
+                        Return (UPCP)
+                    }
+
+                    Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
+                    {
+                        Name (PLDP, Package (One)
+                        {
+                            Buffer (0x10)
+                            {
+                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                /* 0008 */  0x71, 0x0C, 0x00, 0x03, 0x00, 0x00, 0x00, 0x00 
+                            }
+                        })
+                        Store (DerefOf (Index (VISB, 0x05)), Local0)
+                        Store (DerefOf (Index (DerefOf (Index (PLDP, Zero)), 0x08)), 
+                            Local1)
+                        And (Local1, 0xFE, Local1)
+                        Or (Local1, Local0, Local1)
+                        Store (Local1, Index (DerefOf (Index (PLDP, Zero)), 0x08))
+                        CreateBitField (DerefOf (Index (PLDP, Zero)), 0x40, VIS)
+                        If (LNot (And (PR3, 0x20)))
+                        {
+                            And (VIS, Zero, VIS)
+                        }
+
+                        Return (PLDP)
+                    }
+                }
+            }
+
+            Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x0D, 0x03 }) }
+            Method (_DSM, 4, NotSerialized)
+            {
+                If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
+                Return (Package()
+                {
+                    "AAPL,clock-id", Buffer() { 0x02 },
+                    "built-in", Buffer() { 0x00 },
+                    "subsystem-id", Buffer() { 0x70, 0x72, 0x00, 0x00 },
+                    "subsystem-vendor-id", Buffer() { 0x86, 0x80, 0x00, 0x00 },
+                    "AAPL,current-available", 2100,
+                    "AAPL,current-extra", 2200,
+                    "AAPL,current-extra-in-sleep", 1600,
+                    "AAPL,device-internal", 0x02,
+                    "AAPL,max-port-current-in-sleep", 2100,
+                })
+            }
+            
+        }
         Method (CTCU, 0, NotSerialized)
         {
             Store (PTD2, PPL1)
@@ -17409,6 +14603,7 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
         If (LOr (LLess(Arg0, 1), LGreater(Arg0,5))) { Store(3, Arg0) } 
         WFBT()
         WAK (Arg0)
+        Notify (\_SB.PCI0.SATA, 0x02)
 
         If (LAnd (LNotEqual (And (\_SB.PCI0.HDAU.ABAR, 0xFFFFC004), 0xFFFFC004), 
             LNotEqual (And (\_SB.PCI0.HDAU.ABAR, 0xFFFFC000), Zero)))
@@ -17426,7 +14621,7 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
 
         If (LOr (LEqual (Arg0, 0x03), LEqual (Arg0, 0x04)))
         {
-            \_SB.PCI0.XHC.XWAK ()
+            \_SB.PCI0.XHC1.XWAK ()
             \_SB.PCI0.LPCB.EC0.WRAM (0x0533, 0x69)
             \_SB.PCI0.LPCB.EC0.WRAM (0x0534, 0x64)
         }
@@ -17890,39 +15085,11 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
             }
         }
 
-        Method (_L0D, 0, NotSerialized)
+        Method (_L0D, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
         {
-            If (LAnd (\_SB.PCI0.EHC1.PMEE, \_SB.PCI0.EHC1.PMES))
-            {
-                Notify (\_SB.PCI0.EHC1, 0x02)
-            }
-
-            If (LAnd (\_SB.PCI0.EHC2.PMEE, \_SB.PCI0.EHC2.PMES))
-            {
-                Notify (\_SB.PCI0.EHC2, 0x02)
-            }
-
-            If (LAnd (\_SB.PCI0.XHC.PMEE, \_SB.PCI0.XHC.PMES))
-            {
-                Notify (\_SB.PCI0.XHC, 0x02)
-            }
-            Else
-            {
-                If (LEqual (\_SB.PCI0.XHC.PMEE, Zero))
-                {
-                    Store (One, \_SB.PCI0.XHC.PMES)
-                }
-            }
-
-            If (LAnd (\_SB.PCI0.HDEF.PMEE, \_SB.PCI0.HDEF.PMES))
-            {
+            Notify (\_SB.PWRB, 0x02)
+            Notify (\_SB.PCI0.XHC1, 0x02)
                 Notify (\_SB.PCI0.HDEF, 0x02)
-            }
-
-            If (CondRefOf (\_SB.PCI0.RP03.GLAN))
-            {
-                Notify (\_SB.PCI0.RP03.GLAN, 0x02)
-            }
         }
 
         Method (_L01, 0, NotSerialized)
@@ -18008,6 +15175,43 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
                 Notify (\_SB.PCI0.SATA, 0x82)
                 Return (Zero)
             }
+
+        Method (_L67, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
+        {
+            Store (0x20, \_SB.PCI0.SBUS.HSTS)
+        }
+
+        Method (_L66, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
+        {
+            If (LAnd (\_SB.PCI0.IGPU.GSSE, LNot (GSMI)))
+            {
+                \_SB.PCI0.IGPU.GSCI ()
+            }
+            Else
+            {
+                Store (0x00, \_SB.PCI0.IGPU.GEFC)
+                Store (0x01, SCIS)
+                Store (0x00, \_SB.PCI0.IGPU.GSSE)
+                Store (0x00, \_SB.PCI0.IGPU.SCIE)
+            }
+        }
+
+        Method (_L69, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
+        {
+            Notify (\_SB.PCI0.RP01, 0x02)
+            Notify (\_SB.PCI0.RP02, 0x02)
+            Notify (\_SB.PCI0.RP03, 0x02)
+            Notify (\_SB.PCI0.RP05, 0x02)
+            Notify (\_SB.PCI0.RP06, 0x02)
+            Notify (\_SB.PCI0.RP04.ARPT, 0x02)
+        }
+
+        Method (_L6D, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
+        {
+            Notify (\_SB.PWRB, 0x02)
+            Notify (\_SB.PCI0.XHC1, 0x02)
+            Notify (\_SB.PCI0.HDEF, 0x02)
+        }
     }
 
     Device (WCAM)
@@ -18124,246 +15328,7 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
             DAT,    8
         }
 
-        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-        {
-            Name (T_1, Zero)  // _T_x: Emitted by ASL Compiler
-            Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
-            If (LEqual (Arg0, ToUUID ("3dddfaa6-361b-4eb4-a424-8d10089d1653") /* Physical Presence Interface */))
-            {
-                While (One)
-                {
-                    Store (ToInteger (Arg2), T_0)
-                    If (LEqual (T_0, Zero))
-                    {
-                        Return (Buffer (0x02)
-                        {
-                             0xFF, 0x01                                     
-                        })
-                    }
-                    Else
-                    {
-                        If (LEqual (T_0, One))
-                        {
-                            Return ("1.2")
-                        }
-                        Else
-                        {
-                            If (LEqual (T_0, 0x02))
-                            {
-                                ToInteger (DerefOf (Index (Arg3, Zero)), TMF2)
-                                Store (0x12, TMF1)
-                                Store (TMF1, DAT)
-                                Store (OFST, INQ)
-                                If (LEqual (DAT, 0xFF))
-                                {
-                                    Return (0x02)
-                                }
-
-                                Store (TMF2, DAT)
-                                Store (OFST, INQ)
-                                If (LEqual (DAT, 0xFF))
-                                {
-                                    Return (0x02)
-                                }
-
-                                If (LEqual (DAT, 0xF1))
-                                {
-                                    Return (One)
-                                }
-
-                                Return (Zero)
-                            }
-                            Else
-                            {
-                                If (LEqual (T_0, 0x03))
-                                {
-                                    Name (PPI1, Package (0x02)
-                                    {
-                                        Zero, 
-                                        Zero
-                                    })
-                                    Store (0x11, DAT)
-                                    Store (OFST, INQ)
-                                    If (LEqual (DAT, 0xFF))
-                                    {
-                                        Return (One)
-                                    }
-
-                                    Store (DAT, Index (PPI1, One))
-                                    Return (PPI1)
-                                }
-                                Else
-                                {
-                                    If (LEqual (T_0, 0x04))
-                                    {
-                                        Return (TRST)
-                                    }
-                                    Else
-                                    {
-                                        If (LEqual (T_0, 0x05))
-                                        {
-                                            Name (PPI2, Package (0x03)
-                                            {
-                                                Zero, 
-                                                Zero, 
-                                                Zero
-                                            })
-                                            Store (0x21, DAT)
-                                            Store (OFST, INQ)
-                                            Store (DAT, Index (PPI2, One))
-                                            If (LEqual (DAT, 0xFF))
-                                            {
-                                                Return (0x02)
-                                            }
-
-                                            Store (0x31, DAT)
-                                            Store (OFST, INQ)
-                                            If (LEqual (DAT, 0xFF))
-                                            {
-                                                Return (0x02)
-                                            }
-
-                                            If (LEqual (DAT, 0xF0))
-                                            {
-                                                Store (0x51, DAT)
-                                                Store (OFST, INQ)
-                                                If (LEqual (DAT, 0xFF))
-                                                {
-                                                    Store (0xFFFFFFF0, Index (PPI2, 0x02))
-                                                    Return (PPI2)
-                                                }
-                                            }
-                                            Else
-                                            {
-                                                If (LEqual (DAT, 0xF1))
-                                                {
-                                                    Store (0x51, DAT)
-                                                    Store (OFST, INQ)
-                                                    If (LEqual (DAT, 0xFF))
-                                                    {
-                                                        Store (0xFFFFFFF1, Index (PPI2, 0x02))
-                                                        Return (PPI2)
-                                                    }
-                                                }
-                                                Else
-                                                {
-                                                    Store (DAT, Index (PPI2, 0x02))
-                                                }
-                                            }
-
-                                            Return (PPI2)
-                                        }
-                                        Else
-                                        {
-                                            If (LEqual (T_0, 0x06))
-                                            {
-                                                Return (0x03)
-                                            }
-                                            Else
-                                            {
-                                                If (LEqual (T_0, 0x07))
-                                                {
-                                                    ToInteger (DerefOf (Index (Arg3, Zero)), TMF2)
-                                                    Store (0x12, TMF1)
-                                                    Store (TMF1, DAT)
-                                                    Store (OFST, INQ)
-                                                    If (LEqual (DAT, 0xFF))
-                                                    {
-                                                        Return (0x02)
-                                                    }
-
-                                                    Store (TMF2, DAT)
-                                                    Store (OFST, INQ)
-                                                    If (LEqual (DAT, 0xFF))
-                                                    {
-                                                        Return (0x02)
-                                                    }
-
-                                                    If (LEqual (DAT, 0xF1))
-                                                    {
-                                                        Return (One)
-                                                    }
-
-                                                    Return (Zero)
-                                                }
-                                                Else
-                                                {
-                                                    If (LEqual (T_0, 0x08))
-                                                    {
-                                                        ToInteger (DerefOf (Index (Arg3, Zero)), TMF2)
-                                                        Store (0x43, TMF1)
-                                                        Store (TMF1, DAT)
-                                                        Store (OFST, INQ)
-                                                        Store (TMF2, DAT)
-                                                        Store (OFST, INQ)
-                                                        Return (DAT)
-                                                    }
-                                                    Else
-                                                    {
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    Break
-                }
-            }
-            Else
-            {
-                If (LEqual (Arg0, ToUUID ("376054ed-cc13-4675-901c-4756d7f2d45d")))
-                {
-                    While (One)
-                    {
-                        Store (ToInteger (Arg2), T_1)
-                        If (LEqual (T_1, Zero))
-                        {
-                            Return (Buffer (One)
-                            {
-                                 0x03                                           
-                            })
-                        }
-                        Else
-                        {
-                            If (LEqual (T_1, One))
-                            {
-                                Store (0x22, TMF1)
-                                Store (TMF1, DAT)
-                                Store (OFST, INQ)
-                                If (LEqual (DAT, 0xFF))
-                                {
-                                    Return (0x02)
-                                }
-
-                                ToInteger (DerefOf (Index (Arg3, Zero)), TMF1)
-                                Store (TMF1, DAT)
-                                Store (OFST, INQ)
-                                If (LEqual (DAT, 0xFF))
-                                {
-                                    Return (0x02)
-                                }
-
-                                Return (Zero)
-                            }
-                            Else
-                            {
-                            }
-                        }
-
-                        Break
-                    }
-                }
-            }
-
-            Return (Buffer (One)
-            {
-                 0x00                                           
-            })
-        }
+        
     }
 
     Scope (_SB.PCI0.LPCB)
@@ -19731,7 +16696,6 @@ DTB1, 8
 
                     If (LEqual (IIA0, 0x00010025))
                     {
-                        ^^PCI0.EHC1.LTEP ()
                         If (FGDP)
                         {
                             Return (Add (FGST, 0x00050000))
@@ -28885,7 +25849,7 @@ Store (ShiftRight (Local4, 8), DTB1)
             GL0B,   8
         }
 
-        OperationRegion (GPIO, SystemIO, GPBS, 0x80)
+        OperationRegion (GPIO, SystemIO, GPBS, 0x400)
         Field (GPIO, ByteAcc, NoLock, Preserve)
         {
             Offset (0x0C), 
@@ -28893,25 +25857,83 @@ Store (ShiftRight (Local4, 8), DTB1)
             GL10,   16, 
             Offset (0x18), 
             GB00,   32, 
-            Offset (0x2C), 
-                ,   3, 
-            GP03,   1, 
-            GP04,   1, 
-            GP05,   1, 
-            GP06,   1, 
-            GP07,   1, 
-            GP08,   1, 
-            GP09,   1, 
-            GP10,   1, 
-            GP11,   1, 
-            GP12,   1, 
-            GP13,   1, 
-            GP14,   1, 
-            GP15,   1, 
             Offset (0x38), 
             GL20,   32, 
             Offset (0x48), 
-            GL40,   32
+            GL40,   32,
+            Offset (0x168), 
+            GU13,   1, 
+                ,   1, 
+            GD13,   1, 
+            GI13,   1, 
+                ,   26, 
+            GL13,   1, 
+            GP13,   1,
+            Offset (0x1D0), 
+            GU26,   1, 
+                ,   1, 
+            GD26,   1, 
+            GI26,   1, 
+                ,   26, 
+            GL26,   1, 
+            GP26,   1,
+            Offset (0x3B8), 
+            GU87,   1, 
+                ,   1, 
+            GD87,   1, 
+            GI87,   1, 
+                ,   27, 
+            GP87,   1, 
+            Offset (0x3C0), 
+            GU88,   1, 
+                ,   1, 
+            GD88,   1, 
+            GI88,   1, 
+                ,   27, 
+            GP88,   1, 
+            Offset (0x3C8), 
+            GU89,   1, 
+                ,   1, 
+            GD89,   1, 
+            GI89,   1, 
+                ,   27, 
+            GP89,   1, 
+            Offset (0x3D0), 
+            GU90,   1, 
+                ,   1, 
+            GD90,   1, 
+            GI90,   1, 
+                ,   27, 
+            GP90,   1, 
+            Offset (0x3D8), 
+            GU91,   1, 
+                ,   1, 
+            GD91,   1, 
+            GI91,   1, 
+                ,   27, 
+            GP91,   1, 
+            Offset (0x3E0), 
+            GU92,   1, 
+                ,   1, 
+            GD92,   1, 
+            GI92,   1, 
+                ,   27, 
+            GP92,   1, 
+            Offset (0x3E8), 
+            GU93,   1, 
+                ,   1, 
+            GD93,   1, 
+            GI93,   1, 
+                ,   27, 
+            GP93,   1, 
+            Offset (0x3F0), 
+            GU94,   1, 
+                ,   1, 
+            GD94,   1, 
+            GI94,   1, 
+                ,   27, 
+            GP94,   1, 
+            Offset (0x3F8)
         }
 
         OperationRegion (RCBA, SystemMemory, 0xFED1C000, 0x4000)
@@ -29477,266 +26499,6 @@ Store (ShiftRight (Local4, 8), DTB1)
         }
     }
 
-    Scope (_SB.PCI0.EHC1)
-    {
-        Device (RHUB)
-        {
-            Name (_ADR, Zero)  // _ADR: Address
-            Device (PRT1)
-            {
-                Name (_ADR, One)  // _ADR: Address
-                Name (_UPC, Package (0x04)  // _UPC: USB Port Capabilities
-                {
-                    Zero, 
-                    0xFF, 
-                    Zero, 
-                    Zero
-                })
-                Device (PRT1)
-                {
-                    Name (_ADR, One)  // _ADR: Address
-                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
-                    {
-                        OUPC (Zero)
-                        Return (BUPC)
-                    }
-
-                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
-                    {
-                        OPLD (Zero)
-                        Return (BPLD)
-                    }
-                }
-
-                Device (PRT2)
-                {
-                    Name (_ADR, 0x02)  // _ADR: Address
-                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
-                    {
-                        OUPC (One)
-                        Return (BUPC)
-                    }
-
-                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
-                    {
-                        OPLD (One)
-                        Return (BPLD)
-                    }
-                }
-
-                Device (PRT3)
-                {
-                    Name (_ADR, 0x03)  // _ADR: Address
-                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
-                    {
-                        OUPC (0x02)
-                        Return (BUPC)
-                    }
-
-                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
-                    {
-                        OPLD (0x02)
-                        Return (BPLD)
-                    }
-                }
-
-                Device (PRT4)
-                {
-                    Name (_ADR, 0x04)  // _ADR: Address
-                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
-                    {
-                        OUPC (0x03)
-                        Return (BUPC)
-                    }
-
-                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
-                    {
-                        OPLD (0x03)
-                        Return (BPLD)
-                    }
-                }
-
-                Device (PRT5)
-                {
-                    Name (_ADR, 0x05)  // _ADR: Address
-                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
-                    {
-                        OUPC (0x04)
-                        Return (BUPC)
-                    }
-
-                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
-                    {
-                        OPLD (0x04)
-                        Return (BPLD)
-                    }
-                }
-
-                Device (PRT6)
-                {
-                    Name (_ADR, 0x06)  // _ADR: Address
-                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
-                    {
-                        OUPC (0x05)
-                        Return (BUPC)
-                    }
-
-                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
-                    {
-                        OPLD (0x05)
-                        Return (BPLD)
-                    }
-                }
-
-                Device (PRT7)
-                {
-                    Name (_ADR, 0x07)  // _ADR: Address
-                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
-                    {
-                        OUPC (0x06)
-                        Return (BUPC)
-                    }
-
-                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
-                    {
-                        OPLD (0x06)
-                        Return (BPLD)
-                    }
-                }
-
-                Device (PRT8)
-                {
-                    Name (_ADR, 0x08)  // _ADR: Address
-                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
-                    {
-                        OUPC (0x07)
-                        Return (BUPC)
-                    }
-
-                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
-                    {
-                        OPLD (0x07)
-                        Return (BPLD)
-                    }
-                }
-            }
-        }
-    }
-
-    Scope (_SB.PCI0.EHC2)
-    {
-        Device (RHUB)
-        {
-            Name (_ADR, Zero)  // _ADR: Address
-            Device (PRT1)
-            {
-                Name (_ADR, One)  // _ADR: Address
-                Name (_UPC, Package (0x04)  // _UPC: USB Port Capabilities
-                {
-                    Zero, 
-                    0xFF, 
-                    Zero, 
-                    Zero
-                })
-                Device (PRT1)
-                {
-                    Name (_ADR, One)  // _ADR: Address
-                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
-                    {
-                        OUPC (0x08)
-                        Return (BUPC)
-                    }
-
-                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
-                    {
-                        OPLD (0x08)
-                        Return (BPLD)
-                    }
-                }
-
-                Device (PRT2)
-                {
-                    Name (_ADR, 0x02)  // _ADR: Address
-                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
-                    {
-                        OUPC (0x09)
-                        Return (BUPC)
-                    }
-
-                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
-                    {
-                        OPLD (0x09)
-                        Return (BPLD)
-                    }
-                }
-
-                Device (PRT3)
-                {
-                    Name (_ADR, 0x03)  // _ADR: Address
-                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
-                    {
-                        OUPC (0x0A)
-                        Return (BUPC)
-                    }
-
-                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
-                    {
-                        OPLD (0x0A)
-                        Return (BPLD)
-                    }
-                }
-
-                Device (PRT4)
-                {
-                    Name (_ADR, 0x04)  // _ADR: Address
-                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
-                    {
-                        OUPC (0x0B)
-                        Return (BUPC)
-                    }
-
-                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
-                    {
-                        OPLD (0x0B)
-                        Return (BPLD)
-                    }
-                }
-
-                Device (PRT5)
-                {
-                    Name (_ADR, 0x05)  // _ADR: Address
-                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
-                    {
-                        OUPC (0x0C)
-                        Return (BUPC)
-                    }
-
-                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
-                    {
-                        OPLD (0x0C)
-                        Return (BPLD)
-                    }
-                }
-
-                Device (PRT6)
-                {
-                    Name (_ADR, 0x06)  // _ADR: Address
-                    Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
-                    {
-                        OUPC (0x0D)
-                        Return (BUPC)
-                    }
-
-                    Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
-                    {
-                        OPLD (0x0D)
-                        Return (BPLD)
-                    }
-                }
-            }
-        }
-    }
-
     Scope (\)
     {
         Name (CNTB, Buffer (0x0E)
@@ -30048,27 +26810,6 @@ Store (ShiftRight (Local4, 8), DTB1)
         }
     }
 
-    Scope (_SB.PCI0.XHC.RHUB.HS05)
-    {
-        Name (CAPD, Package (One)
-        {
-            Buffer (0x14)
-            {
-                /* 0000 */  0x82, 0x00, 0x00, 0x00, 0x14, 0x00, 0x14, 0x00,
-                /* 0008 */  0x25, 0x1D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                /* 0010 */  0xFF, 0xFF, 0xFF, 0xFF                         
-            }
-        })
-        Device (DCAM)
-        {
-            Name (_ADR, 0x05)  // _ADR: Address
-            Method (_PLD, 0, NotSerialized)  // _PLD: Physical Location of Device
-            {
-                Return (CAPD)
-            }
-        }
-    }
-
     Name (OALR, Package (0x10)
     {
         Package (0x02)
@@ -30167,18 +26908,6 @@ Store (ShiftRight (Local4, 8), DTB1)
             0x05DC
         }
     })
-    Scope (_SB.PCI0.EHC1)
-    {
-        OperationRegion (EHC1, PCI_Config, 0x10, 0x08)
-        Field (EHC1, AnyAcc, Lock, Preserve)
-        {
-            MBAS,   64
-        }
-
-        Method (LTEP, 0, NotSerialized)
-        {
-        }
-    }
 
     Name (_S0, Package (0x04)  // _S0_: S0 System State
     {
@@ -30187,8 +26916,7 @@ Store (ShiftRight (Local4, 8), DTB1)
         Zero, 
         Zero
     })
-    If (Zero)
-    {
+
         Name (_S1, Package (0x04)  // _S1_: S1 System State
         {
             One, 
@@ -30196,7 +26924,6 @@ Store (ShiftRight (Local4, 8), DTB1)
             Zero, 
             Zero
         })
-    }
     
     If (SS3)
     {
@@ -30528,6 +27255,36 @@ Store (ShiftRight (Local4, 8), DTB1)
             Store(Arg6, Index(TEMP, 6))
             PUSH(TEMP)
         }
+    }
+    Method (DTGP, 5, NotSerialized)
+    {
+        If (LEqual (Arg0, Buffer (0x10)
+        {
+            /* 0000 */    0xC6, 0xB7, 0xB5, 0xA0, 0x18, 0x13, 0x1C, 0x44,
+            /* 0008 */    0xB0, 0xC9, 0xFE, 0x69, 0x5E, 0xAF, 0x94, 0x9B
+        }))
+        {
+            If (LEqual (Arg1, One))
+            {
+                If (LEqual (Arg2, Zero))
+                {
+                    Store (Buffer (One)
+                    {
+                        0x03
+                    }, Arg4)
+                    Return (One)
+                }
+                If (LEqual (Arg2, One))
+                {
+                    Return (One)
+                }
+            }
+        }
+        Store (Buffer (One)
+        {
+            0x00
+        }, Arg4)
+        Return (Zero)
     }
     
 }
