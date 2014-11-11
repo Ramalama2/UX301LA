@@ -5238,7 +5238,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     })
                 }
 
-                Device (PXSX)
+                Device (ARPT)
                 {
                     Name (_ADR, Zero)  // _ADR: Address
                     Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x09, 0x04 }) }
@@ -5247,25 +5247,20 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     {
                         Return (HPCE)
                     }
-                    
-                    Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+                    Method (_DSM, 4, NotSerialized)
                     {
-                        If (LEqual (Arg2, Zero))
+                        If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
+                        Return (Package()
                         {
-                            Return (Buffer (One)
-                            {
-                                 0x03                                           
-                            })
-                        }
-
-                        Return (Package (0x08)
-                        {
-                            "device-id", Buffer (0x04) { 0xA3, 0x43, 0x00, 0x00 }, 
-                            "subsystem-id", Buffer (0x04) { 0x17, 0x01, 0x00, 0x00 }, 
-                            "subsystem-vendor-id", Buffer (0x04) { 0x6B, 0x10, 0x00, 0x00 }, 
+                            "device-id", Buffer (0x04) { 0xA3, 0x43, 0x00, 0x00 },
+                            "compatible", Buffer (0x04) { 0xA0, 0x43, 0x00, 0x00 },
+                            "subsystem-id", Buffer (0x04) { 0x17, 0x01, 0x00, 0x00 },
+                            "subsystem-vendor-id", Buffer (0x04) { 0x6B, 0x10, 0x00, 0x00 },
                             "name", Buffer (0x0D) { "pci14e4,43a3" }
                         })
                     }
+                    
+                    
                 }
 
                 Method (_REG, 2, NotSerialized)  // _REG: Region Availability
@@ -5310,7 +5305,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                             }
                         }
 
-                        Notify (PXSX, 0x02)
+                        Notify (ARPT, 0x02)
                     }
                 }
 
@@ -10129,8 +10124,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Return (Package()
                 {
                     "layout-id", Buffer() { 0x03, 0x00, 0x00, 0x00 },
-                    "hda-gfx", Buffer() { "onboard-1" },
-                    "PinConfigurations", Buffer(Zero) {},
+                    "hda-gfx", Buffer() { "onboard-1" }
                 })
             }
         }
@@ -16665,17 +16659,19 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
             {
                 Name (_CID, "smbus")
                 Name (_ADR, Zero)
-                Device (DVL0)
+                Device (BLC0)
                 {
-                    Name (_ADR, 0x57)
-                    Name (_CID, "diagsvault")
+                    Name (_ADR, Zero)
+                    Name (_STA, 0x0F)
+                    Name (_CID, "smbus-blc")
                     Method (_DSM, 4, NotSerialized)
                     {
-                        If (LEqual (Arg2, Zero)) { Return (Buffer(One) { 0x03 } ) }
-                        Return (Package() { "address", 0x57 })
+                        If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
+                        Return (Package() { "address", 0x2c })
                     }
                 }
             }
+            
         }
 
         OperationRegion (MBAR, SystemMemory, Add (ShiftLeft (MHBR, 0x0F), 0x5000), 0x1000)
