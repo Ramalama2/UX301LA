@@ -126,12 +126,12 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
     Name (PMLN, 0x0100)
     Name (GPLN, 0x0400)
     Name (MBLF, 0x0A)
-    Name (SS1, One)
+    Name (SS1, Zero)
     Name (SS2, Zero)
     Name (SS3, One)
     Name (SS4, One)
-    Name (IOST, 0xFFFF)
-    Name (TOPM, 0x000FFFFF)
+    Name (IOST, 0x4400)
+    Name (TOPM, 0x00000000)
     Name (ROMS, 0xFFE00000)
     Name (VGAF, One)
     Name (PDC0, 0x80000000)
@@ -2224,7 +2224,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Device (PXSX)
                 {
                     Name (_ADR, Zero)  // _ADR: Address
-                    Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x09, 0x04 }) }
+                    Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
 
                     Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                     {
@@ -2286,7 +2286,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Sleep (0xFA)
                 }
 
-                Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x09, 0x04 }) }
+                Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
 
                 Method (_PRT, 0, NotSerialized)  // _PRT: PCI Routing Table
                 {
@@ -2365,7 +2365,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Device (PXSX)
                 {
                     Name (_ADR, Zero)  // _ADR: Address
-                    Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x09, 0x04 }) }
+                    Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
 
                     Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                     {
@@ -2427,7 +2427,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Sleep (0xFA)
                 }
 
-                Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x09, 0x04 }) }
+                Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
             }
 
             Device (RP05)
@@ -2496,7 +2496,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Device (PXSX)
                 {
                     Name (_ADR, Zero)  // _ADR: Address
-                    Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x09, 0x04 }) }
+                    Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
 
                     Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                     {
@@ -2558,7 +2558,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Sleep (0xFA)
                 }
 
-                Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x09, 0x04 }) }
+                Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
             }
 
             Device (RP06)
@@ -2627,7 +2627,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Device (PXSX)
                 {
                     Name (_ADR, Zero)  // _ADR: Address
-                    Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x09, 0x04 }) }
+                    Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
 
                     Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                     {
@@ -2689,7 +2689,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Sleep (0xFA)
                 }
 
-                Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x09, 0x04 }) }
+                Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
             }
 
             Device (RP07)
@@ -2758,7 +2758,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Device (PXSX)
                 {
                     Name (_ADR, Zero)  // _ADR: Address
-                    Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x09, 0x04 }) }
+                    Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
 
                     Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                     {
@@ -2820,7 +2820,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Sleep (0xFA)
                 }
 
-                Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x09, 0x04 }) }
+                Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
             }
 
             Device (RP08)
@@ -2889,7 +2889,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Device (PXSX)
                 {
                     Name (_ADR, Zero)  // _ADR: Address
-                    Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x09, 0x04 }) }
+                    Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
 
                     Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                     {
@@ -2951,7 +2951,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Sleep (0xFA)
                 }
 
-                Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x09, 0x04 }) }
+                Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
             }
 
             Device (LPCB)
@@ -4255,7 +4255,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Device (PXSX)
                 {
                     Name (_ADR, Zero)  // _ADR: Address
-                    Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x09, 0x04 }) }
+                    Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
 
                     Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                     {
@@ -4317,7 +4317,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Sleep (0xFA)
                 }
 
-                Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x09, 0x04 }) }
+                Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
 
                 Device (GLAN)
                 {
@@ -4336,7 +4336,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         PMES,   1
                     }
 
-                    Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x09, 0x04 }) }
+                    Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
                 }
             }
 
@@ -4415,7 +4415,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Device (ARPT)
                 {
                     Name (_ADR, Zero)  // _ADR: Address
-                    Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x09, 0x04 }) }
+                    Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
 
                     Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
                     {
@@ -4491,7 +4491,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Sleep (0xFA)
                 }
 
-                Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x09, 0x04 }) }
+                Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
 
                 Method (_PRT, 0, NotSerialized)  // _PRT: PCI Routing Table
                 {
@@ -4539,7 +4539,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Return (One)
                     }
 
-                    Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x09, 0x04 }) }
+                    Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
                 }
             }
 
@@ -4592,6 +4592,30 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
     Scope (\)
     {
         Name (PICM, 0x00)
+        Name (PRWP, Package (0x02)
+        {
+            Zero, 
+            Zero
+        })
+        Method (GPRW, 2, NotSerialized)
+        {
+            Store (Arg0, Index (PRWP, Zero))
+            Store (ShiftLeft (SS1, One), Local0)
+            Or (Local0, ShiftLeft (SS2, 0x02), Local0)
+            Or (Local0, ShiftLeft (SS3, 0x03), Local0)
+            Or (Local0, ShiftLeft (SS4, 0x04), Local0)
+            If (And (ShiftLeft (One, Arg1), Local0))
+            {
+                Store (Arg1, Index (PRWP, One))
+            }
+            Else
+            {
+                ShiftRight (Local0, One, Local0)
+                FindSetLeftBit (Local0, Index (PRWP, One))
+            }
+
+            Return (PRWP)
+        }
 
         OperationRegion (IO_D, SystemIO, 0x0810, 0x04)
         Field (IO_D, ByteAcc, NoLock, Preserve)
@@ -6329,7 +6353,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             
             // Name (_CRS, ResourceTemplate () { IRQNoFlags () {6, 10} })
 
-            Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x0D, 0x04 }) }
+            Method (_PRW, 0, NotSerialized) { Return (GPRW (0x0D, 0x04)) }
             Method (_DSM, 4, NotSerialized)
             {
                 If (LEqual (Arg2, Zero)) { Return (Buffer(One) { 0x03 } ) }
@@ -10302,6 +10326,15 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
                 If (LEqual (Arg0, 0x02)) { Store (Arg1, REGF) }
             }
             
+            Method (_DSM, 4, NotSerialized)
+            {
+                If (LEqual (Arg2, Zero)) { Return (Buffer(One) { 0x03 } ) }
+                Return (Package()
+                {
+                    "sata-express-power-off", 0x00
+                })
+            }
+            
             Device (PRT0)
             {
                 Name (_ADR, 0xFFFF)  // _ADR: Address
@@ -10948,7 +10981,7 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
                 }
             }
         }
-            Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x0D, 0x03 }) }
+            Method (_PRW, 0, NotSerialized) { Return (GPRW (0x0D, 0x03)) }
             Method (_DSM, 4, NotSerialized)
             {
                 If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
@@ -11113,7 +11146,7 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
                 }
             }
         }
-            Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x0D, 0x03 }) }
+            Method (_PRW, 0, NotSerialized) { Return (GPRW (0x0D, 0x03)) }
             Method (_DSM, 4, NotSerialized)
             {
                 If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
@@ -12894,7 +12927,7 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
                 }
             }
 
-            Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x0D, 0x03 }) }
+            Method (_PRW, 0, NotSerialized) { Return (GPRW (0x0D, 0x03)) }
             Method (_DSM, 4, NotSerialized)
             {
                 If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
@@ -25927,31 +25960,42 @@ Store (ShiftRight (Local4, 8), DTB1)
         }
     })
 
-    Name (_S0, Package (0x03)  // _S0_: S0 System State
+    Name (_S0, Package (0x04)  // _S0_: S0 System State
     {
-        0x00, 
-        0x00, 
-        0x00
+        Zero, 
+        Zero, 
+        Zero, 
+        Zero
     })
-    Name (_S3, Package (0x03)  // _S3_: S3 System State
+    If (SS3)
     {
-        0x05, 
-        0x05, 
-        0x00
-    })
-    Name (_S4, Package (0x03)  // _S4_: S4 System State
+        Name (_S3, Package (0x04)  // _S3_: S3 System State
+        {
+            0x05, 
+            Zero, 
+            Zero, 
+            Zero
+        })
+    }
+
+    If (SS4)
     {
-        0x06, 
-        0x06, 
-        0x00
-    })
-    Name (_S5, Package (0x03)  // _S5_: S5 System State
+        Name (_S4, Package (0x04)  // _S4_: S4 System State
+        {
+            0x06, 
+            Zero, 
+            Zero, 
+            Zero
+        })
+    }
+
+    Name (_S5, Package (0x04)  // _S5_: S5 System State
     {
         0x07, 
-        0x07, 
-        0x00
+        Zero, 
+        Zero, 
+        Zero
     })
-    
     Method (PTS, 1, NotSerialized)
     {
         If (Arg0)
