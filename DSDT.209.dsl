@@ -3450,17 +3450,18 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Name (_HID, EisaId ("PNP0103"))  // _HID: Hardware ID
                     Name (_CID, EisaId ("PNP0C01"))  // _CID: Compatible ID
                     Name (_STA, 0x0F)  // _STA: Status
-                    Name (BUF0, ResourceTemplate ()
-                    {
-                        IRQNoFlags ()
-                            {0}
-                        IRQNoFlags ()
-                            {8}
+                    Name (BUF0, ResourceTemplate()
+{
+    IRQNoFlags() { 2, 8, 11, 15 }
+
+                        
+                        
                         Memory32Fixed (ReadWrite,
                             0xFED00000,         // Address Base
                             0x00000400,         // Address Length
                             _Y0F)
                     })
+
 
                     Method (_CRS, 0, Serialized)  // _CRS: Current Resource Settings
                     {
@@ -3594,8 +3595,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                             0x01,               // Alignment
                             0x02,               // Length
                             )
-                            IRQNoFlags ()
-                            {2}
+                            
                     })
                 }
 
@@ -4539,13 +4539,10 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Return (One)
                     }
 
-                    Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x09, 0x03 }) }
+                    Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x09, 0x04 }) }
                 }
             }
 
-            
-
-            
             Device (MCHC)
             {
                 Name (_ADR, Zero)
@@ -4930,11 +4927,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         Name (OBFF, Zero)
         Name (LMSL, Zero)
         Name (LNSL, Zero)
-        
 
-        
-
-        
         Device (DPTF)
         {
             Name (_ADR, 0x00040000)  // _ADR: Address
@@ -6333,8 +6326,10 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     ,   6, 
                 PMES,   1
             }
+            
+            // Name (_CRS, ResourceTemplate () { IRQNoFlags () {6, 10} })
 
-            Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x09, 0x03 }) }
+            Method (_PRW, 0, NotSerialized) { Return (Package (0x02) { 0x0D, 0x04 }) }
             Method (_DSM, 4, NotSerialized)
             {
                 If (LEqual (Arg2, Zero)) { Return (Buffer(One) { 0x03 } ) }
@@ -10178,10 +10173,10 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
                 Name (_UID, 0x01)  // _UID: Unique ID
                 Name (RBUF, ResourceTemplate ()
                 {
-                    Interrupt (ResourceConsumer, Level, ActiveLow, Shared, ,, )
-                    {
-                        0x00000014,
-                    }
+                    Memory32Fixed (ReadWrite,
+                        0x00000000,         // Address Base
+                        0x00001000,         // Address Length
+                        _Y1F)
                 })
                 Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
                 {
@@ -10194,32 +10189,18 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
                 }
             }
 
-            
-
-            
             Device (SPI1)
             {
                 Name (_ADR, 0x00150004)  // _ADR: Address
                 Name (_CID, "INT33C1")  // _CID: Compatible ID
                 Name (_DDN, "Intel(R) Low Power Subsystem SPI Host Controller - 9C66")  // _DDN: DOS Device Name
                 Name (_UID, 0x02)  // _UID: Unique ID
-                Name (RBUF, ResourceTemplate ()
-                {
-                    Interrupt (ResourceConsumer, Level, ActiveLow, Shared, ,, )
-                    {
-                        0x00000015,
-                    }
-                })
-                Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-                {
-                    Return (RBUF)
-                }
 
                 Method (_STA, 0, NotSerialized)  // _STA: Status
                 {
                         Return (0x0F)
                 }
-
+                
                 Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
                 {
                     If (LEqual (Arg0, Buffer (0x10)
@@ -10303,221 +10284,8 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
 
                     Return (0xFFFFFFFF)
                 }
-
-                Device (SPIT)
-                {
-                    Name (_HID, EisaId ("APP000D"))  // _HID: Hardware ID
-                    Name (_CID, "apple-spi-topcase")  // _CID: Compatible ID
-                    Name (_GPE, 0x1C)  // _GPE: General Purpose Events
-                    Name (_UID, 0x01)  // _UID: Unique ID
-                    Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-                    {
-                        Return (Package (0x02)
-                        {
-                            0x1C, 
-                            0x03
-                        })
-                    }
-
-                    Method (_STA, 0, NotSerialized)  // _STA: Status
-                    {
-                            Return (0x0F)
-                    }
-
-                    Method (UIEN, 1, Serialized)
-                    {
-                        If (LLessEqual (Arg0, 0x01))
-                        {
-                            If (LEqual (Arg0, 0x01))
-                            {
-                                Store (0x01, GD26)
-                            }
-                            Else
-                            {
-                                Store (0x00, GP26)
-                                Store (0x00, GD26)
-                            }
-                        }
-                    }
-
-                    Method (UIST, 0, Serialized)
-                    {
-                        Store (GD26, Local0)
-                        If (LEqual (Local0, 0x01))
-                        {
-                            Return (GL26)
-                        }
-                        Else
-                        {
-                            Return (GP26)
-                        }
-                    }
-
-                    Method (SIEN, 1, Serialized)
-                    {
-                        If (LLessEqual (Arg0, 0x01))
-                        {
-                            If (LEqual (Arg0, 0x01))
-                            {
-                                Store (0x01, GP13)
-                                Store (0x00, GD13)
-                            }
-                            Else
-                            {
-                                Store (0x01, GD13)
-                            }
-                        }
-                    }
-
-                    Method (SIST, 0, Serialized)
-                    {
-                        Store (GD13, Local0)
-                        If (LEqual (Local0, 0x01))
-                        {
-                            Return (GL13)
-                        }
-                        Else
-                        {
-                            Return (GP13)
-                        }
-                    }
-                }
             }
-
-            Device (SDHC)
-            {
-                Name (_ADR, 0x00170000)  // _ADR: Address
-                Name (_UID, One)  // _UID: Unique ID
-                Name (_CID, "PNP0D40")  // _CID: Compatible ID
-                Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
-                {
-                        Return (Package (Zero) {})
-                }
-
-                Name (RBUF, ResourceTemplate ()
-                {
-                    Memory32Fixed (ReadWrite,
-                        0x00000000,         // Address Base
-                        0x00001000,         // Address Length
-                        _Y26)
-                    Interrupt (ResourceConsumer, Level, ActiveLow, Shared, ,, )
-                    {
-                        0x00000016,
-                    }
-                })
-                Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-                {
-                    Return (RBUF)
-                }
-
-                CreateDWordField (RBUF, _Y26._BAS, BVAL)  // _BAS: Base Address
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (LEqual (BVAL, Zero))
-                    {
-                        Return (Zero)
-                    }
-
-                    If (LEqual (S0ID, One))
-                    {
-                        Return (0x0F)
-                    }
-
-                    Return (Zero)
-                }
-
-                Method (_PS0, 0, Serialized)  // _PS0: Power State 0
-                {
-                    
-                    If (LNotEqual (^^SIRC.CNTR (0x08), Zero))
-                    {
-                        Add (^^SIRC.CNTR (0x08), 0x84, Local0)
-                        OperationRegion (ICB1, SystemMemory, Local0, 0x04)
-                        Field (ICB1, DWordAcc, NoLock, Preserve)
-                        {
-                            TEMP,   32
-                        }
-
-                        And (TEMP, 0xFFFFFFFC, TEMP)
-                        Store (TEMP, Local0)
-                    }
-                }
-
-                Method (_PS3, 0, Serialized)  // _PS3: Power State 3
-                {
-                    
-                    If (LNotEqual (^^SIRC.CNTR (0x08), Zero))
-                    {
-                        Add (^^SIRC.CNTR (0x08), 0x84, Local0)
-                        OperationRegion (ICB1, SystemMemory, Local0, 0x04)
-                        Field (ICB1, DWordAcc, NoLock, Preserve)
-                        {
-                            TEMP,   32
-                        }
-
-                        Or (TEMP, 0x03, TEMP)
-                        Store (TEMP, Local0)
-                    }
-                }
-
-            Device (WI01)
-            {
-                Name (_ADR, One)  // _ADR: Address
-                Name (_DDN, "SDIO Wifi device Function 1")  // _DDN: DOS Device Name
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    Return (0x0F)
-                }
-
-                Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                {
-                    Return (Zero)
-                }
-
-                Name (_S4W, 0x02)  // _S4W: S4 Device Wake State
-                Name (_S0W, 0x02)  // _S0W: S0 Device Wake State
-                Method (_PS0, 0, Serialized)  // _PS0: Power State 0
-                {
-                    
-                }
-
-                Method (_PS2, 0, Serialized)  // _PS2: Power State 2
-                {
-                    
-                }
-
-                Method (_PS3, 0, Serialized)  // _PS3: Power State 3
-                {
-                    
-                }
-
-                Name (RBUF, ResourceTemplate ()
-                {
-                    Memory32Fixed (ReadWrite,
-                        0x00000000,         // Address Base
-                        0x00000000,         // Address Length
-                        _Y2D)
-                    Interrupt (ResourceConsumer, Level, ActiveLow, SharedAndWake, ,, )
-                    {
-                        0x00000026,
-                    }
-                })
-                Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-                {
-                    CreateDWordField (^^RBUF, ^^_Y26._BAS, AVAL)  // _BAS: Base Address
-                    If (LNotEqual (AVAL, Zero))
-                    {
-                        CreateDWordField (RBUF, ^_Y2D._LEN, WLN0)  // _LEN: Length
-                        Store (0x0C, WLN0)
-                        CreateDWordField (RBUF, ^_Y2D._BAS, WVAL)  // _BAS: Base Address
-                        Add (AVAL, 0x1008, WVAL)
-                    }
-
-                    Return (RBUF)
-                }
-            }
-        }
-
+            
         Device (SATA)
         {
             Name (_ADR, 0x001F0002)  // _ADR: Address
@@ -10533,25 +10301,7 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
             {
                 If (LEqual (Arg0, 0x02)) { Store (Arg1, REGF) }
             }
-            Name (TMD0, Buffer (0x14) {})
-            CreateDWordField (TMD0, Zero, PIO0)
-            CreateDWordField (TMD0, 0x04, DMA0)
-            CreateDWordField (TMD0, 0x08, PIO1)
-            CreateDWordField (TMD0, 0x0C, DMA1)
-            CreateDWordField (TMD0, 0x10, CHNF)
-            Method (_GTM, 0, NotSerialized)  // _GTM: Get Timing Mode
-            {
-                Store (0x78, PIO0)
-                Store (0x14, DMA0)
-                Store (0x78, PIO1)
-                Store (0x14, DMA1)
-                Or (CHNF, 0x05, CHNF)
-                Return (TMD0)
-            }
-
-            Method (_STM, 3, NotSerialized)  // _STM: Set Timing Mode
-            {
-            }
+            
             Device (PRT0)
             {
                 Name (_ADR, 0xFFFF)  // _ADR: Address
@@ -14650,14 +14400,6 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
                 Return (Local0)
             }
             
-            Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-                    {
-                            Return (Package (0x02)
-                            {
-                                0x70, 
-                                0x04
-                            })
-                    }
 
             Mutex (MUEC, 0x00)
             Mutex (MU4T, 0x00)
@@ -17640,16 +17382,8 @@ DTB1, 8
             {
                 Return (^^LPCB.EC0.ACAP ())
             }
-            Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-            {
-                    Return (Package (0x02)
-                    {
-                        0x23, 
-                        0x04
-                    })
-            }
 
-            Name (_PCL, Package (One)  // _PCL: Power Consumer List
+            Name (_PCL, Package (0x01)  // _PCL: Power Consumer List
             {
                 PCI0
             })
@@ -22583,8 +22317,8 @@ Store (ShiftRight (Local4, 8), DTB1)
 
         Method (_Q11, 0, Serialized)  // _Qxx: EC Query
         {
-            Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
-            Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
+            Name (T_1, Zero)  // _T_x: Emitted by ASL Compiler
+            Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
             If (LGreaterEqual (MSOS (), OSW8))
             {
                 If (LEqual (F8FG, Zero))
@@ -22627,38 +22361,38 @@ Store (ShiftRight (Local4, 8), DTB1)
                             {
                                 While (One)
                                 {
-                                    Store (ToInteger (Local0), _T_0)
-                                    If (LEqual (_T_0, 0x20))
+                                    Store (ToInteger (Local0), T_0)
+                                    If (LEqual (T_0, 0x20))
                                     {
                                         Store (0xD0, Local1)
                                     }
                                     Else
                                     {
-                                        If (LEqual (_T_0, 0x21))
+                                        If (LEqual (T_0, 0x21))
                                         {
                                             Store (0xD1, Local1)
                                         }
                                         Else
                                         {
-                                            If (LEqual (_T_0, 0x22))
+                                            If (LEqual (T_0, 0x22))
                                             {
                                                 Store (0xD2, Local1)
                                             }
                                             Else
                                             {
-                                                If (LEqual (_T_0, 0x24))
+                                                If (LEqual (T_0, 0x24))
                                                 {
                                                     Store (0xD3, Local1)
                                                 }
                                                 Else
                                                 {
-                                                    If (LEqual (_T_0, 0x28))
+                                                    If (LEqual (T_0, 0x28))
                                                     {
                                                         Store (0xD4, Local1)
                                                     }
                                                     Else
                                                     {
-                                                        If (LEqual (_T_0, 0x30))
+                                                        If (LEqual (T_0, 0x30))
                                                         {
                                                             Store (0xD5, Local1)
                                                         }
@@ -22677,38 +22411,38 @@ Store (ShiftRight (Local4, 8), DTB1)
                                 {
                                     While (One)
                                     {
-                                        Store (ToInteger (Local0), _T_1)
-                                        If (LEqual (_T_1, 0x40))
+                                        Store (ToInteger (Local0), T_1)
+                                        If (LEqual (T_1, 0x40))
                                         {
                                             Store (0xD0, Local1)
                                         }
                                         Else
                                         {
-                                            If (LEqual (_T_1, 0x41))
+                                            If (LEqual (T_1, 0x41))
                                             {
                                                 Store (0xD1, Local1)
                                             }
                                             Else
                                             {
-                                                If (LEqual (_T_1, 0x42))
+                                                If (LEqual (T_1, 0x42))
                                                 {
                                                     Store (0xD2, Local1)
                                                 }
                                                 Else
                                                 {
-                                                    If (LEqual (_T_1, 0x44))
+                                                    If (LEqual (T_1, 0x44))
                                                     {
                                                         Store (0xD3, Local1)
                                                     }
                                                     Else
                                                     {
-                                                        If (LEqual (_T_1, 0x48))
+                                                        If (LEqual (T_1, 0x48))
                                                         {
                                                             Store (0xD4, Local1)
                                                         }
                                                         Else
                                                         {
-                                                            If (LEqual (_T_1, 0x50))
+                                                            If (LEqual (T_1, 0x50))
                                                             {
                                                                 Store (0xD5, Local1)
                                                             }
@@ -23663,14 +23397,6 @@ Store (ShiftRight (Local4, 8), DTB1)
         Device (LID0)
         {
             Name (_HID, EisaId ("PNP0C0D"))  // _HID: Hardware ID
-            Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-            {
-                    Return (Package (0x02)
-                    {
-                        0x23, 
-                        0x04
-                    })
-            }
             Method (_LID, 0, NotSerialized)  // _LID: Lid Status
             {
                 Store (One, Local0)
@@ -24353,7 +24079,7 @@ Store (ShiftRight (Local4, 8), DTB1)
 
             Method (PDDC, 0, Serialized)
             {
-                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
                 Name (TMPD, Package (0x09)
                 {
                     Package (0x04)
@@ -24468,8 +24194,8 @@ Store (ShiftRight (Local4, 8), DTB1)
                 {
                     While (One)
                     {
-                        Store (ToInteger (\_PR.CBMI), _T_0)
-                        If (LEqual (_T_0, Zero))
+                        Store (ToInteger (\_PR.CBMI), T_0)
+                        If (LEqual (T_0, Zero))
                         {
                             If (LAnd (LGreaterEqual (\_PR.CLVL, One), LLessEqual (\_PR.CLVL, 0x03)))
                             {
@@ -24479,7 +24205,7 @@ Store (ShiftRight (Local4, 8), DTB1)
                         }
                         Else
                         {
-                            If (LEqual (_T_0, One))
+                            If (LEqual (T_0, One))
                             {
                                 If (LOr (LEqual (\_PR.CLVL, 0x02), LEqual (\_PR.CLVL, 0x03)))
                                 {
@@ -24489,7 +24215,7 @@ Store (ShiftRight (Local4, 8), DTB1)
                             }
                             Else
                             {
-                                If (LEqual (_T_0, 0x02))
+                                If (LEqual (T_0, 0x02))
                                 {
                                     If (LEqual (\_PR.CLVL, 0x03))
                                     {
@@ -24517,7 +24243,7 @@ Store (ShiftRight (Local4, 8), DTB1)
 
             Method (PDAC, 0, Serialized)
             {
-                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
                 Name (TMPD, Package (0x08)
                 {
                     Package (0x04)
@@ -24620,8 +24346,8 @@ Store (ShiftRight (Local4, 8), DTB1)
                 {
                     While (One)
                     {
-                        Store (ToInteger (\_PR.CBMI), _T_0)
-                        If (LEqual (_T_0, Zero))
+                        Store (ToInteger (\_PR.CBMI), T_0)
+                        If (LEqual (T_0, Zero))
                         {
                             If (LAnd (LGreaterEqual (\_PR.CLVL, One), LLessEqual (\_PR.CLVL, 0x03)))
                             {
@@ -24631,7 +24357,7 @@ Store (ShiftRight (Local4, 8), DTB1)
                         }
                         Else
                         {
-                            If (LEqual (_T_0, One))
+                            If (LEqual (T_0, One))
                             {
                                 If (LOr (LEqual (\_PR.CLVL, 0x02), LEqual (\_PR.CLVL, 0x03)))
                                 {
@@ -24641,7 +24367,7 @@ Store (ShiftRight (Local4, 8), DTB1)
                             }
                             Else
                             {
-                                If (LEqual (_T_0, 0x02))
+                                If (LEqual (T_0, 0x02))
                                 {
                                     If (LEqual (\_PR.CLVL, 0x03))
                                     {
