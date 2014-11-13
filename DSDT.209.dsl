@@ -13348,7 +13348,8 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
 
                 And (PBSY, 0xFE, PBSY)
             }
-
+            
+            Name (ECOK, 0x00)
             OperationRegion (ECOR, EmbeddedControl, Zero, 0xFF)
             Field (ECOR, ByteAcc, Lock, Preserve)
             {
@@ -13371,9 +13372,9 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
                 HKEN,   1, 
                 Offset (0x93), 
                 TH00, 8,
-TH01, 8, 
+                TH01, 8, 
                 TH10, 8,
-TH11, 8, 
+                TH11, 8, 
                 TSTP,   8, 
                 Offset (0x9C), 
                 CDT4,   8, 
@@ -13387,115 +13388,43 @@ TH11, 8,
                 TH1L,   8, 
                 TH0R,   8, 
                 TH0L,   8, 
-                Offset (0xB0), 
-                B0P0,8,B0P1,8, 
-                Offset (0xB4), 
-                Offset (0xB6), 
-                Offset (0xB8), 
-                Offset (0xBA), 
-                Offset (0xBC), 
-                Offset (0xBE), 
-                B0T0,8,B0T1,8, 
-                B010,8,B011,8, 
-                B020,8,B021,8, 
-                BC30, 8,
-BC31, 8, 
-                B040,8,B041,8, 
-                Offset (0xD0), 
-                B1N0,8,B1N1,8, 
-                Offset (0xD4), 
-                Offset (0xD6), 
-                Offset (0xD8), 
-                Offset (0xDA), 
-                Offset (0xDC), 
-                Offset (0xDE), 
-                B1M0,8,B1M1,8, 
-                B110,8,B111,8, 
-                B120,8,B121,8, 
-                B130,8,B131,8, 
-                B140,8,B141,8, 
-                Offset (0xF0), 
-                Offset (0xF2), 
-                Offset (0xF4), 
-                B0S0, 8,
-B0S1, 8, 
-                Offset (0xF8), 
-                Offset (0xFA), 
-                Offset (0xFC), 
-                B1S0, 8,
-B1S1, 8
             }
             Field (ECOR, ByteAcc, Lock, Preserve)
-                    {
-                        Offset (0x24), 
-                        SBDW,   16, 
-                        Offset (0x46), 
-                        SADW,   16
-                    }
-
-            Name (SMBF, Zero)
-            OperationRegion (SMBX, EmbeddedControl, 0x18, 0x28)
-            Field (SMBX, ByteAcc, NoLock, Preserve)
+            {
+                Offset (0x24), 
+                SBDW,   16, 
+                Offset (0x46), 
+                SADW,   16
+            }
+/*
+            OperationRegion (SMB1, EmbeddedControl, 0x18, 0x2A)
+            Field (SMB1, ByteAcc, NoLock, Preserve)
             {
                 SPTR,   8, 
-                SSTS,   5, 
-                    ,   1, 
-                ALFG,   1, 
-                CDFG,   1, 
+                SSTS,   8, 
                 SADR,   8, 
                 SCMD,   8, 
-                SBFR, 256, 
-                BCNT,   8, 
-                    ,   1, 
-                ALAD,   7, 
-                ALD0,   8, 
-                ALD1,   8
+                SBFR,   256, 
+                SCNT,   8, 
+                SAAD,   8, 
+                SAD0,   8, 
+                SAD1,   8, 
+                SMUX,   8, 
             }
-            
-            OperationRegion (SMBY, EmbeddedControl, 0x18, 0x28)
-            Field (SMBY, ByteAcc, NoLock, Preserve)
-            {
-                    ,   8, 
-                SSTX,   8, 
-            }
-
-            OperationRegion (SMB2, EmbeddedControl, 0x40, 0x28)
+            */
+            OperationRegion (SMB2, EmbeddedControl, 0x40, 0x2A)
             Field (SMB2, ByteAcc, NoLock, Preserve)
             {
-                PRT2,   8, 
-                SST2,   5, 
-                    ,   1, 
-                ALF2,   1, 
-                CDF2,   1, 
-                ADD2,   8, 
-                CMD2,   8, 
-                BDAY, 256, 
-                BCN2,   8, 
-                    ,   1, 
-                ALA2,   7, 
-                ALR0,   8, 
-                ALR1,   8
-            }
-
-            Field (SMB2, ByteAcc, NoLock, Preserve)
-            {
-                Offset (0x04), 
-                DA20,   8, 
-                DA21,   8
-            }
-
-            Field (SMBX, ByteAcc, NoLock, Preserve)
-            {
-                Offset (0x04), 
-                DAT0,   8, 
-                DAT1,   8
-            }
-
-            Field (SMBX, ByteAcc, NoLock, Preserve)
-            {
-                Offset (0x04), 
-                DTB0, 8,
-DTB1, 8
+                SPTR,   8, 
+                SSTS,   8, 
+                SADR,   8, 
+                SCMD,   8, 
+                SBFR,   256, 
+                SCNT,   8, 
+                SAAD,   8, 
+                SAD0,   8, 
+                SAD1,   8, 
+                SMUX,   8, 
             }
 
             OperationRegion (NSBS, EmbeddedControl, 0x40, 0x04)
@@ -13561,6 +13490,7 @@ DTB1, 8
                 If (LEqual (Arg0, 0x03))
                 {
                     Store (Arg1, ECFL)
+                    Store (Arg1, ECOK)
                 }
             }
             Name (WBTG, One)
@@ -13635,7 +13565,7 @@ DTB1, 8
                             {
                                 If (LEqual (SPTR, 0x00))
                                 {
-                                    Return (And (SSTX, 0x1F))
+                                    Return (And (SSTS, 0x1F))
                                 }
 
                                 Sleep (0x01)
@@ -14560,12 +14490,6 @@ DTB1, 8
                             And (Local2, 0xFFFF, Local2)
                             Return (Local2)
                         }
-                    }
-
-                    If (LEqual (IIA0, 0x00120043))
-                    {
-                        Store (^^PCI0.LPCB.EC0.BIFW (0x13), Local0)
-                        Return (Local0)
                     }
 
                     If (LEqual (IIA0, 0x00120044))
@@ -16141,480 +16065,156 @@ DTB1, 8
     Scope (_SB.PCI0)
     {
         Device (BAT0)
-        {
-            Name (_HID, EisaId ("PNP0C0A"))  // _HID: Hardware ID
-            Name (_UID, Zero)  // _UID: Unique ID
-            Name (_PCL, Package (One)  // _PCL: Power Consumer List
-            {
-                PCI0
-            })
-            Method (_STA, 0, NotSerialized)  // _STA: Status
-            {
-                If (^^LPCB.EC0.BATP (Zero))
-                {
-                    Return (0x1F)
-                }
-                Else
-                {
-                    Return (0x0F)
-                }
-            }
-
-            Name (LOW2, 0x012C)
-            Name (PUNT, One)
-            Name (LFCC, 0x1770)
-            Name (NBIF, Package (0x0D)
-            {
-                Zero, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                One, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                "", 
-                "", 
-                "", 
-                ""
-            })
-            Name (PBIF, Package (0x0D)
-            {
-                One, 
-                0x1770, 
-                0x1770, 
-                One, 
-                0x39D0, 
-                0x0258, 
-                0x012C, 
-                0x3C, 
-                0x3C, 
-                "M3N", 
-                " ", 
-                "LIon", 
-                "ASUSTeK"
-            })
-            Name (PBST, Package (0x04)
-            {
-                Zero, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF
-            })
-            Name (BIXT, Package (0x14)
-            {
-                Zero, 
-                Zero, 
-                0x1770, 
-                0x1770, 
-                One, 
-                0x39D0, 
-                0x0258, 
-                0x012C, 
-                Zero, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0x3C, 
-                0x3C, 
-                "M3N", 
-                " ", 
-                "LIon", 
-                "ASUSTeK"
-            })
-            Name (NBIX, Package (0x14)
-            {
-                Zero, 
-                Zero, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                One, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                Zero, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                "", 
-                "", 
-                "", 
-                ""
-            })
-            Method (FBIF, 5, NotSerialized)
-            {
-                Store (Arg0, PUNT)
-                Store (Arg1, Local1)
-                Store (Arg2, Local2)
-                If (LEqual (PUNT, Zero))
-                {
-                    Multiply (Local1, 0x0A, Local1)
-                    Multiply (Local2, 0x0A, Local2)
-                }
-
-                Store (Arg0, Index (PBIF, Zero))
-                Store (Local1, Index (PBIF, One))
-                Store (Local2, Index (PBIF, 0x02))
-                Store (Local2, LFCC)
-                Store (Arg3, Index (PBIF, 0x03))
-                Store (Arg4, Index (PBIF, 0x04))
-                Divide (Local1, 0x0A, Local3, Local5)
-                Store (Local5, Index (PBIF, 0x05))
-                Divide (Local1, 0x64, Local3, Local6)
-                Store (Local6, Index (PBIF, 0x06))
-                Store (Local6, LOW2)
-                Divide (Local1, 0x64, Local3, Local7)
-                Store (Local7, Index (PBIF, 0x07))
-                Store (Local7, Index (PBIF, 0x08))
-            }
-
-            Method (CBIF, 0, NotSerialized)
-            {
-                If (PUNT)
-                {
-                    Store (DerefOf (Index (PBIF, 0x04)), Local0)
-                    Store (Zero, Index (PBIF, Zero))
-                    Multiply (DerefOf (Index (PBIF, One)), Local0, Index (PBIF, One
-                        ))
-                    Multiply (DerefOf (Index (PBIF, 0x02)), Local0, Index (PBIF, 0x02
-                        ))
-                    Multiply (DerefOf (Index (PBIF, 0x05)), Local0, Index (PBIF, 0x05
-                        ))
-                    Multiply (DerefOf (Index (PBIF, 0x06)), Local0, Index (PBIF, 0x06
-                        ))
-                    Multiply (DerefOf (Index (PBIF, 0x07)), Local0, Index (PBIF, 0x07
-                        ))
-                    Multiply (DerefOf (Index (PBIF, 0x08)), Local0, Index (PBIF, 0x08
-                        ))
-                    Divide (DerefOf (Index (PBIF, One)), 0x03E8, Local2, Index (PBIF, 
-                        One))
-                    Divide (DerefOf (Index (PBIF, 0x02)), 0x03E8, Local2, Index (PBIF, 
-                        0x02))
-                    Divide (DerefOf (Index (PBIF, 0x05)), 0x03E8, Local2, Index (PBIF, 
-                        0x05))
-                    Divide (DerefOf (Index (PBIF, 0x06)), 0x03E8, Local2, Index (PBIF, 
-                        0x06))
-                    Divide (DerefOf (Index (PBIF, 0x07)), 0x03E8, Local2, Index (PBIF, 
-                        0x07))
-                    Divide (DerefOf (Index (PBIF, 0x08)), 0x03E8, Local2, Index (PBIF, 
-                        0x08))
-                }
-            }
-
-            Method (_BIF, 0, NotSerialized)  // _BIF: Battery Information
-            {
-                If (LNot (^^LPCB.EC0.BATP (Zero)))
-                {
-                    Return (NBIF)
-                }
-
-                If (LEqual (^^LPCB.EC0.GBTT (Zero), 0xFF))
-                {
-                    Return (NBIF)
-                }
-
-                BATO ()
-                BATS (Zero)
-                 
-                Store (ONAM, Index (PBIF, 0x0C))
-                Store (^^LPCB.EC0.BIF0 (), Local0)
-                Store (^^LPCB.EC0.BIF1 (), Local1)
-                Store (^^LPCB.EC0.BIF2 (), Local2)
-                Store (^^LPCB.EC0.BIF3 (), Local3)
-                Store (^^LPCB.EC0.BIF4 (), Local4)
-                If (LNotEqual (Local0, Ones))
-                {
-                    If (LNotEqual (Local1, Ones))
                     {
-                        If (LNotEqual (Local2, Ones))
+                        Name (_HID, EisaId ("PNP0C0A"))  // _HID: Hardware ID
+                        Name (_UID, 0x00)  // _UID: Unique ID
+                        Name (_PCL, Package (0x01)  // _PCL: Power Consumer List
                         {
-                            If (LNotEqual (Local3, Ones))
+                            PCI0
+                        })
+                        Name (BSSW, 0xFFFF)
+                        Name (PBIF, Package (0x0D)
+                        {
+                            0x00, 
+                            0xFFFFFFFF, 
+                            0xFFFFFFFF, 
+                            0x01, 
+                            0xFFFFFFFF, 
+                            0xFA, 
+                            0x64, 
+                            0x0A, 
+                            0x0A, 
+                            " ", 
+                            " ", 
+                            " ", 
+                            " "
+                        })
+                        Name (PBST, Package (0x04)
+                        {
+                            0x00, 
+                            0xFFFFFFFF, 
+                            0xFFFFFFFF, 
+                            0xFFFFFFFF
+                        })
+                        Method (_STA, 0, NotSerialized)  // _STA: Status
+                        {
+                            If (OSDW ())
                             {
-                                If (LNotEqual (Local4, Ones))
+                                Return (0x00)
+                            }
+
+                            If (\_SB.PCI0.LPCB.EC0.ECOK)
+                            {
+                                UBSS ()
+                                If (And (BSSW, 0x01))
                                 {
-                                    FBIF (Local0, Local1, Local2, Local3, Local4)
-                                    CBIF ()
+                                    Return (0x1F)
+                                }
+                                Else
+                                {
+                                    Return (0x0F)
                                 }
                             }
-                        }
-                    }
-                }
-
-                If (LEqual (PUNT, Zero))
-                {
-                    Multiply (Local2, 0x0A, Local2)
-                }
-
-                Store (Local2, LFCC)
-                BATR ()
-                Return (PBIF)
-            }
-
-            Method (FBST, 4, NotSerialized)
-            {
-                And (Arg1, 0xFFFF, Local1)
-                Store (Zero, Local0)
-                If (^^LPCB.EC0.ACAP ())
-                {
-                    Store (One, Local0)
-                }
-
-                If (Local0)
-                {
-                    Store (0x02, Local0)
-                }
-                Else
-                {
-                    Store (One, Local0)
-                }
-
-                If (BLLO)
-                {
-                    ShiftLeft (One, 0x02, Local2)
-                    Or (Local0, Local2, Local0)
-                }
-
-                If (And (^^LPCB.EC0.EB0S, 0x08))
-                {
-                    ShiftLeft (One, 0x02, Local2)
-                    Or (Local0, Local2, Local0)
-                }
-
-                If (LGreaterEqual (Local1, 0x8000))
-                {
-                    Subtract (0xFFFF, Local1, Local1)
-                }
-
-                Store (Arg2, Local2)
-                If (LEqual (PUNT, Zero))
-                {
-                    Multiply (Local1, ^^LPCB.EC0.B0DV, Local1)
-                    Multiply (Local2, 0x0A, Local2)
-                }
-
-                And (Local0, 0x02, Local3)
-                If (LNot (Local3))
-                {
-                    Subtract (LFCC, Local2, Local3)
-                    Divide (LFCC, 0xC8, Local4, Local5)
-                    If (LLess (Local3, Local5))
-                    {
-                        Store (LFCC, Local2)
-                    }
-                }
-                Else
-                {
-                    Divide (LFCC, 0xC8, Local4, Local5)
-                    Subtract (LFCC, Local5, Local4)
-                    If (LGreater (Local2, Local4))
-                    {
-                        Store (Local4, Local2)
-                    }
-                }
-
-                If (LNot (^^LPCB.EC0.ACAP ()))
-                {
-                    Divide (Local2, MBLF, Local3, Local4)
-                    If (LLess (Local1, Local4))
-                    {
-                        Store (Local4, Local1)
-                    }
-                }
-
-                Store (Local0, Index (PBST, Zero))
-                Store (Local1, Index (PBST, One))
-                Store (Local2, Index (PBST, 0x02))
-                Store (Arg3, Index (PBST, 0x03))
-            }
-
-            Method (CBST, 0, NotSerialized)
-            {
-                If (PUNT)
-                {
-                    Store (^^LPCB.EC0.B0DV, Index (PBST, 0x03))
-                    Store (DerefOf (Index (PBST, 0x03)), Local0)
-                    Multiply (DerefOf (Index (PBST, One)), Local0, Index (PBST, One
-                        ))
-                    Divide (DerefOf (Index (PBST, One)), 0x03E8, Local1, Index (PBST, 
-                        One))
-                    Multiply (DerefOf (Index (PBST, 0x02)), Local0, Index (PBST, 0x02
-                        ))
-                    Divide (DerefOf (Index (PBST, 0x02)), 0x03E8, Local1, Index (PBST, 
-                        0x02))
-                }
-            }
-
-            Method (_BST, 0, NotSerialized)  // _BST: Battery Status
-            {
-                Store (Zero, Index (PBST, Zero))
-                Store (Ones, Index (PBST, One))
-                Store (Ones, Index (PBST, 0x02))
-                Store (Ones, Index (PBST, 0x03))
-                If (LNot (^^LPCB.EC0.BATP (Zero)))
-                {
-                    Store (One, Index (PBST, Zero))
-                    Return (PBST)
-                }
-
-                If (LEqual (^^LPCB.EC0.GBTT (Zero), 0xFF))
-                {
-                    Return (PBST)
-                }
-
-                If (MES4)
-                {
-                    Decrement (MES4)
-                    Return (PBST)
-                }
-
-                BATO ()
-                BATS (Zero)
-                Store (^^LPCB.EC0.BSTS (), Local0)
-                Store (^^LPCB.EC0.BCRT (), Local1)
-                Store (^^LPCB.EC0.BRCP (), Local2)
-                Store (^^LPCB.EC0.BVOT (), Local3)
-                If (LNotEqual (Local0, Ones))
-                {
-                    If (LNotEqual (Local1, Ones))
-                    {
-                        If (LNotEqual (Local2, Ones))
-                        {
-                            If (LNotEqual (Local3, Ones))
+                            Else
                             {
-                                FBST (Local0, Local1, Local2, Local3)
-                                CBST ()
+                                Return (0x0F)
                             }
                         }
+
+                        Method (_BST, 0, NotSerialized)  // _BST: Battery Status
+                        {
+                            If (And (BSSW, 0x01))
+                            {
+                                UBST ()
+                            }
+                            Else
+                            {
+                                Store (0x00, Index (PBST, 0x00))
+                                Store (0xFFFFFFFF, Index (PBST, 0x01))
+                                Store (0xFFFFFFFF, Index (PBST, 0x02))
+                            }
+
+                            Return (PBST)
+                        }
+
+                        Method (_BIF, 0, NotSerialized)  // _BIF: Battery Information
+                        {
+                            If (And (BSSW, 0x01))
+                            {
+                                UBIF ()
+                            }
+
+                            Return (PBIF)
+                        }
+
+                        Method (BNOT, 1, NotSerialized)
+                        {
+                            Store (BSSW, Local0)
+                            Store (Arg0, BSSW)
+                            Notify (\_SB.PCI0.BAT0, 0x80)
+                            If (And (XOr (Local0, Arg0), 0x01))
+                            {
+                                Notify (\_SB.PCI0.BAT0, 0x81)
+                            }
+                        }
+
+                        Method (UBSS, 0, NotSerialized)
+                        {
+                            \_SB.PCI0.LPCB.EC0.SMB0.SBRW (0x0A, 0x01, RefOf (BSSW))
+                        }
+
+                        Method (UBIF, 0, NotSerialized)
+                        {
+                            \_SB.PCI0.LPCB.EC0.SMB0.SBRW (0x0B, 0x18, RefOf (Local0))
+                            Multiply (Local0, 0x0A, Index (PBIF, 0x01))
+                            \_SB.PCI0.LPCB.EC0.SMB0.SBRW (0x0B, 0x10, RefOf (Local0))
+                            Multiply (Local0, 0x0A, Index (PBIF, 0x02))
+                            \_SB.PCI0.LPCB.EC0.SMB0.SBRW (0x0B, 0x19, RefOf (Local0))
+                            Store (Local0, Index (PBIF, 0x04))
+                            \_SB.PCI0.LPCB.EC0.SMB0.SBRB (0x0B, 0x21, RefOf (Local0))
+                            Store (Local0, Index (PBIF, 0x09))
+                            Store (Buffer (0x01)
+                                {
+                                     0x00
+                                }, Index (PBIF, 0x0A))
+                            \_SB.PCI0.LPCB.EC0.SMB0.SBRB (0x0B, 0x22, RefOf (Local0))
+                            Store (Local0, Index (PBIF, 0x0B))
+                            \_SB.PCI0.LPCB.EC0.SMB0.SBRB (0x0B, 0x20, RefOf (Local0))
+                            Store (Local0, Index (PBIF, 0x0C))
+                        }
+
+                        Method (UBST, 0, NotSerialized)
+                        {
+                            \_SB.PCI0.LPCB.EC0.SMB0.SBRW (0x0B, 0x09, RefOf (Local2))
+                            Store (Local2, Index (PBST, 0x03))
+                            \_SB.PCI0.LPCB.EC0.SMB0.SBRW (0x0B, 0x0A, RefOf (Local0))
+                            If (And (Local0, 0x8000))
+                            {
+                                Not (Local0, Local0)
+                                And (Increment (Local0), 0xFFFF, Local0)
+                            }
+
+                            Multiply (Local0, Local2, Local0)
+                            Divide (Local0, 0x03E8, , Index (PBST, 0x01))
+                            \_SB.PCI0.LPCB.EC0.SMB0.SBRW (0x0B, 0x0F, RefOf (Local0))
+                            Multiply (Local0, 0x0A, Index (PBST, 0x02))
+                            Store (0x00, Local1)
+                            If (PWRS)
+                            {
+                                \_SB.PCI0.LPCB.EC0.SMB0.SBRW (0x0B, 0x16, RefOf (Local0))
+                                If (LNot (And (Local0, 0x40)))
+                                {
+                                    Store (0x02, Local1)
+                                }
+                            }
+                            Else
+                            {
+                                Store (0x01, Local1)
+                            }
+
+                            Store (Local1, Index (PBST, 0x00))
+                        }
                     }
-                }
-
-                BATR ()
-                Return (PBST)
-            }
-
-            Method (_BIX, 0, NotSerialized)  // _BIX: Battery Information Extended
-            {
-                If (LNot (^^LPCB.EC0.BATP (Zero)))
-                {
-                    Return (NBIX)
-                }
-
-                If (LEqual (^^LPCB.EC0.GBTT (Zero), 0xFF))
-                {
-                    Return (NBIX)
-                }
-
-                _BIF ()
-                Store (DerefOf (Index (PBIF, Zero)), Index (BIXT, One))
-                Store (DerefOf (Index (PBIF, One)), Index (BIXT, 0x02))
-                Store (DerefOf (Index (PBIF, 0x02)), Index (BIXT, 0x03))
-                Store (DerefOf (Index (PBIF, 0x03)), Index (BIXT, 0x04))
-                Store (DerefOf (Index (PBIF, 0x04)), Index (BIXT, 0x05))
-                Store (DerefOf (Index (PBIF, 0x05)), Index (BIXT, 0x06))
-                Store (DerefOf (Index (PBIF, 0x06)), Index (BIXT, 0x07))
-                Store (DerefOf (Index (PBIF, 0x07)), Index (BIXT, 0x0E))
-                Store (DerefOf (Index (PBIF, 0x08)), Index (BIXT, 0x0F))
-                Store (DerefOf (Index (PBIF, 0x09)), Index (BIXT, 0x10))
-                Store (DerefOf (Index (PBIF, 0x0A)), Index (BIXT, 0x11))
-                Store (DerefOf (Index (PBIF, 0x0B)), Index (BIXT, 0x12))
-                Store (DerefOf (Index (PBIF, 0x0C)), Index (BIXT, 0x13))
-                If (LEqual (DerefOf (Index (BIXT, One)), One))
-                {
-                    Store (Zero, Index (BIXT, One))
-                    Store (DerefOf (Index (BIXT, 0x05)), Local0)
-                    Multiply (DerefOf (Index (BIXT, 0x02)), Local0, Index (BIXT, 0x02
-                        ))
-                    Multiply (DerefOf (Index (BIXT, 0x03)), Local0, Index (BIXT, 0x03
-                        ))
-                    Multiply (DerefOf (Index (BIXT, 0x06)), Local0, Index (BIXT, 0x06
-                        ))
-                    Multiply (DerefOf (Index (BIXT, 0x07)), Local0, Index (BIXT, 0x07
-                        ))
-                    Multiply (DerefOf (Index (BIXT, 0x0E)), Local0, Index (BIXT, 0x0E
-                        ))
-                    Multiply (DerefOf (Index (BIXT, 0x0F)), Local0, Index (BIXT, 0x0F
-                        ))
-                    Divide (DerefOf (Index (BIXT, 0x02)), 0x03E8, Local0, Index (BIXT, 
-                        0x02))
-                    Divide (DerefOf (Index (BIXT, 0x03)), 0x03E8, Local0, Index (BIXT, 
-                        0x03))
-                    Divide (DerefOf (Index (BIXT, 0x06)), 0x03E8, Local0, Index (BIXT, 
-                        0x06))
-                    Divide (DerefOf (Index (BIXT, 0x07)), 0x03E8, Local0, Index (BIXT, 
-                        0x07))
-                    Divide (DerefOf (Index (BIXT, 0x0E)), 0x03E8, Local0, Index (BIXT, 
-                        0x0E))
-                    Divide (DerefOf (Index (BIXT, 0x0F)), 0x03E8, Local0, Index (BIXT, 
-                        0x0F))
-                }
-
-                Store (B1B2 (^^LPCB.EC0.BC30, ^^LPCB.EC0.BC31), Index (BIXT, 0x08))
-                Store (0x0001869F, Index (BIXT, 0x09))
-                Return (BIXT)
-            }
-
-            Method (_BTP, 1, NotSerialized)  // _BTP: Battery Trip Point
-            {
-                ^^LPCB.EC0.ST8E (0x29, 0xFF)
-                ^^LPCB.EC0.ST8E (0x2A, 0xFF)
-                ^^LPCB.EC0.ST8E (0x28, 0x0F)
-                If (LNotEqual (Arg0, Zero))
-                {
-                    Store (DerefOf (Index (PBIF, 0x04)), Local0)
-                    Multiply (Arg0, 0x03E8, Local1)
-                    Divide (Local1, Local0, Local2, Local3)
-                    ^^LPCB.EC0.ST9E (0x29, 0xFF, And (Local3, 0xFF))
-                    ShiftRight (Local3, 0x08, Local2)
-                    And (Local2, 0xFF, Local2)
-                    ^^LPCB.EC0.ST9E (0x2A, 0xFF, Local2)
-                }
-            }
-        }
-
-        Name (B0CR, Zero)
-        Name (B1CR, Zero)
-        Method (GGCC, 1, Serialized)
-        {
-            BATO ()
-            BATS (Arg0)
-            Store (^LPCB.EC0.BCRT (), Local0)
-            BATR ()
-            If (LEqual (Local0, Ones))
-            {
-                If (Arg0)
-                {
-                    Store (B1CR, Local0)
-                }
-                Else
-                {
-                    Store (B0CR, Local0)
-                }
-            }
-
-            And (Local0, 0x8000, Local1)
-            If (Local1)
-            {
-                Store (Zero, Local0)
-            }
-
-            If (Arg0)
-            {
-                Store (Local0, B1CR)
-            }
-            Else
-            {
-                Store (Local0, B0CR)
-            }
-
-            Return (Local0)
-        }
     }
 
     Scope (_SB.PCI0.LPCB.EC0)
@@ -16628,197 +16228,6 @@ DTB1, 8
                 NBAT (0x80)
             }
         }
-
-        Method (BIFW, 1, NotSerialized)
-        {
-            Store (SMBR (RDWD, BADR, Arg0), Local0)
-            Store (DerefOf (Index (Local0, Zero)), Local1)
-            If (Local1)
-            {
-                Return (Ones)
-            }
-            Else
-            {
-                Return (DerefOf (Index (Local0, 0x02)))
-            }
-        }
-
-        Method (BIF0, 0, NotSerialized)
-        {
-            If (ECAV ())
-            {
-                If (BSLF)
-                {
-                    Store (B1MD, Local0)
-                }
-                Else
-                {
-                    Store (B0MD, Local0)
-                }
-
-                If (LNotEqual (Local0, 0xFFFF))
-                {
-                    ShiftRight (Local0, 0x0F, Local1)
-                    And (Local1, One, Local1)
-                    XOr (Local1, One, Local0)
-                }
-            }
-            Else
-            {
-                Store (Ones, Local0)
-            }
-
-            Return (Local0)
-        }
-
-        Method (BIF1, 0, NotSerialized)
-        {
-            If (ECAV ())
-            {
-                If (BSLF)
-                {
-                    Store (B1DC, Local0)
-                }
-                Else
-                {
-                    Store (B0DC, Local0)
-                }
-
-                And (Local0, 0xFFFF, Local0)
-            }
-            Else
-            {
-                Store (Ones, Local0)
-            }
-
-            Return (Local0)
-        }
-
-        Method (BIF2, 0, NotSerialized)
-        {
-            If (ECAV ())
-            {
-                If (BSLF)
-                {
-                    Store (B1FC, Local0)
-                }
-                Else
-                {
-                    Store (B0FC, Local0)
-                }
-
-                And (Local0, 0xFFFF, Local0)
-            }
-            Else
-            {
-                Store (Ones, Local0)
-            }
-
-            Return (Local0)
-        }
-
-        Method (BIF3, 0, NotSerialized)
-        {
-            If (ECAV ())
-            {
-                If (BSLF)
-                {
-                    Store (B1MD, Local0)
-                }
-                Else
-                {
-                    Store (B0MD, Local0)
-                }
-
-                If (LNotEqual (Local0, 0xFFFF))
-                {
-                    ShiftRight (Local0, 0x09, Local0)
-                    And (Local0, One, Local0)
-                    XOr (Local0, One, Local0)
-                }
-            }
-            Else
-            {
-                Store (Ones, Local0)
-            }
-
-            Return (Local0)
-        }
-
-        Method (BIF4, 0, NotSerialized)
-        {
-            If (ECAV ())
-            {
-                If (BSLF)
-                {
-                    Store (B1DV, Local0)
-                }
-                Else
-                {
-                    Store (B0DV, Local0)
-                }
-            }
-            Else
-            {
-                Store (Ones, Local0)
-            }
-
-            Return (Local0)
-        }
-
-        Method (BIF9, 0, NotSerialized)
-        {
-            Name (BSTR, Buffer (0x20) {})
-            Store (SMBR (RDBL, BADR, 0x21), Local0)
-            If (LNotEqual (DerefOf (Index (Local0, Zero)), Zero))
-            {
-                Store (MNAM, BSTR)
-                Store (Zero, Index (BSTR, 0x04))
-            }
-            Else
-            {
-                Store (DerefOf (Index (Local0, 0x02)), BSTR)
-                Store (Zero, Index (BSTR, DerefOf (Index (Local0, One))))
-            }
-
-            Return (BSTR)
-        }
-
-        Method (BIFA, 0, NotSerialized)
-        {
-            If (ECAV ())
-            {
-                If (BSLF)
-                {
-                    Store (B1B2 (B1S0, B1S1), Local0)
-                }
-                Else
-                {
-                    Store (B1B2 (B0S0, B0S1), Local0)
-                }
-            }
-            Else
-            {
-                Store (Ones, Local0)
-            }
-
-            Return (Local0)
-        }
-
-        Method (BSTS, 0, NotSerialized)
-        {
-            If (BSLF)
-            {
-                Store (B1ST, Local0)
-            }
-            Else
-            {
-                Store (B0ST, Local0)
-            }
-
-            Return (Local0)
-        }
-
         Method (BCRT, 0, NotSerialized)
         {
             If (BSLF)
@@ -16912,8 +16321,7 @@ DTB1, 8
                 Sleep (0x07D0)
             }
 
-            Notify (BAT0, 0x80)
-            Notify (BAT0, 0x81)
+            Notify (SMB0, 0x80)
         }
 
         Method (_QA5, 0, NotSerialized)  // _Qxx: EC Query
@@ -16927,7 +16335,7 @@ DTB1, 8
             {
                 If (BATP (Zero))
                 {
-                    Notify (BAT0, 0x80)
+                    Notify (SMB0, 0x80)
                 }
             }
         }
@@ -16939,11 +16347,11 @@ DTB1, 8
                 Store (BCLE (Zero), Local0)
                 If (LEqual (Local0, Zero))
                 {
-                    Notify (BAT0, 0x80)
+                    Notify (SMB0, 0x80)
                 }
                 Else
                 {
-                    Notify (BAT0, 0x81)
+                    Notify (SMB0, 0x81)
                     Notify (ADP1, 0x80)
                 }
             }
@@ -16965,7 +16373,7 @@ DTB1, 8
         {
             If (BATP (Zero))
             {
-                Notify (BAT0, Arg0)
+                Notify (SMB0, Arg0)
             }
         }
     }
@@ -17132,11 +16540,6 @@ DTB1, 8
                 Store (EC01 (Arg0, Arg2), Local0)
             }
 
-            If (LEqual (Arg1, 0x02))
-            {
-                Store (EC02 (Arg0, Arg2), Local0)
-            }
-
             If (Local0)
             {
                 Store (Local0, EM30)
@@ -17194,50 +16597,6 @@ DTB1, 8
             Store (DerefOf (Index (Local0, 0x05)), EDA5)
             Return (DerefOf (Index (Local0, Zero)))
         }
-
-        Method (EC02, 2, NotSerialized)
-        {
-            If (LLess (Arg1, 0x30))
-            {
-                Return (0x02)
-            }
-
-            OperationRegion (FEC2, SystemMemory, Arg0, Arg1)
-            Field (FEC2, DWordAcc, NoLock, Preserve)
-            {
-                Offset (0x08), 
-                BUSN,   8, 
-                PROT,   8, 
-                DADD,   8, 
-                DREG,   8, 
-                DAT0,   8, 
-                DAT1,   8, 
-                BLEN,   8, 
-                REVB,   8, 
-                BLKK,   256
-            }
-
-            Store (Package (0x02)
-                {
-                    Zero, 
-                    Buffer (0x20) {}
-                }, Local1)
-            Store (BLEN, Index (Local1, Zero))
-            Store (BLKK, Index (Local1, One))
-            Store (^^PCI0.LPCB.EC0.ECSB (BUSN, PROT, DADD, DREG, DAT0, DAT1, Local1), Local0)
-            If (LEqual (DerefOf (Index (Local0, Zero)), Zero))
-            {
-                Store (DerefOf (Index (Local0, One)), DAT0)
-                Store (DerefOf (Index (Local0, 0x02)), DAT1)
-                Store (DerefOf (Index (Local0, 0x03)), BLEN)
-                Store (DerefOf (Index (Local0, 0x04)), BLKK)
-            }
-
-            Store (DerefOf (Index (Local0, Zero)), Local2)
-            And (Local2, 0x3F, Local2)
-            Return (Local2)
-        }
-
         Method (GENW, 1, NotSerialized)
         {
             Store (Zero, RTCW)
@@ -17392,16 +16751,6 @@ DTB1, 8
                 Store (GBAT (Arg0, Arg1), Local0)
             }
 
-            If (LEqual (Arg2, 0x02))
-            {
-                Store (ASBR (Arg0, Arg1), Local0)
-            }
-
-            If (LEqual (Arg2, 0x03))
-            {
-                Store (ASBE (Arg0, Arg1), Local0)
-            }
-
             If (LEqual (Arg2, 0x04))
             {
                 Store (BTCR (Arg0, Arg1), Local0)
@@ -17448,152 +16797,6 @@ DTB1, 8
             Store (One, BTNM)
             Store (Zero, BTTP)
             Return (Zero)
-        }
-
-        Method (ASBR, 2, NotSerialized)
-        {
-            If (LLess (Arg1, 0x30))
-            {
-                Return (0x02)
-            }
-
-            OperationRegion (\F112, SystemMemory, Arg0, Arg1)
-            Field (F112, DWordAcc, NoLock, Preserve)
-            {
-                Offset (0x08), 
-                BATN,   8, 
-                BATA,   8, 
-                REGS,   8, 
-                BDAT,   16, 
-                BLEN,   8, 
-                BREV,   16, 
-                BLK1,   32, 
-                BLK2,   32, 
-                BLK3,   32, 
-                BLK4,   32, 
-                BLK5,   32, 
-                BLK6,   32, 
-                BLK7,   32, 
-                BLK8,   32
-            }
-
-            If (LGreaterEqual (BATN, One))
-            {
-                Return (0x11)
-            }
-
-            If (LEqual (BATA, Zero))
-            {
-                Store (^^PCI0.LPCB.EC0.SMBR (^^PCI0.LPCB.EC0.RDWD, ^^PCI0.LPCB.EC0.BADR, REGS), Local0)
-                Store (DerefOf (Index (Local0, 0x02)), BDAT)
-                Store (DerefOf (Index (Local0, Zero)), Local2)
-                And (Local2, 0x1F, Local2)
-                If (Local2)
-                {
-                    Add (Local2, 0x10, Local2)
-                }
-
-                Return (Local2)
-            }
-
-            If (LEqual (BATA, One))
-            {
-                Store (^^PCI0.LPCB.EC0.SMBW (^^PCI0.LPCB.EC0.WRWD, ^^PCI0.LPCB.EC0.BADR, REGS, 0x02, BDAT), Local0)
-                Store (DerefOf (Index (Local0, Zero)), Local2)
-                And (Local2, 0x1F, Local2)
-                If (Local2)
-                {
-                    Add (Local2, 0x10, Local2)
-                }
-
-                Return (Local2)
-            }
-
-            If (LEqual (BATA, 0x02))
-            {
-                Store (^^PCI0.LPCB.EC0.SMBR (^^PCI0.LPCB.EC0.RDBL, ^^PCI0.LPCB.EC0.BADR, REGS), Local0)
-                Name (BKUF, Buffer (0x20) {})
-                CreateDWordField (BKUF, Zero, DAT1)
-                CreateDWordField (BKUF, 0x04, DAT2)
-                CreateDWordField (BKUF, 0x08, DAT3)
-                CreateDWordField (BKUF, 0x0C, DAT4)
-                CreateDWordField (BKUF, 0x10, DAT5)
-                CreateDWordField (BKUF, 0x14, DAT6)
-                CreateDWordField (BKUF, 0x18, DAT7)
-                CreateDWordField (BKUF, 0x1C, DAT8)
-                Store (DerefOf (Index (Local0, 0x02)), BKUF)
-                Store (DAT1, BLK1)
-                Store (DAT2, BLK2)
-                Store (DAT3, BLK3)
-                Store (DAT4, BLK4)
-                Store (DAT5, BLK5)
-                Store (DAT6, BLK6)
-                Store (DAT7, BLK7)
-                Store (DAT8, BLK8)
-                Store (DerefOf (Index (Local0, One)), BLEN)
-                Store (DerefOf (Index (Local0, Zero)), Local2)
-                And (Local2, 0x1F, Local2)
-                If (Local2)
-                {
-                    Add (Local2, 0x10, Local2)
-                }
-
-                Return (Local2)
-            }
-
-            Return (0x10)
-        }
-
-        Method (ASBE, 2, Serialized)
-        {
-            If (LLess (Arg1, 0x0C))
-            {
-                Return (0x02)
-            }
-
-            OperationRegion (\F113, SystemMemory, Arg0, Arg1)
-            Field (F113, DWordAcc, NoLock, Preserve)
-            {
-                Offset (0x08), 
-                BATN,   8, 
-                BATA,   8, 
-                REGS,   8, 
-                BDAT,   8
-            }
-
-            If (LGreater (BATN, One))
-            {
-                Return (0x11)
-            }
-
-            If (LEqual (BATA, Zero))
-            {
-                Store (^^PCI0.LPCB.EC0.RBEP (REGS), Local2)
-                And (Local2, 0xFF, Local3)
-                Store (Local3, BDAT)
-                ShiftRight (Local2, 0x08, Local2)
-                And (Local2, 0x1F, Local2)
-                If (Local2)
-                {
-                    Add (Local2, 0x10, Local2)
-                }
-
-                Return (Local2)
-            }
-
-            If (LEqual (BATA, One))
-            {
-                Store (^^PCI0.LPCB.EC0.WBEP (REGS, BDAT), Local2)
-                And (Local2, 0x1F, Local2)
-                If (Local2)
-                {
-                    Add (Local2, 0x10, Local2)
-                }
-
-                Return (Local2)
-            }
-
-            Return (0x10)
         }
 
         Method (BTCR, 2, NotSerialized)
@@ -19737,241 +18940,8 @@ DTB1, 8
             Return (Local0)
         }
 
-        Method (SMBR, 3, Serialized)
-        {
-            Store (Package (0x03)
-                {
-                    0x07, 
-                    Zero, 
-                    Zero
-                }, Local0)
-            If (LNot (ECAV ()))
-            {
-                Return (Local0)
-            }
-
-            If (LNotEqual (Arg0, RDBL))
-            {
-                If (LNotEqual (Arg0, RDWD))
-                {
-                    If (LNotEqual (Arg0, RDBT))
-                    {
-                        If (LNotEqual (Arg0, RCBT))
-                        {
-                            If (LNotEqual (Arg0, RDQK))
-                            {
-                                Return (Local0)
-                            }
-                        }
-                    }
-                }
-            }
-
-            Acquire (MUEC, 0xFFFF)
-            Store (SPTR, Local1)
-            Store (Zero, Local2)
-            While (LNotEqual (Local1, Zero))
-            {
-                Stall (0x0A)
-                Increment (Local2)
-                If (LGreater (Local2, 0x03E8))
-                {
-                    Store (SBBY, Index (Local0, Zero))
-                    Store (Zero, Local1)
-                }
-                Else
-                {
-                    Store (SPTR, Local1)
-                }
-            }
-
-            If (LLessEqual (Local2, 0x03E8))
-            {
-                ShiftLeft (Arg1, One, Local3)
-                Or (Local3, One, Local3)
-                Store (Local3, SADR)
-                If (LNotEqual (Arg0, RDQK))
-                {
-                    If (LNotEqual (Arg0, RCBT))
-                    {
-                        Store (Arg2, SCMD)
-                    }
-                }
-
-                WECB(0x1c,256,Zero)
-                Store (Arg0, SPTR)
-                Store (SWTC (Arg0), Index (Local0, Zero))
-                If (LEqual (DerefOf (Index (Local0, Zero)), Zero))
-                {
-                    If (LEqual (Arg0, RDBL))
-                    {
-                        Store (BCNT, Index (Local0, One))
-                        Store (RECB(0x1c,256), Index (Local0, 0x02))
-                    }
-
-                    If (LEqual (Arg0, RDWD))
-                    {
-                        Store (0x02, Index (Local0, One))
-                        Store (B1B2 (DTB0, DTB1), Index (Local0, 0x02))
-                    }
-
-                    If (LEqual (Arg0, RDBT))
-                    {
-                        Store (One, Index (Local0, One))
-                        Store (DAT0, Index (Local0, 0x02))
-                    }
-
-                    If (LEqual (Arg0, RCBT))
-                    {
-                        Store (One, Index (Local0, One))
-                        Store (DAT0, Index (Local0, 0x02))
-                    }
-                }
-            }
-
-            Release (MUEC)
-            Return (Local0)
-        }
-
-        Method (SMBW, 5, Serialized)
-        {
-            Store (Package (One)
-                {
-                    0x07
-                }, Local0)
-            If (LNot (ECAV ()))
-            {
-                Return (Local0)
-            }
-
-            If (LNotEqual (Arg0, WRBL))
-            {
-                If (LNotEqual (Arg0, WRWD))
-                {
-                    If (LNotEqual (Arg0, WRBT))
-                    {
-                        If (LNotEqual (Arg0, SDBT))
-                        {
-                            If (LNotEqual (Arg0, WRQK))
-                            {
-                                Return (Local0)
-                            }
-                        }
-                    }
-                }
-            }
-
-            Acquire (MUEC, 0xFFFF)
-            Store (SPTR, Local1)
-            Store (Zero, Local2)
-            While (LNotEqual (Local1, Zero))
-            {
-                Stall (0x0A)
-                Increment (Local2)
-                If (LGreater (Local2, 0x03E8))
-                {
-                    Store (SBBY, Index (Local0, Zero))
-                    Store (Zero, Local1)
-                }
-                Else
-                {
-                    Store (SPTR, Local1)
-                }
-            }
-
-            If (LLessEqual (Local2, 0x03E8))
-            {
-                WECB(0x1c,256,Zero)
-                ShiftLeft (Arg1, One, Local3)
-                Store (Local3, SADR)
-                If (LNotEqual (Arg0, WRQK))
-                {
-                    If (LNotEqual (Arg0, SDBT))
-                    {
-                        Store (Arg2, SCMD)
-                    }
-                }
-
-                If (LEqual (Arg0, WRBL))
-                {
-                    Store (Arg3, BCNT)
-                    WECB(0x1c,256,Arg4)
-                }
-
-                If (LEqual (Arg0, WRWD))
-                {
-                    Store (Arg4, Local4)
-Store (Local4, DTB0)
-Store (ShiftRight (Local4, 8), DTB1) 
-                }
-
-                If (LEqual (Arg0, WRBT))
-                {
-                    Store (Arg4, DAT0)
-                }
-
-                If (LEqual (Arg0, SDBT))
-                {
-                    Store (Arg4, DAT0)
-                }
-
-                Store (Arg0, SPTR)
-                Store (SWTC (Arg0), Index (Local0, Zero))
-            }
-
-            Release (MUEC)
-            Return (Local0)
-        }
-
         Mutex (MUEP, 0x00)
-        Method (RBEP, 1, NotSerialized)
-        {
-            Store (0xFFFF, Local1)
-            Acquire (MUEP, 0xFFFF)
-            Store (RRAM (0x0620), Local3)
-            And (Local3, 0x7F, Local4)
-            WRAM (0x0620, Local4)
-            Store (0x10, Local2)
-            Store (0x10, Local1)
-            While (And (LEqual (Local1, 0x10), LNotEqual (Local2, Zero)))
-            {
-                SMBW (WRWD, BADR, Zero, 0x02, 0x0635)
-                SMBW (WRWD, BADR, Zero, 0x02, 0x0606)
-                Store (SMBR (RDBT, 0x50, Arg0), Local0)
-                Store (DerefOf (Index (Local0, Zero)), Local1)
-                Decrement (Local2)
-            }
-
-            WRAM (0x0620, Local3)
-            ShiftLeft (Local1, 0x08, Local1)
-            Or (Local1, DerefOf (Index (Local0, 0x02)), Local1)
-            Release (MUEP)
-            Return (Local1)
-        }
-
-        Method (WBEP, 2, NotSerialized)
-        {
-            Store (0xFFFF, Local1)
-            Acquire (MUEP, 0xFFFF)
-            Store (RRAM (0x0620), Local3)
-            And (Local3, 0x7F, Local4)
-            WRAM (0x0620, Local4)
-            Store (0x10, Local2)
-            Store (0x10, Local1)
-            While (And (LEqual (Local1, 0x10), LNotEqual (Local2, Zero)))
-            {
-                SMBW (WRWD, BADR, Zero, 0x02, 0x0635)
-                SMBW (WRWD, BADR, Zero, 0x02, 0x0606)
-                Store (SMBW (WRBT, 0x50, Arg0, One, Arg1), Local0)
-                Store (DerefOf (Index (Local0, Zero)), Local1)
-                Decrement (Local2)
-            }
-
-            WRAM (0x0620, Local3)
-            Release (MUEP)
-            Return (Local1)
-        }
-
+       
         Method (ECXT, 6, NotSerialized)
         {
             If (ECAV ())
@@ -20004,150 +18974,6 @@ Store (ShiftRight (Local4, 8), DTB1)
             } Else {
             Return (Zero)
             }
-        }
-
-        Method (ECSB, 7, NotSerialized)
-        {
-            Store (Package (0x05)
-                {
-                    0x11, 
-                    Zero, 
-                    Zero, 
-                    Zero, 
-                    Buffer (0x20) {}
-                }, Local1)
-            If (LGreater (Arg0, One))
-            {
-                Return (Local1)
-            }
-
-            If (ECAV ())
-            {
-                Acquire (MUEC, 0xFFFF)
-                If (LEqual (Arg0, Zero))
-                {
-                    Store (SPTR, Local0)
-                }
-                Else
-                {
-                    Store (PRT2, Local0)
-                }
-
-                Store (Zero, Local2)
-                While (LNotEqual (Local0, Zero))
-                {
-                    Stall (0x0A)
-                    Increment (Local2)
-                    If (LGreater (Local2, 0x03E8))
-                    {
-                        Store (SBBY, Index (Local1, Zero))
-                        Store (Zero, Local0)
-                    }
-                    Else
-                    {
-                        If (LEqual (Arg0, Zero))
-                        {
-                            Store (SPTR, Local0)
-                        }
-                        Else
-                        {
-                            Store (PRT2, Local0)
-                        }
-                    }
-                }
-
-                If (LLessEqual (Local2, 0x03E8))
-                {
-                    If (LEqual (Arg0, Zero))
-                    {
-                        Store (Arg2, SADR)
-                        Store (Arg3, SCMD)
-                        If (LOr (LEqual (Arg1, 0x0A), LEqual (Arg1, 0x0B)))
-                        {
-                            Store (DerefOf (Index (Arg6, Zero)), BCNT)
-                            WECB(0x1c,256,DerefOf (Index (Arg6, One)))
-                        }
-                        Else
-                        {
-                            Store (Arg4, DAT0)
-                            Store (Arg5, DAT1)
-                        }
-
-                        Store (Arg1, SPTR)
-                    }
-                    Else
-                    {
-                        Store (Arg2, ADD2)
-                        Store (Arg3, CMD2)
-                        If (LOr (LEqual (Arg1, 0x0A), LEqual (Arg1, 0x0B)))
-                        {
-                            Store (DerefOf (Index (Arg6, Zero)), BCN2)
-                            WECB(0x44,256,DerefOf (Index (Arg6, One)))
-                        }
-                        Else
-                        {
-                            Store (Arg4, DA20)
-                            Store (Arg5, DA21)
-                        }
-
-                        Store (Arg1, PRT2)
-                    }
-
-                    Store (0x7F, Local0)
-                    If (LEqual (Arg0, Zero))
-                    {
-                        While (SPTR)
-                        {
-                            Sleep (One)
-                            Decrement (Local0)
-                        }
-                    }
-                    Else
-                    {
-                        While (PRT2)
-                        {
-                            Sleep (One)
-                            Decrement (Local0)
-                        }
-                    }
-
-                    If (Local0)
-                    {
-                        If (LEqual (Arg0, Zero))
-                        {
-                            Store (SSTS, Local0)
-                            Store (DAT0, Index (Local1, One))
-                            Store (DAT1, Index (Local1, 0x02))
-                            Store (BCNT, Index (Local1, 0x03))
-                            Store (RECB(0x1c,256), Index (Local1, 0x04))
-                        }
-                        Else
-                        {
-                            Store (SST2, Local0)
-                            Store (DA20, Index (Local1, One))
-                            Store (DA21, Index (Local1, 0x02))
-                            Store (BCN2, Index (Local1, 0x03))
-                            Store (RECB(0x44,256), Index (Local1, 0x04))
-                        }
-
-                        And (Local0, 0x1F, Local0)
-                        If (Local0)
-                        {
-                            Add (Local0, 0x10, Local0)
-                        }
-
-                        Store (Local0, Index (Local1, Zero))
-                    }
-                    Else
-                    {
-                        Store (0x10, Index (Local1, Zero))
-                    }
-                }
-
-                Release (MUEC)
-            }
-
-            Return (Local1)
         }
 
         Method (TPSW, 1, NotSerialized)
@@ -21508,16 +20334,6 @@ Store (ShiftRight (Local4, 8), DTB1)
 
         Method (_Q20, 0, NotSerialized)  // _Qxx: EC Query
         {
-            If (CDFG)
-            {
-                Store (One, SMBF)
-                Store (Zero, CDFG)
-            }
-
-            If (ALFG)
-            {
-                Store (Zero, ALFG)
-            }
         }
 
         Method (_QB3, 0, NotSerialized)  // _Qxx: EC Query
@@ -21525,64 +20341,12 @@ Store (ShiftRight (Local4, 8), DTB1)
             ^^^^ATKD.IANE (0x6D)
         }
 
-        Method (ECRS, 2, Serialized)
-        {
-            If (ECAV ())
-            {
-                Acquire (MUEC, 0xFFFF)
-                Store (Arg0, ADD2)
-                Store (Arg1, CMD2)
-                Store (0x07, PRT2)
-                Store (0x7F, Local0)
-                While (PRT2)
-                {
-                    Sleep (One)
-                    Decrement (Local0)
-                }
-
-                If (Local0)
-                {
-                    Store (DA20, Local0)
-                }
-                Else
-                {
-                    Store (Ones, Local0)
-                }
-
-                Release (MUEC)
-            }
-
-            Return (Local0)
-        }
-
-        Method (ECWS, 3, Serialized)
-        {
-            If (ECAV ())
-            {
-                Acquire (MUEC, 0xFFFF)
-                Store (Arg0, ADD2)
-                Store (Arg1, CMD2)
-                Store (Arg2, DA20)
-                Store (0x06, PRT2)
-                Store (0x07FF, Local0)
-                While (PRT2)
-                {
-                    Sleep (One)
-                    Decrement (Local0)
-                }
-
-                Release (MUEC)
-            }
-
-            Return (Local0)
-        }
-
         Method (_QAC, 0, NotSerialized)  // _Qxx: EC Query
         {
             Store (ST8E (0x28, Zero), Local0)
             If (LEqual (And (Local0, One), One))
             {
-                Notify (BAT0, 0x80)
+                Notify (SMB0, 0x80)
             }
         }
 
@@ -23905,8 +22669,8 @@ Store (ShiftRight (Local4, 8), DTB1)
 
     Scope (\)
     {
-        OperationRegion (SMB0, SystemIO, \_SB.SMBB, 0x10)
-        Field (SMB0, ByteAcc, NoLock, Preserve)
+        OperationRegion (SMBA, SystemIO, \_SB.SMBB, 0x10)
+        Field (SMBA, ByteAcc, NoLock, Preserve)
         {
             HSTS,   8, 
             SSTS,   8, 
