@@ -13370,10 +13370,8 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
                 Offset (0x8A), 
                 HKEN,   1, 
                 Offset (0x93), 
-                TH00, 8,
-TH01, 8, 
-                TH10, 8,
-TH11, 8, 
+                TH00, 8,TH01, 8, 
+                TH10, 8,TH11, 8, 
                 TSTP,   8, 
                 Offset (0x9C), 
                 CDT4,   8, 
@@ -13398,8 +13396,7 @@ TH11, 8,
                 B0T0,8,B0T1,8, 
                 B010,8,B011,8, 
                 B020,8,B021,8, 
-                BC30, 8,
-BC31, 8, 
+                BC30, 8,BC31, 8, 
                 B040,8,B041,8, 
                 Offset (0xD0), 
                 B1N0,8,B1N1,8, 
@@ -13417,13 +13414,11 @@ BC31, 8,
                 Offset (0xF0), 
                 Offset (0xF2), 
                 Offset (0xF4), 
-                B0S0, 8,
-B0S1, 8, 
+                B0S0, 8,B0S1, 8, 
                 Offset (0xF8), 
                 Offset (0xFA), 
                 Offset (0xFC), 
-                B1S0, 8,
-B1S1, 8
+                B1S0, 8,B1S1, 8
             }
             Field (ECOR, ByteAcc, Lock, Preserve)
                     {
@@ -13450,13 +13445,6 @@ B1S1, 8
                 ALAD,   7, 
                 ALD0,   8, 
                 ALD1,   8
-            }
-            
-            OperationRegion (SMBY, EmbeddedControl, 0x18, 0x28)
-            Field (SMBY, ByteAcc, NoLock, Preserve)
-            {
-                    ,   8, 
-                SSTX,   8, 
             }
 
             OperationRegion (SMB2, EmbeddedControl, 0x40, 0x28)
@@ -13605,96 +13593,6 @@ DTB1, 8
                 }
             }
             Name (WBTS, One)
-            Device (SMB0)
-                    {
-                        Name (_HID, "ACPI0001")  // _HID: Hardware ID
-                        Name (_EC, 0x2010)  // _EC_: Embedded Controller
-                        Mutex (SMTX, 0x00)
-                        Method (_STA, 0, NotSerialized)  // _STA: Status
-                        {
-                            If (OSDW ())
-                            {
-                                Return (0x0F)
-                            }
-                            Else
-                            {
-                                Return (0x00)
-                            }
-                        }
-
-                        Device (SBS0)
-                        {
-                            Name (_HID, "ACPI0002")  // _HID: Hardware ID
-                            Name (_SBS, 0x01)  // _SBS: Smart Battery Subsystem
-                        }
-
-                        Method (SBPC, 1, NotSerialized)
-                        {
-                            Store (Arg0, Local0)
-                            While (Local0)
-                            {
-                                If (LEqual (SPTR, 0x00))
-                                {
-                                    Return (And (SSTX, 0x1F))
-                                }
-
-                                Sleep (0x01)
-                                Decrement (Local0)
-                            }
-
-                            Return (0x18)
-                        }
-
-                        Method (SBRW, 3, NotSerialized)
-                        {
-                            Store (One, Local0)
-                            If (LNot (Acquire (\_SB.PCI0.LPCB.EC0.SMB0.SMTX, 0xFFFF)))
-                            {
-                                If (LEqual (SPTR, 0x00))
-                                {
-                                    Store (ShiftLeft (Arg0, 0x01), SADR)
-                                    Store (Arg1, SCMD)
-                                    Store (0x09, SPTR)
-                                    Store (SBPC (0x03E8), Local0)
-                                    If (LNot (Local0))
-                                    {
-                                        Store (SBDW, Arg2)
-                                    }
-                                }
-
-                                Release (\_SB.PCI0.LPCB.EC0.SMB0.SMTX)
-                            }
-
-                            Return (Local0)
-                        }
-
-                        Method (SBRB, 3, NotSerialized)
-                        {
-                            Store (One, Local0)
-                            Store (Buffer (0x01)
-                                {
-                                     0x00
-                                }, Local1)
-                            If (LNot (Acquire (\_SB.PCI0.LPCB.EC0.SMB0.SMTX, 0xFFFF)))
-                            {
-                                If (LEqual (SPTR, 0x00))
-                                {
-                                    Store (ShiftLeft (Arg0, 0x01), SADR)
-                                    Store (Arg1, SCMD)
-                                    Store (0x0B, SPTR)
-                                    Store (SBPC (0x03E8), Local0)
-                                    If (LNot (Local0))
-                                    {
-                                        Store (SBFR, Arg2)
-                                    }
-                                }
-
-                                Release (\_SB.PCI0.LPCB.EC0.SMB0.SMTX)
-                            }
-
-                            Return (Local0)
-                        }
-                    }
         }
     }
 
