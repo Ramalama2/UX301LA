@@ -10331,7 +10331,8 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
                 If (LEqual (Arg2, Zero)) { Return (Buffer(One) { 0x03 } ) }
                 Return (Package()
                 {
-                    "sata-express-power-off", 0x00
+                    "use-msi", 0x01,
+                    "sata-express-power-off", 0x01
                 })
             }
             
