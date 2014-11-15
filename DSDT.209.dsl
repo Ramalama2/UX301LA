@@ -144,12 +144,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         Return (One)
     }
     
-    Method (BSPS, 0, NotSerialized)  // IASL Compile Workaround
-    {
-        Return (\_PR.CPU0.APSS)
-    }
-
-    Scope (_PR)
+    Scope (\_PR)
     {
         OperationRegion (PPMT, SystemMemory, 0xDAB08F18, 0x003A)
         Field (PPMT, AnyAcc, Lock, Preserve)
@@ -196,14 +191,11 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             MPMF,   8
         }
 
-        Processor (CPU0, 0x01, 0x00001810, 0x06)
+        Processor (CPU0, 0x01, 0x00000410, 0x06)
         {
             Name (GEAR, Zero)
             Name (_TPC, Zero)  // _TPC: Throttling Present Capabilities
-            Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
-            {
-                    Return (Package (Zero) {})
-            }
+            Name (_DEP, Package (Zero) {})   // _DEP: Dependencies
             Method (_PPC, 0, NotSerialized)  // _PPC: Performance Present Capabilites
         {
             Store (CPPC, Local0)
@@ -212,7 +204,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         
         Method (_PSS, 0, NotSerialized)  // _PSS
         {
-            Return (\BSPS)
+            Return (^^CPU2._PSS)
         }
  
         Name (TSMF, Package (0x10)
@@ -272,16 +264,16 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         }
         Method (_TSS, 0, NotSerialized)  // _TSS: Throttling Supported States
         {
-            If (LAnd (LNot (TSSF), CondRefOf (BSPS)))
+            If (LAnd (LNot (TSSF), CondRefOf (_PSS)))
             {
                 Acquire (TSMO, 0xFFFF)
-                If (LAnd (LNot (TSSF), CondRefOf (BSPS)))
+                If (LAnd (LNot (TSSF), CondRefOf (_PSS)))
                 {
                     Name (LFMI, Zero)
-                    Store (SizeOf (BSPS), LFMI)
+                    Store (SizeOf (_PSS), LFMI)
                     Decrement (LFMI)
                     Name (LFMP, Zero)
-                    Store (DerefOf (Index (DerefOf (Index (BSPS, LFMI)), One)), 
+                    Store (DerefOf (Index (DerefOf (Index (_PSS, LFMI)), One)), 
                         LFMP)
                     Store (Zero, Local0)
                     If (And (CFGD, 0x2000))
@@ -411,12 +403,9 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         }
         }
 
-        Processor (CPU1, 0x02, 0x00001810, 0x06)
+        Processor (CPU1, 0x02, 0x00000410, 0x06)
         {
-            Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
-            {
-                    Return (Package (Zero) {})
-            }
+        Name (_DEP, Package (Zero) {})  // _DEP: Dependencies
         Method (_PPC, 0, NotSerialized)  // _PPC: Performance Present Capabilites
         {
             Return (\_PR.CPU0._PPC)
@@ -498,12 +487,9 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         })
         }
 
-        Processor (CPU2, 0x03, 0x00001810, 0x06)
+        Processor (CPU2, 0x03, 0x00000410, 0x06)
         {
-            Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
-            {
-                    Return (Package (Zero) {})
-            }
+        Name (_DEP, Package (Zero) {})   // _DEP: Dependencies
         Method (_PPC, 0, NotSerialized)  // _PPC: Performance Present Capabilites
         {
             Return (\_PR.CPU0._PPC)
@@ -585,12 +571,9 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         })
         }
 
-        Processor (CPU3, 0x04, 0x00001810, 0x06)
+        Processor (CPU3, 0x04, 0x00000410, 0x06)
         {
-            Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
-            {
-                    Return (Package (Zero) {})
-            }
+        Name (_DEP, Package (Zero) {})   // _DEP: Dependencies
         Method (_PPC, 0, NotSerialized)  // _PPC: Performance Present Capabilites
         {
             Return (\_PR.CPU0._PPC)
@@ -672,6 +655,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         })
         }
     }
+    Name (SLTP, 0x00)
     
     OperationRegion (GNVS, SystemMemory, 0xDAB07C18, 0x02B2)
     Field (GNVS, AnyAcc, Lock, Preserve)
@@ -1108,7 +1092,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         HYSS,   32
     }
 
-    Scope (_SB)
+    Scope (\_SB)
     {
         Name (PR00, Package (0x1B)
         {
@@ -2296,620 +2280,15 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 }
             }
 
-            Device (RP02)
-            {
-                Name (_ADR, 0x001C0001)  // _ADR: Address
-                OperationRegion (PXCS, PCI_Config, Zero, 0x0380)
-                Field (PXCS, AnyAcc, NoLock, Preserve)
-                {
-                    VDID,   32, 
-                    Offset (0x50), 
-                    L0SE,   1, 
-                        ,   3, 
-                    LDIS,   1, 
-                    Offset (0x51), 
-                    Offset (0x52), 
-                        ,   13, 
-                    LASX,   1, 
-                    Offset (0x54), 
-                        ,   6, 
-                    HPCE,   1, 
-                    Offset (0x5A), 
-                    ABPX,   1, 
-                        ,   2, 
-                    PDCX,   1, 
-                        ,   2, 
-                    PDSX,   1, 
-                    Offset (0x5B), 
-                    Offset (0x60), 
-                    Offset (0x62), 
-                    PSPX,   1, 
-                    PMEP,   1, 
-                    Offset (0xA4), 
-                    D3HT,   2, 
-                    Offset (0xD8), 
-                        ,   30, 
-                    HPEX,   1, 
-                    PMEX,   1, 
-                    Offset (0xE2), 
-                        ,   2, 
-                    L23E,   1, 
-                    L23R,   1, 
-                    Offset (0x324), 
-                        ,   3, 
-                    LEDM,   1
-                }
+            
 
-                Field (PXCS, AnyAcc, NoLock, WriteAsZeros)
-                {
-                    Offset (0xDC), 
-                        ,   30, 
-                    HPSX,   1, 
-                    PMSX,   1
-                }
+            
 
-                Name (LTRV, Package (0x04)
-                {
-                    Zero, 
-                    Zero, 
-                    Zero, 
-                    Zero
-                })
-                Name (OPTS, Zero)
-                Name (RPAV, Zero)
-                
+            
 
-                Device (PXSX)
-                {
-                    Name (_ADR, Zero)  // _ADR: Address
-                    Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
+            
 
-                    Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                    {
-                        Return (HPCE)
-                    }
-                }
-
-                Method (_REG, 2, NotSerialized)  // _REG: Region Availability
-                {
-                    If (LAnd (LEqual (Arg0, 0x02), LEqual (Arg1, One)))
-                    {
-                        Store (One, RPAV)
-                    }
-                }
-
-                Method (HPME, 0, Serialized)
-                {
-                    If (LOr (PSPX, PMEP))
-                    {
-                        Store (PMEX, Local1)
-                        Store (Zero, PMEX)
-                        Sleep (0x32)
-                        Store (One, PSPX)
-                        Sleep (0x32)
-                        If (PSPX)
-                        {
-                            Store (One, PSPX)
-                            Sleep (0x32)
-                        }
-
-                        Store (Local1, PMEX)
-                    }
-
-                    If (PMSX)
-                    {
-                        Store (0xC8, Local0)
-                        While (Local0)
-                        {
-                            Store (One, PMSX)
-                            If (PMSX)
-                            {
-                                Decrement (Local0)
-                            }
-                            Else
-                            {
-                                Store (Zero, Local0)
-                            }
-                        }
-
-                        Notify (PXSX, 0x02)
-                    }
-                }
-
-                Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
-            }
-
-            Device (RP05)
-            {
-                Name (_ADR, 0x001C0004)  // _ADR: Address
-                OperationRegion (PXCS, PCI_Config, Zero, 0x0380)
-                Field (PXCS, AnyAcc, NoLock, Preserve)
-                {
-                    VDID,   32, 
-                    Offset (0x50), 
-                    L0SE,   1, 
-                        ,   3, 
-                    LDIS,   1, 
-                    Offset (0x51), 
-                    Offset (0x52), 
-                        ,   13, 
-                    LASX,   1, 
-                    Offset (0x54), 
-                        ,   6, 
-                    HPCE,   1, 
-                    Offset (0x5A), 
-                    ABPX,   1, 
-                        ,   2, 
-                    PDCX,   1, 
-                        ,   2, 
-                    PDSX,   1, 
-                    Offset (0x5B), 
-                    Offset (0x60), 
-                    Offset (0x62), 
-                    PSPX,   1, 
-                    PMEP,   1, 
-                    Offset (0xA4), 
-                    D3HT,   2, 
-                    Offset (0xD8), 
-                        ,   30, 
-                    HPEX,   1, 
-                    PMEX,   1, 
-                    Offset (0xE2), 
-                        ,   2, 
-                    L23E,   1, 
-                    L23R,   1, 
-                    Offset (0x324), 
-                        ,   3, 
-                    LEDM,   1
-                }
-
-                Field (PXCS, AnyAcc, NoLock, WriteAsZeros)
-                {
-                    Offset (0xDC), 
-                        ,   30, 
-                    HPSX,   1, 
-                    PMSX,   1
-                }
-
-                Name (LTRV, Package (0x04)
-                {
-                    Zero, 
-                    Zero, 
-                    Zero, 
-                    Zero
-                })
-                Name (OPTS, Zero)
-                Name (RPAV, Zero)
-                
-
-                Device (PXSX)
-                {
-                    Name (_ADR, Zero)  // _ADR: Address
-                    Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
-
-                    Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                    {
-                        Return (HPCE)
-                    }
-                }
-
-                Method (_REG, 2, NotSerialized)  // _REG: Region Availability
-                {
-                    If (LAnd (LEqual (Arg0, 0x02), LEqual (Arg1, One)))
-                    {
-                        Store (One, RPAV)
-                    }
-                }
-
-                Method (HPME, 0, Serialized)
-                {
-                    If (LOr (PSPX, PMEP))
-                    {
-                        Store (PMEX, Local1)
-                        Store (Zero, PMEX)
-                        Sleep (0x32)
-                        Store (One, PSPX)
-                        Sleep (0x32)
-                        If (PSPX)
-                        {
-                            Store (One, PSPX)
-                            Sleep (0x32)
-                        }
-
-                        Store (Local1, PMEX)
-                    }
-
-                    If (PMSX)
-                    {
-                        Store (0xC8, Local0)
-                        While (Local0)
-                        {
-                            Store (One, PMSX)
-                            If (PMSX)
-                            {
-                                Decrement (Local0)
-                            }
-                            Else
-                            {
-                                Store (Zero, Local0)
-                            }
-                        }
-
-                        Notify (PXSX, 0x02)
-                    }
-                }
-
-                Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
-            }
-
-            Device (RP06)
-            {
-                Name (_ADR, 0x001C0005)  // _ADR: Address
-                OperationRegion (PXCS, PCI_Config, Zero, 0x0380)
-                Field (PXCS, AnyAcc, NoLock, Preserve)
-                {
-                    VDID,   32, 
-                    Offset (0x50), 
-                    L0SE,   1, 
-                        ,   3, 
-                    LDIS,   1, 
-                    Offset (0x51), 
-                    Offset (0x52), 
-                        ,   13, 
-                    LASX,   1, 
-                    Offset (0x54), 
-                        ,   6, 
-                    HPCE,   1, 
-                    Offset (0x5A), 
-                    ABPX,   1, 
-                        ,   2, 
-                    PDCX,   1, 
-                        ,   2, 
-                    PDSX,   1, 
-                    Offset (0x5B), 
-                    Offset (0x60), 
-                    Offset (0x62), 
-                    PSPX,   1, 
-                    PMEP,   1, 
-                    Offset (0xA4), 
-                    D3HT,   2, 
-                    Offset (0xD8), 
-                        ,   30, 
-                    HPEX,   1, 
-                    PMEX,   1, 
-                    Offset (0xE2), 
-                        ,   2, 
-                    L23E,   1, 
-                    L23R,   1, 
-                    Offset (0x324), 
-                        ,   3, 
-                    LEDM,   1
-                }
-
-                Field (PXCS, AnyAcc, NoLock, WriteAsZeros)
-                {
-                    Offset (0xDC), 
-                        ,   30, 
-                    HPSX,   1, 
-                    PMSX,   1
-                }
-
-                Name (LTRV, Package (0x04)
-                {
-                    Zero, 
-                    Zero, 
-                    Zero, 
-                    Zero
-                })
-                Name (OPTS, Zero)
-                Name (RPAV, Zero)
-                
-
-                Device (PXSX)
-                {
-                    Name (_ADR, Zero)  // _ADR: Address
-                    Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
-
-                    Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                    {
-                        Return (HPCE)
-                    }
-                }
-
-                Method (_REG, 2, NotSerialized)  // _REG: Region Availability
-                {
-                    If (LAnd (LEqual (Arg0, 0x02), LEqual (Arg1, One)))
-                    {
-                        Store (One, RPAV)
-                    }
-                }
-
-                Method (HPME, 0, Serialized)
-                {
-                    If (LOr (PSPX, PMEP))
-                    {
-                        Store (PMEX, Local1)
-                        Store (Zero, PMEX)
-                        Sleep (0x32)
-                        Store (One, PSPX)
-                        Sleep (0x32)
-                        If (PSPX)
-                        {
-                            Store (One, PSPX)
-                            Sleep (0x32)
-                        }
-
-                        Store (Local1, PMEX)
-                    }
-
-                    If (PMSX)
-                    {
-                        Store (0xC8, Local0)
-                        While (Local0)
-                        {
-                            Store (One, PMSX)
-                            If (PMSX)
-                            {
-                                Decrement (Local0)
-                            }
-                            Else
-                            {
-                                Store (Zero, Local0)
-                            }
-                        }
-
-                        Notify (PXSX, 0x02)
-                    }
-                }
-
-                Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
-            }
-
-            Device (RP07)
-            {
-                Name (_ADR, 0x001C0006)  // _ADR: Address
-                OperationRegion (PXCS, PCI_Config, Zero, 0x0380)
-                Field (PXCS, AnyAcc, NoLock, Preserve)
-                {
-                    VDID,   32, 
-                    Offset (0x50), 
-                    L0SE,   1, 
-                        ,   3, 
-                    LDIS,   1, 
-                    Offset (0x51), 
-                    Offset (0x52), 
-                        ,   13, 
-                    LASX,   1, 
-                    Offset (0x54), 
-                        ,   6, 
-                    HPCE,   1, 
-                    Offset (0x5A), 
-                    ABPX,   1, 
-                        ,   2, 
-                    PDCX,   1, 
-                        ,   2, 
-                    PDSX,   1, 
-                    Offset (0x5B), 
-                    Offset (0x60), 
-                    Offset (0x62), 
-                    PSPX,   1, 
-                    PMEP,   1, 
-                    Offset (0xA4), 
-                    D3HT,   2, 
-                    Offset (0xD8), 
-                        ,   30, 
-                    HPEX,   1, 
-                    PMEX,   1, 
-                    Offset (0xE2), 
-                        ,   2, 
-                    L23E,   1, 
-                    L23R,   1, 
-                    Offset (0x324), 
-                        ,   3, 
-                    LEDM,   1
-                }
-
-                Field (PXCS, AnyAcc, NoLock, WriteAsZeros)
-                {
-                    Offset (0xDC), 
-                        ,   30, 
-                    HPSX,   1, 
-                    PMSX,   1
-                }
-
-                Name (LTRV, Package (0x04)
-                {
-                    Zero, 
-                    Zero, 
-                    Zero, 
-                    Zero
-                })
-                Name (OPTS, Zero)
-                Name (RPAV, Zero)
-                
-
-                Device (PXSX)
-                {
-                    Name (_ADR, Zero)  // _ADR: Address
-                    Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
-
-                    Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                    {
-                        Return (HPCE)
-                    }
-                }
-
-                Method (_REG, 2, NotSerialized)  // _REG: Region Availability
-                {
-                    If (LAnd (LEqual (Arg0, 0x02), LEqual (Arg1, One)))
-                    {
-                        Store (One, RPAV)
-                    }
-                }
-
-                Method (HPME, 0, Serialized)
-                {
-                    If (LOr (PSPX, PMEP))
-                    {
-                        Store (PMEX, Local1)
-                        Store (Zero, PMEX)
-                        Sleep (0x32)
-                        Store (One, PSPX)
-                        Sleep (0x32)
-                        If (PSPX)
-                        {
-                            Store (One, PSPX)
-                            Sleep (0x32)
-                        }
-
-                        Store (Local1, PMEX)
-                    }
-
-                    If (PMSX)
-                    {
-                        Store (0xC8, Local0)
-                        While (Local0)
-                        {
-                            Store (One, PMSX)
-                            If (PMSX)
-                            {
-                                Decrement (Local0)
-                            }
-                            Else
-                            {
-                                Store (Zero, Local0)
-                            }
-                        }
-
-                        Notify (PXSX, 0x02)
-                    }
-                }
-
-                Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
-            }
-
-            Device (RP08)
-            {
-                Name (_ADR, 0x001C0007)  // _ADR: Address
-                OperationRegion (PXCS, PCI_Config, Zero, 0x0380)
-                Field (PXCS, AnyAcc, NoLock, Preserve)
-                {
-                    VDID,   32, 
-                    Offset (0x50), 
-                    L0SE,   1, 
-                        ,   3, 
-                    LDIS,   1, 
-                    Offset (0x51), 
-                    Offset (0x52), 
-                        ,   13, 
-                    LASX,   1, 
-                    Offset (0x54), 
-                        ,   6, 
-                    HPCE,   1, 
-                    Offset (0x5A), 
-                    ABPX,   1, 
-                        ,   2, 
-                    PDCX,   1, 
-                        ,   2, 
-                    PDSX,   1, 
-                    Offset (0x5B), 
-                    Offset (0x60), 
-                    Offset (0x62), 
-                    PSPX,   1, 
-                    PMEP,   1, 
-                    Offset (0xA4), 
-                    D3HT,   2, 
-                    Offset (0xD8), 
-                        ,   30, 
-                    HPEX,   1, 
-                    PMEX,   1, 
-                    Offset (0xE2), 
-                        ,   2, 
-                    L23E,   1, 
-                    L23R,   1, 
-                    Offset (0x324), 
-                        ,   3, 
-                    LEDM,   1
-                }
-
-                Field (PXCS, AnyAcc, NoLock, WriteAsZeros)
-                {
-                    Offset (0xDC), 
-                        ,   30, 
-                    HPSX,   1, 
-                    PMSX,   1
-                }
-
-                Name (LTRV, Package (0x04)
-                {
-                    Zero, 
-                    Zero, 
-                    Zero, 
-                    Zero
-                })
-                Name (OPTS, Zero)
-                Name (RPAV, Zero)
-                
-
-                Device (PXSX)
-                {
-                    Name (_ADR, Zero)  // _ADR: Address
-                    Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
-
-                    Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                    {
-                        Return (HPCE)
-                    }
-                }
-
-                Method (_REG, 2, NotSerialized)  // _REG: Region Availability
-                {
-                    If (LAnd (LEqual (Arg0, 0x02), LEqual (Arg1, One)))
-                    {
-                        Store (One, RPAV)
-                    }
-                }
-
-                Method (HPME, 0, Serialized)
-                {
-                    If (LOr (PSPX, PMEP))
-                    {
-                        Store (PMEX, Local1)
-                        Store (Zero, PMEX)
-                        Sleep (0x32)
-                        Store (One, PSPX)
-                        Sleep (0x32)
-                        If (PSPX)
-                        {
-                            Store (One, PSPX)
-                            Sleep (0x32)
-                        }
-
-                        Store (Local1, PMEX)
-                    }
-
-                    If (PMSX)
-                    {
-                        Store (0xC8, Local0)
-                        While (Local0)
-                        {
-                            Store (One, PMSX)
-                            If (PMSX)
-                            {
-                                Decrement (Local0)
-                            }
-                            Else
-                            {
-                                Store (Zero, Local0)
-                            }
-                        }
-
-                        Notify (PXSX, 0x02)
-                    }
-                }
-
-                Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
-            }
+            
 
             Device (LPCB)
             {
@@ -4146,148 +3525,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 }
             }
 
-            Device (RP03)
-            {
-                Name (_ADR, 0x001C0002)  // _ADR: Address
-                OperationRegion (PXCS, PCI_Config, Zero, 0x0380)
-                Field (PXCS, AnyAcc, NoLock, Preserve)
-                {
-                    VDID,   32, 
-                    Offset (0x50), 
-                    L0SE,   1, 
-                        ,   3, 
-                    LDIS,   1, 
-                    Offset (0x51), 
-                    Offset (0x52), 
-                        ,   13, 
-                    LASX,   1, 
-                    Offset (0x54), 
-                        ,   6, 
-                    HPCE,   1, 
-                    Offset (0x5A), 
-                    ABPX,   1, 
-                        ,   2, 
-                    PDCX,   1, 
-                        ,   2, 
-                    PDSX,   1, 
-                    Offset (0x5B), 
-                    Offset (0x60), 
-                    Offset (0x62), 
-                    PSPX,   1, 
-                    PMEP,   1, 
-                    Offset (0xA4), 
-                    D3HT,   2, 
-                    Offset (0xD8), 
-                        ,   30, 
-                    HPEX,   1, 
-                    PMEX,   1, 
-                    Offset (0xE2), 
-                        ,   2, 
-                    L23E,   1, 
-                    L23R,   1, 
-                    Offset (0x324), 
-                        ,   3, 
-                    LEDM,   1
-                }
-
-                Field (PXCS, AnyAcc, NoLock, WriteAsZeros)
-                {
-                    Offset (0xDC), 
-                        ,   30, 
-                    HPSX,   1, 
-                    PMSX,   1
-                }
-
-                Name (LTRV, Package (0x04)
-                {
-                    Zero, 
-                    Zero, 
-                    Zero, 
-                    Zero
-                })
-                Name (OPTS, Zero)
-                Name (RPAV, Zero)
-                
-
-                Device (PXSX)
-                {
-                    Name (_ADR, Zero)  // _ADR: Address
-                    Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
-
-                    Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                    {
-                        Return (HPCE)
-                    }
-                }
-
-                Method (_REG, 2, NotSerialized)  // _REG: Region Availability
-                {
-                    If (LAnd (LEqual (Arg0, 0x02), LEqual (Arg1, One)))
-                    {
-                        Store (One, RPAV)
-                    }
-                }
-
-                Method (HPME, 0, Serialized)
-                {
-                    If (LOr (PSPX, PMEP))
-                    {
-                        Store (PMEX, Local1)
-                        Store (Zero, PMEX)
-                        Sleep (0x32)
-                        Store (One, PSPX)
-                        Sleep (0x32)
-                        If (PSPX)
-                        {
-                            Store (One, PSPX)
-                            Sleep (0x32)
-                        }
-
-                        Store (Local1, PMEX)
-                    }
-
-                    If (PMSX)
-                    {
-                        Store (0xC8, Local0)
-                        While (Local0)
-                        {
-                            Store (One, PMSX)
-                            If (PMSX)
-                            {
-                                Decrement (Local0)
-                            }
-                            Else
-                            {
-                                Store (Zero, Local0)
-                            }
-                        }
-
-                        Notify (PXSX, 0x02)
-                    }
-                }
-
-                Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
-
-                Device (GLAN)
-                {
-                    Name (_ADR, Zero)  // _ADR: Address
-                    Method (_RMV, 0, NotSerialized)  // _RMV: Removal Status
-                    {
-                        Return (Zero)
-                    }
-
-                    OperationRegion (LANR, PCI_Config, Zero, 0x0100)
-                    Field (LANR, ByteAcc, NoLock, Preserve)
-                    {
-                        VID,    16, 
-                        Offset (0xE0), 
-                            ,   15, 
-                        PMES,   1
-                    }
-
-                    Method (_PRW, 0, NotSerialized) { Return (GPRW (0x09, 0x04)) }
-                }
-            }
+            
 
             Device (RP04)
             {
@@ -4681,7 +3919,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
     }
 
-    Scope (_SB)
+    Scope (\_SB)
     {
         Method (RDGI, 1, Serialized)
         {
@@ -4886,7 +4124,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         }
     }
 
-    Scope (_SB.PCI0)
+    Scope (\_SB.PCI0)
     {
         Name (LTRE, Zero)
         Name (OBFF, Zero)
@@ -10254,9 +9492,7 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
             Method (_REG, 2, NotSerialized)  // _REG: Region Availability
             {
                 If (LEqual (Arg0, 0x02)) { Store (Arg1, REGF) }
-            }
-            Method (_PRW, 0, NotSerialized) { Return (GPRW (0x0D, 0x03)) }
-            
+            }            
             Method (_DSM, 4, NotSerialized)
             {
                 If (LEqual (Arg2, Zero)) { Return (Buffer(One) { 0x03 } ) }
@@ -11750,7 +10986,7 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
         }
     }
 
-    OperationRegion (_SB.PCI0.LPCB.LPCR, PCI_Config, 0x80, 0x04)
+    OperationRegion (\_SB.PCI0.LPCB.LPCR, PCI_Config, 0x80, 0x04)
     Field (\_SB.PCI0.LPCB.LPCR, ByteAcc, NoLock, Preserve)
     {
         CADR,   3, 
@@ -12081,7 +11317,7 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
         }
     }
 
-    Scope (_SB.PCI0)
+    Scope (\_SB.PCI0)
     {
         Name (PA0H, Zero)
         Name (PA1H, Zero)
@@ -12238,7 +11474,7 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
         SSMF,   8
     }
 
-    Method (_PIC, 1, NotSerialized)  // _PIC: Interrupt Model
+    Method (\_PIC, 1, NotSerialized)  // _PIC: Interrupt Model
     {
         Store (Arg0, GPIC)
         Store (Arg0, PICM)
@@ -12269,11 +11505,7 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
 
     Method (_WAK, 1, Serialized)  // _WAK: Wake
     {
-        P8XH (0x00, 0x00)
-        If (LOr (LLess(Arg0, 1), LGreater(Arg0,5))) { Store(3, Arg0) } 
-        WFBT()
         WAK (Arg0)
-        
         If (And (ICNF, 0x10))
         {
             If (And (\_SB.PCI0.IGPU.TCHE, 0x0100))
@@ -12316,6 +11548,17 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
         }
 
         Return (Package (0x02) { Zero, Zero })
+    }
+    
+    Method (_TTS, 1, NotSerialized)  // _TTS: Transition To State
+    {
+        Store (Arg0, SLTP)
+        // NOTE: TTS gots executed before _PTS and after _WAK
+        // This Order: 1 _TTS, 2 _PTS // 1 _WAK, 2 _TTS
+        If (LEqual (Arg0, Zero))
+        {
+            WFBT ()
+        }
     }
 
     Method (GETB, 3, Serialized)
@@ -12427,17 +11670,13 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
     
     Method (WFBT, 0, NotSerialized)
     {
-        If (\_SB.PCI0.LPCB.EC0.WBTS)
+        If (LEqual (RGPL (0x57, One), OWGS))
         {
-            OWLD (One)
-            Sleep (0x0DAC)
-            OBTD (One)
-        }
-        Else
-        {
-            OWLD (Zero)
-            Sleep (0x0DAC)
-            OBTD (Zero)
+            If (RGPL (0x57, One)) {
+                SGPL (0x2E, One, Zero)
+            } Else {
+                SGPL (0x2E, One, One)
+            }
         }
     }
 
@@ -12492,7 +11731,7 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
         }
     }
 
-    Scope (_SB.PCI0)
+    Scope (\_SB.PCI0)
     {
         Method (PTMA, 0, NotSerialized)
         {
@@ -12522,8 +11761,7 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
                 If (_OSI ("Darwin"))
                 {
                     Store (0x03E8, OSYS)
-                    WFBT()
-                    ^LPCB.EC0._Q0B ()
+                    \WFBT ()
                 }
 
                 If (_OSI ("Windows 2001"))
@@ -12610,7 +11848,7 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
         }
     }
 
-    Scope (_SB)
+    Scope (\_SB)
     {
         Name (OSCI, Zero)
         Name (OSCO, Zero)
@@ -12657,7 +11895,7 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
         }
     }
 
-    Scope (_SB.PCI0)
+    Scope (\_SB.PCI0)
     {
         Device (PDRC)
         {
@@ -12743,7 +11981,7 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
         }
     }
 
-    Scope (_GPE)
+    Scope (\_GPE)
     {
         Method (_L09, 0, NotSerialized)
         {
@@ -12879,132 +12117,11 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
         Method (_L69, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
         {
             Notify (\_SB.PCI0.RP01, 0x02)
-            Notify (\_SB.PCI0.RP02, 0x02)
-            Notify (\_SB.PCI0.RP03, 0x02)
-            Notify (\_SB.PCI0.RP05, 0x02)
-            Notify (\_SB.PCI0.RP06, 0x02)
             Notify (\_SB.PCI0.RP04.ARPT, 0x02)
         }
     }
 
-    Device (WCAM)
-    {
-        Name (_ADR, 0x05)  // _ADR: Address
-        Method (_UPC, 0, Serialized)  // _UPC: USB Port Capabilities
-        {
-            Name (UPCP, Package (0x04)
-            {
-                Zero, 
-                0xFF, 
-                Zero, 
-                Zero
-            })
-            Return (UPCP)
-        }
-
-        Method (_PLD, 0, Serialized)  // _PLD: Physical Location of Device
-        {
-            Name (PLDP, Package (One)
-            {
-                Buffer (0x14)
-                {
-                    /* 0000 */  0x82, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                    /* 0008 */  0x24, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                    /* 0010 */  0xC8, 0x00, 0xA0, 0x00                         
-                }
-            })
-            Return (PLDP)
-        }
-    }
-
-    Device (_SB.PCI0.LPCB.TPM)
-    {
-        Name (_STR, Unicode ("TPM 1.2 Device"))  // _STR: Description String
-        Name (_UID, One)  // _UID: Unique ID
-        Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
-        {
-            Memory32Fixed (ReadOnly,
-                0xFED40000,         // Address Base
-                0x00005000,         // Address Length
-                )
-        })
-        Method (_HID, 0, NotSerialized)  // _HID: Hardware ID
-        {
-            Return (OTID ())
-        }
-
-        Name (_CID, EisaId ("PNP0C31"))  // _CID: Compatible ID
-        OperationRegion (\TCMM, SystemMemory, 0xFED40000, 0x5000)
-        Field (TCMM, ByteAcc, NoLock, Preserve)
-        {
-            Offset (0xF00), 
-            VDID,   32
-        }
-
-        Method (OTID, 0, Serialized)
-        {
-            Store (ACCS, Local0)
-            If (LNotEqual (Local0, 0xFF))
-            {
-                If (LEqual (VDID, 0x687119FA))
-                {
-                    Return (0x0435CF4D)
-                }
-                Else
-                {
-                    If (LEqual (VDID, 0x000B15D1))
-                    {
-                        Return (0x0201D824)
-                    }
-                    Else
-                    {
-                        Return (0x310CD041)
-                    }
-                }
-            }
-            Else
-            {
-                Return (0x310CD041)
-            }
-        }
-        OperationRegion (TMMB, SystemMemory, 0xFED40000, 0x5000)
-        Field (TMMB, ByteAcc, Lock, Preserve)
-        {
-            ACCS,   8, 
-            Offset (0x18), 
-            TSTA,   8, 
-            TBCA,   8, 
-            Offset (0xF00), 
-            TVID,   16, 
-            TDID,   16
-        }
-
-        Method (_STA, 0, NotSerialized)  // _STA: Status
-        {
-            If (TPMF)
-            {
-                Return (0x0F)
-            }
-
-            Return (Zero)
-        }
-
-        OperationRegion (ASMI, SystemIO, SMIA, One)
-        Field (ASMI, ByteAcc, NoLock, Preserve)
-        {
-            INQ,    8
-        }
-
-        OperationRegion (BSMI, SystemIO, SMIB, One)
-        Field (BSMI, ByteAcc, NoLock, Preserve)
-        {
-            DAT,    8
-        }
-
-        
-    }
-
-    Scope (_SB.PCI0.LPCB)
+    Scope (\_SB.PCI0.LPCB)
     {
         Device (EC0)
         {
@@ -13030,6 +12147,7 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
                 Store (0x0A, Local0)
                 Return (Local0)
             }
+            Method (_PRW, 0, NotSerialized) { Return (GPRW (0x70, 0x03)) }
             
 
             Mutex (MUEC, 0x00)
@@ -13592,8 +12710,106 @@ DTB1, 8
                     Increment(Local0)
                 }
             }
-            Name (WBTS, One)
+            /*
+                    Device (SMB0)
+                    {
+                        Name (_HID, "ACPI0001")  // _HID: Hardware ID
+                        Name (_EC, 0x2010)  // _EC_: Embedded Controller
+                        Name (_STA, 0x0F)
+                        Device (SBS0)
+                        {
+                            Name (_HID, "ACPI0002")  // _HID: Hardware ID
+                            Name (\_SBS, 0x01)  // _SBS: Smart Battery Subsystem
+                        }
+                    }
+            */
         }
+        Device (TPM)
+    {
+        Name (_STR, Unicode ("TPM 1.2 Device"))  // _STR: Description String
+        Name (_UID, One)  // _UID: Unique ID
+        Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
+        {
+            Memory32Fixed (ReadOnly,
+                0xFED40000,         // Address Base
+                0x00005000,         // Address Length
+                )
+        })
+        Method (_HID, 0, NotSerialized)  // _HID: Hardware ID
+        {
+            Return (OTID ())
+        }
+
+        Name (_CID, EisaId ("PNP0C31"))  // _CID: Compatible ID
+        OperationRegion (\TCMM, SystemMemory, 0xFED40000, 0x5000)
+        Field (TCMM, ByteAcc, NoLock, Preserve)
+        {
+            Offset (0xF00), 
+            VDID,   32
+        }
+
+        Method (OTID, 0, Serialized)
+        {
+            Store (ACCS, Local0)
+            If (LNotEqual (Local0, 0xFF))
+            {
+                If (LEqual (VDID, 0x687119FA))
+                {
+                    Return (0x0435CF4D)
+                }
+                Else
+                {
+                    If (LEqual (VDID, 0x000B15D1))
+                    {
+                        Return (0x0201D824)
+                    }
+                    Else
+                    {
+                        Return (0x310CD041)
+                    }
+                }
+            }
+            Else
+            {
+                Return (0x310CD041)
+            }
+        }
+        OperationRegion (TMMB, SystemMemory, 0xFED40000, 0x5000)
+        Field (TMMB, ByteAcc, Lock, Preserve)
+        {
+            ACCS,   8, 
+            Offset (0x18), 
+            TSTA,   8, 
+            TBCA,   8, 
+            Offset (0xF00), 
+            TVID,   16, 
+            TDID,   16
+        }
+
+        Method (_STA, 0, NotSerialized)  // _STA: Status
+        {
+            If (TPMF)
+            {
+                Return (0x0F)
+            }
+
+            Return (Zero)
+        }
+
+        OperationRegion (ASMI, SystemIO, SMIA, One)
+        Field (ASMI, ByteAcc, NoLock, Preserve)
+        {
+            INQ,    8
+        }
+
+        OperationRegion (BSMI, SystemIO, SMIB, One)
+        Field (BSMI, ByteAcc, NoLock, Preserve)
+        {
+            DAT,    8
+        }
+
+        
+    }
     }
 
     Scope (\)
@@ -13623,7 +12839,7 @@ DTB1, 8
             Return (\_SB.ALPR)
         }
 
-        Scope (_SB)
+        Scope (\_SB)
         {
             OperationRegion (ECMS, SystemIO, 0x72, 0x02)
             Field (ECMS, ByteAcc, Lock, Preserve)
@@ -14012,7 +13228,7 @@ DTB1, 8
         }
     }
 
-    Scope (_SB)
+    Scope (\_SB)
     {
         Name (ATKP, Zero)
         Name (AITM, Zero)
@@ -16004,9 +15220,133 @@ DTB1, 8
                 Return (KBLV)
             }
         }
+        Device (PNLF)
+        {
+            // normal PNLF declares (note some of this probably not necessary)
+            Name (_ADR, Zero)
+            Name (_HID, EisaId ("APP0002"))
+            Name (_CID, "backlight")
+            Name (_UID, 10)
+            Name (_STA, 0x0B)
+            //define hardware register access for brightness
+            // you can see BAR1 value in RW-Everything under Bus00,02 Intel VGA controler PCI
+            // Note: Not sure which one is right here... for now, going with BAR1 masked
+            //OperationRegion (BRIT, SystemMemory, Subtract(\_SB.PCI0.IGPU.BAR1, 4), 0xe1184)
+            OperationRegion (BRIT, SystemMemory, And(^PCI0.IGPU.BAR1, Not(0xF)), 0xe1184)
+            Field (BRIT, AnyAcc, Lock, Preserve)
+            {
+                Offset(0x48250),
+                LEV2, 32,
+                LEVL, 32,
+                Offset(0x70040),
+                P0BL, 32,
+                Offset(0xc8250),
+                LEVW, 32,
+                LEVX, 32,
+                Offset(0xe1180),
+                PCHL, 32,
+            }
+            Method (_INI, 0, NotSerialized)
+            {
+                // If the BIOS actually sets the values prior to boot, this would be
+                // how (maybe) to capture them.  My Envy does not have the capability
+                // to set brightness and I find these values are not set.
+                // The current value could also be in LEVL, and probably is even
+                // though OS X seems to manipulate only the low 16-bits of LEVX to
+                // change brightness.
+                // Because the low-order 16-bits are set to zero on the Envy, enabling
+                // this code causes a blank screen before the login screena appears.
+                //
+                //Store(LEVX, Local0)
+                //Store(ShiftRight(Local0,16), Local1)
+                //Store(And(Local0,0xFFFF), Local2)
+                //Divide(Multiply(Local2, 0xad9), Local1, Local0)
+                //Or(Local0, 0xad90000, Local0)
+                //
+                //REVIEW: wait for vblank to change things
+                //While(LEqual (P0BL, Local1)) {}
+                //
+                // This is part of the "keep startup level"...
+                // see comment above.
+                //Store(Local0, LEVX)
+                //
+                // This 0xC value comes from looking what OS X initializes this
+                // register to after display sleep (using ACPIDebug/ACPIPoller)
+                Store(0xC0000000, LEVW)
+                // Because this laptop starts at full brightness, I just set it right
+                // here.  This is to insure _BQC and XBQC return the correct level
+                // at startup.
+                Store(0xad90ad9, LEVX)
+            }
+            // _BCM/_BQC: set/get for brightness level
+            Method (_BCM, 1, NotSerialized)
+            {
+                // store new backlight level
+                Store(Match(_BCL, MGE, Arg0, MTR, Zero, 2), Local0)
+                If (LEqual(Local0, Ones)) { Subtract(SizeOf(_BCL), One, Local0) }
+                Store(Or(DerefOf(Index(_BCL,Local0)),And(LEVX,0xFFFF0000)), LEVX)
+            }
+            Method (_BQC, 0, NotSerialized)
+            {
+                Store(Match(_BCL, MGE, And(LEVX, 0xFFFF), MTR, Zero, 2), Local0)
+                If (LEqual(Local0, Ones)) { Subtract(SizeOf(_BCL), One, Local0) }
+                Return(DerefOf(Index(_BCL, Local0)))
+            }
+            Method (_DOS, 1, NotSerialized)
+            {
+                // Note: Some systems have this defined in DSDT, so uncomment
+                // the next line if that is the case.
+                //External(^^PCI0.IGPU._DOS, MethodObj)
+                ^^PCI0.IGPU._DOS(Arg0)
+            }
+            // extended _BCM/_BQC for setting "in between" levels
+            Method (XBCM, 1, NotSerialized)
+            {
+                // store new backlight level
+                If (LGreater(Arg0, XRGH)) { Store(XRGH, Arg0) }
+                If (LAnd(Arg0, LLess(Arg0, XRGL))) { Store(XRGL, Arg0) }
+                Store(Or(Arg0,And(LEVX,0xFFFF0000)), LEVX)
+            }
+            Method (XBQC, 0, NotSerialized)
+            {
+                Store(And(LEVX,0xFFFF), Local0)
+                If (LGreater(Local0, XRGH)) { Store(XRGH, Local0) }
+                If (LAnd(Local0, LLess(Local0, XRGL))) { Store(XRGL, Local0) }
+                Return(Local0)
+            }
+            // Use XOPT=1 to disable smooth transitions
+            Name (XOPT, Zero)
+            // XRGL/XRGH: defines the valid range
+            Name (XRGL, 0x02)
+            Name (XRGH, 0x0578)
+            // _BCL: returns list of valid brightness levels
+            // first two entries describe ac/battery power levels
+            Name (_BCL, Package(0x43)
+            {
+                0x030C, 
+                0x0140, 
+                Zero, 0x02, 0x04, 0x06,
+                0x09, 0x0C, 0x0F, 0x13,
+                0x17, 0x1B, 0x20, 0x25, 
+                0x2A, 0x30, 0x36, 0x3C, 
+                0x43, 0x4A, 0x52, 0x5A,
+                0x63, 0x6C, 0x76, 0x82,
+                0x8F, 0x9D, 0xAC, 0xBC,
+                0xCD, 0xDF, 0xF2, 0x0106,
+                0x011B, 0x0131, 0x0148, 0x0160,
+                0x0179, 0x0193, 0x01AE, 0x01CA,
+                0x01E7, 0x0205, 0x0223, 0x0241,
+                0x0261, 0x0281, 0x02A2, 0x02C4,
+                0x02E7, 0x030B, 0x032A, 0x034D,
+                0x0370, 0x0393, 0x03B6, 0x03D9,
+                0x03FC, 0x041F, 0x0447, 0x0474,
+                0x04A6, 0x04D8, 0x050A, 0x053C,
+                0x0578
+            })
+        }
     }
 
-    Scope (_SB.PCI0)
+    Scope (\_SB.PCI0)
     {
         Device (ADP1)
         {
@@ -16022,13 +15362,13 @@ DTB1, 8
             })
             Name (_PRW, Package (0x02)  // _PRW: Power Resources for Wake
             {
-                0x18, 
+                0x70, 
                 0x03
             })
         }
     }
 
-    Scope (_SB.PCI0.LPCB.EC0)
+    Scope (\_SB.PCI0.LPCB.EC0)
     {
         Method (ACAP, 0, Serialized)
         {
@@ -16036,7 +15376,7 @@ DTB1, 8
         }
     }
 
-    Scope (_SB.PCI0)
+    Scope (\_SB.PCI0)
     {
         Device (BAT0)
         {
@@ -16515,7 +15855,7 @@ DTB1, 8
         }
     }
 
-    Scope (_SB.PCI0.LPCB.EC0)
+    Scope (\_SB.PCI0.LPCB.EC0)
     {
         Name (BADR, 0x0B)
         Name (CADR, 0x09)
@@ -16800,7 +16140,7 @@ DTB1, 8
         Name (BLLO, Zero)
     }
 
-    Scope (_SB.PCI0.LPCB.EC0)
+    Scope (\_SB.PCI0.LPCB.EC0)
     {
         Method (_QA1, 0, NotSerialized)  // _Qxx: EC Query
         {
@@ -16934,7 +16274,7 @@ DTB1, 8
         }
     }
 
-    Scope (_SB.ATKD)
+    Scope (\_SB.ATKD)
     {
         Method (AGFN, 1, Serialized)
         {
@@ -18848,7 +18188,7 @@ DTB1, 8
         }
     }
 
-    Scope (_SB.PCI0.LPCB.EC0)
+    Scope (\_SB.PCI0.LPCB.EC0)
     {
         OperationRegion (ECID, SystemIO, 0x0257, One)
         Field (ECID, ByteAcc, NoLock, Preserve)
@@ -20143,8 +19483,6 @@ Store (ShiftRight (Local4, 8), DTB1)
                     Add (Local0, Local1, Local0)
                     Multiply (Local0, 0x03E8, Local1)
                     Divide (Local1, ALSA, Local2, Local3)
-                    \RMDT.P2("RRAM (0x02A3):", ToDecimalString(RRAM (0x02A3)))
-                    \RMDT.P2("RRAM (0x02A4):", ToDecimalString(RRAM (0x02A4)))
                     Return (Local3)
                 }
                 Else
@@ -20246,7 +19584,7 @@ Store (ShiftRight (Local4, 8), DTB1)
         Name (TC2, 0x0A)
     }
 
-    Scope (_TZ)
+    Scope (\_TZ)
     {
         Method (KELV, 1, NotSerialized)
         {
@@ -20466,7 +19804,7 @@ Store (ShiftRight (Local4, 8), DTB1)
         }
     }
 
-    Scope (_SB.PCI0.LPCB.EC0)
+    Scope (\_SB.PCI0.LPCB.EC0)
     {
         Name (PWAC, Buffer (0x40)
         {
@@ -20870,23 +20208,16 @@ Store (ShiftRight (Local4, 8), DTB1)
 
         Method (_Q0A, 0, NotSerialized)  // _Qxx: EC Query
         {
-            Notify (\_SB.SLPB, 0x80)
+            //Notify (\_SB.SLPB, 0x80)
+            //\RMDT.P2("IGPU _BCL", ^^^IGPU.LCDD._BCL ())
+            \RMDT.P2("BT Status", \RGPL (0x57, One))
+           // \RMDT.P2("SBFR", SBFR)
+           // \RMDT.P2("BDAY", BDAY)
         }
   
         Method (_Q0B, 0, NotSerialized)  // _Qxx: EC Query
         {
-            If (LEqual (WBTS, One))
-            {
-                OBTD (Zero)
-                ^^^^ATKD.IANE (0x7E)
-                Store (Zero, WBTS)
-            }
-            Else
-            {
-                OBTD (One)
-                ^^^^ATKD.IANE (0x7D)
-                Store (One, WBTS)
-            }
+            If (OWGS) { OBTD (One) } Else { OBTD (Zero) }
         }
 
         Method (_Q0C, 0, NotSerialized)  // _Qxx: EC Query
@@ -21363,9 +20694,8 @@ Store (ShiftRight (Local4, 8), DTB1)
 
         Method (_QCD, 0, NotSerialized)  // _Qxx: EC Query
         {
-            \RMDT.P2 ("_QCD", ATKP)
             Notify (ALS0, 0x80)
-           // If (ATKP) { ^^^^ATKD.IANE (0xC7) }
+            If (ATKP) { ^^^^ATKD.IANE (0xC7) }
         }
 
         Method (_QB0, 0, NotSerialized)  // _Qxx: EC Query
@@ -21385,8 +20715,6 @@ Store (ShiftRight (Local4, 8), DTB1)
                 Store (Zero, ACPF)
                 Store (0x57, Local0)
             }
-            \RMDT.P2 ("_QA0", ATKP)
-
             If (LNotEqual (MSOS (), OSVT))
             {
                 STBR ()
@@ -21499,7 +20827,7 @@ Store (ShiftRight (Local4, 8), DTB1)
         }
     }
 
-    Scope (_SB)
+    Scope (\_SB)
     {
         Device (ALS0)
         {
@@ -21787,7 +21115,7 @@ Store (ShiftRight (Local4, 8), DTB1)
         }
     }
 
-    Scope (_SB_.PCI0)
+    Scope (\_SB.PCI0)
     {
         Device (TPCH)
         {
@@ -21944,7 +21272,7 @@ Store (ShiftRight (Local4, 8), DTB1)
                 Return (MHBR)
             }
         }
-
+/*
         Device (DPLY)
         {
             Name (_HID, EisaId ("INT3406"))  // _HID: Hardware ID
@@ -22019,10 +21347,10 @@ Store (ShiftRight (Local4, 8), DTB1)
                     Return (Zero)
                 }
             }
-        }
+        } */
     }
 
-    Scope (_SB)
+    Scope (\_SB)
     {
         Device (LID0)
         {
@@ -22046,7 +21374,7 @@ Store (ShiftRight (Local4, 8), DTB1)
         }
     }
 
-    Scope (_SB.PCI0.LPCB.EC0)
+    Scope (\_SB.PCI0.LPCB.EC0)
     {
         Name (KLDT, Zero)
         Method (_Q80, 0, NotSerialized)  // _Qxx: EC Query
@@ -22078,7 +21406,7 @@ Store (ShiftRight (Local4, 8), DTB1)
         }
     }
 
-    Scope (_SB)
+    Scope (\_SB)
     {
         Device (PWRB)
         {
@@ -22088,14 +21416,7 @@ Store (ShiftRight (Local4, 8), DTB1)
         Device (SLPB)
         {
             Name (_HID, EisaId ("PNP0C0E"))  // _HID: Hardware ID
-            Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-            {
-                Return (Package (0x02)
-                {
-                    0x0B, 
-                    0x04
-                })
-            }
+            Name (_STA, 0x0B)  // _STA: Status
         }
         Device (IAOE)
         {
@@ -22775,7 +22096,7 @@ Store (ShiftRight (Local4, 8), DTB1)
                     Package (0x04)
                     {
                         0x28, 
-                        \_SB.PCI0.DPLY, 
+                        \_SB.PNLF, 
                         0x0A, 
                         Package (0x02)
                         {
@@ -22939,7 +22260,7 @@ Store (ShiftRight (Local4, 8), DTB1)
                     Package (0x04)
                     {
                         0x64, 
-                        \_SB.PCI0.DPLY, 
+                        \_SB.PNLF, 
                         0x0A, 
                         Package (0x02)
                         {
@@ -23027,7 +22348,7 @@ Store (ShiftRight (Local4, 8), DTB1)
         }
     }
 
-    Scope (_SB.ATKD)
+    Scope (\_SB.ATKD)
     {
         Method (FSMI, 1, NotSerialized)
         {
@@ -23152,7 +22473,7 @@ Store (ShiftRight (Local4, 8), DTB1)
         Name (ULCK, Zero)
     }
 
-    Scope (_SB.PCI0.LPCB.EC0)
+    Scope (\_SB.PCI0.LPCB.EC0)
     {
         Method (_Q79, 0, NotSerialized)  // _Qxx: EC Query
         {
@@ -23160,7 +22481,7 @@ Store (ShiftRight (Local4, 8), DTB1)
         }
     }
     
-    Scope (_SB_)
+    Scope (\_SB)
     {
         Name (XCPD, Zero)
         Name (XNPT, One)
@@ -23313,7 +22634,7 @@ Store (ShiftRight (Local4, 8), DTB1)
         }
     }
 
-    Scope (_SB.PCI0)
+    Scope (\_SB.PCI0)
     {
         Device (RESC)
         {
@@ -23595,23 +22916,13 @@ Store (ShiftRight (Local4, 8), DTB1)
         {
             If (LLessEqual (Arg0, 0x5E))
             {
-                Store (Add (Add (GPBS, 0x0100), Multiply (Arg0, 0x08)
-                    ), Local0)
+                Store (Add (Add (GPBS, 0x0100), Multiply (Arg0, 0x08)), Local0)
                 OperationRegion (LGPI, SystemIO, Local0, 0x04)
                 Field (LGPI, ByteAcc, NoLock, Preserve)
                 {
-                        ,   2, 
-                    GPSL,   1, 
-                        ,   27, 
-                    GPIL,   1, 
+                        ,   31, 
                     TEMP,   1
                 }
-
-                If (LLessEqual (GPSL, One))
-                {
-                    Return (GPIL)
-                }
-
                 Return (TEMP)
             } Else {
             Return (Zero)
@@ -23624,8 +22935,7 @@ Store (ShiftRight (Local4, 8), DTB1)
             Store (Zero, \_SB.PCI0.LPCB.GPLK)
             If (LLessEqual (Arg0, 0x5E))
             {
-                Store (Add (Add (GPBS, 0x0100), Multiply (Arg0, 0x08)
-                    ), Local0)
+                Store (Add (Add (GPBS, 0x0100), Multiply (Arg0, 0x08)), Local0)
                 OperationRegion (LGPI, SystemIO, Local0, 0x04)
                 Field (LGPI, ByteAcc, NoLock, Preserve)
                 {
@@ -23773,7 +23083,7 @@ Store (ShiftRight (Local4, 8), DTB1)
         }
     }
 
-    Scope (_SB.PCI0.LPCB)
+    Scope (\_SB.PCI0.LPCB)
     {
         OperationRegion (RX40, PCI_Config, 0x40, 0x10)
         Field (RX40, ByteAcc, NoLock, Preserve)
@@ -23803,8 +23113,8 @@ Store (ShiftRight (Local4, 8), DTB1)
 
     Scope (\)
     {
-        OperationRegion (SMB0, SystemIO, \_SB.SMBB, 0x10)
-        Field (SMB0, ByteAcc, NoLock, Preserve)
+        OperationRegion (SMB1, SystemIO, \_SB.SMBB, 0x10)
+        Field (SMB1, ByteAcc, NoLock, Preserve)
         {
             HSTS,   8, 
             SSTS,   8, 
@@ -24610,133 +23920,7 @@ Store (ShiftRight (Local4, 8), DTB1)
         \_SB.PCI0.IGPU.OWAK (Arg0)
         OEMW (Arg0)
     }
-    Scope (_SB_)
-    {
-        Device (PNLF)
-        {
-            // normal PNLF declares (note some of this probably not necessary)
-            Name (_ADR, Zero)
-            Name (_HID, EisaId ("APP0002"))
-            Name (_CID, "backlight")
-            Name (_UID, 10)
-            Name (_STA, 0x0B)
-            //define hardware register access for brightness
-            // you can see BAR1 value in RW-Everything under Bus00,02 Intel VGA controler PCI
-            // Note: Not sure which one is right here... for now, going with BAR1 masked
-            //OperationRegion (BRIT, SystemMemory, Subtract(\_SB.PCI0.IGPU.BAR1, 4), 0xe1184)
-            OperationRegion (BRIT, SystemMemory, And(^PCI0.IGPU.BAR1, Not(0xF)), 0xe1184)
-            Field (BRIT, AnyAcc, Lock, Preserve)
-            {
-                Offset(0x48250),
-                LEV2, 32,
-                LEVL, 32,
-                Offset(0x70040),
-                P0BL, 32,
-                Offset(0xc8250),
-                LEVW, 32,
-                LEVX, 32,
-                Offset(0xe1180),
-                PCHL, 32,
-            }
-            Method (_INI, 0, NotSerialized)
-            {
-                // If the BIOS actually sets the values prior to boot, this would be
-                // how (maybe) to capture them.  My Envy does not have the capability
-                // to set brightness and I find these values are not set.
-                // The current value could also be in LEVL, and probably is even
-                // though OS X seems to manipulate only the low 16-bits of LEVX to
-                // change brightness.
-                // Because the low-order 16-bits are set to zero on the Envy, enabling
-                // this code causes a blank screen before the login screena appears.
-                //
-                //Store(LEVX, Local0)
-                //Store(ShiftRight(Local0,16), Local1)
-                //Store(And(Local0,0xFFFF), Local2)
-                //Divide(Multiply(Local2, 0xad9), Local1, Local0)
-                //Or(Local0, 0xad90000, Local0)
-                //
-                //REVIEW: wait for vblank to change things
-                //While(LEqual (P0BL, Local1)) {}
-                //
-                // This is part of the "keep startup level"...
-                // see comment above.
-                //Store(Local0, LEVX)
-                //
-                // This 0xC value comes from looking what OS X initializes this
-                // register to after display sleep (using ACPIDebug/ACPIPoller)
-                Store(0xC0000000, LEVW)
-                // Because this laptop starts at full brightness, I just set it right
-                // here.  This is to insure _BQC and XBQC return the correct level
-                // at startup.
-                Store(0xad90ad9, LEVX)
-            }
-            // _BCM/_BQC: set/get for brightness level
-            Method (_BCM, 1, NotSerialized)
-            {
-                // store new backlight level
-                Store(Match(_BCL, MGE, Arg0, MTR, Zero, 2), Local0)
-                If (LEqual(Local0, Ones)) { Subtract(SizeOf(_BCL), One, Local0) }
-                Store(Or(DerefOf(Index(_BCL,Local0)),And(LEVX,0xFFFF0000)), LEVX)
-            }
-            Method (_BQC, 0, NotSerialized)
-            {
-                Store(Match(_BCL, MGE, And(LEVX, 0xFFFF), MTR, Zero, 2), Local0)
-                If (LEqual(Local0, Ones)) { Subtract(SizeOf(_BCL), One, Local0) }
-                Return(DerefOf(Index(_BCL, Local0)))
-            }
-            Method (_DOS, 1, NotSerialized)
-            {
-                // Note: Some systems have this defined in DSDT, so uncomment
-                // the next line if that is the case.
-                //External(^^PCI0.IGPU._DOS, MethodObj)
-                ^^PCI0.IGPU._DOS(Arg0)
-            }
-            // extended _BCM/_BQC for setting "in between" levels
-            Method (XBCM, 1, NotSerialized)
-            {
-                // store new backlight level
-                If (LGreater(Arg0, XRGH)) { Store(XRGH, Arg0) }
-                If (LAnd(Arg0, LLess(Arg0, XRGL))) { Store(XRGL, Arg0) }
-                Store(Or(Arg0,And(LEVX,0xFFFF0000)), LEVX)
-            }
-            Method (XBQC, 0, NotSerialized)
-            {
-                Store(And(LEVX,0xFFFF), Local0)
-                If (LGreater(Local0, XRGH)) { Store(XRGH, Local0) }
-                If (LAnd(Local0, LLess(Local0, XRGL))) { Store(XRGL, Local0) }
-                Return(Local0)
-            }
-            // Use XOPT=1 to disable smooth transitions
-            Name (XOPT, Zero)
-            // XRGL/XRGH: defines the valid range
-            Name (XRGL, 0x02)
-            Name (XRGH, 0x0578)
-            // _BCL: returns list of valid brightness levels
-            // first two entries describe ac/battery power levels
-            Name (_BCL, Package(0x43)
-            {
-                0x030C, 
-                0x0140, 
-                Zero, 0x02, 0x04, 0x06,
-                0x09, 0x0C, 0x0F, 0x13,
-                0x17, 0x1B, 0x20, 0x25, 
-                0x2A, 0x30, 0x36, 0x3C, 
-                0x43, 0x4A, 0x52, 0x5A,
-                0x63, 0x6C, 0x76, 0x82,
-                0x8F, 0x9D, 0xAC, 0xBC,
-                0xCD, 0xDF, 0xF2, 0x0106,
-                0x011B, 0x0131, 0x0148, 0x0160,
-                0x0179, 0x0193, 0x01AE, 0x01CA,
-                0x01E7, 0x0205, 0x0223, 0x0241,
-                0x0261, 0x0281, 0x02A2, 0x02C4,
-                0x02E7, 0x030B, 0x032A, 0x034D,
-                0x0370, 0x0393, 0x03B6, 0x03D9,
-                0x03FC, 0x041F, 0x0447, 0x0474,
-                0x04A6, 0x04D8, 0x050A, 0x053C,
-                0x0578
-            })
-        }
-    }
+
     Method (B1B2, 2, NotSerialized) { Return(Or(Arg0, ShiftLeft(Arg1, 8))) }
     
     Device (SMCD)
@@ -24754,7 +23938,6 @@ Store (ShiftRight (Local4, 8), DTB1)
         Method (FAN0, 0, Serialized)
         {
             Store (\_SB.PCI0.LPCB.EC0.TACH (Zero), Local0)
-            \RMDT.P2 ("ACPF:", \_SB.ACPF)
             Return (Local0)
         }
 
