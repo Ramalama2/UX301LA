@@ -9483,25 +9483,68 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
             Name (_ADR, 0x001F0002)  // _ADR: Address
             Name (FDEV, Zero)
             Name (FDRP, Zero)
-            Name (_RMV, Zero)
-            Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
+            Name (_DEP, Package (Zero) {})   // _DEP: Dependencies
+            
+            Method (SLT1, 0, Serialized)
+        {
+            If (CondRefOf (\_PR.CPU0.GEAR))
             {
-                Return (Package (Zero) {})
+                Store (Zero, \_PR.CPU0.GEAR)
+                \PNOT ()
             }
-            Name (REGF, One)
-            Method (_REG, 2, NotSerialized)  // _REG: Region Availability
+
+            Return (Zero)
+        }
+
+        Method (SLT2, 0, Serialized)
+        {
+            If (CondRefOf (\_PR.CPU0.GEAR))
             {
-                If (LEqual (Arg0, 0x02)) { Store (Arg1, REGF) }
-            }            
-            Method (_DSM, 4, NotSerialized)
-            {
-                If (LEqual (Arg2, Zero)) { Return (Buffer(One) { 0x03 } ) }
-                Return (Package()
-                {
-                    "use-msi", 0x01,
-                    "sata-express-power-off", 0x01
-                })
+                Store (One, \_PR.CPU0.GEAR)
+                \PNOT ()
             }
+
+            Return (Zero)
+        }
+
+        Method (SLT3, 0, Serialized)
+        {
+            If (CondRefOf (\_PR.CPU0.GEAR))
+            {
+                Store (0x02, \_PR.CPU0.GEAR)
+                \PNOT ()
+            }
+
+            Return (Zero)
+        }
+
+        Method (GLTS, 0, Serialized)
+        {
+            Store (\_PR.CPU0.GEAR, Local0)
+            ShiftLeft (Local0, One, Local0)
+            Or (Local0, One, Local0)
+            Return (Local0)
+        }
+        
+        Name (TMD0, Buffer (0x14) {})
+        CreateDWordField (TMD0, Zero, PIO0)
+        CreateDWordField (TMD0, 0x04, DMA0)
+        CreateDWordField (TMD0, 0x08, PIO1)
+        CreateDWordField (TMD0, 0x0C, DMA1)
+        CreateDWordField (TMD0, 0x10, CHNF)
+        Method (_GTM, 0, NotSerialized)  // _GTM: Get Timing Mode
+        {
+            Store (0x78, PIO0)
+            Store (0x14, DMA0)
+            Store (0x78, PIO1)
+            Store (0x14, DMA1)
+            Or (CHNF, 0x05, CHNF)
+            Return (TMD0)
+        }
+
+        Method (_STM, 3, NotSerialized)  // _STM: Set Timing Mode
+        {
+        }
             
             Device (PRT0)
             {
@@ -9533,7 +9576,7 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
                     Return (PIB2)
                 }
             }
-
+            
             Device (PRT1)
             {
                 Name (_ADR, 0x0001FFFF)  // _ADR: Address
@@ -9566,6 +9609,83 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
                     Return (PIB2)
                 }
             }
+            Device (SPT0)
+        {
+            Name (_ADR, 0xFFFF)  // _ADR: Address
+            Method (_GTF, 0, NotSerialized)  // _GTF: Get Task File
+            {
+                Store (Zero, CMDC)
+                GTFB (STFE, 0x06)
+                GTFB (FZTF, Zero)
+                GTFB (DCFL, Zero)
+                Return (SCBF)
+            }
+        }
+
+        Device (SPT1)
+        {
+            Name (_ADR, 0x0001FFFF)  // _ADR: Address
+            Method (_GTF, 0, NotSerialized)  // _GTF: Get Task File
+            {
+                Store (Zero, CMDC)
+                GTFB (STFE, 0x06)
+                GTFB (FZTF, Zero)
+                GTFB (DCFL, Zero)
+                Return (SCBF)
+            }
+        }
+
+        Device (SPT2)
+        {
+            Name (_ADR, 0x0002FFFF)  // _ADR: Address
+            Method (_GTF, 0, NotSerialized)  // _GTF: Get Task File
+            {
+                Store (Zero, CMDC)
+                GTFB (STFE, 0x06)
+                GTFB (FZTF, Zero)
+                GTFB (DCFL, Zero)
+                Return (SCBF)
+            }
+        }
+
+        Device (SPT3)
+        {
+            Name (_ADR, 0x0003FFFF)  // _ADR: Address
+            Method (_GTF, 0, NotSerialized)  // _GTF: Get Task File
+            {
+                Store (Zero, CMDC)
+                GTFB (STFE, 0x06)
+                GTFB (FZTF, Zero)
+                GTFB (DCFL, Zero)
+                Return (SCBF)
+            }
+        }
+
+        Device (SPT4)
+        {
+            Name (_ADR, 0x0004FFFF)  // _ADR: Address
+            Method (_GTF, 0, NotSerialized)  // _GTF: Get Task File
+            {
+                Store (Zero, CMDC)
+                GTFB (STFE, 0x06)
+                GTFB (FZTF, Zero)
+                GTFB (DCFL, Zero)
+                Return (SCBF)
+            }
+        }
+
+        Device (SPT5)
+        {
+            Name (_ADR, 0x0005FFFF)  // _ADR: Address
+            Method (_GTF, 0, NotSerialized)  // _GTF: Get Task File
+            {
+                Store (Zero, CMDC)
+                GTFB (STFE, 0x06)
+                GTFB (FZTF, Zero)
+                GTFB (DCFL, Zero)
+                Return (SCBF)
+            }
+        }
     }
 
         Device (SBUS)
