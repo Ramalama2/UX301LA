@@ -3740,6 +3740,71 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 }
             }
         }
+        Device (PNLF)
+        {
+            Name (_ADR, Zero)  // _ADR: Address
+            Name (_HID, EisaId ("APP0002"))  // _HID: Hardware ID
+            Name (_CID, "backlight")  // _CID: Compatible ID
+            Name (_UID, 0x0F)  // _UID: Unique ID
+            Name (_STA, 0x0B)  // _STA: Status
+            Name (LMAX, 0x56c)         // Maximal Brightness, 0=Automatic, Default=2777,
+            // Dont set below 1000, (Optimal: 1000-8000)
+            Name (SCFT, 8)         // Scale Factor, (Good Values: 6-50) (Possible: 0-100)
+            // Higher Values = High Difference in Lower Steps, Less Difference in High Steps
+            // Lower Values = Less Difference in Lower Steps, High Difference in High Steps
+            Name (BMIN, 0)         // Minimal Brightness Level in Step (0-100)
+            Name (BMAX, 100)       // Maximal Brightness Level in Step (0-100)
+            Name (ACBR, 80)        // Plugin AC Brightness in Step (0-100)
+            Name (BATB, 60)        // Going to Battery Brightness in Step (0-100)
+            Name (XOPT, 0)         // ACPIBacklight Animation 0=ON, 1=OFF
+            OperationRegion (BRIT, SystemMemory, Add (^PCI0.IGPU.BAR1, 0xC824F), 0x05)
+            Field (BRIT, AnyAcc, Lock, Preserve)
+            {
+                SLBT, 8,
+                XBQC, 16,
+                MAXL, 16,
+            }
+            Method (_INI, 0, NotSerialized)  // _INI: Initialize
+            {
+                Store (0xC0, SLBT)    // 0xC0=Enabled, 0x80=Disabled
+                If (LGreater (LMAX, 0x200)) {
+                    Store (LMAX, MAXL) }
+                ElseIf (LOr(LNot(MAXL), LLess(MAXL, 0x200))) {
+                    Store (0xad9, MAXL)
+                    Store (0xad9, LMAX) }
+                Else { Store (MAXL, LMAX) }
+            }
+            Method (XBCM, 1, NotSerialized)  // _BCM: Brightness Control Method
+            {
+                Store (DerefOf(Index(_BCL, Add(BMIN,2))), Local0)
+                Store (DerefOf(Index(_BCL, Add(BMAX,2))), Local1)
+                If (LLess (Arg0, Local0)) { Store (Local0, Arg0) }
+                If (LGreater (Arg0, Local1)) { Store (Local1, Arg0) }
+                Store (LMAX, MAXL)
+                Store (Arg0, XBQC)
+            }
+            Method (_DOS, 1, NotSerialized)  // _DOS: Disable Output Switching
+            {
+                ^^PCI0.IGPU._DOS (Arg0)
+            }
+            Method (_BCL, 0, NotSerialized)  // _BCM: Brightness Control Method
+            {
+                Name (PKBC, Package (0x67) {})
+                Store (Divide (Multiply(Multiply(0x64, Add(SCFT,0x64)), 100), MAXL), Local0)
+                Store (Divide(Multiply(Multiply(ACBR, Add(SCFT,ACBR)), 100), Local0), Index (PKBC, Zero))
+                Store (Divide(Multiply(Multiply(BATB, Add(SCFT,BATB)), 100), Local0), Index (PKBC, One))
+                Store (Zero, Local1)
+                While (LLess (Local1, 0x65))
+                {
+                    Store (Divide(Multiply(Multiply(Local1, Add(SCFT, Local1)), 100), Local0), Index (PKBC, Add(Local1, 2)))
+                    Increment (Local1)
+                }
+                // Just to get sure that last level is exactly MAX Level,
+                // and not -1/+1 because of the calculation precision, add this line:
+                Store (MAXL, Index (PKBC, 0x66))
+                Return (PKBC)
+            }
+        }
     }
 
     Name (RPA0, 0x001C0000)
@@ -5538,11 +5603,23 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 If (LEqual (Arg2, Zero)) { Return (Buffer(One) { 0x03 } ) }
                 Return (Package()
                 {
-                    "layout-id", Buffer() { 0x03, 0x00, 0x00, 0x00 },
+                    "layout-id", Buffer() { 0x56, 0x00, 0x00, 0x00 },
                     "PinConfigurations", Buffer(Zero) {},
-                    "MaximumBootBeepVolume", 77,
+                    //"MaximumBootBeepVolume", 77,
                 })
             }
+            Method (_PS0, 0, Serialized)  // _PS0: Power State 0
+                {
+                    Store (0x01, PMES)
+                    Sleep (0x0F)
+                }
+
+                Method (_PS3, 0, Serialized)  // _PS3: Power State 3
+                {
+                    Store (0x00, PMEE)
+                    Store (0x00, PMES)
+                    Sleep (0x14)
+                }
             }
         Name (LTRS, Zero)
         Name (OBFS, Zero)
@@ -5802,7 +5879,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 If (LEqual (Arg2, Zero)) { Return (Buffer(One) { 0x03 } ) }
                 Return (Package()
                 {
-                    "layout-id", Buffer() { 0x03, 0x00, 0x00, 0x00 },
                     "hda-gfx", Buffer() { "onboard-1" }
                 })
             }
@@ -7189,6 +7265,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_BCM, 1, NotSerialized)  // _BCM: Brightness Control Method
                 {
+                    \RMDT.P1 ("LCDD BCM")
                     Store (One, BCMD)
                     Store (GCBL (Arg0), Local0)
                     Subtract (0x0A, Local0, LBTN)
@@ -7448,11 +7525,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Offset (0xBC), 
                 ASLS,   32
             }
-OperationRegion (IGD2, PCI_Config, 0x10, 4)
-Field (IGD2, AnyAcc, NoLock, Preserve)
-{
-	BAR1,32,
-}
+
 
 
             OperationRegion (IGDM, SystemMemory, ASLB, 0x2000)
@@ -9075,6 +9148,13 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
                     "graphic-options", Buffer () { 0x0C, 0x00, 0x00, 0x00 },
                 })
             }
+            OperationRegion (RMPC, PCI_Config, 0x10, 4)
+            Field (RMPC, AnyAcc, NoLock, Preserve)
+            {
+                BAR1,32,
+            }
+            
+            
         }
 
             Device (SIRC)
@@ -9545,6 +9625,16 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
         Method (_STM, 3, NotSerialized)  // _STM: Set Timing Mode
         {
         }
+        
+        Method (_DSM, 4, NotSerialized)
+                    {
+                        If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
+                        Return (Package()
+                        {
+                            "subsystem-id", Buffer() { 0x70, 0x72, 0x00, 0x00 },
+                            "subsystem-vendor-id", Buffer() { 0x86, 0x80, 0x00, 0x00 },
+                        })
+                    }
             
             Device (PRT0)
             {
@@ -12117,17 +12207,13 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
                 Notify (\_SB.PCI0.RP04, 0x02)
             }
         }
-
+        
         Method (_L0D, 0, NotSerialized)
         {
-            _L6D ()
-        }
-        
-        Method (_L6D, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
-        {
-            Notify (\_SB.PWRB, 0x02)
-            Notify (\_SB.PCI0.XHC1, 0x02)
-            Notify (\_SB.PCI0.HDEF, 0x02)
+            If (LAnd (\_SB.PCI0.HDEF.PMEE, \_SB.PCI0.HDEF.PMES))
+            {
+                Notify (\_SB.PCI0.HDEF, 0x02)
+            }
         }
 
         Method (_L01, 0, NotSerialized)
@@ -12213,32 +12299,6 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
                 Notify (\_SB.PCI0.SATA, 0x82)
                 Return (Zero)
             }
-
-        Method (_L67, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
-        {
-            Store (0x20, \_SB.PCI0.SBUS.HSTS)
-        }
-
-        Method (_L66, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
-        {
-            If (LAnd (\_SB.PCI0.IGPU.GSSE, LNot (GSMI)))
-            {
-                \_SB.PCI0.IGPU.GSCI ()
-            }
-            Else
-            {
-                Store (0x00, \_SB.PCI0.IGPU.GEFC)
-                Store (0x01, SCIS)
-                Store (0x00, \_SB.PCI0.IGPU.GSSE)
-                Store (0x00, \_SB.PCI0.IGPU.SCIE)
-            }
-        }
-
-        Method (_L69, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
-        {
-            Notify (\_SB.PCI0.RP01, 0x02)
-            Notify (\_SB.PCI0.RP04.ARPT, 0x02)
-        }
     }
 
     Scope (\_SB.PCI0.LPCB)
@@ -12267,8 +12327,6 @@ Field (IGD2, AnyAcc, NoLock, Preserve)
                 Store (0x0A, Local0)
                 Return (Local0)
             }
-            Method (_PRW, 0, NotSerialized) { Return (GPRW (0x70, 0x03)) }
-            
 
             Mutex (MUEC, 0x00)
             Mutex (MU4T, 0x00)
@@ -15340,130 +15398,8 @@ DTB1, 8
                 Return (KBLV)
             }
         }
-        Device (PNLF)
-        {
-            // normal PNLF declares (note some of this probably not necessary)
-            Name (_ADR, Zero)
-            Name (_HID, EisaId ("APP0002"))
-            Name (_CID, "backlight")
-            Name (_UID, 10)
-            Name (_STA, 0x0B)
-            //define hardware register access for brightness
-            // you can see BAR1 value in RW-Everything under Bus00,02 Intel VGA controler PCI
-            // Note: Not sure which one is right here... for now, going with BAR1 masked
-            //OperationRegion (BRIT, SystemMemory, Subtract(\_SB.PCI0.IGPU.BAR1, 4), 0xe1184)
-            OperationRegion (BRIT, SystemMemory, And(^PCI0.IGPU.BAR1, Not(0xF)), 0xe1184)
-            Field (BRIT, AnyAcc, Lock, Preserve)
-            {
-                Offset(0x48250),
-                LEV2, 32,
-                LEVL, 32,
-                Offset(0x70040),
-                P0BL, 32,
-                Offset(0xc8250),
-                LEVW, 32,
-                LEVX, 32,
-                Offset(0xe1180),
-                PCHL, 32,
-            }
-            Method (_INI, 0, NotSerialized)
-            {
-                // If the BIOS actually sets the values prior to boot, this would be
-                // how (maybe) to capture them.  My Envy does not have the capability
-                // to set brightness and I find these values are not set.
-                // The current value could also be in LEVL, and probably is even
-                // though OS X seems to manipulate only the low 16-bits of LEVX to
-                // change brightness.
-                // Because the low-order 16-bits are set to zero on the Envy, enabling
-                // this code causes a blank screen before the login screena appears.
-                //
-                //Store(LEVX, Local0)
-                //Store(ShiftRight(Local0,16), Local1)
-                //Store(And(Local0,0xFFFF), Local2)
-                //Divide(Multiply(Local2, 0xad9), Local1, Local0)
-                //Or(Local0, 0xad90000, Local0)
-                //
-                //REVIEW: wait for vblank to change things
-                //While(LEqual (P0BL, Local1)) {}
-                //
-                // This is part of the "keep startup level"...
-                // see comment above.
-                //Store(Local0, LEVX)
-                //
-                // This 0xC value comes from looking what OS X initializes this
-                // register to after display sleep (using ACPIDebug/ACPIPoller)
-                Store(0xC0000000, LEVW)
-                // Because this laptop starts at full brightness, I just set it right
-                // here.  This is to insure _BQC and XBQC return the correct level
-                // at startup.
-                Store(0xad90ad9, LEVX)
-            }
-            // _BCM/_BQC: set/get for brightness level
-            Method (_BCM, 1, NotSerialized)
-            {
-                // store new backlight level
-                Store(Match(_BCL, MGE, Arg0, MTR, Zero, 2), Local0)
-                If (LEqual(Local0, Ones)) { Subtract(SizeOf(_BCL), One, Local0) }
-                Store(Or(DerefOf(Index(_BCL,Local0)),And(LEVX,0xFFFF0000)), LEVX)
-            }
-            Method (_BQC, 0, NotSerialized)
-            {
-                Store(Match(_BCL, MGE, And(LEVX, 0xFFFF), MTR, Zero, 2), Local0)
-                If (LEqual(Local0, Ones)) { Subtract(SizeOf(_BCL), One, Local0) }
-                Return(DerefOf(Index(_BCL, Local0)))
-            }
-            Method (_DOS, 1, NotSerialized)
-            {
-                // Note: Some systems have this defined in DSDT, so uncomment
-                // the next line if that is the case.
-                //External(^^PCI0.IGPU._DOS, MethodObj)
-                ^^PCI0.IGPU._DOS(Arg0)
-            }
-            // extended _BCM/_BQC for setting "in between" levels
-            Method (XBCM, 1, NotSerialized)
-            {
-                // store new backlight level
-                If (LGreater(Arg0, XRGH)) { Store(XRGH, Arg0) }
-                If (LAnd(Arg0, LLess(Arg0, XRGL))) { Store(XRGL, Arg0) }
-                Store(Or(Arg0,And(LEVX,0xFFFF0000)), LEVX)
-            }
-            Method (XBQC, 0, NotSerialized)
-            {
-                Store(And(LEVX,0xFFFF), Local0)
-                If (LGreater(Local0, XRGH)) { Store(XRGH, Local0) }
-                If (LAnd(Local0, LLess(Local0, XRGL))) { Store(XRGL, Local0) }
-                Return(Local0)
-            }
-            // Use XOPT=1 to disable smooth transitions
-            Name (XOPT, Zero)
-            // XRGL/XRGH: defines the valid range
-            Name (XRGL, 0x02)
-            Name (XRGH, 0x0578)
-            // _BCL: returns list of valid brightness levels
-            // first two entries describe ac/battery power levels
-            Name (_BCL, Package(0x43)
-            {
-                0x030C, 
-                0x0140, 
-                Zero, 0x02, 0x04, 0x06,
-                0x09, 0x0C, 0x0F, 0x13,
-                0x17, 0x1B, 0x20, 0x25, 
-                0x2A, 0x30, 0x36, 0x3C, 
-                0x43, 0x4A, 0x52, 0x5A,
-                0x63, 0x6C, 0x76, 0x82,
-                0x8F, 0x9D, 0xAC, 0xBC,
-                0xCD, 0xDF, 0xF2, 0x0106,
-                0x011B, 0x0131, 0x0148, 0x0160,
-                0x0179, 0x0193, 0x01AE, 0x01CA,
-                0x01E7, 0x0205, 0x0223, 0x0241,
-                0x0261, 0x0281, 0x02A2, 0x02C4,
-                0x02E7, 0x030B, 0x032A, 0x034D,
-                0x0370, 0x0393, 0x03B6, 0x03D9,
-                0x03FC, 0x041F, 0x0447, 0x0474,
-                0x04A6, 0x04D8, 0x050A, 0x053C,
-                0x0578
-            })
-        }
+        
+        
     }
 
     Scope (\_SB.PCI0)
@@ -15479,11 +15415,6 @@ DTB1, 8
             Name (_PCL, Package (0x01)  // _PCL: Power Consumer List
             {
                 PCI0
-            })
-            Name (_PRW, Package (0x02)  // _PRW: Power Resources for Wake
-            {
-                0x70, 
-                0x03
             })
         }
     }
@@ -15726,7 +15657,14 @@ DTB1, 8
 
                 If (Local0)
                 {
-                    Store (0x02, Local0)
+                    If (CHGS (Zero))
+                    {
+                        Store (0x02, Local0)
+                    }
+                    Else
+                    {
+                        Store (Zero, Local0)
+                    }
                 }
                 Else
                 {
@@ -16386,7 +16324,7 @@ DTB1, 8
             SBRW (Arg0)
             If (LEqual (Arg0, 0x04))
             {
-                Notify (\_SB.SLPB, 0x02)
+                Notify (\_SB.PWRB, 0x02)
             }
 
             PRJW (Arg0)
@@ -20325,14 +20263,10 @@ Store (ShiftRight (Local4, 8), DTB1)
         {
             \RMDT.P1("Pressed _Q09")
         }
-
+        
         Method (_Q0A, 0, NotSerialized)  // _Qxx: EC Query
         {
-            //Notify (\_SB.SLPB, 0x80)
-            //\RMDT.P2("IGPU _BCL", ^^^IGPU.LCDD._BCL ())
-            \RMDT.P2("BT Status", \RGPL (0x57, One))
-           // \RMDT.P2("SBFR", SBFR)
-           // \RMDT.P2("BDAY", BDAY)
+            \RMDT.P2("PNLF BCL", ^^^^PNLF._BCL)
         }
   
         Method (_Q0B, 0, NotSerialized)  // _Qxx: EC Query
@@ -21531,6 +21465,14 @@ Store (ShiftRight (Local4, 8), DTB1)
         Device (PWRB)
         {
             Name (_HID, EisaId ("PNP0C0C"))  // _HID: Hardware ID
+            Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
+            {
+                Return (Package (0x02)
+                {
+                    0x0B, 
+                    0x04
+                })
+            }
         }
         
         Device (SLPB)
@@ -22216,18 +22158,6 @@ Store (ShiftRight (Local4, 8), DTB1)
                     Package (0x04)
                     {
                         0x28, 
-                        \_SB.PNLF, 
-                        0x0A, 
-                        Package (0x02)
-                        {
-                            0x00050000, 
-                            0x3C
-                        }
-                    }, 
-
-                    Package (0x04)
-                    {
-                        0x28, 
                         \_SB.PCI0.TMEM, 
                         0x02, 
                         Package (0x02)
@@ -22315,7 +22245,7 @@ Store (ShiftRight (Local4, 8), DTB1)
             Method (PDAC, 0, Serialized)
             {
                 Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                Name (TMPD, Package (0x08)
+                Name (TMPD, Package ()
                 {
                     Package (0x04)
                     {
@@ -22374,18 +22304,6 @@ Store (ShiftRight (Local4, 8), DTB1)
                         {
                             0x00040000, 
                             0x80000000
-                        }
-                    }, 
-
-                    Package (0x04)
-                    {
-                        0x64, 
-                        \_SB.PNLF, 
-                        0x0A, 
-                        Package (0x02)
-                        {
-                            0x00050000, 
-                            0x64
                         }
                     }, 
 
