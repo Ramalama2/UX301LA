@@ -3804,7 +3804,16 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Store (MAXL, Index (PKBC, 0x66))
                 Return (PKBC)
             }
+            Method (_DSM, 4, NotSerialized)
+            {
+                If (LEqual (Arg2, Zero)) { Return (Buffer(One) { 0x03 } ) }
+                Return (Package()
+                {
+                    "AAPL,display-alias", Buffer() { 0x10, 0x4d, 0x21, 0xa0 },
+                })
+            }
         }
+        
     }
 
     Name (RPA0, 0x001C0000)
@@ -5608,18 +5617,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     //"MaximumBootBeepVolume", 77,
                 })
             }
-            Method (_PS0, 0, Serialized)  // _PS0: Power State 0
-                {
-                    Store (0x01, PMES)
-                    Sleep (0x0F)
-                }
-
-                Method (_PS3, 0, Serialized)  // _PS3: Power State 3
-                {
-                    Store (0x00, PMEE)
-                    Store (0x00, PMES)
-                    Sleep (0x14)
-                }
             }
         Name (LTRS, Zero)
         Name (OBFS, Zero)
@@ -9146,6 +9143,19 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     "hda-gfx", Buffer() { "onboard-1" },
                     "AAPL00,DualLink", Buffer() { 0x01, 0x00, 0x00, 0x00 },
                     "graphic-options", Buffer () { 0x0C, 0x00, 0x00, 0x00 },
+                   /* "AAPL00,override-no-edid", Buffer () {
+            0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x4D, 0x10, 0x20, 0xA0,
+            0x00, 0x00, 0x00, 0x00, 0x00, 0x17, 0x01, 0x04, 0xA5, 0x1D, 0x11, 0x78,
+            0x06, 0xDE, 0x50, 0xA3, 0x54, 0x4C, 0x99, 0x26, 0x0F, 0x50, 0x54, 0x00,
+            0x00, 0x00, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
+            0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x56, 0x5E, 0x00, 0xA0, 0xA0, 0xA0,
+            0x29, 0x50, 0x30, 0x20, 0x35, 0x00, 0x26, 0xA5, 0x10, 0x00, 0x00, 0x18,
+            0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00,
+            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+            0x00, 0x00, 0x00, 0xFC, 0x00, 0x4C, 0x51, 0x31, 0x33, 0x33, 0x54, 0x31,
+            0x4A, 0x57, 0x31, 0x34, 0x0A, 0x20, 0x00, 0xA5
+        },*/
                 })
             }
             OperationRegion (RMPC, PCI_Config, 0x10, 4)
@@ -9153,6 +9163,8 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             {
                 BAR1,32,
             }
+            
+            
             
             
         }
@@ -11715,6 +11727,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
     Method (_WAK, 1, Serialized)  // _WAK: Wake
     {
+        Store (0xC0, \_SB.PNLF.SLBT)
         WAK (Arg0)
         If (And (ICNF, 0x10))
         {
@@ -11756,6 +11769,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             \_SB.PCI0.LPCB.EC0.WRAM (0x0533, 0x69)
             \_SB.PCI0.LPCB.EC0.WRAM (0x0534, 0x64)
         }
+        \RMDT.P2 ("_WAK", Arg0)
 
         Return (Package (0x02) { Zero, Zero })
     }
@@ -20266,12 +20280,17 @@ Store (ShiftRight (Local4, 8), DTB1)
         
         Method (_Q0A, 0, NotSerialized)  // _Qxx: EC Query
         {
-            \RMDT.P2("PNLF BCL", ^^^^PNLF._BCL)
+            Notify (SLPB, 0x80)
         }
   
         Method (_Q0B, 0, NotSerialized)  // _Qxx: EC Query
         {
-            If (OWGS) { OBTD (One) } Else { OBTD (Zero) }
+            //If (OWGS) { OBTD (One) } Else { OBTD (Zero) }
+\RMDT.P2 ("CPDL", ^^^IGPU.CPDL)
+\RMDT.P2 ("DIDL", ^^^IGPU.DIDL)
+\RMDT.P2 ("SVER", ^^^IGPU.SVER)
+\RMDT.P2 ("GVD1", ^^^IGPU.GVD1)
+\RMDT.P2 ("PLUT", ^^^IGPU.PLUT)
         }
 
         Method (_Q0C, 0, NotSerialized)  // _Qxx: EC Query
