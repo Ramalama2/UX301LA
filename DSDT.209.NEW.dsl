@@ -8400,7 +8400,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         If ((\MSOS () < \OSW8))
                         {
                             Local3 = GCBL (CBLV)
-                            Local3 -= 0x0A
+                            Local3 = (0x0A - Local3)
                             LBTN = Local3
                         }
                     }
@@ -8473,7 +8473,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         If ((\MSOS () < \OSW8))
                         {
                             Local3 = GCBL (CBLV)
-                            Local3 -= 0x0A
+                            Local3 = (0x0A - Local3)
                             LBTN = Local3
                         }
                     }
@@ -20602,7 +20602,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Method (FBST, 4, NotSerialized)
             {
                 Local1 = (Arg1 & 0xFFFF)
-                \RMDT.P2 ("Rout3-1", Local1)
                 Local0 = Zero
                 If (^^LPCB.EC0.ACAP ())
                 {
@@ -20617,7 +20616,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     }
                     Else
                     {
-                        Local0 = One
+                        Local0 = Zero
                     }
                 }
                 Else
@@ -20639,17 +20638,14 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 If ((Local1 >= 0x8000))
                 {
-                    Local1 -= 0xFFFF
-                    \RMDT.P2 ("Rout3-2", Local1)
+                    Local1 = (0xFFFF - Local1)
                 }
 
                 Local2 = Arg2
                 If ((PUNT == Zero))
                 {
-                    \RMDT.P2 ("Rout3-b0bv", ^^LPCB.EC0.B0DV)
                     Local1 *= ^^LPCB.EC0.B0DV
                     Local2 *= 0x0A
-                    \RMDT.P2 ("Rout3-3", Local1)
                 }
 
                 Local3 = (Local0 & 0x02)
@@ -20678,13 +20674,11 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     If ((Local1 < Local4))
                     {
                         Local1 = Local4
-                        \RMDT.P2 ("Rout3-GotLocal4", Local4)
                     }
                 }
 
                 Index (PBST, Zero) = Local0
                 Index (PBST, One) = Local1
-                \RMDT.P2 ("Rout3-5", Local1)
                 Index (PBST, 0x02) = Local2
                 Index (PBST, 0x03) = Arg3
             }
@@ -20729,7 +20723,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 BATS (Zero)
                 Local0 = ^^LPCB.EC0.BSTS ()
                 Local1 = ^^LPCB.EC0.BCRT ()
-                \RMDT.P2 ("Rout1", Local1)
                 Local2 = ^^LPCB.EC0.BRCP ()
                 Local3 = ^^LPCB.EC0.BVOT ()
                 If ((Local0 != Ones))
@@ -21068,12 +21061,10 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             If (BSLF)
             {
                 Local0 = B1CC
-                \RMDT.P2 ("Rout2-a", Local0)
             }
             Else
             {
                 Local0 = B0CC
-                \RMDT.P2 ("Rout2-b", Local0)
             }
 
             Return (Local0)
@@ -21152,6 +21143,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
     {
         Method (_QA1, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _QA1 enter") }
             DCPF = DCPS (Zero)
             If (DCPF)
             {
@@ -21164,6 +21156,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_QA5, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _QA5 enter") }
             BLLO = One
             If (ATKP)
             {
@@ -21180,6 +21173,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_QA3, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _QA3 enter") }
             If (BATP (Zero))
             {
                 Local0 = BCLE (Zero)
@@ -23973,8 +23967,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                             Local4 <<= 0x04
                             Local3 = LBTN
                             Local3 = (Local4 + Local3)
-                            ^^^IGPU.AINT (One, ((DerefOf (Index (PWAC, Local3)) * 0x64) / 0xFF
-                                ))
+                            ^^^IGPU.AINT (One, ((DerefOf (Index (PWAC, Local3)) * 0x64) / 0xFF))
                         }
                     }
                     Else
@@ -24860,9 +24853,9 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Local0 = (Arg0 & 0xFF)
             If ((Local0 >= 0x80))
             {
-                Local0 -= 0x0100
+                Local0 = (0x0100 - Local0)
                 Local0 *= 0x0A
-                Local0 -= 0x0AAC
+                Local0 = (0x0AAC - Local0)
                 Return (Local0)
             }
 
@@ -25411,6 +25404,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_Q01, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _Q01 enter") }
             If (ATKP)
             {
                 ^^^^ATKD.IANE (0x52)
@@ -25419,6 +25413,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_Q02, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _Q02 enter") }
             If (ATKP)
             {
                 ^^^^ATKD.IANE (0x53)
@@ -25427,6 +25422,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_Q03, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _Q03 enter") }
             If (ATKP)
             {
                 ^^^^ATKD.IANE (0x54)
@@ -25435,6 +25431,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_Q04, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _Q04 enter") }
             If (ATKP)
             {
                 ^^^^ATKD.IANE (0x55)
@@ -25443,6 +25440,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_Q05, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _Q05 enter") }
             If (ATKP)
             {
                 ^^^^ATKD.IANE (0x56)
@@ -25451,7 +25449,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_Q0A, 0, NotSerialized)  // _Qxx: EC Query
         {
-           If (OSDW == OWGS) {
+           If (DBUG == 2) { \rmdt.p1("EC _Q0A enter") }
+            If (OSDW == OWGS) {
                 STB2 (0xE0)
                 STB2 (0x5F)
                 STB2 (0xE0)
@@ -25464,7 +25463,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_Q0B, 0, NotSerialized)  // _Qxx: EC Query
         {
-            If (DBUG) {
+                If (DBUG) {
                 \RMDT.P2 ("_BIF", ^^^BAT0._BIF)
                 Sleep (0x50)
                 \RMDT.P2 ("_BST", ^^^BAT0._BST)
@@ -25476,17 +25475,20 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_Q0C, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _Q0C enter") }
             ^^^^ATKD.IANE (0xC5)
         }
 
         Method (_Q0D, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _Q0D enter") }
             ^^^^ATKD.IANE (0xC4)
         }
 
         Method (_Q0E, 0, NotSerialized)  // _Qxx: EC Query
         {
-            If (OSDW) {
+            If (DBUG == 2) { \rmdt.p1("EC _Q0E enter") }
+                If (OSDW) {
                 STB2 (0xE0)
                 STB2 (0x05)
                 STB2 (0xE0)
@@ -25500,7 +25502,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_Q0F, 0, NotSerialized)  // _Qxx: EC Query
         {
-            If (OSDW) {
+            If (DBUG == 2) { \rmdt.p1("EC _Q0F enter") }
+                If (OSDW) {
                 STB2 (0xE0)
                 STB2 (0x06)
                 STB2 (0xE0)
@@ -25514,6 +25517,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_Q10, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _Q10 enter") }
             If ((BLCT == Zero))
             {
                 Local0 = One
@@ -25522,7 +25526,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 SPIN (0x72, Local0)
                 If (ATKP)
                 {
-                    Local0 -= 0x34
+                    Local0 = (0x34 - Local0)
                     ^^^^ATKD.IANE (Local0)
                 }
             }
@@ -25540,6 +25544,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_Q11, 0, Serialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _Q11 enter") }
             If ((F8FG == Zero))
                 {
                     F8FG = One
@@ -25553,6 +25558,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_Q12, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _Q12 enter") }
             If (!(DSYN & One))
             {
                 If (ATKP)
@@ -25571,6 +25577,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_Q13, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _Q13 enter") }
             If ((MSOS () >= OSW8))
             {
                 STB2 (0xE0)
@@ -25587,6 +25594,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_Q14, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _Q14 enter") }
             If ((MSOS () >= OSW8))
             {
                 STB2 (0xE0)
@@ -25611,6 +25619,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_Q15, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _Q15 enter") }
             If ((MSOS () >= OSW8))
             {
                 STB2 (0xE0)
@@ -25635,6 +25644,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_Q6F, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _Q6F enter") }
             If (ATKP)
             {
                 ^^^^ATKD.IANE (0x45)
@@ -25643,6 +25653,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_Q6E, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _Q6E enter") }
             If (ATKP)
             {
                 ^^^^ATKD.IANE (0x43)
@@ -25651,6 +25662,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_Q6C, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _Q6C enter") }
             If (ATKP)
             {
                 ^^^^ATKD.IANE (0x40)
@@ -25659,6 +25671,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_Q6D, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _Q6D enter") }
             If (ATKP)
             {
                 ^^^^ATKD.IANE (0x41)
@@ -25667,11 +25680,15 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_Q70, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _Q70 enter") }
         }
 
         Method (_Q71, 0, NotSerialized)  // _Qxx: EC Query
         {
-            If (OSDW) {
+            If (DBUG) {
+                If (DBUG <= 3) { DBUG++ BLNK(DBUG, 3) } Else { DBUG = One BLNK(1,3) }
+                }
+                ElseIf (OSDW) {
                 STB2 (0xE0)
                 STB2 (0x22)
                 STB2 (0xE0)
@@ -25685,6 +25702,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_Q72, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _Q72 enter") }
             If (ATKP)
             {
                 ^^^^ATKD.IANE (0x8A)
@@ -25693,6 +25711,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_Q73, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _Q73 enter") }
             If (ATKP)
             {
                 ^^^^ATKD.IANE (0x99)
@@ -25701,37 +25720,39 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_Q74, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _Q74 enter") }
             If (ATKP)
             {
                 ^^^^ATKD.IANE (0x82)
             }
         }
+        
+        Method (BLNK, 2, NotSerialized)
+        {
+            Local0 = Zero
+            While (Local0 < Arg0)
+                {
+                    Sleep (0x50)
+                    SGPL (0x2E, One, One)
+                    Sleep (0x50 * Arg1)
+                    SGPL (0x2E, One, Zero)
+                    Sleep (0x50)
+                    Local0++
+                }
+            Return (Zero)
+        }
 
         Method (_Q76, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _Q76 enter") }
+            Local0 = Zero
             If (!OWGS && !DBUG) {
                 DBUG = One
-                SGPL (0x2E, One, One)
-                Sleep (0x50)
-                SGPL (0x2E, One, Zero)
-                Sleep (0x100)
-                SGPL (0x2E, One, One)
-                Sleep (0x50)
-                SGPL (0x2E, One, Zero)
-                Sleep (0x100)
-                SGPL (0x2E, One, One)
-                Sleep (0x50)
-                SGPL (0x2E, One, Zero)
+                BLNK (3,1)
             } ElseIf (!OWGS && DBUG) {
                 DBUG = Zero
-                SGPL (0x2E, One, One)
-                Sleep (0x50)
-                SGPL (0x2E, One, Zero)
-                Sleep (0x100)
-                SGPL (0x2E, One, One)
-                Sleep (0x50)
-                SGPL (0x2E, One, Zero)
-                }
+                BLNK (1,1)
+            }
             ElseIf (ATKP)
             {
                 ^^^^ATKD.IANE (0x7A)
@@ -25740,6 +25761,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_Q77, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _Q77 enter") }
             If (ATKP)
             {
                 ^^^^ATKD.IANE (0xB5)
@@ -25748,6 +25770,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_Q78, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _Q78 enter") }
             If (ATKP)
             {
                 ^^^^ATKD.IANE (0x84)
@@ -25757,6 +25780,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         Name (OLUX, 0xFF)
         Method (_QCD, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _QCD enter") }
             Local0 = RALS ()
             Local1 = ST8E (0x31, Zero)
             If ((OLUX != Local1))
@@ -25812,11 +25836,13 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_QB0, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _QB0 enter") }
             Notify (\_TZ.THRM, 0x80)
         }
 
         Method (_QA0, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _QA0 enter") }
             If (ACPS ())
             {
                 ACPF = One
@@ -25847,6 +25873,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_Q20, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _Q20 enter") }
             If (CDFG)
             {
                 SMBF = One
@@ -25861,6 +25888,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_QB3, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _QB3 enter") }
             ^^^^ATKD.IANE (0x6D)
         }
 
@@ -25918,6 +25946,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_QAC, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _QAC enter") }
             Local0 = ST8E (0x28, Zero)
             If (((Local0 & One) == One))
             {
@@ -25927,10 +25956,12 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_QD3, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _QD3 enter") }
         }
 
         Method (_QD4, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _QD4 enter") }
             If ((F8FG == One))
             {
                 F8FG = Zero
@@ -26007,6 +26038,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         Name (KLDT, Zero)
         Method (_Q80, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _Q80 enter") }
             If (GLID ())
             {
                 WRAM (0x04B1, KLDT)
@@ -26179,6 +26211,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
     {
         Method (_Q79, 0, NotSerialized)  // _Qxx: EC Query
         {
+            If (DBUG == 2) { \rmdt.p1("EC _Q79 enter") }
             ^^^^ATKD.IANE (0xB1)
         }
     }
@@ -27968,7 +28001,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             PUSH(TEMP)
         }
     }
-    Method (B1B2, 2, NotSerialized) { Return ((Arg1 << 0x08) |= Arg0) }
+    Method (B1B2, 2, NotSerialized) { Return(Or(Arg0, ShiftLeft(Arg1, 8))) }
     Device (SMCD)
     {
         Name (_HID, "MON0000")  // _HID: Hardware ID
