@@ -17800,7 +17800,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 CDFG,   1, 
                 ADDR,   8, 
                 CMDB,   8, 
-                BDAT,   256, 
+                BDAX,	256, 
                 BCNT,   8, 
                     ,   1, 
                 ALAD,   7, 
@@ -17818,7 +17818,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 CDF2,   1, 
                 ADD2,   8, 
                 CMD2,   8, 
-                BDA2,   256, 
+                BDAY,	256, 
                 BCN2,   8, 
                     ,   1, 
                 ALA2,   7, 
@@ -17843,8 +17843,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Field (SMBX, ByteAcc, NoLock, Preserve)
             {
                 Offset (0x04), 
-                DTB0,   8, 
-                DTB1,   8
+                T2B0,8,T2B1,8,
             }
 
             OperationRegion (NSBS, EmbeddedControl, 0x40, 0x04)
@@ -17910,6 +17909,46 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 If ((Arg0 == 0x03))
                 {
                     ECFL = Arg1
+                }
+            }
+            Method (RE1B, 1, NotSerialized)
+            {
+                OperationRegion(ERAM, EmbeddedControl, Arg0, 1)
+                Field(ERAM, ByteAcc, NoLock, Preserve) { BYTE, 8 }
+                Return(BYTE)
+            }
+            Method (RECB, 2, Serialized)
+            {
+                ShiftRight(Arg1, 3, Arg1)
+                Name(TEMP, Buffer(Arg1) { })
+                Add(Arg0, Arg1, Arg1)
+                Store(0, Local0)
+                While (LLess(Arg0, Arg1))
+                {
+                    Store(RE1B(Arg0), Index(TEMP, Local0))
+                    Increment(Arg0)
+                    Increment(Local0)
+                }
+                Return(TEMP)
+            }
+            Method (WE1B, 2, NotSerialized)
+            {
+                OperationRegion(ERAM, EmbeddedControl, Arg0, 1)
+                Field(ERAM, ByteAcc, NoLock, Preserve) { BYTE, 8 }
+                Store(Arg1, BYTE)
+            }
+            Method (WECB, 3, Serialized)
+            {
+                ShiftRight(Arg1, 3, Arg1)
+                Name(TEMP, Buffer(Arg1) { })
+                Store(Arg2, TEMP)
+                Add(Arg0, Arg1, Arg1)
+                Store(0, Local0)
+                While (LLess(Arg0, Arg1))
+                {
+                    WE1B(Arg0, DerefOf(Index(TEMP, Local0)))
+                    Increment(Arg0)
+                    Increment(Local0)
                 }
             }
         }
@@ -20525,7 +20564,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 BATO ()
                 BATS (Zero)
-                //Index (PBIF, 0x09) = ^^LPCB.EC0.BIF9 ()
+                Index (PBIF, 0x09) = ^^LPCB.EC0.BIF9 ()
                 Index (PBIF, 0x0C) = ONAM
                 Local0 = ^^LPCB.EC0.BIF0 ()
                 Local1 = ^^LPCB.EC0.BIF1 ()
@@ -20577,7 +20616,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     }
                     Else
                     {
-                        Local0 = Zero
+                        Local0 = One
                     }
                 }
                 Else
@@ -24256,7 +24295,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     }
                 }
 
-                BDAT = Zero
+                WECB (0x1C, 0x0100, Zero)
                 PRTC = Arg0
                 Index (Local0, Zero) = SWTC (Arg0)
                 If ((DerefOf (Index (Local0, Zero)) == Zero))
@@ -24264,13 +24303,13 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     If ((Arg0 == RDBL))
                     {
                         Index (Local0, One) = BCNT
-                        Index (Local0, 0x02) = BDAT
+                        Index (Local0, 0x02) = RECB (0x1C, 0x0100)
                     }
 
                     If ((Arg0 == RDWD))
                     {
                         Index (Local0, One) = 0x02
-                        Index (Local0, 0x02) = B1B2 (DTB0, DTB1)
+                        Index (Local0, 0x02) = B1B2 (T2B0, T2B1)
                     }
 
                     If ((Arg0 == RDBT))
@@ -24339,7 +24378,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             If ((Local2 <= 0x03E8))
             {
-                BDAT = Zero
+                WECB (0x1C, 0x0100, Zero)
                 Local3 = (Arg1 << One)
                 ADDR = Local3
                 If ((Arg0 != WRQK))
@@ -24353,14 +24392,13 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 If ((Arg0 == WRBL))
                 {
                     BCNT = Arg3
-                    BDAT = Arg4
+                    WECB (0x1C, 0x0100, Arg4)
                 }
 
                 If ((Arg0 == WRWD))
                 {
-                    Local4 = Arg4
-                    DTB0 = Local4
-                    DTB1 = (Local4 >> 0x08)
+                    T2B0 = Arg4
+                    T2B1 = (Arg4 >> 0x08)
                 }
 
                 If ((Arg0 == WRBT))
@@ -24525,7 +24563,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         If (((Arg1 == 0x0A) || (Arg1 == 0x0B)))
                         {
                             BCNT = DerefOf (Index (Arg6, Zero))
-                            BDAT = DerefOf (Index (Arg6, One))
+                            WECB (0x1C, 0x0100, DerefOf (Index (Arg6, One)))
                         }
                         Else
                         {
@@ -24542,7 +24580,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         If (((Arg1 == 0x0A) || (Arg1 == 0x0B)))
                         {
                             BCN2 = DerefOf (Index (Arg6, Zero))
-                            BDA2 = DerefOf (Index (Arg6, One))
+                            WECB (0x44, 0x0100, DerefOf (Index (Arg6, One)))
                         }
                         Else
                         {
@@ -24579,7 +24617,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                             Index (Local1, One) = DAT0
                             Index (Local1, 0x02) = DAT1
                             Index (Local1, 0x03) = BCNT
-                            Index (Local1, 0x04) = BDAT
+                            Index (Local1, 0x04) = RECB (0x1C, 0x0100)
                         }
                         Else
                         {
@@ -24587,7 +24625,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                             Index (Local1, One) = DA20
                             Index (Local1, 0x02) = DA21
                             Index (Local1, 0x03) = BCN2
-                            Index (Local1, 0x04) = BDA2
+                            Index (Local1, 0x04) = RECB (0x44, 0x0100)
                         }
 
                         Local0 &= 0x1F
