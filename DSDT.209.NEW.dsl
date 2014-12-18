@@ -17738,8 +17738,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Offset (0x8A), 
                 HKEN,   1, 
                 Offset (0x93), 
-                AH00,8,AH01,8, 
-                AH10,8,AH11,8, 
+                TH00,8,TH01,8, 
+                TH10,8,TH11,8,
                 TSTP,   8, 
                 Offset (0x9C), 
                 CDT4,   8, 
@@ -17754,39 +17754,39 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 TH0R,   8, 
                 TH0L,   8, 
                 Offset (0xB0), 
-                B0P0,8,B0P1,8, 
+                B0PN,   16, 
                 Offset (0xB4), 
                 Offset (0xB6), 
                 Offset (0xB8), 
                 Offset (0xBA), 
                 Offset (0xBC), 
                 Offset (0xBE), 
-                B0T0,8,B0T1,8, 
-                B010,8,B011,8, 
-                B020,8,B021,8, 
-                B030,8,B031,8, 
-                B040,8,B041,8, 
+                B0TM,   16, 
+                B0C1,   16, 
+                B0C2,   16, 
+                BC30,8,BC31,8, 
+                B0C4,   16, 
                 Offset (0xD0), 
-                B1P0,8,B1P1,8, 
+                B1PN,   16, 
                 Offset (0xD4), 
                 Offset (0xD6), 
                 Offset (0xD8), 
                 Offset (0xDA), 
                 Offset (0xDC), 
                 Offset (0xDE), 
-                B1T0,8,B1T1,8, 
-                B110,8,B111,8, 
-                B120,8,B121,8, 
-                B130,8,B131,8, 
-                B140,8,B141,8, 
+                B1TM,   16, 
+                B1C1,   16, 
+                B1C2,   16, 
+                B1C3,   16, 
+                B1C4,   16, 
                 Offset (0xF0), 
                 Offset (0xF2), 
                 Offset (0xF4), 
-                B0N0,8,B0N1,8, 
+                B0S0,8,B0S1,8, 
                 Offset (0xF8), 
                 Offset (0xFA), 
                 Offset (0xFC), 
-                B1N0,8,B1N1,8,
+                B1S0,8,B1S1,8
             }
 
             Name (SMBF, Zero)
@@ -20616,7 +20616,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     }
                     Else
                     {
-                        Local0 = Zero
+                        Local0 = One
                     }
                 }
                 Else
@@ -20788,7 +20788,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Divide (DerefOf (Index (BIXT, 0x0F)), 0x03E8, Local0, Index (BIXT, 0x0F))
                 }
 
-                Index (BIXT, 0x08) = B1B2 (^^LPCB.EC0.B030, ^^LPCB.EC0.B031)
+                Index (BIXT, 0x08) = B1B2 (^^LPCB.EC0.BC30, ^^LPCB.EC0.BC31)
                 Index (BIXT, 0x09) = 0x0001869F
                 Return (BIXT)
             }
@@ -21027,11 +21027,11 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             {
                 If (BSLF)
                 {
-                    Local0 = B1B2 (B1N0, B1N1)
+                    Local0 = B1B2 (B1S0, B1S1)
                 }
                 Else
                 {
-                    Local0 = B1B2 (B0N0, B0N1)
+                    Local0 = B1B2 (B0S0, B0S1)
                 }
             }
             Else
@@ -25246,14 +25246,14 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     _T_0 = Arg0
                     If ((_T_0 == Zero))
                     {
-                        Local0 = B1B2 (AH00, AH01)
+                        Local0 = B1B2 (TH00, TH01)
                         Break
                     }
                     Else
                     {
                         If ((_T_0 == One))
                         {
-                            Local0 = B1B2 (AH10, AH11)
+                            Local0 = B1B2 (TH10, TH11)
                             Break
                         }
                         Else
