@@ -27959,7 +27959,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             PUSH(TEMP)
         }
     }
-    Method (B1B2, 2, NotSerialized) { Return(Or(Arg0, ShiftLeft(Arg1, 8))) }
+    Method (B1B2, 2, NotSerialized) { Return ((Arg1 << 0x08) |= Arg0) }
     Device (SMCD)
     {
         Name (_HID, "MON0000")  // _HID: Hardware ID
