@@ -20602,6 +20602,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Method (FBST, 4, NotSerialized)
             {
                 Local1 = (Arg1 & 0xFFFF)
+                \RMDT.P2 ("Rout3-1", Local1)
                 Local0 = Zero
                 If (^^LPCB.EC0.ACAP ())
                 {
@@ -20639,13 +20640,16 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 If ((Local1 >= 0x8000))
                 {
                     Local1 -= 0xFFFF
+                    \RMDT.P2 ("Rout3-2", Local1)
                 }
 
                 Local2 = Arg2
                 If ((PUNT == Zero))
                 {
+                    \RMDT.P2 ("Rout3-b0bv", ^^LPCB.EC0.B0DV)
                     Local1 *= ^^LPCB.EC0.B0DV
                     Local2 *= 0x0A
+                    \RMDT.P2 ("Rout3-3", Local1)
                 }
 
                 Local3 = (Local0 & 0x02)
@@ -20674,11 +20678,13 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     If ((Local1 < Local4))
                     {
                         Local1 = Local4
+                        \RMDT.P2 ("Rout3-GotLocal4", Local4)
                     }
                 }
 
                 Index (PBST, Zero) = Local0
                 Index (PBST, One) = Local1
+                \RMDT.P2 ("Rout3-5", Local1)
                 Index (PBST, 0x02) = Local2
                 Index (PBST, 0x03) = Arg3
             }
@@ -20723,6 +20729,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 BATS (Zero)
                 Local0 = ^^LPCB.EC0.BSTS ()
                 Local1 = ^^LPCB.EC0.BCRT ()
+                \RMDT.P2 ("Rout1", Local1)
                 Local2 = ^^LPCB.EC0.BRCP ()
                 Local3 = ^^LPCB.EC0.BVOT ()
                 If ((Local0 != Ones))
@@ -21061,10 +21068,12 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             If (BSLF)
             {
                 Local0 = B1CC
+                \RMDT.P2 ("Rout2-a", Local0)
             }
             Else
             {
                 Local0 = B0CC
+                \RMDT.P2 ("Rout2-b", Local0)
             }
 
             Return (Local0)
