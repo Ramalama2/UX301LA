@@ -450,580 +450,215 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         SPST,   8, 
         ECLP,   8
     }
+    OperationRegion (SANV, SystemMemory, 0xDAAE9E18, 0x016D)
+    Field (SANV, AnyAcc, Lock, Preserve)
+    {
+        SARV,   32, 
+        ASLB,   32, 
+        IMON,   8, 
+        IGDS,   8, 
+        CADL,   8, 
+        PADL,   8, 
+        CSTE,   16, 
+        NSTE,   16, 
+        DID9,   32, 
+        DIDA,   32, 
+        DIDB,   32, 
+        IBTT,   8, 
+        IPAT,   8, 
+        IPSC,   8, 
+        IBLC,   8, 
+        IBIA,   8, 
+        ISSC,   8, 
+        IPCF,   8, 
+        IDMS,   8, 
+        IF1E,   8, 
+        HVCO,   8, 
+        NXD1,   32, 
+        NXD2,   32, 
+        NXD3,   32, 
+        NXD4,   32, 
+        NXD5,   32, 
+        NXD6,   32, 
+        NXD7,   32, 
+        NXD8,   32, 
+        GSMI,   8, 
+        PAVP,   8, 
+        LIDS,   8, 
+        KSV0,   32, 
+        KSV1,   8, 
+        BBAR,   32, 
+        BLCS,   8, 
+        BRTL,   8, 
+        ALSE,   8, 
+        ALAF,   8, 
+        LLOW,   8, 
+        LHIH,   8, 
+        ALFP,   8, 
+        AUDA,   32, 
+        AUDB,   32, 
+        AUDC,   32, 
+        DIDC,   32, 
+        DIDD,   32, 
+        DIDE,   32, 
+        DIDF,   32, 
+        CCSA,   32, 
+        CCNT,   32, 
+        Offset (0xC8), 
+        SGMD,   8, 
+        SGFL,   8, 
+        PWOK,   8, 
+        HLRS,   8, 
+        PWEN,   8, 
+        PRST,   8, 
+        CPSP,   32, 
+        EECP,   8, 
+        EVCP,   16, 
+        XBAS,   32, 
+        GBAS,   16, 
+        SGGP,   8, 
+        NVGA,   32, 
+        NVHA,   32, 
+        AMDA,   32, 
+        NDID,   8, 
+        DID1,   32, 
+        DID2,   32, 
+        DID3,   32, 
+        DID4,   32, 
+        DID5,   32, 
+        DID6,   32, 
+        DID7,   32, 
+        DID8,   32, 
+        OBS1,   32, 
+        OBS2,   32, 
+        OBS3,   32, 
+        OBS4,   32, 
+        OBS5,   32, 
+        OBS6,   32, 
+        OBS7,   32, 
+        OBS8,   32, 
+        LTRA,   8, 
+        OBFA,   8, 
+        LTRB,   8, 
+        OBFB,   8, 
+        LTRC,   8, 
+        OBFC,   8, 
+        SMSL,   16, 
+        SNSL,   16, 
+        P0UB,   8, 
+        P1UB,   8, 
+        P2UB,   8, 
+        EDPV,   8, 
+        NXDX,   32, 
+        DIDX,   32, 
+        PCSL,   8, 
+        SC7A,   8, 
+        DSEL,   8, 
+        ESEL,   8, 
+        PSEL,   8, 
+        MXD1,   32, 
+        MXD2,   32, 
+        MXD3,   32, 
+        MXD4,   32, 
+        MXD5,   32, 
+        MXD6,   32, 
+        MXD7,   32, 
+        MXD8,   32, 
+        PXFD,   8, 
+        EBAS,   32, 
+        HYSS,   32
+    }
+
 
     Scope (_SB)
     {
         Name (PR00, Package (0x1B)
         {
-            Package (0x04)
-            {
-                0x001FFFFF, 
-                One, 
-                LNKD, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x001FFFFF, 
-                0x02, 
-                LNKC, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x0016FFFF, 
-                Zero, 
-                LNKA, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x0016FFFF, 
-                One, 
-                LNKD, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x0016FFFF, 
-                0x02, 
-                LNKC, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x0016FFFF, 
-                0x03, 
-                LNKB, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x0015FFFF, 
-                One, 
-                LNKE, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x0015FFFF, 
-                0x02, 
-                LNKF, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x0015FFFF, 
-                0x03, 
-                LNKF, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x0017FFFF, 
-                Zero, 
-                LNKG, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x0013FFFF, 
-                Zero, 
-                LNKH, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x0003FFFF, 
-                Zero, 
-                LNKA, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x0004FFFF, 
-                Zero, 
-                LNKA, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x0004FFFF, 
-                One, 
-                LNKB, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x0004FFFF, 
-                0x02, 
-                LNKC, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x0004FFFF, 
-                0x03, 
-                LNKD, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x001AFFFF, 
-                Zero, 
-                LNKA, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x001BFFFF, 
-                Zero, 
-                LNKG, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x001CFFFF, 
-                Zero, 
-                LNKA, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x001CFFFF, 
-                One, 
-                LNKB, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x001CFFFF, 
-                0x02, 
-                LNKC, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x001CFFFF, 
-                0x03, 
-                LNKD, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x001FFFFF, 
-                Zero, 
-                LNKF, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x001FFFFF, 
-                0x03, 
-                LNKA, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x0002FFFF, 
-                Zero, 
-                LNKA, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x001DFFFF, 
-                Zero, 
-                LNKH, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0x0014FFFF, 
-                Zero, 
-                LNKA, 
-                Zero
-            }
+            Package (0x04) { 0x001FFFFF, One, LNKD, Zero }, 
+            Package (0x04) { 0x001FFFFF, 0x02, LNKC, Zero }, 
+            Package (0x04) { 0x0016FFFF, Zero, LNKA, Zero }, 
+            Package (0x04) { 0x0016FFFF, One, LNKD, Zero }, 
+            Package (0x04) { 0x0016FFFF, 0x02, LNKC, Zero }, 
+            Package (0x04) { 0x0016FFFF, 0x03, LNKB, Zero }, 
+            Package (0x04) { 0x0015FFFF, One, LNKE, Zero }, 
+            Package (0x04) { 0x0015FFFF, 0x02, LNKF, Zero }, 
+            Package (0x04) { 0x0015FFFF, 0x03, LNKF, Zero }, 
+            Package (0x04) { 0x0017FFFF, Zero, LNKG, Zero }, 
+            Package (0x04) { 0x0013FFFF, Zero, LNKH, Zero }, 
+            Package (0x04) { 0x0003FFFF, Zero, LNKA, Zero }, 
+            Package (0x04) { 0x0004FFFF, Zero, LNKA, Zero }, 
+            Package (0x04) { 0x0004FFFF, One, LNKB, Zero }, 
+            Package (0x04) { 0x0004FFFF, 0x02, LNKC, Zero }, 
+            Package (0x04) { 0x0004FFFF, 0x03, LNKD, Zero }, 
+            Package (0x04) { 0x001AFFFF, Zero, LNKA, Zero }, 
+            Package (0x04) { 0x001BFFFF, Zero, LNKG, Zero }, 
+            Package (0x04) { 0x001CFFFF, Zero, LNKA, Zero }, 
+            Package (0x04) { 0x001CFFFF, One, LNKB, Zero }, 
+            Package (0x04) { 0x001CFFFF, 0x02, LNKC, Zero }, 
+            Package (0x04) { 0x001CFFFF, 0x03, LNKD, Zero }, 
+            Package (0x04) { 0x001FFFFF, Zero, LNKF, Zero }, 
+            Package (0x04) { 0x001FFFFF, 0x03, LNKA, Zero }, 
+            Package (0x04) { 0x0002FFFF, Zero, LNKA, Zero }, 
+            Package (0x04) { 0x001DFFFF, Zero, LNKH, Zero }, 
+            Package (0x04) { 0x0014FFFF, Zero, LNKA, Zero }
         })
         Name (AR00, Package (0x1B)
         {
-            Package (0x04)
-            {
-                0x001FFFFF, 
-                One, 
-                Zero, 
-                0x13
-            }, 
-
-            Package (0x04)
-            {
-                0x001FFFFF, 
-                0x02, 
-                Zero, 
-                0x12
-            }, 
-
-            Package (0x04)
-            {
-                0x0016FFFF, 
-                Zero, 
-                Zero, 
-                0x10
-            }, 
-
-            Package (0x04)
-            {
-                0x0016FFFF, 
-                One, 
-                Zero, 
-                0x13
-            }, 
-
-            Package (0x04)
-            {
-                0x0016FFFF, 
-                0x02, 
-                Zero, 
-                0x12
-            }, 
-
-            Package (0x04)
-            {
-                0x0016FFFF, 
-                0x03, 
-                Zero, 
-                0x11
-            }, 
-
-            Package (0x04)
-            {
-                0x0015FFFF, 
-                One, 
-                Zero, 
-                0x14
-            }, 
-
-            Package (0x04)
-            {
-                0x0015FFFF, 
-                0x02, 
-                Zero, 
-                0x15
-            }, 
-
-            Package (0x04)
-            {
-                0x0015FFFF, 
-                0x03, 
-                Zero, 
-                0x15
-            }, 
-
-            Package (0x04)
-            {
-                0x0017FFFF, 
-                Zero, 
-                Zero, 
-                0x16
-            }, 
-
-            Package (0x04)
-            {
-                0x0013FFFF, 
-                Zero, 
-                Zero, 
-                0x17
-            }, 
-
-            Package (0x04)
-            {
-                0x0003FFFF, 
-                Zero, 
-                Zero, 
-                0x10
-            }, 
-
-            Package (0x04)
-            {
-                0x0004FFFF, 
-                Zero, 
-                Zero, 
-                0x10
-            }, 
-
-            Package (0x04)
-            {
-                0x0004FFFF, 
-                One, 
-                Zero, 
-                0x11
-            }, 
-
-            Package (0x04)
-            {
-                0x0004FFFF, 
-                0x02, 
-                Zero, 
-                0x12
-            }, 
-
-            Package (0x04)
-            {
-                0x0004FFFF, 
-                0x03, 
-                Zero, 
-                0x13
-            }, 
-
-            Package (0x04)
-            {
-                0x001AFFFF, 
-                Zero, 
-                Zero, 
-                0x10
-            }, 
-
-            Package (0x04)
-            {
-                0x001BFFFF, 
-                Zero, 
-                Zero, 
-                0x16
-            }, 
-
-            Package (0x04)
-            {
-                0x001CFFFF, 
-                Zero, 
-                Zero, 
-                0x10
-            }, 
-
-            Package (0x04)
-            {
-                0x001CFFFF, 
-                One, 
-                Zero, 
-                0x11
-            }, 
-
-            Package (0x04)
-            {
-                0x001CFFFF, 
-                0x02, 
-                Zero, 
-                0x12
-            }, 
-
-            Package (0x04)
-            {
-                0x001CFFFF, 
-                0x03, 
-                Zero, 
-                0x13
-            }, 
-
-            Package (0x04)
-            {
-                0x001FFFFF, 
-                Zero, 
-                Zero, 
-                0x15
-            }, 
-
-            Package (0x04)
-            {
-                0x001FFFFF, 
-                0x03, 
-                Zero, 
-                0x10
-            }, 
-
-            Package (0x04)
-            {
-                0x0002FFFF, 
-                Zero, 
-                Zero, 
-                0x10
-            }, 
-
-            Package (0x04)
-            {
-                0x001DFFFF, 
-                Zero, 
-                Zero, 
-                0x17
-            }, 
-
-            Package (0x04)
-            {
-                0x0014FFFF, 
-                Zero, 
-                Zero, 
-                0x10
-            }
+            Package (0x04) { 0x001FFFFF, One, Zero, 0x13 }, 
+            Package (0x04) { 0x001FFFFF, 0x02, Zero, 0x12 }, 
+            Package (0x04) { 0x0016FFFF, Zero, Zero, 0x10 }, 
+            Package (0x04) { 0x0016FFFF, One, Zero, 0x13 }, 
+            Package (0x04) { 0x0016FFFF, 0x02, Zero, 0x12 }, 
+            Package (0x04) { 0x0016FFFF, 0x03, Zero, 0x11 }, 
+            Package (0x04) { 0x0015FFFF, One, Zero, 0x14 }, 
+            Package (0x04) { 0x0015FFFF, 0x02, Zero, 0x15 }, 
+            Package (0x04) { 0x0015FFFF, 0x03, Zero, 0x15 }, 
+            Package (0x04) { 0x0017FFFF, Zero, Zero, 0x16 }, 
+            Package (0x04) { 0x0013FFFF, Zero, Zero, 0x17 }, 
+            Package (0x04) { 0x0003FFFF, Zero, Zero, 0x10 }, 
+            Package (0x04) { 0x0004FFFF, Zero, Zero, 0x10 }, 
+            Package (0x04) { 0x0004FFFF, One, Zero, 0x11 }, 
+            Package (0x04) { 0x0004FFFF, 0x02, Zero, 0x12 }, 
+            Package (0x04) { 0x0004FFFF, 0x03, Zero, 0x13 }, 
+            Package (0x04) { 0x001AFFFF, Zero, Zero, 0x10 }, 
+            Package (0x04) { 0x001BFFFF, Zero, Zero, 0x16 }, 
+            Package (0x04) { 0x001CFFFF, Zero, Zero, 0x10 }, 
+            Package (0x04) { 0x001CFFFF, One, Zero, 0x11 }, 
+            Package (0x04) { 0x001CFFFF, 0x02, Zero, 0x12 }, 
+            Package (0x04) { 0x001CFFFF, 0x03, Zero, 0x13 }, 
+            Package (0x04) { 0x001FFFFF, Zero, Zero, 0x15 }, 
+            Package (0x04) { 0x001FFFFF, 0x03, Zero, 0x10 }, 
+            Package (0x04) { 0x0002FFFF, Zero, Zero, 0x10 }, 
+            Package (0x04) { 0x001DFFFF, Zero, Zero, 0x17 }, 
+            Package (0x04) { 0x0014FFFF, Zero, Zero, 0x10 }
         })
         Name (PR04, Package (0x04)
         {
-            Package (0x04)
-            {
-                0xFFFF, 
-                Zero, 
-                LNKA, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0xFFFF, 
-                One, 
-                LNKB, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0xFFFF, 
-                0x02, 
-                LNKC, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0xFFFF, 
-                0x03, 
-                LNKD, 
-                Zero
-            }
+            Package (0x04) { 0xFFFF, Zero, LNKA, Zero }, 
+            Package (0x04) { 0xFFFF, One, LNKB, Zero }, 
+            Package (0x04) { 0xFFFF, 0x02, LNKC, Zero }, 
+            Package (0x04) { 0xFFFF, 0x03, LNKD, Zero }
         })
         Name (AR04, Package (0x04)
         {
-            Package (0x04)
-            {
-                0xFFFF, 
-                Zero, 
-                Zero, 
-                0x10
-            }, 
-
-            Package (0x04)
-            {
-                0xFFFF, 
-                One, 
-                Zero, 
-                0x11
-            }, 
-
-            Package (0x04)
-            {
-                0xFFFF, 
-                0x02, 
-                Zero, 
-                0x12
-            }, 
-
-            Package (0x04)
-            {
-                0xFFFF, 
-                0x03, 
-                Zero, 
-                0x13
-            }
+            Package (0x04) { 0xFFFF, Zero, Zero, 0x10 }, 
+            Package (0x04) { 0xFFFF, One, Zero, 0x11 }, 
+            Package (0x04) { 0xFFFF, 0x02, Zero, 0x12 }, 
+            Package (0x04) { 0xFFFF, 0x03, Zero, 0x13 }
         })
         Name (PR07, Package (0x04)
         {
-            Package (0x04)
-            {
-                0xFFFF, 
-                Zero, 
-                LNKD, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0xFFFF, 
-                One, 
-                LNKA, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0xFFFF, 
-                0x02, 
-                LNKB, 
-                Zero
-            }, 
-
-            Package (0x04)
-            {
-                0xFFFF, 
-                0x03, 
-                LNKC, 
-                Zero
-            }
+            Package (0x04) { 0xFFFF, Zero, LNKD, Zero }, 
+            Package (0x04) { 0xFFFF, One, LNKA, Zero }, 
+            Package (0x04) { 0xFFFF, 0x02, LNKB, Zero }, 
+            Package (0x04) { 0xFFFF, 0x03, LNKC, Zero }
         })
         Name (AR07, Package (0x04)
         {
-            Package (0x04)
-            {
-                0xFFFF, 
-                Zero, 
-                Zero, 
-                0x13
-            }, 
-
-            Package (0x04)
-            {
-                0xFFFF, 
-                One, 
-                Zero, 
-                0x10
-            }, 
-
-            Package (0x04)
-            {
-                0xFFFF, 
-                0x02, 
-                Zero, 
-                0x11
-            }, 
-
-            Package (0x04)
-            {
-                0xFFFF, 
-                0x03, 
-                Zero, 
-                0x12
-            }
+            Package (0x04) { 0xFFFF, Zero, Zero, 0x13 }, 
+            Package (0x04) { 0xFFFF, One, Zero, 0x10 }, 
+            Package (0x04) { 0xFFFF, 0x02, Zero, 0x11 }, 
+            Package (0x04) { 0xFFFF, 0x03, Zero, 0x12 }
         })
         Name (PRSA, ResourceTemplate ()
         {
@@ -4116,365 +3751,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     }
                 }
 
-                Device (ADBG)
-                {
-                    Name (_HID, EisaId ("PNP0C02"))  // _HID: Hardware ID
-                    Name (_UID, 0x13)  // _UID: Unique ID
-                    Name (CRS1, ResourceTemplate ()
-                    {
-                        IO (Decode16,
-                            0x0240,             // Range Minimum
-                            0x0240,             // Range Maximum
-                            0x01,               // Alignment
-                            0x1A,               // Length
-                            )
-                    })
-                    OperationRegion (DBGC, SystemIO, 0x0259, 0x10)
-                    Field (DBGC, ByteAcc, Lock, Preserve)
-                    {
-                        DBGP,   8
-                    }
-
-                    OperationRegion (DBPP, SystemIO, 0x0250, 0x02)
-                    Field (DBPP, ByteAcc, Lock, Preserve)
-                    {
-                        PPDT,   8, 
-                        PPST,   8
-                    }
-
-                    OperationRegion (DB80, SystemIO, 0x80, One)
-                    Field (DB80, ByteAcc, Lock, Preserve)
-                    {
-                        DP80,   8
-                    }
-
-                    Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-                    {
-                        Return (CRS1)
-                    }
-
-                    Method (CALL, 0, Serialized)
-                    {
-                        ISMI (0x96)
-                    }
-
-                    Method (PUTD, 1, Serialized)
-                    {
-                        Local0 = ((Arg0 & 0x0F) | 0x10)
-                        Local1 = ((Arg0 >> 0x04) & 0x0F)
-                        Local2 = (~Local1 & 0x0F)
-                        Local4 = 0x3FFF
-                        PPDT = Local0
-                        Local3 = ((PPST ^ 0x80) >> 0x03)
-                        While (((Local3 != 0x10) && (Local4 != Zero)))
-                        {
-                            Local3 = ((PPST ^ 0x80) >> 0x03)
-                            Local4--
-                            Stall (0x1E)
-                        }
-
-                        If ((Local4 == Zero))
-                        {
-                            PPDT = Zero
-                            Return (Zero)
-                        }
-
-                        Local4 = 0x3FFF
-                        PPDT = Local1
-                        Local3 = ((PPST ^ 0x80) >> 0x03)
-                        While (((Local3 != Zero) && (Local4 != Zero)))
-                        {
-                            Local3 = ((PPST ^ 0x80) >> 0x03)
-                            Local4--
-                            Stall (0x1E)
-                        }
-
-                        If ((Local4 == Zero))
-                        {
-                            PPDT = Zero
-                            Return (Zero)
-                        }
-
-                        PPDT = Local2
-                        Return (One)
-                    }
-
-                    Method (OUTS, 1, Serialized)
-                    {
-                        If ((DBGP != 0xFF))
-                        {
-                            Local0 = (SizeOf (Arg0) + One)
-                            Local1 = Zero
-                            Name (BUFF, Buffer (Local0) {})
-                            BUFF = Arg0
-                            Local0 -= One
-                            If ((PUTD (0x53) == Zero))
-                            {
-                                Return (Zero)
-                            }
-
-                            While ((DerefOf (Index (BUFF, Local1)) != Zero))
-                            {
-                                If ((PUTD (DerefOf (Index (BUFF, Local1))) == Zero))
-                                {
-                                    PUTD (Zero)
-                                    Return (Zero)
-                                }
-
-                                Local1++
-                            }
-
-                            PUTD (Zero)
-                            Return (One)
-                        }
-                        Else
-                        {
-                            Return (Zero)
-                        }
-                    }
-
-                    Method (OUTD, 1, Serialized)
-                    {
-                        Name (DEC, Buffer (0x0B)
-                        {
-                            "0123456789"
-                        })
-                        Name (TMP, Buffer (0x0B) {})
-                        Local0 = Zero
-                        Local1 = Arg0
-                        If ((Local1 == Zero))
-                        {
-                            OUTS ("0")
-                        }
-                        Else
-                        {
-                            While ((Local1 > Zero))
-                            {
-                                Divide (Local1, 0x0A, Local2, Local1)
-                                Index (TMP, Local0) = DerefOf (Index (DEC, Local2))
-                                Local0++
-                                Index (TMP, Local0) = Zero
-                            }
-
-                            Local2 = Zero
-                            Local0--
-                            While ((Local2 < Local0))
-                            {
-                                Local3 = DerefOf (Index (TMP, Local2))
-                                Index (TMP, Local2) = DerefOf (Index (TMP, Local0))
-                                Index (TMP, Local0) = Local3
-                                Local2++
-                                Local0--
-                            }
-
-                            OUTS (TMP)
-                        }
-                    }
-
-                    Method (OUTH, 1, Serialized)
-                    {
-                        Name (HEX, Buffer (0x11)
-                        {
-                            "0123456789ABCDEF"
-                        })
-                        Name (TMP, Buffer (0x0A) {})
-                        Local0 = Zero
-                        Local1 = Arg0
-                        While ((Local0 < 0x08))
-                        {
-                            Local2 = (Local1 & 0x0F)
-                            Index (TMP, Local0) = DerefOf (Index (HEX, Local2))
-                            Local1 >>= 0x04
-                            Local0++
-                            Index (TMP, Local0) = Zero
-                        }
-
-                        Local2 = Zero
-                        Local0--
-                        While ((Local2 < Local0))
-                        {
-                            Local3 = DerefOf (Index (TMP, Local2))
-                            Index (TMP, Local2) = DerefOf (Index (TMP, Local0))
-                            Index (TMP, Local0) = Local3
-                            Local2++
-                            Local0--
-                        }
-
-                        OUTS (TMP)
-                    }
-
-                    OperationRegion (SIO1, SystemIO, 0x0240, 0x08)
-                    Field (SIO1, ByteAcc, NoLock, Preserve)
-                    {
-                        SOUT,   8, 
-                        Offset (0x05), 
-                        SSAT,   8
-                    }
-
-                    Method (THRE, 0, NotSerialized)
-                    {
-                        Local0 = (SSAT & 0x20)
-                        While ((Local0 == Zero))
-                        {
-                            Local0 = (SSAT & 0x20)
-                        }
-                    }
-
-                    Method (OUTX, 1, NotSerialized)
-                    {
-                        THRE ()
-                        SOUT = Arg0
-                    }
-
-                    Method (OUTC, 1, NotSerialized)
-                    {
-                        If ((Arg0 == 0x0A))
-                        {
-                            OUTX (0x0D)
-                        }
-
-                        OUTX (Arg0)
-                    }
-
-                    Method (DBGN, 1, NotSerialized)
-                    {
-                        Local0 = (Arg0 & 0x0F)
-                        If ((Local0 < 0x0A))
-                        {
-                            Local0 += 0x30
-                        }
-                        Else
-                        {
-                            Local0 += 0x37
-                        }
-
-                        OUTC (Local0)
-                    }
-
-                    Method (DBGB, 1, NotSerialized)
-                    {
-                        Local0 = (Arg0 >> 0x04)
-                        DBGN (Local0)
-                        DBGN (Arg0)
-                    }
-
-                    Method (DBGW, 1, NotSerialized)
-                    {
-                        Local0 = (Arg0 >> 0x08)
-                        DBGB (Local0)
-                        DBGB (Arg0)
-                    }
-
-                    Method (DBGD, 1, NotSerialized)
-                    {
-                        Local0 = (Arg0 >> 0x10)
-                        DBGW (Local0)
-                        DBGW (Arg0)
-                    }
-
-                    Method (DBGQ, 1, NotSerialized)
-                    {
-                        Local0 = (Arg0 >> 0x30)
-                        DBGW (Local0)
-                        Local0 = (Arg0 >> 0x20)
-                        DBGW (Local0)
-                        Local0 = (Arg0 >> 0x10)
-                        DBGW (Local0)
-                        DBGW (Arg0)
-                    }
-
-                    Name (DBGZ, Buffer (0x50) {})
-                    Method (GETC, 2, NotSerialized)
-                    {
-                        CreateByteField (Arg0, Arg1, DBGC)
-                        Return (DBGC)
-                    }
-
-                    Method (MNIO, 1, NotSerialized)
-                    {
-                        If ((ObjectType (Arg0) == One))
-                        {
-                            If ((Arg0 > 0xFFFFFFFF))
-                            {
-                                DBGQ (Arg0)
-                            }
-                            Else
-                            {
-                                If ((Arg0 > 0xFFFF))
-                                {
-                                    DBGD (Arg0)
-                                }
-                                Else
-                                {
-                                    If ((Arg0 > 0xFF))
-                                    {
-                                        DBGW (Arg0)
-                                    }
-                                    Else
-                                    {
-                                        DBGB (Arg0)
-                                    }
-                                }
-                            }
-
-                            Return (Zero)
-                        }
-
-                        If ((ObjectType (Arg0) == 0x02))
-                        {
-                            DBGZ = Arg0
-                            Local1 = Zero
-                            While (One)
-                            {
-                                Local0 = GETC (DBGZ, Local1)
-                                If ((Local0 == Zero))
-                                {
-                                    Return (Zero)
-                                }
-
-                                OUTC (Local0)
-                                Local1++
-                            }
-
-                            Return (Zero)
-                        }
-
-                        If ((ObjectType (Arg0) == 0x03))
-                        {
-                            Local0 = Zero
-                            While ((Local0 < SizeOf (Arg0)))
-                            {
-                                Local1 = GETC (Arg0, Local0)
-                                If ((Local0 > Zero))
-                                {
-                                    OUTC (0x20)
-                                }
-
-                                DBGB (Local1)
-                                Local0++
-                            }
-
-                            Return (Zero)
-                        }
-
-                        If ((ObjectType (Arg0) == 0x04))
-                        {
-                            Local0 = Zero
-                            While ((Local0 < SizeOf (Arg0)))
-                            {
-                                OUTC (0x20)
-                                OUTC (0x20)
-                                MNIO (DerefOf (Index (Arg0, Local0)))
-                                OUTC (0x0A)
-                                Local0++
-                            }
-
-                            Return (Zero)
-                        }
-
-                        Return (One)
-                    }
-                }
+                
 
                 Scope (\)
                 {
@@ -12578,10 +11855,10 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Name (_ADR, 0x00150001)  // _ADR: Address
                 Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
                 {
-                    ADBG ("I2C0 DEP Call")
+                    
                     If ((S0ID == One))
                     {
-                        ADBG ("I2C0 DEP")
+                        
                         Return (Package (0x01)
                         {
                             PEPD
@@ -12589,7 +11866,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     }
                     Else
                     {
-                        ADBG ("I2C0 DEP NULL")
+                        
                         Return (Package (0x00) {})
                     }
                 }
@@ -12722,7 +11999,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_PS0, 0, Serialized)  // _PS0: Power State 0
                 {
-                    ADBG ("I2C0 Ctrlr D0")
+                    
                     If ((^^SIRC.CNTR (0x02) != Zero))
                     {
                         Local0 = (^^SIRC.CNTR (0x02) + 0x84)
@@ -12744,7 +12021,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_PS3, 0, Serialized)  // _PS3: Power State 3
                 {
-                    ADBG ("I2C0 Ctrlr D3")
+                    
                     If ((^^SIRC.CNTR (0x02) != Zero))
                     {
                         Local0 = (^^SIRC.CNTR (0x02) + 0x84)
@@ -12773,10 +12050,10 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Name (_ADR, 0x00150002)  // _ADR: Address
                 Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
                 {
-                    ADBG ("I2C1 DEP Call")
+                    
                     If ((S0ID == One))
                     {
-                        ADBG ("I2C1 DEP")
+                        
                         Return (Package (0x01)
                         {
                             PEPD
@@ -12784,7 +12061,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     }
                     Else
                     {
-                        ADBG ("I2C1 DEP NULL")
+                        
                         Return (Package (0x00) {})
                     }
                 }
@@ -12917,7 +12194,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_PS0, 0, Serialized)  // _PS0: Power State 0
                 {
-                    ADBG ("I2C1 Ctrlr D0")
+                    
                     If ((^^SIRC.CNTR (0x03) != Zero))
                     {
                         If (CondRefOf (\_SB.PCI0.I2C1.PS0X))
@@ -12939,7 +12216,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_PS3, 0, Serialized)  // _PS3: Power State 3
                 {
-                    ADBG ("I2C1 Ctrlr D3")
+                    
                     If ((^^SIRC.CNTR (0x03) != Zero))
                     {
                         Local0 = (^^SIRC.CNTR (0x03) + 0x84)
@@ -13025,7 +12302,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_PS0, 0, Serialized)  // _PS0: Power State 0
                 {
-                    ADBG ("SPI0 Ctrlr D0")
+                    
                     If ((^^SIRC.CNTR (0x04) != Zero))
                     {
                         Local0 = (^^SIRC.CNTR (0x04) + 0x84)
@@ -13042,7 +12319,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_PS3, 0, Serialized)  // _PS3: Power State 3
                 {
-                    ADBG ("SPI0 Ctrlr D3")
+                    
                     If ((^^SIRC.CNTR (0x04) != Zero))
                     {
                         Local0 = (^^SIRC.CNTR (0x04) + 0x84)
@@ -13140,7 +12417,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_PS0, 0, Serialized)  // _PS0: Power State 0
                 {
-                    ADBG ("SPI1 Ctrlr D0")
+                    
                     If ((^^SIRC.CNTR (0x05) != Zero))
                     {
                         Local0 = (^^SIRC.CNTR (0x05) + 0x84)
@@ -13157,7 +12434,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_PS3, 0, Serialized)  // _PS3: Power State 3
                 {
-                    ADBG ("SPI1 Ctrlr D3")
+                    
                     If ((^^SIRC.CNTR (0x05) != Zero))
                     {
                         Local0 = (^^SIRC.CNTR (0x05) + 0x84)
@@ -13181,10 +12458,10 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Name (_ADR, 0x00150005)  // _ADR: Address
                 Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
                 {
-                    ADBG ("UA00 DEP Call")
+                    
                     If ((S0ID == One))
                     {
-                        ADBG ("UA00 DEP")
+                        
                         Return (Package (0x01)
                         {
                             PEPD
@@ -13192,7 +12469,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     }
                     Else
                     {
-                        ADBG ("UA00 DEP NULL")
+                        
                         Return (Package (0x00) {})
                     }
                 }
@@ -13261,7 +12538,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_PS0, 0, Serialized)  // _PS0: Power State 0
                 {
-                    ADBG ("UAR0 Ctrlr D0")
+                    
                     If ((^^SIRC.CNTR (0x06) != Zero))
                     {
                         Local0 = (^^SIRC.CNTR (0x06) + 0x84)
@@ -13278,7 +12555,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_PS3, 0, Serialized)  // _PS3: Power State 3
                 {
-                    ADBG ("UAR0 Ctrlr D3")
+                    
                     If ((^^SIRC.CNTR (0x06) != Zero))
                     {
                         Local0 = (^^SIRC.CNTR (0x06) + 0x84)
@@ -13302,10 +12579,10 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Name (_ADR, 0x00150006)  // _ADR: Address
                 Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
                 {
-                    ADBG ("UA01 DEP Call")
+                    
                     If ((S0ID == One))
                     {
-                        ADBG ("UA01 DEP")
+                        
                         Return (Package (0x01)
                         {
                             PEPD
@@ -13313,7 +12590,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     }
                     Else
                     {
-                        ADBG ("UA01 DEP NULL")
+                        
                         Return (Package (0x00) {})
                     }
                 }
@@ -13394,7 +12671,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_PS0, 0, Serialized)  // _PS0: Power State 0
                 {
-                    ADBG ("UAR1 Ctrlr D0")
+                    
                     If ((^^SIRC.CNTR (0x07) != Zero))
                     {
                         Local0 = (^^SIRC.CNTR (0x07) + 0x84)
@@ -13411,7 +12688,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_PS3, 0, Serialized)  // _PS3: Power State 3
                 {
-                    ADBG ("UAR1 Ctrlr D3")
+                    
                     If ((^^SIRC.CNTR (0x07) != Zero))
                     {
                         Local0 = (^^SIRC.CNTR (0x07) + 0x84)
@@ -13435,10 +12712,10 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Name (_ADR, 0x00170000)  // _ADR: Address
                 Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
                 {
-                    ADBG ("SDHC DEP Call")
+                    
                     If ((S0ID == One))
                     {
-                        ADBG ("SDHC DEP")
+                        
                         Return (Package (0x01)
                         {
                             PEPD
@@ -13446,7 +12723,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     }
                     Else
                     {
-                        ADBG ("SDHC DEP NULL")
+                        
                         Return (Package (0x00) {})
                     }
                 }
@@ -13490,7 +12767,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_PS0, 0, Serialized)  // _PS0: Power State 0
                 {
-                    ADBG ("SDHC Ctrlr D0")
+                    
                     If ((^^SIRC.CNTR (0x08) != Zero))
                     {
                         Local0 = (^^SIRC.CNTR (0x08) + 0x84)
@@ -13512,7 +12789,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_PS3, 0, Serialized)  // _PS3: Power State 3
                 {
-                    ADBG ("SDHC Ctrlr D3")
+                    
                     If ((^^SIRC.CNTR (0x08) != Zero))
                     {
                         Local0 = (^^SIRC.CNTR (0x08) + 0x84)
@@ -13931,14 +13208,14 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_PS0, 0, Serialized)  // _PS0: Power State 0
                 {
-                    ADBG ("TPD4 Ctrlr D0")
+                    
                     WTIN (0x0E, Zero)
                     GO14 = One
                 }
 
                 Method (_PS3, 0, Serialized)  // _PS3: Power State 3
                 {
-                    ADBG ("TPD4 Ctrlr D3")
+                    
                     WTIN (0x0E, One)
                     GO14 = Zero
                 }
@@ -14960,7 +14237,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Name (_S0W, 0x02)  // _S0W: S0 Device Wake State
                 Method (_PS0, 0, Serialized)  // _PS0: Power State 0
                 {
-                    ADBG ("WiFi1 Enter D0")
+                    
                     If (CondRefOf (\_SB.PCI0.SDHC.WI01.PS0X))
                     {
                         PS0X ()
@@ -14969,12 +14246,12 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_PS2, 0, Serialized)  // _PS2: Power State 2
                 {
-                    ADBG ("WiFi1 Enter D2")
+                    
                 }
 
                 Method (_PS3, 0, Serialized)  // _PS3: Power State 3
                 {
-                    ADBG ("WiFi1 Enter D3")
+                    
                     If (CondRefOf (\_SB.PCI0.SDHC.WI01.PS3X))
                     {
                         PS3X ()
@@ -15017,10 +14294,10 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Name (_UID, One)  // _UID: Unique ID
             Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
             {
-                ADBG ("ADSP DEP Call")
+                
                 If ((S0ID == One))
                 {
-                    ADBG ("ADSP DEP")
+                    
                     Return (Package (0x01)
                     {
                         PEPD
@@ -15028,7 +14305,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 }
                 Else
                 {
-                    ADBG ("ADSP DEP NULL")
+                    
                     Return (Package (0x00) {})
                 }
             }
@@ -15172,12 +14449,12 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Name (FDRP, Zero)
             Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
             {
-                ADBG ("SAT0 DEP Call")
+                
                 If ((OSYS >= 0x07DD))
                 {
                     If (((S0ID == One) && ((PEPC & 0x03) != Zero)))
                     {
-                        ADBG ("SAT0 DEP")
+                        
                         Return (Package (0x01)
                         {
                             PEPD
@@ -15185,7 +14462,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     }
                 }
 
-                ADBG ("SAT0 DEP NULL")
+                
                 Return (Package (0x00) {})
             }
 
@@ -16133,7 +15410,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
     Method (_PTS, 1, NotSerialized)  // _PTS: Prepare To Sleep
     {
         PTS (Arg0)
-        ADBG (Concatenate ("_PTS=", ToHexString (Arg0)))
+        
         If ((ICNF & 0x10))
         {
             If (CondRefOf (\_SB.IAOE.PTSL))
@@ -16176,7 +15453,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
     {
         \_SB.PNLF.SLBT = 0xC0
         WAK (Arg0)
-        ADBG ("_WAK")
+        
         If (((Arg0 == 0x03) || (Arg0 == 0x04)))
         {
             If (CondRefOf (\_SB.PCI0.PEG0.PEGP.EPON))
@@ -16433,7 +15710,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 \_SB.PCI0.LPCB.EC0.CSEE (0xAE)
                 P8XH (Zero, 0xC5)
                 P8XH (One, Zero)
-                ADBG ("Enter CS")
+                
                 If (PSCP)
                 {
                     If ((CondRefOf (\_PR.CPU0._PSS) && CondRefOf (\_PR.CPU0._PPC)))
@@ -16453,7 +15730,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 \_SB.PCI0.LPCB.EC0.CSEE (0xAF)
                 P8XH (Zero, 0xB0)
                 P8XH (One, 0xAB)
-                ADBG ("Exit CS")
+                
                 If (PSCP)
                 {
                     If (CondRefOf (\_PR.CPU0._PPC))
@@ -28934,11 +28211,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         \_SB.PCI0.GFX0.OWAK (Arg0, OEMW (Arg0))
     }
 
-    Method (B1B2, 2, NotSerialized)
-    {
-        Local0 = (Arg1 << 0x08)
-        Local0 |= Arg0
-        Return (Local0)
-    }
+    Method (B1B2, 2, NotSerialized) { Return ((Arg1 << 0x08) |= Arg0) }
 }
 
