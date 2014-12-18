@@ -20525,7 +20525,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 BATO ()
                 BATS (Zero)
-                Index (PBIF, 0x09) = ^^LPCB.EC0.BIF9 ()
+                //Index (PBIF, 0x09) = ^^LPCB.EC0.BIF9 ()
                 Index (PBIF, 0x0C) = ONAM
                 Local0 = ^^LPCB.EC0.BIF0 ()
                 Local1 = ^^LPCB.EC0.BIF1 ()
@@ -20577,7 +20577,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     }
                     Else
                     {
-                        Local0 = One
+                        Local0 = Zero
                     }
                 }
                 Else
