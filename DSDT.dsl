@@ -20,83 +20,26 @@
  */
 DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 {
-    /*
-     * iASL Warning: There were 16 external control methods found during
-     * disassembly, but additional ACPI tables to resolve these externals
-     * were not specified. This resulting disassembler output file may not
-     * compile because the disassembler did not know how many arguments
-     * to assign to these methods. To specify the tables needed to resolve
-     * external control method references, the -e option can be used to
-     * specify the filenames. Example iASL invocations:
-     *     iasl -e ssdt1.aml ssdt2.aml ssdt3.aml -d dsdt.aml
-     *     iasl -e dsdt.aml ssdt2.aml -d ssdt1.aml
-     *     iasl -e ssdt*.aml -d dsdt.aml
-     *
-     * In addition, the -fe option can be used to specify a file containing
-     * control method external declarations with the associated method
-     * argument counts. Each line of the file must be of the form:
-     *     External (<method pathname>, MethodObj, <argument count>)
-     * Invocation:
-     *     iasl -fe refs.txt -d dsdt.aml
-     *
-     * The following methods were unresolved and many not compile properly
-     * because the disassembler had to guess at the number of arguments
-     * required for each:
-     */
-    External (_SB_.PCI0.GFX0.AINT, MethodObj)    // Warning: Unresolved method, guessing 2 arguments
-    External (_SB_.PCI0.GFX0.DWBL, MethodObj)    // Warning: Unresolved method, guessing 0 arguments
-    External (_SB_.PCI0.GFX0.GLID, MethodObj)    // Warning: Unresolved method, guessing 1 arguments
-    External (_SB_.PCI0.GFX0.GSCI, MethodObj)    // Warning: Unresolved method, guessing 0 arguments
-    External (_SB_.PCI0.GFX0.OPTS, MethodObj)    // Warning: Unresolved method, guessing 2 arguments
-    External (_SB_.PCI0.GFX0.OWAK, MethodObj)    // Warning: Unresolved method, guessing 2 arguments
-    External (_SB_.PCI0.GFX0.SWHD, MethodObj)    // Warning: Unresolved method, guessing 1 arguments
-    External (_SB_.PCI0.GFX0.UPBL, MethodObj)    // Warning: Unresolved method, guessing 0 arguments
-    External (_SB_.PCI0.PAUD.PUAM, MethodObj)    // Warning: Unresolved method, guessing 0 arguments
-    External (_SB_.PCI0.PEG0.PEGP.EPON, MethodObj)    // Warning: Unresolved method, guessing 0 arguments
-    External (_SB_.PCI0.RP05.PEGP.EPON, MethodObj)    // Warning: Unresolved method, guessing 0 arguments
-    External (_SB_.PCI0.XHC_.DUAM, MethodObj)    // Warning: Unresolved method, guessing 0 arguments
-    External (_SB_.TPM_.PTS_, MethodObj)    // Warning: Unresolved method, guessing 1 arguments
-    External (LIDS, MethodObj)    // Warning: Unresolved method, guessing 0 arguments
     External (PS0X, MethodObj)    // Warning: Unresolved method, guessing 0 arguments
     External (PS3X, MethodObj)    // Warning: Unresolved method, guessing 0 arguments
+    External (HDOS, MethodObj)    // Warning: Unresolved method, guessing 0 arguments
+    External (HNOT, MethodObj)    // Warning: Unresolved method, guessing 1 arguments
+    External (IDAB, MethodObj)    // Warning: Unresolved method, guessing 0 arguments
 
-    External (_PR_.CPU0._PPC, UnknownObj)
-    External (_PR_.CPU0._PSS, UnknownObj)
-    External (_SB_.IAOE.ECTM, UnknownObj)
-    External (_SB_.IAOE.FFSE, UnknownObj)
-    External (_SB_.IAOE.IBT1, UnknownObj)
-    External (_SB_.IAOE.IIST, UnknownObj)
-    External (_SB_.IAOE.ITMR, UnknownObj)
-    External (_SB_.IAOE.PTSL, UnknownObj)
-    External (_SB_.IAOE.RCTM, UnknownObj)
-    External (_SB_.IAOE.WKRS, UnknownObj)
-    External (_SB_.IAOE.WLLA, UnknownObj)
+    External (_PR_.CPU0._PPC, IntObj)
+    External (_PR_.CPU0._PSS, PkgObj)
     External (_SB_.IFFS.FFSS, UnknownObj)
     External (_SB_.PCCD, UnknownObj)
     External (_SB_.PCCD.PENB, UnknownObj)
-    External (_SB_.PCI0.B0D3.ABAR, IntObj)
-    External (_SB_.PCI0.B0D3.BARA, UnknownObj)
-    External (_SB_.PCI0.GFX0.ADVD, IntObj)
-    External (_SB_.PCI0.GFX0.CLID, UnknownObj)
-    External (_SB_.PCI0.GFX0.GCDS, IntObj)
-    External (_SB_.PCI0.GFX0.GSSE, UnknownObj)
-    External (_SB_.PCI0.GFX0.LCDD._DCS, UnknownObj)
-    External (_SB_.PCI0.GFX0.NATK, IntObj)
-    External (_SB_.PCI0.GFX0.PRST, IntObj)
-    External (_SB_.PCI0.GFX0.STAT, UnknownObj)
-    External (_SB_.PCI0.GFX0.TCHE, UnknownObj)
-    External (GSMI, UnknownObj)
-    External (MDBG, IntObj)
     External (PCCD, UnknownObj)
-    External (PDC0, UnknownObj)
-    External (PDC1, UnknownObj)
-    External (PDC2, UnknownObj)
-    External (PDC3, UnknownObj)
-    External (PDC4, UnknownObj)
-    External (PDC5, UnknownObj)
-    External (PDC6, UnknownObj)
-    External (PDC7, UnknownObj)
-    External (SGMD, UnknownObj)
+    External (PDC0, IntObj)
+    External (PDC1, IntObj)
+    External (PDC2, IntObj)
+    External (PDC3, IntObj)
+    External (PDC4, IntObj)
+    External (PDC5, IntObj)
+    External (PDC6, IntObj)
+    External (PDC7, IntObj)
 
     Name (SMBS, 0x0580)
     Name (SMBL, 0x20)
@@ -5272,24 +5215,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     }
                 }
             }
-
-            Device (USB2)
-            {
-                Name (_ADR, 0x001D0000)  // _ADR: Address
-                Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-                {
-                    Return (GPRW (0x6D, 0x03))
-                }
-            }
-
-            Device (XHC1)
-            {
-                Name (_ADR, 0x00140000)  // _ADR: Address
-                Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-                {
-                    Return (GPRW (0x6D, 0x03))
-                }
-            }
         }
 
         Device (PNLF)
@@ -5376,6 +5301,320 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Index (PKBC, 0x66) = MAXL
                 Return (PKBC)
+            }
+        }Device (IAOE)
+        {
+            OperationRegion (ISCT, SystemMemory, 0xD9ABAD98, 0x0011)
+            Field (ISCT, AnyAcc, Lock, Preserve)
+            {
+                WKRS,   8, 
+                AOCE,   8, 
+                FFSE,   8, 
+                ITMR,   8, 
+                ECTM,   32, 
+                RCTM,   32, 
+                GNPT,   32, 
+                ATOW,   8
+            }
+
+            Name (_HID, "INT33A0")  // _HID: Hardware ID
+            Name (_UID, Zero)  // _UID: Unique ID
+            Name (IBT1, Zero)
+            Name (IBT2, Zero)
+            Name (INSB, Zero)
+            Name (WTMS, Zero)
+            Name (AWT0, Zero)
+            Name (AWT1, Zero)
+            Name (AWT2, Zero)
+            Name (PTSL, Zero)
+            Name (SLPD, Zero)
+            Name (IMDS, Zero)
+            Name (IWDT, Zero)
+            Name (IIST, Zero)
+            Name (WLLA, Zero)
+            Method (GABS, 0, NotSerialized)
+            {
+                Return (ICNF)
+            }
+
+            Method (GAOS, 0, NotSerialized)
+            {
+                IIST = One
+                If ((ITMR == One))
+                {
+                    Local0 = (IBT1 & One)
+                    If (Local0) {}
+                    Else
+                    {
+                        \_SB.PCI0.LPCB.EC0.SCTF (Zero, Zero)
+                        \SGPL (0x2E, One, WLLA)
+                    }
+
+                    Local0 |= (IMDS & 0x02)
+                    Return (Local0)
+                }
+                Else
+                {
+                    Local0 = IBT1
+                    Local0 &= One
+                    If (Local0) {}
+                    Else
+                    {
+                        \_SB.PCI0.LPCB.EC0.SCTF (Zero, Zero)
+                        \SGPL (0x2E, One, WLLA)
+                    }
+
+                    Local0 |= (IMDS & 0x02)
+                    Return (Local0)
+                }
+            }
+
+            Method (SAOS, 1, NotSerialized)
+            {
+                IIST = One
+                If ((\_SB.PCI0.IGPU.TCHE & 0x0100))
+                {
+                    If ((ITMR == One))
+                    {
+                        If ((((IBT1 & One) && ((\_SB.IAOE.WKRS & 0x02) || 
+                            (\_SB.IAOE.WKRS & 0x10))) && !(Arg0 & One)))
+                        {
+                            If (!\_SB.PCI0.IGPU.PARD ())
+                            {
+                                \_SB.PCI0.IGPU.STAT = (\_SB.PCI0.IGPU.STAT & 0xFFFFFFFC)
+                                \_SB.PCI0.IGPU.ASLC = (\_SB.PCI0.IGPU.ASLC | 0x0100)
+                                \_SB.PCI0.IGPU.ASLE = One
+                            }
+                        }
+                    }
+                    Else
+                    {
+                        If ((((IBT1 & One) && ((\_SB.IAOE.WKRS & 0x02) || 
+                            (\_SB.IAOE.WKRS & 0x10))) && !(Arg0 & One)))
+                        {
+                            If (!\_SB.PCI0.IGPU.PARD ())
+                            {
+                                \_SB.PCI0.IGPU.STAT = (\_SB.PCI0.IGPU.STAT & 0xFFFFFFFC)
+                                \_SB.PCI0.IGPU.ASLC = (\_SB.PCI0.IGPU.ASLC | 0x0100)
+                                \_SB.PCI0.IGPU.ASLE = One
+                            }
+                        }
+                    }
+                }
+
+                If ((ITMR == One))
+                {
+                    IMDS = (Arg0 & 0x02)
+                    Local0 = (IBT1 & 0xFE)
+                    IBT1 = (Local0 | (Arg0 & One))
+                }
+                Else
+                {
+                    Local0 = IBT1
+                    Local0 &= 0xFE
+                    Local0 |= (Arg0 & One)
+                    IMDS = (Arg0 & 0x02)
+                    IBT1 = Local0
+                }
+            }
+
+            Method (GANS, 0, NotSerialized)
+            {
+                Return (INSB)
+            }
+
+            Method (SANS, 1, NotSerialized)
+            {
+                INSB = (Arg0 & One)
+            }
+
+            Method (GWLS, 0, NotSerialized)
+            {
+                If (((ICNF & 0x04) == Zero))
+                {
+                    Return (Zero)
+                }
+
+                If ((ITMR == One))
+                {
+                    Local0 = One
+                    Local1 = IBT1
+                    Local0 |= (Local1 & 0x0E)
+                    Return (Local0)
+                }
+                Else
+                {
+                    Local0 = IBT2
+                    Local0 |= One
+                    Local1 = IBT1
+                    Local0 |= (Local1 & 0x0E)
+                    Return (Local0)
+                }
+            }
+
+            Method (SWLS, 1, NotSerialized)
+            {
+                If (((ICNF & 0x04) != Zero))
+                {
+
+                If ((ITMR == One))
+                {
+                    Local0 = IBT1
+                    Local0 &= 0xF1
+                    Local0 |= (Arg0 & 0x0E)
+                    If (CondRefOf (\_SB.IFFS.FFSS))
+                    {
+                        If (((\_SB.IFFS.FFSS & 0x03) && (Arg0 & 0x02)))
+                        {
+                            Local0 |= 0x04
+                        }
+                    }
+
+                    IBT1 = Local0
+                    \_SB.PCI0.LPCB.EC0.SCTF (One, Local0)
+                }
+                Else
+                {
+                    Local0 = IBT1
+                    Local0 &= 0xF1
+                    Local0 |= (Arg0 & 0x0E)
+                    If (CondRefOf (\_SB.IFFS.FFSS))
+                    {
+                        If (((\_SB.IFFS.FFSS & 0x03) && (Arg0 & 0x02)))
+                        {
+                            Local0 |= 0x04
+                        }
+                    }
+
+                    IBT1 = Local0
+                    \_SB.PCI0.LPCB.EC0.SCTF (One, Local0)
+                }
+                }
+            }
+
+            Method (GWWS, 0, NotSerialized)
+            {
+                If (((ICNF & 0x08) == Zero))
+                {
+                    Return (Zero)
+                }
+
+                If ((ITMR == One))
+                {
+                    Local0 = One
+                    Local1 = IBT1
+                    Local0 |= ((Local1 & 0x70) >> 0x03)
+                    Return (Local0)
+                }
+                Else
+                {
+                    Local0 = IBT2
+                    Local0 = ((Local0 | 0x02) >> One)
+                    Local1 = IBT1
+                    Local0 |= ((Local1 & 0x70) >> 0x03)
+                    Return (Local0)
+                }
+            }
+
+            Method (SWWS, 1, NotSerialized)
+            {
+                If (((ICNF & 0x08) != Zero))
+                {
+
+                If ((ITMR == One))
+                {
+                    Local0 = IBT1
+                    Local0 &= 0x8F
+                    Local0 |= ((Arg0 & 0x0E) << 0x03)
+                    If (CondRefOf (\_SB.IFFS.FFSS))
+                    {
+                        If (((\_SB.IFFS.FFSS & 0x03) && (Arg0 & 0x02)))
+                        {
+                            Local0 |= 0x20
+                        }
+                    }
+
+                    IBT1 = Local0
+                }
+                Else
+                {
+                    Local0 = IBT1
+                    Local0 &= 0x8F
+                    Local0 |= ((Arg0 & 0x0E) << 0x03)
+                    If (CondRefOf (\_SB.IFFS.FFSS))
+                    {
+                        If (((\_SB.IFFS.FFSS & 0x03) && (Arg0 & 0x02)))
+                        {
+                            Local0 |= 0x20
+                        }
+                    }
+
+                    IBT1 = Local0
+                }
+                }
+            }
+
+            Method (SASD, 1, NotSerialized)
+            {
+                If (((ICNF & 0x10) && (Arg0 > Zero)))
+                {
+                    If ((ITMR == One))
+                    {
+                        RCTM = Arg0
+                    }
+                    Else
+                    {
+                        ECTM = Arg0
+                    }
+
+                    AWT0 = (ECTM & 0xFF)
+                    AWT1 = ((ECTM & 0xFF00) >> 0x08)
+                    AWT2 = ((ECTM & 0x00FF0000) >> 0x10)
+                    Local0 = WTMS
+                    WTMS = (0x81 | Local0)
+                }
+                Else
+                {
+                    If ((ITMR == One))
+                    {
+                        RCTM = Zero
+                    }
+                    Else
+                    {
+                        ECTM = Zero
+                        WTMS = Zero
+                    }
+
+                    SLPD = Arg0
+                    ECTM = Arg0
+                }
+            }
+
+            Method (GPWR, 0, NotSerialized)
+            {
+                If ((WKRS & 0x2F))
+                {
+                    Return ((WKRS & 0x2F))
+                }
+                Else
+                {
+                    Return (Zero)
+                }
+            }
+
+            Method (GPCS, 0, NotSerialized)
+            {
+                Return (\_SB.PCI0.LPCB.EC0.RPIN (0x11))
+            }
+
+            Method (GAWD, 0, NotSerialized)
+            {
+                Return (IWDT)
+            }
+
+            Method (SAWD, 1, NotSerialized)
+            {
+                IWDT = Arg0
             }
         }
     }
@@ -5730,7 +5969,3582 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
     Scope (_SB.PCI0)
     {
-        Name (LTRE, Zero)
+        Device (HDAU)
+        {
+            Name (_ADR, 0x00030000)  // _ADR: Address
+            Name (BARA, 0x80000000)
+            Name (TBAR, Zero)
+            Name (TCMD, Zero)
+            Name (MODB, Zero)
+            Name (MODC, Zero)
+            Method (_STA, 0, NotSerialized)  // _STA: Status
+            {
+                If ((AUVD != 0xFFFF))
+                {
+                    Return (0x0F)
+                }
+
+                Return (Zero)
+            }
+
+            Method (_INI, 0, NotSerialized)  // _INI: Initialize
+            {
+                If ((((ABAR & 0xFFFFC004) != 0xFFFFC004) && ((
+                    ABAR & 0xFFFFC000) != Zero)))
+                {
+                    BARA = ABAR
+                }
+            }
+
+            OperationRegion (RPCS, SystemMemory, \XBAS, 0x00018040)
+            Field (RPCS, AnyAcc, NoLock, Preserve)
+            {
+                Offset (0x18004), 
+                ACMD,   8, 
+                Offset (0x18010), 
+                ABAR,   32
+            }
+
+            OperationRegion (RPCZ, PCI_Config, Zero, 0x40)
+            Field (RPCZ, DWordAcc, Lock, Preserve)
+            {
+                AUVD,   16
+            }
+
+            Method (ASTR, 0, Serialized)
+            {
+                If ((((ABAR & 0xFFFFC004) != 0xFFFFC004) && ((
+                    ABAR & 0xFFFFC000) != Zero)))
+                {
+                    BBAR = (ABAR & 0xFFFFFFF0)
+                    BBAR += 0x1000
+                    OperationRegion (RPCY, SystemMemory, BBAR, 0x25)
+                    Field (RPCY, DWordAcc, NoLock, Preserve)
+                    {
+                        Offset (0x0C), 
+                        EM4W,   32, 
+                        EMWA,   32, 
+                        Offset (0x1C), 
+                        ADWA,   32
+                    }
+
+                    EMWA = AUDA
+                    ADWA = AUDB
+                    EM4W = AUDC
+                }
+            }
+
+            Method (VSTR, 1, Serialized)
+            {
+                Name (CONT, 0x03E8)
+                Name (ADDR, 0x80000000)
+                ADDR = Arg0
+                OperationRegion (CCDC, SystemMemory, ADDR, 0x04)
+                Field (CCDC, ByteAcc, NoLock, Preserve)
+                {
+                    CDEC,   32
+                }
+
+                If ((((ABAR & 0xFFFFC004) != 0xFFFFC004) && ((
+                    ABAR & 0xFFFFC000) != Zero)))
+                {
+                    If ((CDEC != Zero))
+                    {
+                        BBAR = (ABAR & 0xFFFFFFF0)
+                        OperationRegion (IPCV, SystemMemory, BBAR, 0x70)
+                        Field (IPCV, DWordAcc, NoLock, Preserve)
+                        {
+                            Offset (0x60), 
+                            AVIC,   32, 
+                            Offset (0x68), 
+                            AIRS,   16
+                        }
+
+                        CONT = 0x03E8
+                        While ((((AIRS & One) == One) && (CONT != Zero)))
+                        {
+                            Stall (One)
+                            CONT--
+                        }
+
+                        AIRS |= 0x02
+                        AVIC = CDEC
+                        AIRS |= One
+                        CONT = 0x03E8
+                        While ((((AIRS & One) == One) && (CONT != Zero)))
+                        {
+                            Stall (One)
+                            CONT--
+                        }
+                    }
+                }
+            }
+
+            Method (CXDC, 0, Serialized)
+            {
+                Name (IDDX, 0x80000000)
+                If (((CCSA != Zero) && (CCNT != Zero)))
+                {
+                    IDDX = CCSA
+                    While ((IDDX < (CCSA + (CCNT * 0x04))))
+                    {
+                        VSTR (IDDX)
+                        IDDX += 0x04
+                    }
+                }
+            }
+
+            Method (ARST, 0, Serialized)
+            {
+                If ((((ABAR & 0xFFFFC004) != 0xFFFFC004) && ((
+                    ABAR & 0xFFFFC000) != Zero)))
+                {
+                    BBAR = (ABAR & 0xFFFFFFF0)
+                    OperationRegion (IPCV, SystemMemory, BBAR, 0xBF)
+                    Field (IPCV, AnyAcc, NoLock, Preserve)
+                    {
+                        Offset (0x08), 
+                        CRST,   32, 
+                        Offset (0x4C), 
+                        CORB,   32, 
+                        Offset (0x5C), 
+                        RIRB,   32, 
+                        Offset (0x80), 
+                        OSD1,   32, 
+                        Offset (0xA0), 
+                        OSD2,   32
+                    }
+
+                    CORB &= 0xFFFFFFFD
+                    RIRB &= 0xFFFFFFFD
+                    OSD1 &= 0xFFFFFFFD
+                    OSD2 &= 0xFFFFFFFD
+                    CRST &= 0xFFFFFFFE
+                }
+            }
+
+            Method (AINI, 0, Serialized)
+            {
+                Name (CONT, 0x03E8)
+                If ((((ABAR & 0xFFFFC004) != 0xFFFFC004) && ((
+                    ABAR & 0xFFFFC000) != Zero)))
+                {
+                    BBAR = (ABAR & 0xFFFFFFF0)
+                    OperationRegion (IPCV, SystemMemory, BBAR, 0x70)
+                    Field (IPCV, DWordAcc, NoLock, Preserve)
+                    {
+                        GCAP,   16, 
+                        Offset (0x08), 
+                        GCTL,   32, 
+                        Offset (0x0E), 
+                        SSTS,   8, 
+                        Offset (0x60), 
+                        AVIC,   32, 
+                        Offset (0x68), 
+                        AIRS,   16
+                    }
+
+                    GCTL |= One
+                    CONT = 0x03E8
+                    While ((((GCTL & One) == Zero) && (CONT != Zero)))
+                    {
+                        Stall (One)
+                        CONT--
+                    }
+
+                    GCAP &= 0xFFFF
+                    SSTS |= 0x0F
+                    GCTL &= 0xFFFFFFFE
+                    CONT = 0x03E8
+                    While ((((GCTL & One) == One) && (CONT != Zero)))
+                    {
+                        Stall (One)
+                        CONT--
+                    }
+
+                    GCTL |= One
+                    CONT = 0x03E8
+                    While ((((GCTL & One) == Zero) && (CONT != Zero)))
+                    {
+                        Stall (One)
+                        CONT--
+                    }
+                }
+            }
+
+            Method (ABWA, 1, Serialized)
+            {
+                If (Arg0)
+                {
+                    If ((((ABAR & 0xFFFFC004) == 0xFFFFC004) || ((ABAR & 0xFFFFC000
+                        ) == Zero)))
+                    {
+                        If ((BARA != 0x80000000))
+                        {
+                            TBAR = ABAR
+                            TCMD = ACMD
+                            ABAR = BARA
+                            ACMD = 0x06
+                            MODB = One
+                        }
+                    }
+                    Else
+                    {
+                        If (((ACMD & 0x06) != 0x06))
+                        {
+                            TCMD = ACMD
+                            ACMD = 0x06
+                            MODC = One
+                        }
+                    }
+                }
+                Else
+                {
+                    If (MODB)
+                    {
+                        If ((ABAR == BARA))
+                        {
+                            ABAR = TBAR
+                            ACMD = TCMD
+                        }
+                    }
+
+                    If (MODC)
+                    {
+                        ACMD = TCMD
+                    }
+                }
+            }
+            Method (_DSM, 4, NotSerialized)
+            {
+                If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
+                Return (Package()
+                {
+                    "hda-gfx", Buffer() { "onboard-1" },
+                    "layout-id", Buffer() { 0x56, 0x00, 0x00, 0x00 },
+                })
+            }
+        }Device (IGPU)
+        {
+            Name (_ADR, 0x00020000)  // _ADR: Address
+            OperationRegion (VSID, PCI_Config, Zero, 0x04)
+            Field (VSID, ByteAcc, NoLock, Preserve)
+            {
+                REG0,   32
+            }
+
+            Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
+            {
+                
+                If ((S0ID == One))
+                {
+                    
+                    Return (Package (0x01)
+                    {
+                        \_SB.PEPD
+                    })
+                }
+                Else
+                {
+                    
+                    Return (Package (0x00) {})
+                }
+            }
+
+            Method (_DOS, 1, NotSerialized)  // _DOS: Disable Output Switching
+            {
+                DSEN = (Arg0 & 0x07)
+                If (((Arg0 & 0x03) == Zero))
+                {
+                    If (CondRefOf (HDOS))
+                    {
+                        HDOS ()
+                    }
+                }
+
+                If (DRDY)
+                {
+                    DOSF = (Arg0 & 0x03)
+                    BRNC = (Arg0 >> 0x02)
+                    BRNC &= One
+                }
+            }
+
+            Method (_DOD, 0, NotSerialized)  // _DOD: Display Output Devices
+            {
+                If (CondRefOf (IDAB))
+                {
+                    IDAB ()
+                }
+                Else
+                {
+                    NDID = Zero
+                    If ((DIDL != Zero))
+                    {
+                        DID1 = SDDL (DDL2)
+                    }
+
+                    If ((DDL2 != Zero))
+                    {
+                        DID2 = SDDL (DIDL)
+                    }
+
+                    If ((DDL3 != Zero))
+                    {
+                        DID3 = SDDL (DDL3)
+                    }
+
+                    If ((DDL4 != Zero))
+                    {
+                        DID4 = SDDL (DDL4)
+                    }
+
+                    If ((DDL5 != Zero))
+                    {
+                        DID5 = SDDL (DDL5)
+                    }
+
+                    If ((DDL6 != Zero))
+                    {
+                        DID6 = SDDL (DDL6)
+                    }
+
+                    If ((DDL7 != Zero))
+                    {
+                        DID7 = SDDL (DDL7)
+                    }
+
+                    If ((DDL8 != Zero))
+                    {
+                        DID8 = SDDL (DDL8)
+                    }
+
+                    If ((DDL9 != Zero))
+                    {
+                        DID9 = SDDL (DDL9)
+                    }
+
+                    If ((DD10 != Zero))
+                    {
+                        DIDA = SDDL (DD10)
+                    }
+
+                    If ((DD11 != Zero))
+                    {
+                        DIDB = SDDL (DD11)
+                    }
+
+                    If ((DD12 != Zero))
+                    {
+                        DIDC = SDDL (DD12)
+                    }
+
+                    If ((DD13 != Zero))
+                    {
+                        DIDD = SDDL (DD13)
+                    }
+
+                    If ((DD14 != Zero))
+                    {
+                        DIDE = SDDL (DD14)
+                    }
+
+                    If ((DD15 != Zero))
+                    {
+                        DIDF = SDDL (DD15)
+                    }
+                }
+
+                If ((NDID == One))
+                {
+                    Name (TMP1, Package (0x01)
+                    {
+                        Ones
+                    })
+                    Index (TMP1, Zero) = (0x00010000 | DID1)
+                    Return (TMP1)
+                }
+
+                If ((NDID == 0x02))
+                {
+                    Name (TMP2, Package (0x02)
+                    {
+                        Ones, 
+                        Ones
+                    })
+                    Index (TMP2, Zero) = (0x00010000 | DID1)
+                    Index (TMP2, One) = (0x00010000 | DID2)
+                    Return (TMP2)
+                }
+
+                If ((NDID == 0x03))
+                {
+                    Name (TMP3, Package (0x03)
+                    {
+                        Ones, 
+                        Ones, 
+                        Ones
+                    })
+                    Index (TMP3, Zero) = (0x00010000 | DID1)
+                    Index (TMP3, One) = (0x00010000 | DID2)
+                    Index (TMP3, 0x02) = (0x00010000 | DID3)
+                    Return (TMP3)
+                }
+
+                If ((NDID == 0x04))
+                {
+                    Name (TMP4, Package (0x04)
+                    {
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones
+                    })
+                    Index (TMP4, Zero) = (0x00010000 | DID1)
+                    Index (TMP4, One) = (0x00010000 | DID2)
+                    Index (TMP4, 0x02) = (0x00010000 | DID3)
+                    Index (TMP4, 0x03) = (0x00010000 | DID4)
+                    Return (TMP4)
+                }
+
+                If ((NDID == 0x05))
+                {
+                    Name (TMP5, Package (0x05)
+                    {
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones
+                    })
+                    Index (TMP5, Zero) = (0x00010000 | DID1)
+                    Index (TMP5, One) = (0x00010000 | DID2)
+                    Index (TMP5, 0x02) = (0x00010000 | DID3)
+                    Index (TMP5, 0x03) = (0x00010000 | DID4)
+                    Index (TMP5, 0x04) = (0x00010000 | DID5)
+                    Return (TMP5)
+                }
+
+                If ((NDID == 0x06))
+                {
+                    Name (TMP6, Package (0x06)
+                    {
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones
+                    })
+                    Index (TMP6, Zero) = (0x00010000 | DID1)
+                    Index (TMP6, One) = (0x00010000 | DID2)
+                    Index (TMP6, 0x02) = (0x00010000 | DID3)
+                    Index (TMP6, 0x03) = (0x00010000 | DID4)
+                    Index (TMP6, 0x04) = (0x00010000 | DID5)
+                    Index (TMP6, 0x05) = (0x00010000 | DID6)
+                    Return (TMP6)
+                }
+
+                If ((NDID == 0x07))
+                {
+                    Name (TMP7, Package (0x07)
+                    {
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones
+                    })
+                    Index (TMP7, Zero) = (0x00010000 | DID1)
+                    Index (TMP7, One) = (0x00010000 | DID2)
+                    Index (TMP7, 0x02) = (0x00010000 | DID3)
+                    Index (TMP7, 0x03) = (0x00010000 | DID4)
+                    Index (TMP7, 0x04) = (0x00010000 | DID5)
+                    Index (TMP7, 0x05) = (0x00010000 | DID6)
+                    Index (TMP7, 0x06) = (0x00010000 | DID7)
+                    Return (TMP7)
+                }
+
+                If ((NDID == 0x08))
+                {
+                    Name (TMP8, Package (0x08)
+                    {
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones
+                    })
+                    Index (TMP8, Zero) = (0x00010000 | DID1)
+                    Index (TMP8, One) = (0x00010000 | DID2)
+                    Index (TMP8, 0x02) = (0x00010000 | DID3)
+                    Index (TMP8, 0x03) = (0x00010000 | DID4)
+                    Index (TMP8, 0x04) = (0x00010000 | DID5)
+                    Index (TMP8, 0x05) = (0x00010000 | DID6)
+                    Index (TMP8, 0x06) = (0x00010000 | DID7)
+                    Index (TMP8, 0x07) = (0x00010000 | DID8)
+                    Return (TMP8)
+                }
+
+                If ((NDID == 0x09))
+                {
+                    Name (TMP9, Package (0x09)
+                    {
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones
+                    })
+                    Index (TMP9, Zero) = (0x00010000 | DID1)
+                    Index (TMP9, One) = (0x00010000 | DID2)
+                    Index (TMP9, 0x02) = (0x00010000 | DID3)
+                    Index (TMP9, 0x03) = (0x00010000 | DID4)
+                    Index (TMP9, 0x04) = (0x00010000 | DID5)
+                    Index (TMP9, 0x05) = (0x00010000 | DID6)
+                    Index (TMP9, 0x06) = (0x00010000 | DID7)
+                    Index (TMP9, 0x07) = (0x00010000 | DID8)
+                    Index (TMP9, 0x08) = (0x00010000 | DID9)
+                    Return (TMP9)
+                }
+
+                If ((NDID == 0x0A))
+                {
+                    Name (TMPA, Package (0x0A)
+                    {
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones
+                    })
+                    Index (TMPA, Zero) = (0x00010000 | DID1)
+                    Index (TMPA, One) = (0x00010000 | DID2)
+                    Index (TMPA, 0x02) = (0x00010000 | DID3)
+                    Index (TMPA, 0x03) = (0x00010000 | DID4)
+                    Index (TMPA, 0x04) = (0x00010000 | DID5)
+                    Index (TMPA, 0x05) = (0x00010000 | DID6)
+                    Index (TMPA, 0x06) = (0x00010000 | DID7)
+                    Index (TMPA, 0x07) = (0x00010000 | DID8)
+                    Index (TMPA, 0x08) = (0x00010000 | DID9)
+                    Index (TMPA, 0x09) = (0x00010000 | DIDA)
+                    Return (TMPA)
+                }
+
+                If ((NDID == 0x0B))
+                {
+                    Name (TMPB, Package (0x0B)
+                    {
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones
+                    })
+                    Index (TMPB, Zero) = (0x00010000 | DID1)
+                    Index (TMPB, One) = (0x00010000 | DID2)
+                    Index (TMPB, 0x02) = (0x00010000 | DID3)
+                    Index (TMPB, 0x03) = (0x00010000 | DID4)
+                    Index (TMPB, 0x04) = (0x00010000 | DID5)
+                    Index (TMPB, 0x05) = (0x00010000 | DID6)
+                    Index (TMPB, 0x06) = (0x00010000 | DID7)
+                    Index (TMPB, 0x07) = (0x00010000 | DID8)
+                    Index (TMPB, 0x08) = (0x00010000 | DID9)
+                    Index (TMPB, 0x09) = (0x00010000 | DIDA)
+                    Index (TMPB, 0x0A) = (0x00010000 | DIDB)
+                    Return (TMPB)
+                }
+
+                If ((NDID == 0x0C))
+                {
+                    Name (TMPC, Package (0x0C)
+                    {
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones
+                    })
+                    Index (TMPC, Zero) = (0x00010000 | DID1)
+                    Index (TMPC, One) = (0x00010000 | DID2)
+                    Index (TMPC, 0x02) = (0x00010000 | DID3)
+                    Index (TMPC, 0x03) = (0x00010000 | DID4)
+                    Index (TMPC, 0x04) = (0x00010000 | DID5)
+                    Index (TMPC, 0x05) = (0x00010000 | DID6)
+                    Index (TMPC, 0x06) = (0x00010000 | DID7)
+                    Index (TMPC, 0x07) = (0x00010000 | DID8)
+                    Index (TMPC, 0x08) = (0x00010000 | DID9)
+                    Index (TMPC, 0x09) = (0x00010000 | DIDA)
+                    Index (TMPC, 0x0A) = (0x00010000 | DIDB)
+                    Index (TMPC, 0x0B) = (0x00010000 | DIDC)
+                    Return (TMPC)
+                }
+
+                If ((NDID == 0x0D))
+                {
+                    Name (TMPD, Package (0x0D)
+                    {
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones
+                    })
+                    Index (TMPD, Zero) = (0x00010000 | DID1)
+                    Index (TMPD, One) = (0x00010000 | DID2)
+                    Index (TMPD, 0x02) = (0x00010000 | DID3)
+                    Index (TMPD, 0x03) = (0x00010000 | DID4)
+                    Index (TMPD, 0x04) = (0x00010000 | DID5)
+                    Index (TMPD, 0x05) = (0x00010000 | DID6)
+                    Index (TMPD, 0x06) = (0x00010000 | DID7)
+                    Index (TMPD, 0x07) = (0x00010000 | DID8)
+                    Index (TMPD, 0x08) = (0x00010000 | DID9)
+                    Index (TMPD, 0x09) = (0x00010000 | DIDA)
+                    Index (TMPD, 0x0A) = (0x00010000 | DIDB)
+                    Index (TMPD, 0x0B) = (0x00010000 | DIDC)
+                    Index (TMPD, 0x0C) = (0x00010000 | DIDD)
+                    Return (TMPD)
+                }
+
+                If ((NDID == 0x0E))
+                {
+                    Name (TMPE, Package (0x0E)
+                    {
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones
+                    })
+                    Index (TMPE, Zero) = (0x00010000 | DID1)
+                    Index (TMPE, One) = (0x00010000 | DID2)
+                    Index (TMPE, 0x02) = (0x00010000 | DID3)
+                    Index (TMPE, 0x03) = (0x00010000 | DID4)
+                    Index (TMPE, 0x04) = (0x00010000 | DID5)
+                    Index (TMPE, 0x05) = (0x00010000 | DID6)
+                    Index (TMPE, 0x06) = (0x00010000 | DID7)
+                    Index (TMPE, 0x07) = (0x00010000 | DID8)
+                    Index (TMPE, 0x08) = (0x00010000 | DID9)
+                    Index (TMPE, 0x09) = (0x00010000 | DIDA)
+                    Index (TMPE, 0x0A) = (0x00010000 | DIDB)
+                    Index (TMPE, 0x0B) = (0x00010000 | DIDC)
+                    Index (TMPE, 0x0C) = (0x00010000 | DIDD)
+                    Index (TMPE, 0x0D) = (0x00010000 | DIDE)
+                    Return (TMPE)
+                }
+
+                If ((NDID == 0x0F))
+                {
+                    Name (TMPF, Package (0x0F)
+                    {
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones, 
+                        Ones
+                    })
+                    Index (TMPF, Zero) = (0x00010000 | DID1)
+                    Index (TMPF, One) = (0x00010000 | DID2)
+                    Index (TMPF, 0x02) = (0x00010000 | DID3)
+                    Index (TMPF, 0x03) = (0x00010000 | DID4)
+                    Index (TMPF, 0x04) = (0x00010000 | DID5)
+                    Index (TMPF, 0x05) = (0x00010000 | DID6)
+                    Index (TMPF, 0x06) = (0x00010000 | DID7)
+                    Index (TMPF, 0x07) = (0x00010000 | DID8)
+                    Index (TMPF, 0x08) = (0x00010000 | DID9)
+                    Index (TMPF, 0x09) = (0x00010000 | DIDA)
+                    Index (TMPF, 0x0A) = (0x00010000 | DIDB)
+                    Index (TMPF, 0x0B) = (0x00010000 | DIDC)
+                    Index (TMPF, 0x0C) = (0x00010000 | DIDD)
+                    Index (TMPF, 0x0D) = (0x00010000 | DIDE)
+                    Index (TMPF, 0x0E) = (0x00010000 | DIDF)
+                    Return (TMPF)
+                }
+
+                Return (Package (0x01)
+                {
+                    0x0400
+                })
+            }
+
+            Device (DD01)
+            {
+                Method (_ADR, 0, Serialized)  // _ADR: Address
+                {
+                    If (((0x0F00 & DID1) == 0x0400))
+                    {
+                        EDPV = One
+                        NXDX = NXD1
+                        DIDX = DID1
+                        Return (One)
+                    }
+
+                    If ((DID1 == Zero))
+                    {
+                        Return (One)
+                    }
+                    Else
+                    {
+                        Return ((0xFFFF & DID1))
+                    }
+                }
+
+                Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
+                {
+                    Return (CDDS (DID1))
+                }
+
+                Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
+                {
+                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    {
+                        Return (NXD1)
+                    }
+
+                    Return (NDDS (DID1))
+                }
+
+                Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
+                {
+                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    {
+                        CSTE = NSTE
+                    }
+                }
+            }
+
+            Device (DD02)
+            {
+                Method (_ADR, 0, Serialized)  // _ADR: Address
+                {
+                    If (((0x0F00 & DID2) == 0x0400))
+                    {
+                        EDPV = 0x02
+                        NXDX = NXD2
+                        DIDX = DID2
+                        Return (0x02)
+                    }
+
+                    If ((DID2 == Zero))
+                    {
+                        Return (0x02)
+                    }
+                    Else
+                    {
+                        Return ((0xFFFF & DID2))
+                    }
+                }
+
+                Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
+                {
+                    If ((LIDS == Zero))
+                    {
+                        Return (Zero)
+                    }
+
+                    Return (CDDS (DID2))
+                }
+
+                Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
+                {
+                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    {
+                        Return (NXD2)
+                    }
+
+                    Return (NDDS (DID2))
+                }
+
+                Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
+                {
+                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    {
+                        CSTE = NSTE
+                    }
+                }
+            }
+
+            Device (DD03)
+            {
+                Method (_ADR, 0, Serialized)  // _ADR: Address
+                {
+                    If (((0x0F00 & DID3) == 0x0400))
+                    {
+                        EDPV = 0x03
+                        NXDX = NXD3
+                        DIDX = DID3
+                        Return (0x03)
+                    }
+
+                    If ((DID3 == Zero))
+                    {
+                        Return (0x03)
+                    }
+                    Else
+                    {
+                        Return ((0xFFFF & DID3))
+                    }
+                }
+
+                Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
+                {
+                    If ((DID3 == Zero))
+                    {
+                        Return (0x0B)
+                    }
+                    Else
+                    {
+                        Return (CDDS (DID3))
+                    }
+                }
+
+                Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
+                {
+                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    {
+                        Return (NXD3)
+                    }
+
+                    Return (NDDS (DID3))
+                }
+
+                Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
+                {
+                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    {
+                        CSTE = NSTE
+                    }
+                }
+            }
+
+            Device (DD04)
+            {
+                Method (_ADR, 0, Serialized)  // _ADR: Address
+                {
+                    If (((0x0F00 & DID4) == 0x0400))
+                    {
+                        EDPV = 0x04
+                        NXDX = NXD4
+                        DIDX = DID4
+                        Return (0x04)
+                    }
+
+                    If ((DID4 == Zero))
+                    {
+                        Return (0x04)
+                    }
+                    Else
+                    {
+                        Return ((0xFFFF & DID4))
+                    }
+                }
+
+                Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
+                {
+                    If ((DID4 == Zero))
+                    {
+                        Return (0x0B)
+                    }
+                    Else
+                    {
+                        Return (CDDS (DID4))
+                    }
+                }
+
+                Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
+                {
+                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    {
+                        Return (NXD4)
+                    }
+
+                    Return (NDDS (DID4))
+                }
+
+                Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
+                {
+                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    {
+                        CSTE = NSTE
+                    }
+                }
+            }
+
+            Device (DD05)
+            {
+                Method (_ADR, 0, Serialized)  // _ADR: Address
+                {
+                    If (((0x0F00 & DID5) == 0x0400))
+                    {
+                        EDPV = 0x05
+                        NXDX = NXD5
+                        DIDX = DID5
+                        Return (0x05)
+                    }
+
+                    If ((DID5 == Zero))
+                    {
+                        Return (0x05)
+                    }
+                    Else
+                    {
+                        Return ((0xFFFF & DID5))
+                    }
+                }
+
+                Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
+                {
+                    If ((DID5 == Zero))
+                    {
+                        Return (0x0B)
+                    }
+                    Else
+                    {
+                        Return (CDDS (DID5))
+                    }
+                }
+
+                Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
+                {
+                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    {
+                        Return (NXD5)
+                    }
+
+                    Return (NDDS (DID5))
+                }
+
+                Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
+                {
+                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    {
+                        CSTE = NSTE
+                    }
+                }
+            }
+
+            Device (DD06)
+            {
+                Method (_ADR, 0, Serialized)  // _ADR: Address
+                {
+                    If (((0x0F00 & DID6) == 0x0400))
+                    {
+                        EDPV = 0x06
+                        NXDX = NXD6
+                        DIDX = DID6
+                        Return (0x06)
+                    }
+
+                    If ((DID6 == Zero))
+                    {
+                        Return (0x06)
+                    }
+                    Else
+                    {
+                        Return ((0xFFFF & DID6))
+                    }
+                }
+
+                Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
+                {
+                    If ((DID6 == Zero))
+                    {
+                        Return (0x0B)
+                    }
+                    Else
+                    {
+                        Return (CDDS (DID6))
+                    }
+                }
+
+                Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
+                {
+                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    {
+                        Return (NXD6)
+                    }
+
+                    Return (NDDS (DID6))
+                }
+
+                Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
+                {
+                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    {
+                        CSTE = NSTE
+                    }
+                }
+            }
+
+            Device (DD07)
+            {
+                Method (_ADR, 0, Serialized)  // _ADR: Address
+                {
+                    If (((0x0F00 & DID7) == 0x0400))
+                    {
+                        EDPV = 0x07
+                        NXDX = NXD7
+                        DIDX = DID7
+                        Return (0x07)
+                    }
+
+                    If ((DID7 == Zero))
+                    {
+                        Return (0x07)
+                    }
+                    Else
+                    {
+                        Return ((0xFFFF & DID7))
+                    }
+                }
+
+                Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
+                {
+                    If ((DID7 == Zero))
+                    {
+                        Return (0x0B)
+                    }
+                    Else
+                    {
+                        Return (CDDS (DID7))
+                    }
+                }
+
+                Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
+                {
+                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    {
+                        Return (NXD7)
+                    }
+
+                    Return (NDDS (DID7))
+                }
+
+                Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
+                {
+                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    {
+                        CSTE = NSTE
+                    }
+                }
+            }
+
+            Device (DD08)
+            {
+                Method (_ADR, 0, Serialized)  // _ADR: Address
+                {
+                    If (((0x0F00 & DID8) == 0x0400))
+                    {
+                        EDPV = 0x08
+                        NXDX = NXD8
+                        DIDX = DID8
+                        Return (0x08)
+                    }
+
+                    If ((DID8 == Zero))
+                    {
+                        Return (0x08)
+                    }
+                    Else
+                    {
+                        Return ((0xFFFF & DID8))
+                    }
+                }
+
+                Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
+                {
+                    If ((DID8 == Zero))
+                    {
+                        Return (0x0B)
+                    }
+                    Else
+                    {
+                        Return (CDDS (DID8))
+                    }
+                }
+
+                Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
+                {
+                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    {
+                        Return (NXD8)
+                    }
+
+                    Return (NDDS (DID8))
+                }
+
+                Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
+                {
+                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    {
+                        CSTE = NSTE
+                    }
+                }
+            }
+
+            Device (DD09)
+            {
+                Method (_ADR, 0, Serialized)  // _ADR: Address
+                {
+                    If (((0x0F00 & DID9) == 0x0400))
+                    {
+                        EDPV = 0x09
+                        NXDX = NXD8
+                        DIDX = DID9
+                        Return (0x09)
+                    }
+
+                    If ((DID9 == Zero))
+                    {
+                        Return (0x09)
+                    }
+                    Else
+                    {
+                        Return ((0xFFFF & DID9))
+                    }
+                }
+
+                Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
+                {
+                    If ((DID9 == Zero))
+                    {
+                        Return (0x0B)
+                    }
+                    Else
+                    {
+                        Return (CDDS (DID9))
+                    }
+                }
+
+                Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
+                {
+                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    {
+                        Return (NXD8)
+                    }
+
+                    Return (NDDS (DID9))
+                }
+
+                Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
+                {
+                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    {
+                        CSTE = NSTE
+                    }
+                }
+            }
+
+            Device (DD0A)
+            {
+                Method (_ADR, 0, Serialized)  // _ADR: Address
+                {
+                    If (((0x0F00 & DIDA) == 0x0400))
+                    {
+                        EDPV = 0x0A
+                        NXDX = NXD8
+                        DIDX = DIDA
+                        Return (0x0A)
+                    }
+
+                    If ((DIDA == Zero))
+                    {
+                        Return (0x0A)
+                    }
+                    Else
+                    {
+                        Return ((0xFFFF & DIDA))
+                    }
+                }
+
+                Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
+                {
+                    If ((DIDA == Zero))
+                    {
+                        Return (0x0B)
+                    }
+                    Else
+                    {
+                        Return (CDDS (DIDA))
+                    }
+                }
+
+                Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
+                {
+                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    {
+                        Return (NXD8)
+                    }
+
+                    Return (NDDS (DIDA))
+                }
+
+                Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
+                {
+                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    {
+                        CSTE = NSTE
+                    }
+                }
+            }
+
+            Device (DD0B)
+            {
+                Method (_ADR, 0, Serialized)  // _ADR: Address
+                {
+                    If (((0x0F00 & DIDB) == 0x0400))
+                    {
+                        EDPV = 0x0B
+                        NXDX = NXD8
+                        DIDX = DIDB
+                        Return (0x0B)
+                    }
+
+                    If ((DIDB == Zero))
+                    {
+                        Return (0x0B)
+                    }
+                    Else
+                    {
+                        Return ((0xFFFF & DIDB))
+                    }
+                }
+
+                Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
+                {
+                    If ((DIDB == Zero))
+                    {
+                        Return (0x0B)
+                    }
+                    Else
+                    {
+                        Return (CDDS (DIDB))
+                    }
+                }
+
+                Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
+                {
+                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    {
+                        Return (NXD8)
+                    }
+
+                    Return (NDDS (DIDB))
+                }
+
+                Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
+                {
+                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    {
+                        CSTE = NSTE
+                    }
+                }
+            }
+
+            Device (DD0C)
+            {
+                Method (_ADR, 0, Serialized)  // _ADR: Address
+                {
+                    If (((0x0F00 & DIDC) == 0x0400))
+                    {
+                        EDPV = 0x0C
+                        NXDX = NXD8
+                        DIDX = DIDC
+                        Return (0x0C)
+                    }
+
+                    If ((DIDC == Zero))
+                    {
+                        Return (0x0C)
+                    }
+                    Else
+                    {
+                        Return ((0xFFFF & DIDC))
+                    }
+                }
+
+                Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
+                {
+                    If ((DIDC == Zero))
+                    {
+                        Return (0x0C)
+                    }
+                    Else
+                    {
+                        Return (CDDS (DIDC))
+                    }
+                }
+
+                Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
+                {
+                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    {
+                        Return (NXD8)
+                    }
+
+                    Return (NDDS (DIDC))
+                }
+
+                Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
+                {
+                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    {
+                        CSTE = NSTE
+                    }
+                }
+            }
+
+            Device (DD0D)
+            {
+                Method (_ADR, 0, Serialized)  // _ADR: Address
+                {
+                    If (((0x0F00 & DIDD) == 0x0400))
+                    {
+                        EDPV = 0x0D
+                        NXDX = NXD8
+                        DIDX = DIDD
+                        Return (0x0D)
+                    }
+
+                    If ((DIDD == Zero))
+                    {
+                        Return (0x0D)
+                    }
+                    Else
+                    {
+                        Return ((0xFFFF & DIDD))
+                    }
+                }
+
+                Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
+                {
+                    If ((DIDD == Zero))
+                    {
+                        Return (0x0D)
+                    }
+                    Else
+                    {
+                        Return (CDDS (DIDD))
+                    }
+                }
+
+                Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
+                {
+                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    {
+                        Return (NXD8)
+                    }
+
+                    Return (NDDS (DIDD))
+                }
+
+                Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
+                {
+                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    {
+                        CSTE = NSTE
+                    }
+                }
+            }
+
+            Device (DD0E)
+            {
+                Method (_ADR, 0, Serialized)  // _ADR: Address
+                {
+                    If (((0x0F00 & DIDE) == 0x0400))
+                    {
+                        EDPV = 0x0E
+                        NXDX = NXD8
+                        DIDX = DIDE
+                        Return (0x0E)
+                    }
+
+                    If ((DIDE == Zero))
+                    {
+                        Return (0x0E)
+                    }
+                    Else
+                    {
+                        Return ((0xFFFF & DIDE))
+                    }
+                }
+
+                Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
+                {
+                    If ((DIDE == Zero))
+                    {
+                        Return (0x0E)
+                    }
+                    Else
+                    {
+                        Return (CDDS (DIDE))
+                    }
+                }
+
+                Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
+                {
+                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    {
+                        Return (NXD8)
+                    }
+
+                    Return (NDDS (DIDE))
+                }
+
+                Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
+                {
+                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    {
+                        CSTE = NSTE
+                    }
+                }
+            }
+
+            Device (DD0F)
+            {
+                Method (_ADR, 0, Serialized)  // _ADR: Address
+                {
+                    If (((0x0F00 & DIDF) == 0x0400))
+                    {
+                        EDPV = 0x0F
+                        NXDX = NXD8
+                        DIDX = DIDF
+                        Return (0x0F)
+                    }
+
+                    If ((DIDF == Zero))
+                    {
+                        Return (0x0F)
+                    }
+                    Else
+                    {
+                        Return ((0xFFFF & DIDF))
+                    }
+                }
+
+                Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
+                {
+                    If ((DIDC == Zero))
+                    {
+                        Return (0x0F)
+                    }
+                    Else
+                    {
+                        Return (CDDS (DIDF))
+                    }
+                }
+
+                Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
+                {
+                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    {
+                        Return (NXD8)
+                    }
+
+                    Return (NDDS (DIDF))
+                }
+
+                Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
+                {
+                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    {
+                        CSTE = NSTE
+                    }
+                }
+            }
+
+            Device (LCDD)
+            {
+                Method (_ADR, 0, Serialized)  // _ADR: Address
+                {
+                    If ((EDPV == Zero))
+                    {
+                        Return (0x1F)
+                    }
+                    Else
+                    {
+                        Return ((0xFFFF & DIDX))
+                    }
+                }
+
+                Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
+                {
+                    If ((EDPV == Zero))
+                    {
+                        Return (Zero)
+                    }
+                    Else
+                    {
+                        Return (CDDS (DIDX))
+                    }
+                }
+
+                Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
+                {
+                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    {
+                        Return (NXDX)
+                    }
+
+                    Return (NDDS (DIDX))
+                }
+
+                Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
+                {
+                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    {
+                        CSTE = NSTE
+                    }
+                }
+
+                Method (MINB, 0, NotSerialized)
+                {
+                    If (ARDY)
+                    {
+                        Local1 = BRTI
+                        Local1 <<= 0x04
+                        Local0 = DerefOf (Index (\_SB.PCI0.LPCB.EC0.PWAC, Local1))
+                        TCHE |= 0x08
+                        ASLC |= 0x08
+                        PFMB = Local0
+                        PFMB |= 0x0100
+                        ASLE = One
+                    }
+                }
+
+                Method (_BCL, 0, NotSerialized)  // _BCL: Brightness Control Levels
+                {
+                    If ((\MSOS () >= \OSW8))
+                    {
+                        Local0 = (0x64 + One)
+                        Local0 += 0x02
+                        Name (BRPP, Package (0x67) {})
+                        Index (BRPP, Zero) = 0x64
+                        Index (BRPP, One) = 0x28
+                        Local1 = 0x02
+                        Local2 = 0x64
+                        While ((Local1 < Local0))
+                        {
+                            Index (BRPP, Local1) = Local2
+                            Local1++
+                            Local2--
+                        }
+
+                        Local0 = Zero
+                        While ((Local0 <= 0x0A))
+                        {
+                            Index (PCTG, (0x0A - Local0)) = (Local0 * 0x0A)
+                            Local0++
+                        }
+
+                        MINB ()
+                        Return (BRPP)
+                    }
+                    Else
+                    {
+                        Local0 = Zero
+                        Local4 = BRTI
+                        Local4 <<= 0x04
+                        While ((Local0 < 0x0B))
+                        {
+                            Local3 = (0x0B - Local0)
+                            Local3 -= One
+                            Local3 = (Local4 + Local3)
+                            Local1 = DerefOf (Index (\_SB.PCI0.LPCB.EC0.PWAC, Local3))
+                            Local2 = ((Local1 * 0x64) / 0xFF)
+                            Index (PCTG, Local0) = Local2
+                            Local0++
+                        }
+
+                        MINB ()
+                        Return (PCTG)
+                    }
+                }
+
+                Method (_BCM, 1, NotSerialized)  // _BCM: Brightness Control Method
+                {
+                    BCMD = One
+                    Local0 = GCBL (Arg0)
+                    LBTN = (0x0A - Local0)
+                    If (BRNC)
+                    {
+                        \_SB.PCI0.IGPU.AINT (One, Arg0)
+                    }
+                    Else
+                    {
+                        \_SB.PCI0.LPCB.EC0.STBR ()
+                    }
+                }
+
+                Method (_BQC, 0, NotSerialized)  // _BQC: Brightness Query Current
+                {
+                    If ((\MSOS () >= \OSW8))
+                    {
+                        Local0 = (CBLV & 0x7FFFFFFF)
+                        Return (Local0)
+                    }
+                    Else
+                    {
+                        Local1 = BRTI
+                        Local1 <<= 0x04
+                        Local2 = LBTN
+                        Local2 = (Local1 + Local2)
+                        Local3 = (DerefOf (Index (\_SB.PCI0.LPCB.EC0.PWAC, Local2)) * 0x64)
+                        Local3 = (Local3 / 0xFF)
+                        Return (Local3)
+                    }
+                }
+            }
+
+            Method (SDDL, 1, NotSerialized)
+            {
+                NDID++
+                Local0 = (Arg0 & 0x0F0F)
+                Local1 = (0x80000000 | Local0)
+                If ((DIDL == Local0))
+                {
+                    Return (Local1)
+                }
+
+                If ((DDL2 == Local0))
+                {
+                    Return (Local1)
+                }
+
+                If ((DDL3 == Local0))
+                {
+                    Return (Local1)
+                }
+
+                If ((DDL4 == Local0))
+                {
+                    Return (Local1)
+                }
+
+                If ((DDL5 == Local0))
+                {
+                    Return (Local1)
+                }
+
+                If ((DDL6 == Local0))
+                {
+                    Return (Local1)
+                }
+
+                If ((DDL7 == Local0))
+                {
+                    Return (Local1)
+                }
+
+                If ((DDL8 == Local0))
+                {
+                    Return (Local1)
+                }
+
+                If ((DDL9 == Local0))
+                {
+                    Return (Local1)
+                }
+
+                If ((DD10 == Local0))
+                {
+                    Return (Local1)
+                }
+
+                If ((DD11 == Local0))
+                {
+                    Return (Local1)
+                }
+
+                If ((DD12 == Local0))
+                {
+                    Return (Local1)
+                }
+
+                If ((DD13 == Local0))
+                {
+                    Return (Local1)
+                }
+
+                If ((DD14 == Local0))
+                {
+                    Return (Local1)
+                }
+
+                If ((DD15 == Local0))
+                {
+                    Return (Local1)
+                }
+
+                NDID--
+                Return (Zero)
+            }
+
+            Method (CDDS, 1, NotSerialized)
+            {
+                Local0 = (Arg0 & 0x0F0F)
+                If ((Zero == Local0))
+                {
+                    Return (0x1D)
+                }
+
+                If ((CADL == Local0))
+                {
+                    Return (0x1F)
+                }
+
+                If ((CAL2 == Local0))
+                {
+                    Return (0x1F)
+                }
+
+                If ((CAL3 == Local0))
+                {
+                    Return (0x1F)
+                }
+
+                If ((CAL4 == Local0))
+                {
+                    Return (0x1F)
+                }
+
+                If ((CAL5 == Local0))
+                {
+                    Return (0x1F)
+                }
+
+                If ((CAL6 == Local0))
+                {
+                    Return (0x1F)
+                }
+
+                If ((CAL7 == Local0))
+                {
+                    Return (0x1F)
+                }
+
+                If ((CAL8 == Local0))
+                {
+                    Return (0x1F)
+                }
+
+                Return (0x1D)
+            }
+
+            Method (NDDS, 1, NotSerialized)
+            {
+                Local0 = (Arg0 & 0x0F0F)
+                If ((Zero == Local0))
+                {
+                    Return (Zero)
+                }
+
+                If ((NADL == Local0))
+                {
+                    Return (One)
+                }
+
+                If ((NDL2 == Local0))
+                {
+                    Return (One)
+                }
+
+                If ((NDL3 == Local0))
+                {
+                    Return (One)
+                }
+
+                If ((NDL4 == Local0))
+                {
+                    Return (One)
+                }
+
+                If ((NDL5 == Local0))
+                {
+                    Return (One)
+                }
+
+                If ((NDL6 == Local0))
+                {
+                    Return (One)
+                }
+
+                If ((NDL7 == Local0))
+                {
+                    Return (One)
+                }
+
+                If ((NDL8 == Local0))
+                {
+                    Return (One)
+                }
+
+                Return (Zero)
+            }
+
+            Scope (\_SB.PCI0)
+            {
+                OperationRegion (MCHP, PCI_Config, 0x40, 0xC0)
+                Field (MCHP, AnyAcc, NoLock, Preserve)
+                {
+                    Offset (0x14), 
+                    AUDE,   8, 
+                    Offset (0x60), 
+                    TASM,   10, 
+                    Offset (0x62)
+                }
+            }
+
+            OperationRegion (IGDP, PCI_Config, 0x40, 0xC0)
+            Field (IGDP, AnyAcc, NoLock, Preserve)
+            {
+                Offset (0x12), 
+                    ,   1, 
+                GIVD,   1, 
+                    ,   2, 
+                GUMA,   3, 
+                Offset (0x14), 
+                    ,   4, 
+                GMFN,   1, 
+                Offset (0x18), 
+                Offset (0xA4), 
+                ASLE,   8, 
+                Offset (0xA8), 
+                GSSE,   1, 
+                GSSB,   14, 
+                GSES,   1, 
+                Offset (0xB0), 
+                    ,   12, 
+                CDVL,   1, 
+                Offset (0xB2), 
+                Offset (0xB5), 
+                LBPC,   8, 
+                Offset (0xBC), 
+                ASLS,   32
+            }
+
+            OperationRegion (IGDM, SystemMemory, ASLB, 0x2000)
+            Field (IGDM, AnyAcc, NoLock, Preserve)
+            {
+                SIGN,   128, 
+                SIZE,   32, 
+                OVER,   32, 
+                SVER,   256, 
+                VVER,   128, 
+                GVER,   128, 
+                MBOX,   32, 
+                DMOD,   32, 
+                PCON,   32, 
+                DVER,   64, 
+                Offset (0x100), 
+                DRDY,   32, 
+                CSTS,   32, 
+                CEVT,   32, 
+                Offset (0x120), 
+                DIDL,   32, 
+                DDL2,   32, 
+                DDL3,   32, 
+                DDL4,   32, 
+                DDL5,   32, 
+                DDL6,   32, 
+                DDL7,   32, 
+                DDL8,   32, 
+                CPDL,   32, 
+                CPL2,   32, 
+                CPL3,   32, 
+                CPL4,   32, 
+                CPL5,   32, 
+                CPL6,   32, 
+                CPL7,   32, 
+                CPL8,   32, 
+                CADL,   32, 
+                CAL2,   32, 
+                CAL3,   32, 
+                CAL4,   32, 
+                CAL5,   32, 
+                CAL6,   32, 
+                CAL7,   32, 
+                CAL8,   32, 
+                NADL,   32, 
+                NDL2,   32, 
+                NDL3,   32, 
+                NDL4,   32, 
+                NDL5,   32, 
+                NDL6,   32, 
+                NDL7,   32, 
+                NDL8,   32, 
+                ASLP,   32, 
+                TIDX,   32, 
+                CHPD,   32, 
+                CLID,   32, 
+                CDCK,   32, 
+                SXSW,   32, 
+                EVTS,   32, 
+                CNOT,   32, 
+                NRDY,   32, 
+                DDL9,   32, 
+                DD10,   32, 
+                DD11,   32, 
+                DD12,   32, 
+                DD13,   32, 
+                DD14,   32, 
+                DD15,   32, 
+                CPL9,   32, 
+                CP10,   32, 
+                CP11,   32, 
+                CP12,   32, 
+                CP13,   32, 
+                CP14,   32, 
+                CP15,   32, 
+                Offset (0x200), 
+                SCIE,   1, 
+                GEFC,   4, 
+                GXFC,   3, 
+                GESF,   8, 
+                Offset (0x204), 
+                PARM,   32, 
+                DSLP,   32, 
+                Offset (0x300), 
+                ARDY,   32, 
+                ASLC,   32, 
+                TCHE,   32, 
+                ALSI,   32, 
+                BCLP,   32, 
+                PFIT,   32, 
+                CBLV,   32, 
+                BCLM,   320, 
+                CPFM,   32, 
+                EPFM,   32, 
+                PLUT,   592, 
+                PFMB,   32, 
+                CCDV,   32, 
+                PCFT,   32, 
+                SROT,   32, 
+                IUER,   32, 
+                FDSP,   64, 
+                FDSS,   32, 
+                STAT,   32, 
+                Offset (0x400), 
+                GVD1,   49152, 
+                PHED,   32, 
+                BDDC,   2048
+            }
+
+            Name (DBTB, Package (0x15)
+            {
+                Zero, 
+                0x07, 
+                0x38, 
+                0x01C0, 
+                0x0E00, 
+                0x3F, 
+                0x01C7, 
+                0x0E07, 
+                0x01F8, 
+                0x0E38, 
+                0x0FC0, 
+                Zero, 
+                Zero, 
+                Zero, 
+                Zero, 
+                Zero, 
+                0x7000, 
+                0x7007, 
+                0x7038, 
+                0x71C0, 
+                0x7E00
+            })
+            Name (CDCT, Package (0x05)
+            {
+                Package (0x02)
+                {
+                    0xE4, 
+                    0x0140
+                }, 
+
+                Package (0x02)
+                {
+                    0xDE, 
+                    0x014D
+                }, 
+
+                Package (0x02)
+                {
+                    0xDE, 
+                    0x014D
+                }, 
+
+                Package (0x02)
+                {
+                    Zero, 
+                    Zero
+                }, 
+
+                Package (0x02)
+                {
+                    0xDE, 
+                    0x014D
+                }
+            })
+            Name (SUCC, One)
+            Name (NVLD, 0x02)
+            Name (CRIT, 0x04)
+            Name (NCRT, 0x06)
+            Method (GSCI, 0, Serialized)
+            {
+                Method (GBDA, 0, Serialized)
+                {
+                    If ((GESF == Zero))
+                    {
+                        PARM = 0x0659
+                        GESF = Zero
+                        Return (SUCC)
+                    }
+
+                    If ((GESF == One))
+                    {
+                        PARM = 0x00300482
+                        If ((S0ID == One))
+                        {
+                            PARM |= 0x0100
+                        }
+
+                        GESF = Zero
+                        Return (SUCC)
+                    }
+
+                    If ((GESF == 0x04))
+                    {
+                        PARM &= 0xEFFF0000
+                        PARM &= (DerefOf (Index (DBTB, IBTT)) << 0x10)
+                        PARM |= IBTT
+                        GESF = Zero
+                        Return (SUCC)
+                    }
+
+                    If ((GESF == 0x05))
+                    {
+                        PARM = IPSC
+                        PARM |= (IPAT << 0x08)
+                        PARM += 0x0100
+                        PARM |= (LIDS << 0x10)
+                        PARM += 0x00010000
+                        PARM |= (IBIA << 0x14)
+                        GESF = Zero
+                        Return (SUCC)
+                    }
+
+                    If ((GESF == 0x07))
+                    {
+                        PARM = GIVD
+                        PARM ^= One
+                        PARM |= (GMFN << One)
+                        PARM |= 0x1800
+                        PARM |= (IDMS << 0x11)
+                        PARM |= (DerefOf (Index (DerefOf (Index (CDCT, HVCO)), CDVL)) << 
+                            0x15)
+                        GESF = One
+                        Return (SUCC)
+                    }
+
+                    If ((GESF == 0x0A))
+                    {
+                        PARM = Zero
+                        If (ISSC)
+                        {
+                            PARM |= 0x03
+                        }
+
+                        GESF = Zero
+                        Return (SUCC)
+                    }
+
+                    If ((GESF == 0x0B))
+                    {
+                        PARM = KSV0
+                        GESF = KSV1
+                        Return (SUCC)
+                    }
+
+                    GESF = Zero
+                    Return (CRIT)
+                }
+
+                Method (SBCB, 0, Serialized)
+                {
+                    If ((GESF == Zero))
+                    {
+                        PARM = Zero
+                        PARM = 0x000F87DD
+                        GESF = Zero
+                        Return (SUCC)
+                    }
+
+                    If ((GESF == One))
+                    {
+                        GESF = Zero
+                        PARM = Zero
+                        Return (SUCC)
+                    }
+
+                    If ((GESF == 0x03))
+                    {
+                        GESF = Zero
+                        PARM = Zero
+                        Return (SUCC)
+                    }
+
+                    If ((GESF == 0x04))
+                    {
+                        GESF = Zero
+                        PARM = Zero
+                        Return (SUCC)
+                    }
+
+                    If ((GESF == 0x05))
+                    {
+                        GESF = Zero
+                        PARM = Zero
+                        Return (SUCC)
+                    }
+
+                    If ((GESF == 0x07))
+                    {
+                        If ((S0ID == One))
+                        {
+                            If (((PARM & 0xFF) == One))
+                            {
+                                \GUAM (One)
+                            }
+                        }
+
+                        If ((PARM == Zero))
+                        {
+                            Local0 = CLID
+                            If ((0x80000000 & Local0))
+                            {
+                                CLID &= 0x0F
+                                GLID (CLID)
+                            }
+                        }
+
+                        GESF = Zero
+                        PARM = Zero
+                        Return (SUCC)
+                    }
+
+                    If ((GESF == 0x08))
+                    {
+                        If ((S0ID == One))
+                        {
+                            Local0 = ((PARM >> 0x08) & 0xFF)
+                            If ((Local0 == Zero))
+                            {
+                                \GUAM (Zero)
+                            }
+                        }
+
+                        GESF = Zero
+                        PARM = Zero
+                        Return (SUCC)
+                    }
+
+                    If ((GESF == 0x09))
+                    {
+                        IBTT = (PARM & 0xFF)
+                        GESF = Zero
+                        PARM = Zero
+                        Return (SUCC)
+                    }
+
+                    If ((GESF == 0x0A))
+                    {
+                        IPSC = (PARM & 0xFF)
+                        If (((PARM >> 0x08) & 0xFF))
+                        {
+                            IPAT = ((PARM >> 0x08) & 0xFF)
+                            IPAT--
+                        }
+
+                        IBIA = ((PARM >> 0x14) & 0x07)
+                        GESF = Zero
+                        PARM = Zero
+                        Return (SUCC)
+                    }
+
+                    If ((GESF == 0x0B))
+                    {
+                        IF1E = ((PARM >> One) & One)
+                        If ((PARM & 0x0001E000))
+                        {
+                            IDMS = ((PARM >> 0x0D) & 0x0F)
+                        }
+                        Else
+                        {
+                            IDMS = ((PARM >> 0x11) & 0x0F)
+                        }
+
+                        GESF = Zero
+                        PARM = Zero
+                        Return (SUCC)
+                    }
+
+                    If ((GESF == 0x10))
+                    {
+                        GESF = Zero
+                        PARM = Zero
+                        Return (SUCC)
+                    }
+
+                    If ((GESF == 0x11))
+                    {
+                        PARM = (LIDS << 0x08)
+                        PARM += 0x0100
+                        GESF = Zero
+                        Return (SUCC)
+                    }
+
+                    If ((GESF == 0x12))
+                    {
+                        If ((PARM & One))
+                        {
+                            If (((PARM >> One) == One))
+                            {
+                                ISSC = One
+                            }
+                            Else
+                            {
+                                GESF = Zero
+                                Return (CRIT)
+                            }
+                        }
+                        Else
+                        {
+                            ISSC = Zero
+                        }
+
+                        GESF = Zero
+                        PARM = Zero
+                        Return (SUCC)
+                    }
+
+                    If ((GESF == 0x13))
+                    {
+                        GESF = Zero
+                        PARM = Zero
+                        Return (SUCC)
+                    }
+
+                    If ((GESF == 0x14))
+                    {
+                        PAVP = (PARM & 0x0F)
+                        GESF = Zero
+                        PARM = Zero
+                        Return (SUCC)
+                    }
+
+                    If ((GESF == 0x15))
+                    {
+                        If ((PARM == One))
+                        {
+                            \_SB.PCI0.AUDE |= 0x20
+                            \_SB.PCI0.HDAU.ABWA (One)
+                            \_SB.PCI0.HDAU.ARST ()
+                            \_SB.PCI0.HDAU.ASTR ()
+                            \_SB.PCI0.HDAU.AINI ()
+                            \_SB.PCI0.HDAU.CXDC ()
+                            \_SB.PCI0.HDAU.ABWA (Zero)
+                            Notify (\_SB.PCI0, Zero)
+                        }
+
+                        If ((PARM == Zero))
+                        {
+                            \_SB.PCI0.AUDE &= 0xDF
+                            Notify (\_SB.PCI0, Zero)
+                        }
+
+                        GESF = Zero
+                        PARM = Zero
+                        Return (SUCC)
+                    }
+
+                    GESF = Zero
+                    Return (SUCC)
+                }
+
+                If ((GEFC == 0x04))
+                {
+                    GXFC = GBDA ()
+                }
+
+                If ((GEFC == 0x06))
+                {
+                    GXFC = SBCB ()
+                }
+
+                GEFC = Zero
+                SCIS = One
+                GSSE = Zero
+                SCIE = Zero
+                Return (Zero)
+            }
+
+            Method (PDRD, 0, NotSerialized)
+            {
+                Return (!DRDY)
+            }
+
+            Method (PSTS, 0, NotSerialized)
+            {
+                If ((CSTS > 0x02))
+                {
+                    Sleep (ASLP)
+                }
+
+                Return ((CSTS == 0x03))
+            }
+
+            Method (GNOT, 2, NotSerialized)
+            {
+                If (PDRD ())
+                {
+                    Return (One)
+                }
+
+                CEVT = Arg0
+                CSTS = 0x03
+                If (((CHPD == Zero) && (Arg1 == Zero)))
+                {
+                    If (((OSYS > 0x07D0) || (OSYS < 0x07D6)))
+                    {
+                        Notify (\_SB.PCI0, Arg1)
+                    }
+                    Else
+                    {
+                        Notify (\_SB.PCI0.IGPU, Arg1)
+                    }
+                }
+
+                If (CondRefOf (HNOT))
+                {
+                    HNOT (Arg0)
+                }
+                Else
+                {
+                    Notify (\_SB.PCI0.IGPU, 0x80)
+                }
+
+                Return (Zero)
+            }
+
+            Method (GHDS, 1, NotSerialized)
+            {
+                TIDX = Arg0
+                Return (GNOT (One, Zero))
+            }
+
+            Method (GLID, 1, NotSerialized)
+            {
+                If ((Arg0 == One))
+                {
+                    CLID = 0x03
+                }
+                Else
+                {
+                    CLID = Arg0
+                }
+
+                If (GNOT (0x02, Zero))
+                {
+                    CLID |= 0x80000000
+                    Return (One)
+                }
+
+                Return (Zero)
+            }
+
+            Method (GDCK, 1, NotSerialized)
+            {
+                CDCK = Arg0
+                Return (GNOT (0x04, Zero))
+            }
+
+            Method (PARD, 0, NotSerialized)
+            {
+                If (!ARDY)
+                {
+                    Sleep (ASLP)
+                }
+
+                Return (!ARDY)
+            }
+
+            Method (IUEH, 1, Serialized)
+            {
+                IUER &= 0xC0
+                IUER ^= (One << Arg0)
+                If ((Arg0 <= 0x04))
+                {
+                    Return (AINT (0x05, Zero))
+                }
+                Else
+                {
+                    Return (AINT (Arg0, Zero))
+                }
+            }
+
+            Method (AINT, 2, NotSerialized)
+            {
+                If (!(TCHE & (One << Arg0)))
+                {
+                    Return (One)
+                }
+
+                If (PARD ())
+                {
+                    Return (One)
+                }
+
+                If (((Arg0 >= 0x05) && (Arg0 <= 0x07)))
+                {
+                    ASLC = (One << Arg0)
+                    ASLE = One
+                    Local2 = Zero
+                    While (((Local2 < 0xFA) && (ASLC != Zero)))
+                    {
+                        Sleep (0x04)
+                        Local2++
+                    }
+
+                    Return (Zero)
+                }
+
+                If ((Arg0 == 0x02))
+                {
+                    If (CPFM)
+                    {
+                        Local0 = (CPFM & 0x0F)
+                        Local1 = (EPFM & 0x0F)
+                        If ((Local0 == One))
+                        {
+                            If ((Local1 & 0x06))
+                            {
+                                PFIT = 0x06
+                            }
+                            Else
+                            {
+                                If ((Local1 & 0x08))
+                                {
+                                    PFIT = 0x08
+                                }
+                                Else
+                                {
+                                    PFIT = One
+                                }
+                            }
+                        }
+
+                        If ((Local0 == 0x06))
+                        {
+                            If ((Local1 & 0x08))
+                            {
+                                PFIT = 0x08
+                            }
+                            Else
+                            {
+                                If ((Local1 & One))
+                                {
+                                    PFIT = One
+                                }
+                                Else
+                                {
+                                    PFIT = 0x06
+                                }
+                            }
+                        }
+
+                        If ((Local0 == 0x08))
+                        {
+                            If ((Local1 & One))
+                            {
+                                PFIT = One
+                            }
+                            Else
+                            {
+                                If ((Local1 & 0x06))
+                                {
+                                    PFIT = 0x06
+                                }
+                                Else
+                                {
+                                    PFIT = 0x08
+                                }
+                            }
+                        }
+                    }
+                    Else
+                    {
+                        PFIT ^= 0x07
+                    }
+
+                    PFIT |= 0x80000000
+                    ASLC = 0x04
+                }
+                Else
+                {
+                    If ((Arg0 == One))
+                    {
+                        BCLP = ((Arg1 * 0xFF) / 0x64)
+                        BCLP |= 0x80000000
+                        ASLC = 0x02
+                    }
+                    Else
+                    {
+                        If ((Arg0 == Zero))
+                        {
+                            ALSI = Arg1
+                            ASLC = One
+                        }
+                        Else
+                        {
+                            Return (One)
+                        }
+                    }
+                }
+
+                ASLE = One
+                Return (Zero)
+            }
+
+            Method (SCIP, 0, NotSerialized)
+            {
+                If ((OVER != Zero))
+                {
+                    Return (!GSMI)
+                }
+
+                Return (Zero)
+            }
+
+            Name (OPBS, 0xFFFFFF00)
+            Method (OPTS, 1, NotSerialized)
+            {
+                If ((\_SB.VGAF & One))
+                {
+                    If ((Arg0 == 0x03))
+                    {
+                        OPBS = ASLS
+                    }
+                }
+            }
+
+            Method (OWAK, 1, NotSerialized)
+            {
+                If ((\_SB.VGAF & One))
+                {
+                    If ((Arg0 == 0x03))
+                    {
+                        ASLS = OPBS
+                        GSES = One
+                    }
+
+                    \_SB.PCI0.IGPU.CLID = One
+                }
+            }
+
+            Method (OGCD, 0, NotSerialized)
+            {
+                If ((CADL == Zero))
+                {
+                    \_SB.CSTE = LCDM
+                    Return (Zero)
+                }
+
+                \_SB.CSTE = OA2D (CADL)
+                If ((CAL2 == Zero))
+                {
+                    Return (Zero)
+                }
+
+                \_SB.CSTE |= OA2D (CAL2)
+                If ((CAL3 == Zero))
+                {
+                    Return (Zero)
+                }
+
+                \_SB.CSTE |= OA2D (CAL3)
+                If ((CAL4 == Zero))
+                {
+                    Return (Zero)
+                }
+
+                \_SB.CSTE |= OA2D (CAL4)
+                If ((CAL5 == Zero))
+                {
+                    Return (Zero)
+                }
+
+                \_SB.CSTE |= OA2D (CAL5)
+                If ((CAL6 == Zero))
+                {
+                    Return (Zero)
+                }
+
+                \_SB.CSTE |= OA2D (CAL6)
+                If ((CAL7 == Zero))
+                {
+                    Return (Zero)
+                }
+
+                \_SB.CSTE |= OA2D (CAL7)
+                If ((CAL8 == Zero))
+                {
+                    Return (Zero)
+                }
+
+                \_SB.CSTE |= OA2D (CAL8)
+                Return (Zero)
+            }
+
+            Method (OGND, 0, NotSerialized)
+            {
+                If ((NADL == Zero))
+                {
+                    \_SB.NSTE = LCDM
+                    Return (Zero)
+                }
+
+                \_SB.NSTE = OA2D (NADL)
+                If ((NDL2 == Zero))
+                {
+                    Return (Zero)
+                }
+
+                \_SB.NSTE |= OA2D (NDL2)
+                If ((NDL3 == Zero))
+                {
+                    Return (Zero)
+                }
+
+                \_SB.NSTE |= OA2D (NDL3)
+                If ((NDL4 == Zero))
+                {
+                    Return (Zero)
+                }
+
+                \_SB.NSTE |= OA2D (NDL4)
+                If ((NDL5 == Zero))
+                {
+                    Return (Zero)
+                }
+
+                \_SB.NSTE |= OA2D (NDL5)
+                If ((NDL6 == Zero))
+                {
+                    Return (Zero)
+                }
+
+                \_SB.NSTE |= OA2D (NDL6)
+                If ((NDL7 == Zero))
+                {
+                    Return (Zero)
+                }
+
+                \_SB.NSTE |= OA2D (NDL7)
+                If ((NDL8 == Zero))
+                {
+                    Return (Zero)
+                }
+
+                \_SB.NSTE |= OA2D (NDL8)
+                Return (Zero)
+            }
+
+            Method (OGCA, 0, NotSerialized)
+            {
+                SOID ()
+                If ((CPDL == Zero))
+                {
+                    \_SB.OCAD = LCDM
+                    Return (Zero)
+                }
+
+                \_SB.OCAD = OA2D (CPDL)
+                If ((CPL2 == Zero))
+                {
+                    Return (Zero)
+                }
+
+                \_SB.OCAD |= OA2D (CPL2)
+                If ((CPL3 == Zero))
+                {
+                    Return (Zero)
+                }
+
+                \_SB.OCAD |= OA2D (CPL3)
+                If ((CPL4 == Zero))
+                {
+                    Return (Zero)
+                }
+
+                \_SB.OCAD |= OA2D (CPL4)
+                If ((CPL5 == Zero))
+                {
+                    Return (Zero)
+                }
+
+                \_SB.OCAD |= OA2D (CPL5)
+                If ((CPL6 == Zero))
+                {
+                    Return (Zero)
+                }
+
+                \_SB.OCAD |= OA2D (CPL6)
+                If ((CPL7 == Zero))
+                {
+                    Return (Zero)
+                }
+
+                \_SB.OCAD |= OA2D (CPL7)
+                If ((CPL8 == Zero))
+                {
+                    Return (Zero)
+                }
+
+                \_SB.OCAD |= OA2D (CPL8)
+                Return (Zero)
+            }
+
+            Method (OA2D, 1, NotSerialized)
+            {
+                Local0 = Zero
+                If ((Arg0 == LFID))
+                {
+                    Local0 |= LCDM
+                }
+
+                If ((Arg0 == CRID))
+                {
+                    Local0 |= CRTM
+                }
+
+                If ((Arg0 == TVID))
+                {
+                    Local0 |= TVOM
+                }
+
+                If ((Arg0 == HDID))
+                {
+                    Local0 |= HDMM
+                }
+
+                If ((Arg0 == DVID))
+                {
+                    Local0 |= DVIM
+                }
+
+                If ((Arg0 == DPID))
+                {
+                    Local0 |= DPOM
+                }
+
+                Return (Local0)
+            }
+
+            Method (D2OA, 1, NotSerialized)
+            {
+                Local0 = Zero
+                If ((Arg0 & LCDM))
+                {
+                    Return (LFID)
+                }
+
+                If ((Arg0 & CRTM))
+                {
+                    Return (CRID)
+                }
+
+                If ((Arg0 & TVOM))
+                {
+                    Return (TVID)
+                }
+
+                If ((Arg0 & HDMM))
+                {
+                    Return (HDID)
+                }
+
+                If ((Arg0 & DVIM))
+                {
+                    Return (DVID)
+                }
+
+                If ((Arg0 & DPOM))
+                {
+                    Return (DPID)
+                }
+
+                Return (Local0)
+            }
+
+            Name (DDID, Zero)
+            Method (WNDD, 1, NotSerialized)
+            {
+                DDID = GDOA (Arg0)
+                NADL = DDID
+                DDID = GDOA (Arg0)
+                NDL2 = DDID
+                DDID = GDOA (Arg0)
+                NDL3 = DDID
+                DDID = GDOA (Arg0)
+                NDL4 = DDID
+                DDID = GDOA (Arg0)
+                NDL5 = DDID
+                DDID = GDOA (Arg0)
+                NDL6 = DDID
+                DDID = GDOA (Arg0)
+                NDL7 = DDID
+                DDID = GDOA (Arg0)
+                NDL8 = DDID
+                CONT = Zero
+            }
+
+            Name (CONT, Zero)
+            Method (GDOA, 1, NotSerialized)
+            {
+                While ((CONT < 0x08))
+                {
+                    Local0 = One
+                    Local0 <<= CONT
+                    Local1 = (\_SB.NSTE & Local0)
+                    CONT++
+                    Local1 = D2OA (Local1)
+                    If ((Local1 != Zero))
+                    {
+                        Return (Local1)
+                    }
+                }
+
+                Return (Zero)
+            }
+
+            Name (LFID, Ones)
+            Name (CRID, Ones)
+            Name (TVID, Ones)
+            Name (DPID, Ones)
+            Name (HDID, Ones)
+            Name (DVID, Ones)
+            Method (GOID, 1, NotSerialized)
+            {
+                Local0 = (Arg0 & 0x0F00)
+                If ((Local0 == 0x0100))
+                {
+                    CRID = Arg0
+                }
+
+                If ((Local0 == 0x0200))
+                {
+                    TVID = Arg0
+                }
+
+                If ((Local0 == 0x0400))
+                {
+                    LFID = Arg0
+                }
+
+                If ((Arg0 == 0x0300))
+                {
+                    HDID = Arg0
+                }
+            }
+
+            Method (SOID, 0, NotSerialized)
+            {
+                GOID (CPDL)
+                GOID (CPL2)
+                GOID (CPL3)
+                GOID (CPL4)
+                GOID (CPL5)
+                GOID (CPL6)
+                GOID (CPL7)
+                GOID (CPL8)
+            }
+
+            Device (\_SB.MEM2)
+            {
+                Name (_HID, EisaId ("PNP0C01"))  // _HID: Hardware ID
+                Name (_UID, 0x02)  // _UID: Unique ID
+                Name (CRS2, ResourceTemplate ()
+                {
+                    Memory32Fixed (ReadWrite,
+                        0x20000000,         // Address Base
+                        0x00200000,         // Address Length
+                        )
+                    Memory32Fixed (ReadWrite,
+                        0x40004000,         // Address Base
+                        0x00001000,         // Address Length
+                        )
+                })
+                Method (_STA, 0, NotSerialized)  // _STA: Status
+                {
+                    If (IGDS)
+                    {
+                        If ((PNHM == 0x000306C1))
+                        {
+                            Return (0x0F)
+                        }
+                    }
+
+                    Return (Zero)
+                }
+
+                Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
+                {
+                    Return (CRS2)
+                }
+            }
+
+            Name (HGAP, Zero)
+            Name (QATH, Zero)
+            Name (DONE, Zero)
+            Name (TLST, One)
+            Name (BLCD, 0x0101)
+            Name (BCRT, 0x0202)
+            Name (BTVO, 0x0808)
+            Name (BHDM, 0x0404)
+            Name (BDVI, 0x4040)
+            Name (BDPO, 0x8080)
+            Name (HGDP, Zero)
+            Name (DSM2, Zero)
+            Name (HHKM, One)
+            Name (BCMD, Zero)
+            Name (BRNC, Zero)
+            Name (PCTG, Package (0x0B) {})
+            Name (NXTD, One)
+            Name (LCDM, 0x0808)
+            Name (CRTM, 0x0101)
+            Name (TVOM, 0x0202)
+            Name (HDMM, 0x0404)
+            Name (DVIM, 0x4040)
+            Name (DPOM, 0x8080)
+            Method (PRST, 0, NotSerialized)
+            {
+                If ((REG0 == Ones))
+                {
+                    Return (Zero)
+                }
+                Else
+                {
+                    Return (One)
+                }
+            }
+
+            Method (NATK, 0, NotSerialized)
+            {
+                Return (One)
+            }
+
+            Method (D2AF, 1, NotSerialized)
+            {
+                Local0 = Zero
+                If ((Arg0 & LCDM))
+                {
+                    Local0 |= One
+                }
+
+                If ((Arg0 & CRTM))
+                {
+                    Local0 |= 0x02
+                }
+
+                If ((Arg0 & TVOM))
+                {
+                    Local0 |= 0x04
+                }
+
+                If ((Arg0 & DVIM))
+                {
+                    Local0 |= 0x08
+                }
+
+                If ((Arg0 & HDMM))
+                {
+                    Local0 |= 0x10
+                }
+
+                If ((Arg0 & DPOM))
+                {
+                    Local0 |= 0x20
+                }
+
+                If (!Local0)
+                {
+                    Return (NXTD)
+                }
+
+                Return (Local0)
+            }
+
+            Method (GCDD, 0, NotSerialized)
+            {
+                OGCD ()
+                Return (\_SB.CSTE)
+            }
+
+            Method (GCBL, 1, NotSerialized)
+            {
+                Local0 = Zero
+                Arg0 &= 0x7FFFFFFF
+                While ((Local0 < 0x0A))
+                {
+                    Local1 = DerefOf (Index (PCTG, Local0))
+                    Local2 = DerefOf (Index (PCTG, (Local0 + One)))
+                    If (((Arg0 <= Local1) && (Arg0 > Local2)))
+                    {
+                        Break
+                    }
+
+                    Local0++
+                }
+
+                Return (Local0)
+            }
+
+            Method (UPBL, 0, NotSerialized)
+            {
+                If (BRNC)
+                {
+                    GCDD ()
+                    Local0 = (D2AF (\_SB.CSTE) & One)
+                    If ((Local0 == Zero))
+                    {
+                        Return (Zero)
+                    }
+
+                    Local0 = CBLV
+                    BCMD = Zero
+                    Notify (LCDD, 0x86)
+                    Local2 = 0x012C
+                    Local1 = (Local0 & 0x7FFFFFFF)
+                    If ((Local1 >= DerefOf (Index (PCTG, One))))
+                    {
+                        Local2 = Zero
+                        Local1 = One
+                    }
+
+                    If ((\MSOS () < \OSW8))
+                    {
+                        While ((!BCMD && Local2))
+                        {
+                            Local1 = CBLV
+                            If (!(Local1 & 0x80000000))
+                            {
+                                Local1 = Local0
+                            }
+
+                            If ((Local0 == Local1))
+                            {
+                                Sleep (0x0A)
+                                Local2--
+                                Local1 = Zero
+                            }
+                            Else
+                            {
+                                Local2 = Zero
+                                Local1 = One
+                            }
+                        }
+                    }
+
+                    If ((!BCMD && Local1))
+                    {
+                        If ((\MSOS () < \OSW8))
+                        {
+                            Local3 = GCBL (CBLV)
+                            Local3 -= 0x0A
+                            LBTN = Local3
+                        }
+                    }
+                }
+                Else
+                {
+                    If ((LBTN < 0x0F))
+                    {
+                        LBTN++
+                    }
+                    Else
+                    {
+                        LBTN = 0x0F
+                    }
+
+                    \_SB.PCI0.LPCB.EC0.STBR ()
+                }
+
+                Return (Zero)
+            }
+
+            Method (DWBL, 0, NotSerialized)
+            {
+                If (BRNC)
+                {
+                    GCDD ()
+                    Local0 = (D2AF (\_SB.CSTE) & One)
+                    If ((Local0 == Zero))
+                    {
+                        Return (Zero)
+                    }
+
+                    Local0 = CBLV
+                    BCMD = Zero
+                    Notify (LCDD, 0x87)
+                    Local2 = 0x012C
+                    Local1 = (Local0 & 0x7FFFFFFF)
+                    If ((Local1 <= DerefOf (Index (PCTG, 0x0A))))
+                    {
+                        Local2 = Zero
+                        Local1 = One
+                    }
+
+                    If ((\MSOS () < \OSW8))
+                    {
+                        While ((!BCMD && Local2))
+                        {
+                            Local1 = CBLV
+                            If (!(Local1 & 0x80000000))
+                            {
+                                Local1 = Local0
+                            }
+
+                            If ((Local0 == Local1))
+                            {
+                                Sleep (0x0A)
+                                Local2--
+                                Local1 = Zero
+                            }
+                            Else
+                            {
+                                Local2 = Zero
+                                Local1 = One
+                            }
+                        }
+                    }
+
+                    If ((!BCMD && Local1))
+                    {
+                        If ((\MSOS () < \OSW8))
+                        {
+                            Local3 = GCBL (CBLV)
+                            Local3 -= 0x0A
+                            LBTN = Local3
+                        }
+                    }
+                }
+                Else
+                {
+                    If ((LBTN > Zero))
+                    {
+                        LBTN--
+                    }
+
+                    If ((LBTN > 0x0F))
+                    {
+                        LBTN = 0x0F
+                    }
+
+                    \_SB.PCI0.LPCB.EC0.STBR ()
+                }
+
+                Return (Zero)
+            }
+
+            Method (ADVD, 0, NotSerialized)
+            {
+                If ((DOSF & 0x03))
+                {
+                    GCDD ()
+                    GCAD ()
+                    GVIF ()
+                }
+                Else
+                {
+                    OGCA ()
+                    OGCD ()
+                }
+
+                If (\NATK ())
+                {
+                    If (UPDN)
+                    {
+                        NXTD = D2AF (\_SB.CSTE)
+                        UPDN = Zero
+                    }
+
+                    Local0 = Zero
+                    Local1 = D2AF (\_SB.OCAD)
+                    Local2 = Zero
+                    If ((\_SB.VGAF & One))
+                    {
+                        Local2 = (\_SB.VBIF & 0x08)
+                    }
+
+                    If (((Local2 == 0x08) & (\_SB.VGAF & One)))
+                    {
+                        NXTD &= Local1
+                        Local0 = NXTD
+                    }
+
+                    While ((NXTD != Local0))
+                    {
+                        GNAD ()
+                        Local0 = (NXTD & Local1)
+                    }
+
+                    Return (NXTD)
+                }
+
+                Return (GNDD ())
+            }
+
+            Method (GCAD, 0, NotSerialized)
+            {
+                OGCA ()
+                Return (\_SB.OCAD)
+            }
+
+            Method (GVIF, 0, NotSerialized)
+            {
+                \_SB.VBIF = 0x67
+                \_SB.SFUN = Zero
+                ISMI (0x95)
+                Return (\_SB.VBIF)
+            }
+
+            Method (GNAD, 0, NotSerialized)
+            {
+                NXTD++
+                If (((DOSF == One) && (NXTD == 0x03)))
+                {
+                    NXTD++
+                }
+
+                If ((DOSF & 0x03))
+                {
+                    If ((NXTD == 0x05))
+                    {
+                        NXTD++
+                    }
+
+                    If ((NXTD == 0x06))
+                    {
+                        NXTD++
+                    }
+                }
+
+                If ((NXTD == 0x07))
+                {
+                    NXTD++
+                }
+
+                If ((DOSF & 0x03))
+                {
+                    If ((NXTD == 0x09))
+                    {
+                        NXTD++
+                    }
+                }
+
+                If (((DOSF == One) && (NXTD == 0x0A)))
+                {
+                    NXTD++
+                }
+
+                If ((NXTD == 0x0B))
+                {
+                    NXTD++
+                }
+
+                If (((DOSF == One) && (NXTD == 0x0C)))
+                {
+                    NXTD++
+                }
+
+                While (((NXTD > 0x0C) && (NXTD < 0x10)))
+                {
+                    NXTD++
+                }
+
+                If ((DOSF == One))
+                {
+                    If ((NXTD == 0x11))
+                    {
+                        NXTD++
+                    }
+
+                    If ((NXTD == 0x12))
+                    {
+                        NXTD++
+                    }
+                }
+
+                If ((NXTD == 0x13))
+                {
+                    NXTD++
+                }
+
+                If ((DOSF == One))
+                {
+                    While (((NXTD >= 0x14) && (NXTD < 0x20)))
+                    {
+                        NXTD++
+                    }
+
+                    If ((NXTD == 0x21))
+                    {
+                        NXTD++
+                    }
+
+                    If ((NXTD == 0x22))
+                    {
+                        NXTD++
+                    }
+                }
+
+                If ((NXTD == 0x23))
+                {
+                    NXTD++
+                }
+
+                If (((DOSF == One) && (NXTD == 0x24)))
+                {
+                    NXTD++
+                }
+
+                While (((NXTD > 0x24) && (NXTD < 0x28)))
+                {
+                    NXTD++
+                }
+
+                If (((DOSF == One) && (NXTD == 0x28)))
+                {
+                    NXTD++
+                }
+
+                While (((NXTD > 0x28) && (NXTD < 0x30)))
+                {
+                    NXTD++
+                }
+
+                If (((DOSF == One) && (NXTD == 0x30)))
+                {
+                    NXTD++
+                }
+
+                If ((NXTD > 0x30))
+                {
+                    NXTD = One
+                }
+
+                Return (Zero)
+            }
+
+            Method (GNDD, 0, NotSerialized)
+            {
+                OGND ()
+                Return (\_SB.NSTE)
+            }
+
+            Name (DOSF, One)
+            Name (UPDN, One)
+            Method (AF2D, 1, NotSerialized)
+            {
+                Local0 = Zero
+                If ((Arg0 & One))
+                {
+                    Local0 |= LCDM
+                }
+
+                If ((Arg0 & 0x02))
+                {
+                    Local0 |= CRTM
+                }
+
+                If ((Arg0 & 0x04))
+                {
+                    Local0 |= TVOM
+                }
+
+                If ((Arg0 & 0x08))
+                {
+                    Local0 |= DVIM
+                }
+
+                If ((Arg0 & 0x10))
+                {
+                    Local0 |= HDMM
+                }
+
+                If ((Arg0 & 0x20))
+                {
+                    Local0 |= DPOM
+                }
+
+                If (!Local0)
+                {
+                    Return (LCDM)
+                }
+
+                Return (Local0)
+            }
+
+            Method (SWHD, 1, Serialized)
+            {
+                UPDN = One
+                If ((DOSF == One))
+                {
+                    If (\NATK ())
+                    {
+                        \_SB.SFUN = Zero
+                    }
+                    Else
+                    {
+                        \_SB.SFUN = 0x04
+                    }
+
+                    \_SB.SSTE = Arg0
+                    If (\NATK ())
+                    {
+                        \_SB.NSTE = AF2D (Arg0)
+                        \_SB.SSTE = \_SB.NSTE
+                    }
+
+                    ISMI (0x94)
+                    Notify (\_SB.PCI0.IGPU, 0x81)
+                }
+                Else
+                {
+                    \_SB.PCI0.IGPU.CEVT = One
+                    \_SB.PCI0.IGPU.CSTS = 0x03
+                    If ((\_SB.OCAD != \_SB.OPAD))
+                    {
+                        \_SB.OPAD = \_SB.OCAD
+                        If ((OSFG == OSXP))
+                        {
+                            Notify (\_SB.PCI0, Zero)
+                        }
+                        Else
+                        {
+                            Notify (\_SB.PCI0.IGPU, Zero)
+                        }
+
+                        Sleep (0x03E8)
+                    }
+
+                    \_SB.NSTE = AF2D (Arg0)
+                    WNDD (\_SB.NSTE)
+                    Notify (\_SB.PCI0.IGPU, 0x80)
+                }
+
+                Return (Zero)
+            }
+
+            Method (GCDS, 0, NotSerialized)
+            {
+                If ((DOSF & 0x03))
+                {
+                    GCDD ()
+                    GCAD ()
+                    GVIF ()
+                }
+                Else
+                {
+                    OGCA ()
+                    OGCD ()
+                }
+
+                Return (D2AF (\_SB.CSTE))
+            }
+            OperationRegion (RMPC, PCI_Config, 0x10, 4)
+            Field (RMPC, AnyAcc, NoLock, Preserve)
+            {
+                BAR1,32,
+            }
+            Method (_DSM, 4, NotSerialized)
+            {
+                If (LEqual (Arg2, Zero)) { Return (Buffer(One) { 0x03 } ) }
+                Return (Package()
+                {
+                    "AAPL,ig-platform-id", Buffer() { 0x08, 0x00, 0x2e, 0x0a },
+                    "hda-gfx", Buffer() { "onboard-1" },
+                    "AAPL00,override-no-edid", Buffer () {
+            0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x4D, 0x10, 0x20, 0xA0,
+            0x00, 0x00, 0x00, 0x00, 0x00, 0x17, 0x01, 0x04, 0xA5, 0x1D, 0x11, 0x78,
+            0x06, 0xDE, 0x50, 0xA3, 0x54, 0x4C, 0x99, 0x26, 0x0F, 0x50, 0x54, 0x00,
+            0x00, 0x00, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
+            0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x56, 0x5E, 0x00, 0xA0, 0xA0, 0xA0,
+            0x29, 0x50, 0x30, 0x20, 0x35, 0x00, 0x26, 0xA5, 0x10, 0x00, 0x00, 0x18,
+            0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00,
+            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+            0x00, 0x00, 0x00, 0xFC, 0x00, 0x4C, 0x51, 0x31, 0x33, 0x33, 0x54, 0x31,
+            0x4A, 0x57, 0x31, 0x34, 0x0A, 0x20, 0x00, 0xA5
+        },
+                })
+            }
+        }Name (LTRE, Zero)
         Name (OBFF, Zero)
         Name (LMSL, Zero)
         Name (LNSL, Zero)
@@ -6634,7 +10448,7 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             }
         }
 
-        Device (XHC)
+        Device (XHC1)
         {
             Name (_ADR, 0x00140000)  // _ADR: Address
             Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
@@ -9715,10 +13529,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             }
         }
 
-        Scope (\_SB.PCI0)
-        {
-        }
-
         Scope (I2C0)
         {
             Device (ACD0)
@@ -10998,14 +14808,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             }
         }
 
-        Scope (SPI0)
-        {
-        }
-
-        Scope (SPI1)
-        {
-        }
-
         Scope (UA00)
         {
             Device (BTH0)
@@ -12248,228 +16050,18 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
     Scope (_PR)
     {
-        Processor (CPU0, 0x01, 0x00001810, 0x06)
-        {
-            Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
-            {
-                ADBG ("CPU0 DEP Call")
-                If ((S0ID == One))
-                {
-                    ADBG ("CPU0 DEP")
-                    Return (Package (0x01)
-                    {
-                        \_SB.PEPD
-                    })
-                }
-                Else
-                {
-                    ADBG ("CPU0 DEP NULL")
-                    Return (Package (0x00) {})
-                }
-            }
-        }
-
-        Processor (CPU1, 0x02, 0x00001810, 0x06)
-        {
-            Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
-            {
-                ADBG ("CPU1 DEP Call")
-                If ((S0ID == One))
-                {
-                    ADBG ("CPU1 DEP")
-                    Return (Package (0x01)
-                    {
-                        \_SB.PEPD
-                    })
-                }
-                Else
-                {
-                    ADBG ("CPU1 DEP NULL")
-                    Return (Package (0x00) {})
-                }
-            }
-        }
-
-        Processor (CPU2, 0x03, 0x00001810, 0x06)
-        {
-            Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
-            {
-                ADBG ("CPU2 DEP Call")
-                If ((S0ID == One))
-                {
-                    ADBG ("CPU2 DEP")
-                    Return (Package (0x01)
-                    {
-                        \_SB.PEPD
-                    })
-                }
-                Else
-                {
-                    ADBG ("CPU2 DEP NULL")
-                    Return (Package (0x00) {})
-                }
-            }
-        }
-
-        Processor (CPU3, 0x04, 0x00001810, 0x06)
-        {
-            Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
-            {
-                ADBG ("CPU3 DEP Call")
-                If ((S0ID == One))
-                {
-                    ADBG ("CPU3 DEP")
-                    Return (Package (0x01)
-                    {
-                        \_SB.PEPD
-                    })
-                }
-                Else
-                {
-                    ADBG ("CPU3 DEP NULL")
-                    Return (Package (0x00) {})
-                }
-            }
-        }
-
-        Processor (CPU4, 0x05, 0x00001810, 0x06)
-        {
-            Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
-            {
-                ADBG ("CPU4 DEP Call")
-                If ((S0ID == One))
-                {
-                    ADBG ("CPU4 DEP")
-                    Return (Package (0x01)
-                    {
-                        \_SB.PEPD
-                    })
-                }
-                Else
-                {
-                    ADBG ("CPU4 DEP NULL")
-                    Return (Package (0x00) {})
-                }
-            }
-        }
-
-        Processor (CPU5, 0x06, 0x00001810, 0x06)
-        {
-            Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
-            {
-                ADBG ("CPU5 DEP Call")
-                If ((S0ID == One))
-                {
-                    ADBG ("CPU5 DEP")
-                    Return (Package (0x01)
-                    {
-                        \_SB.PEPD
-                    })
-                }
-                Else
-                {
-                    ADBG ("CPU5 DEP NULL")
-                    Return (Package (0x00) {})
-                }
-            }
-        }
-
-        Processor (CPU6, 0x07, 0x00001810, 0x06)
-        {
-            Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
-            {
-                ADBG ("CPU6 DEP Call")
-                If ((S0ID == One))
-                {
-                    ADBG ("CPU6 DEP")
-                    Return (Package (0x01)
-                    {
-                        \_SB.PEPD
-                    })
-                }
-                Else
-                {
-                    ADBG ("CPU6 DEP NULL")
-                    Return (Package (0x00) {})
-                }
-            }
-        }
-
-        Processor (CPU7, 0x08, 0x00001810, 0x06)
-        {
-            Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
-            {
-                ADBG ("CPU7 DEP Call")
-                If ((S0ID == One))
-                {
-                    ADBG ("CPU7 DEP")
-                    Return (Package (0x01)
-                    {
-                        \_SB.PEPD
-                    })
-                }
-                Else
-                {
-                    ADBG ("CPU7 DEP NULL")
-                    Return (Package (0x00) {})
-                }
-            }
-        }
+        Processor (CPU0, 0x01, 0x00001810, 0x06) {}
+        Processor (CPU1, 0x02, 0x00001810, 0x06) {}
+        Processor (CPU2, 0x03, 0x00001810, 0x06) {}
+        Processor (CPU3, 0x04, 0x00001810, 0x06) {}
+        Processor (CPU4, 0x05, 0x00001810, 0x06) {}
+        Processor (CPU5, 0x06, 0x00001810, 0x06) {}
+        Processor (CPU6, 0x07, 0x00001810, 0x06) {}
+        Processor (CPU7, 0x08, 0x00001810, 0x06) {}
     }
 
     Name (ECUP, One)
     Mutex (EHLD, 0x00)
-    Scope (\)
-    {
-        Device (NFC1)
-        {
-            Name (_HID, EisaId ("SKTD000"))  // _HID: Hardware ID
-            Method (_STA, 0, NotSerialized)  // _STA: Status
-            {
-                If ((NFCE == 0x03))
-                {
-                    Return (0x0F)
-                }
-                Else
-                {
-                    Return (Zero)
-                }
-            }
-        }
-
-        Device (NFC2)
-        {
-            Name (_HID, EisaId ("NXP5442"))  // _HID: Hardware ID
-            Method (_STA, 0, NotSerialized)  // _STA: Status
-            {
-                If ((NFCE == 0x02))
-                {
-                    Return (0x0F)
-                }
-                Else
-                {
-                    Return (Zero)
-                }
-            }
-        }
-
-        Device (NFC3)
-        {
-            Name (_HID, EisaId ("ICV0A12"))  // _HID: Hardware ID
-            Method (_STA, 0, NotSerialized)  // _STA: Status
-            {
-                If ((NFCE == One))
-                {
-                    Return (0x0F)
-                }
-                Else
-                {
-                    Return (Zero)
-                }
-            }
-        }
-    }
-
     Mutex (MUTX, 0x00)
     OperationRegion (DEB0, SystemIO, 0x80, One)
     Field (DEB0, ByteAcc, NoLock, Preserve)
