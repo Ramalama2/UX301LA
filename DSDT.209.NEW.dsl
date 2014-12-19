@@ -1927,13 +1927,14 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Name (_UID, One)  // _UID: Unique ID
                         Method (_DIS, 0, Serialized)  // _DIS: Disable Device
                         {
-                            PARC |= 0x80
+                            Or (PARC, 0x80, PARC)
                         }
 
-                        Method (_PRS, 0, Serialized)  // _PRS: Possible Resource Settings
+                        Name (_PRS, ResourceTemplate ()  // _PRS: Possible Resource Settings
                         {
-                            Return (PRSA)
-                        }
+                            IRQ (Level, ActiveLow, Shared, )
+                                {1,3,4,5,6,7,10,12,14,15}
+                        })
 
                         Method (_CRS, 0, Serialized)  // _CRS: Current Resource Settings
                         {
@@ -1943,8 +1944,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                                     {}
                             })
                             CreateWordField (RTLA, One, IRQ0)
-                            IRQ0 = Zero
-                            IRQ0 = (One << (PARC & 0x0F))
+                            Store (Zero, IRQ0)
+                            ShiftLeft (One, And (PARC, 0x0F), IRQ0)
                             Return (RTLA)
                         }
 
@@ -1952,13 +1953,13 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             CreateWordField (Arg0, One, IRQ0)
                             FindSetRightBit (IRQ0, Local0)
-                            Local0--
-                            PARC = Local0
+                            Decrement (Local0)
+                            Store (Local0, PARC)
                         }
 
                         Method (_STA, 0, Serialized)  // _STA: Status
                         {
-                            If ((PARC & 0x80))
+                            If (And (PARC, 0x80))
                             {
                                 Return (0x09)
                             }
@@ -1975,13 +1976,14 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Name (_UID, 0x02)  // _UID: Unique ID
                         Method (_DIS, 0, Serialized)  // _DIS: Disable Device
                         {
-                            PBRC |= 0x80
+                            Or (PBRC, 0x80, PBRC)
                         }
 
-                        Method (_PRS, 0, Serialized)  // _PRS: Possible Resource Settings
+                        Name (_PRS, ResourceTemplate ()  // _PRS: Possible Resource Settings
                         {
-                            Return (PRSB)
-                        }
+                            IRQ (Level, ActiveLow, Shared, )
+                                {1,3,4,5,6,7,11,12,14,15}
+                        })
 
                         Method (_CRS, 0, Serialized)  // _CRS: Current Resource Settings
                         {
@@ -1991,8 +1993,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                                     {}
                             })
                             CreateWordField (RTLB, One, IRQ0)
-                            IRQ0 = Zero
-                            IRQ0 = (One << (PBRC & 0x0F))
+                            Store (Zero, IRQ0)
+                            ShiftLeft (One, And (PBRC, 0x0F), IRQ0)
                             Return (RTLB)
                         }
 
@@ -2000,13 +2002,13 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             CreateWordField (Arg0, One, IRQ0)
                             FindSetRightBit (IRQ0, Local0)
-                            Local0--
-                            PBRC = Local0
+                            Decrement (Local0)
+                            Store (Local0, PBRC)
                         }
 
                         Method (_STA, 0, Serialized)  // _STA: Status
                         {
-                            If ((PBRC & 0x80))
+                            If (And (PBRC, 0x80))
                             {
                                 Return (0x09)
                             }
@@ -2023,13 +2025,14 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Name (_UID, 0x03)  // _UID: Unique ID
                         Method (_DIS, 0, Serialized)  // _DIS: Disable Device
                         {
-                            PCRC |= 0x80
+                            Or (PCRC, 0x80, PCRC)
                         }
 
-                        Method (_PRS, 0, Serialized)  // _PRS: Possible Resource Settings
+                        Name (_PRS, ResourceTemplate ()  // _PRS: Possible Resource Settings
                         {
-                            Return (PRSC)
-                        }
+                            IRQ (Level, ActiveLow, Shared, )
+                                {1,3,4,5,6,7,10,12,14,15}
+                        })
 
                         Method (_CRS, 0, Serialized)  // _CRS: Current Resource Settings
                         {
@@ -2039,8 +2042,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                                     {}
                             })
                             CreateWordField (RTLC, One, IRQ0)
-                            IRQ0 = Zero
-                            IRQ0 = (One << (PCRC & 0x0F))
+                            Store (Zero, IRQ0)
+                            ShiftLeft (One, And (PCRC, 0x0F), IRQ0)
                             Return (RTLC)
                         }
 
@@ -2048,13 +2051,13 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             CreateWordField (Arg0, One, IRQ0)
                             FindSetRightBit (IRQ0, Local0)
-                            Local0--
-                            PCRC = Local0
+                            Decrement (Local0)
+                            Store (Local0, PCRC)
                         }
 
                         Method (_STA, 0, Serialized)  // _STA: Status
                         {
-                            If ((PCRC & 0x80))
+                            If (And (PCRC, 0x80))
                             {
                                 Return (0x09)
                             }
@@ -2071,13 +2074,14 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Name (_UID, 0x04)  // _UID: Unique ID
                         Method (_DIS, 0, Serialized)  // _DIS: Disable Device
                         {
-                            PDRC |= 0x80
+                            Or (PDRC, 0x80, PDRC)
                         }
 
-                        Method (_PRS, 0, Serialized)  // _PRS: Possible Resource Settings
+                        Name (_PRS, ResourceTemplate ()  // _PRS: Possible Resource Settings
                         {
-                            Return (PRSD)
-                        }
+                            IRQ (Level, ActiveLow, Shared, )
+                                {1,3,4,5,6,7,11,12,14,15}
+                        })
 
                         Method (_CRS, 0, Serialized)  // _CRS: Current Resource Settings
                         {
@@ -2087,8 +2091,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                                     {}
                             })
                             CreateWordField (RTLD, One, IRQ0)
-                            IRQ0 = Zero
-                            IRQ0 = (One << (PDRC & 0x0F))
+                            Store (Zero, IRQ0)
+                            ShiftLeft (One, And (PDRC, 0x0F), IRQ0)
                             Return (RTLD)
                         }
 
@@ -2096,13 +2100,13 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             CreateWordField (Arg0, One, IRQ0)
                             FindSetRightBit (IRQ0, Local0)
-                            Local0--
-                            PDRC = Local0
+                            Decrement (Local0)
+                            Store (Local0, PDRC)
                         }
 
                         Method (_STA, 0, Serialized)  // _STA: Status
                         {
-                            If ((PDRC & 0x80))
+                            If (And (PDRC, 0x80))
                             {
                                 Return (0x09)
                             }
@@ -2119,13 +2123,14 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Name (_UID, 0x05)  // _UID: Unique ID
                         Method (_DIS, 0, Serialized)  // _DIS: Disable Device
                         {
-                            PERC |= 0x80
+                            Or (PERC, 0x80, PERC)
                         }
 
-                        Method (_PRS, 0, Serialized)  // _PRS: Possible Resource Settings
+                        Name (_PRS, ResourceTemplate ()  // _PRS: Possible Resource Settings
                         {
-                            Return (PRSE)
-                        }
+                            IRQ (Level, ActiveLow, Shared, )
+                                {1,3,4,5,6,7,10,12,14,15}
+                        })
 
                         Method (_CRS, 0, Serialized)  // _CRS: Current Resource Settings
                         {
@@ -2135,8 +2140,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                                     {}
                             })
                             CreateWordField (RTLE, One, IRQ0)
-                            IRQ0 = Zero
-                            IRQ0 = (One << (PERC & 0x0F))
+                            Store (Zero, IRQ0)
+                            ShiftLeft (One, And (PERC, 0x0F), IRQ0)
                             Return (RTLE)
                         }
 
@@ -2144,13 +2149,13 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             CreateWordField (Arg0, One, IRQ0)
                             FindSetRightBit (IRQ0, Local0)
-                            Local0--
-                            PERC = Local0
+                            Decrement (Local0)
+                            Store (Local0, PERC)
                         }
 
                         Method (_STA, 0, Serialized)  // _STA: Status
                         {
-                            If ((PERC & 0x80))
+                            If (And (PERC, 0x80))
                             {
                                 Return (0x09)
                             }
@@ -2167,13 +2172,14 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Name (_UID, 0x06)  // _UID: Unique ID
                         Method (_DIS, 0, Serialized)  // _DIS: Disable Device
                         {
-                            PFRC |= 0x80
+                            Or (PFRC, 0x80, PFRC)
                         }
 
-                        Method (_PRS, 0, Serialized)  // _PRS: Possible Resource Settings
+                        Name (_PRS, ResourceTemplate ()  // _PRS: Possible Resource Settings
                         {
-                            Return (PRSF)
-                        }
+                            IRQ (Level, ActiveLow, Shared, )
+                                {1,3,4,5,6,7,11,12,14,15}
+                        })
 
                         Method (_CRS, 0, Serialized)  // _CRS: Current Resource Settings
                         {
@@ -2183,8 +2189,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                                     {}
                             })
                             CreateWordField (RTLF, One, IRQ0)
-                            IRQ0 = Zero
-                            IRQ0 = (One << (PFRC & 0x0F))
+                            Store (Zero, IRQ0)
+                            ShiftLeft (One, And (PFRC, 0x0F), IRQ0)
                             Return (RTLF)
                         }
 
@@ -2192,13 +2198,13 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             CreateWordField (Arg0, One, IRQ0)
                             FindSetRightBit (IRQ0, Local0)
-                            Local0--
-                            PFRC = Local0
+                            Decrement (Local0)
+                            Store (Local0, PFRC)
                         }
 
                         Method (_STA, 0, Serialized)  // _STA: Status
                         {
-                            If ((PFRC & 0x80))
+                            If (And (PFRC, 0x80))
                             {
                                 Return (0x09)
                             }
@@ -2215,13 +2221,14 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Name (_UID, 0x07)  // _UID: Unique ID
                         Method (_DIS, 0, Serialized)  // _DIS: Disable Device
                         {
-                            PGRC |= 0x80
+                            Or (PGRC, 0x80, PGRC)
                         }
 
-                        Method (_PRS, 0, Serialized)  // _PRS: Possible Resource Settings
+                        Name (_PRS, ResourceTemplate ()  // _PRS: Possible Resource Settings
                         {
-                            Return (PRSG)
-                        }
+                            IRQ (Level, ActiveLow, Shared, )
+                                {1,3,4,5,6,7,10,12,14,15}
+                        })
 
                         Method (_CRS, 0, Serialized)  // _CRS: Current Resource Settings
                         {
@@ -2231,8 +2238,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                                     {}
                             })
                             CreateWordField (RTLG, One, IRQ0)
-                            IRQ0 = Zero
-                            IRQ0 = (One << (PGRC & 0x0F))
+                            Store (Zero, IRQ0)
+                            ShiftLeft (One, And (PGRC, 0x0F), IRQ0)
                             Return (RTLG)
                         }
 
@@ -2240,13 +2247,13 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             CreateWordField (Arg0, One, IRQ0)
                             FindSetRightBit (IRQ0, Local0)
-                            Local0--
-                            PGRC = Local0
+                            Decrement (Local0)
+                            Store (Local0, PGRC)
                         }
 
                         Method (_STA, 0, Serialized)  // _STA: Status
                         {
-                            If ((PGRC & 0x80))
+                            If (And (PGRC, 0x80))
                             {
                                 Return (0x09)
                             }
@@ -2263,13 +2270,14 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Name (_UID, 0x08)  // _UID: Unique ID
                         Method (_DIS, 0, Serialized)  // _DIS: Disable Device
                         {
-                            PHRC |= 0x80
+                            Or (PHRC, 0x80, PHRC)
                         }
 
-                        Method (_PRS, 0, Serialized)  // _PRS: Possible Resource Settings
+                        Name (_PRS, ResourceTemplate ()  // _PRS: Possible Resource Settings
                         {
-                            Return (PRSH)
-                        }
+                            IRQ (Level, ActiveLow, Shared, )
+                                {1,3,4,5,6,7,11,12,14,15}
+                        })
 
                         Method (_CRS, 0, Serialized)  // _CRS: Current Resource Settings
                         {
@@ -2279,8 +2287,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                                     {}
                             })
                             CreateWordField (RTLH, One, IRQ0)
-                            IRQ0 = Zero
-                            IRQ0 = (One << (PHRC & 0x0F))
+                            Store (Zero, IRQ0)
+                            ShiftLeft (One, And (PHRC, 0x0F), IRQ0)
                             Return (RTLH)
                         }
 
@@ -2288,13 +2296,13 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             CreateWordField (Arg0, One, IRQ0)
                             FindSetRightBit (IRQ0, Local0)
-                            Local0--
-                            PHRC = Local0
+                            Decrement (Local0)
+                            Store (Local0, PHRC)
                         }
 
                         Method (_STA, 0, Serialized)  // _STA: Status
                         {
-                            If ((PHRC & 0x80))
+                            If (And (PHRC, 0x80))
                             {
                                 Return (0x09)
                             }
