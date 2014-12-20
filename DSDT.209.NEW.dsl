@@ -573,108 +573,588 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
     {
         Name (PR00, Package (0x1B)
         {
-            Package (0x04) { 0x001FFFFF, One, LNKD, Zero }, 
-            Package (0x04) { 0x001FFFFF, 0x02, LNKC, Zero }, 
-            Package (0x04) { 0x0016FFFF, Zero, LNKA, Zero }, 
-            Package (0x04) { 0x0016FFFF, One, LNKD, Zero }, 
-            Package (0x04) { 0x0016FFFF, 0x02, LNKC, Zero }, 
-            Package (0x04) { 0x0016FFFF, 0x03, LNKB, Zero }, 
-            Package (0x04) { 0x0015FFFF, One, LNKE, Zero }, 
-            Package (0x04) { 0x0015FFFF, 0x02, LNKF, Zero }, 
-            Package (0x04) { 0x0015FFFF, 0x03, LNKF, Zero }, 
-            Package (0x04) { 0x0017FFFF, Zero, LNKG, Zero }, 
-            Package (0x04) { 0x0013FFFF, Zero, LNKH, Zero }, 
-            Package (0x04) { 0x0003FFFF, Zero, LNKA, Zero }, 
-            Package (0x04) { 0x0004FFFF, Zero, LNKA, Zero }, 
-            Package (0x04) { 0x0004FFFF, One, LNKB, Zero }, 
-            Package (0x04) { 0x0004FFFF, 0x02, LNKC, Zero }, 
-            Package (0x04) { 0x0004FFFF, 0x03, LNKD, Zero }, 
-            Package (0x04) { 0x001AFFFF, Zero, LNKA, Zero }, 
-            Package (0x04) { 0x001BFFFF, Zero, LNKG, Zero }, 
-            Package (0x04) { 0x001CFFFF, Zero, LNKA, Zero }, 
-            Package (0x04) { 0x001CFFFF, One, LNKB, Zero }, 
-            Package (0x04) { 0x001CFFFF, 0x02, LNKC, Zero }, 
-            Package (0x04) { 0x001CFFFF, 0x03, LNKD, Zero }, 
-            Package (0x04) { 0x001FFFFF, Zero, LNKF, Zero }, 
-            Package (0x04) { 0x001FFFFF, 0x03, LNKA, Zero }, 
-            Package (0x04) { 0x0002FFFF, Zero, LNKA, Zero }, 
-            Package (0x04) { 0x001DFFFF, Zero, LNKH, Zero }, 
-            Package (0x04) { 0x0014FFFF, Zero, LNKA, Zero }
+            Package (0x04)
+            {
+                0x001FFFFF, 
+                One, 
+                LNKD, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0x001FFFFF, 
+                0x02, 
+                LNKC, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0x0016FFFF, 
+                Zero, 
+                LNKA, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0x0016FFFF, 
+                One, 
+                LNKD, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0x0016FFFF, 
+                0x02, 
+                LNKC, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0x0016FFFF, 
+                0x03, 
+                LNKB, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0x0015FFFF, 
+                One, 
+                LNKE, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0x0015FFFF, 
+                0x02, 
+                LNKF, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0x0015FFFF, 
+                0x03, 
+                LNKF, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0x0017FFFF, 
+                Zero, 
+                LNKG, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0x0013FFFF, 
+                Zero, 
+                LNKH, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0x0003FFFF, 
+                Zero, 
+                LNKA, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0x0004FFFF, 
+                Zero, 
+                LNKA, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0x0004FFFF, 
+                One, 
+                LNKB, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0x0004FFFF, 
+                0x02, 
+                LNKC, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0x0004FFFF, 
+                0x03, 
+                LNKD, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0x001AFFFF, 
+                Zero, 
+                LNKA, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0x001BFFFF, 
+                Zero, 
+                LNKG, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0x001CFFFF, 
+                Zero, 
+                LNKA, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0x001CFFFF, 
+                One, 
+                LNKB, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0x001CFFFF, 
+                0x02, 
+                LNKC, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0x001CFFFF, 
+                0x03, 
+                LNKD, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0x001FFFFF, 
+                Zero, 
+                LNKF, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0x001FFFFF, 
+                0x03, 
+                LNKA, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0x0002FFFF, 
+                Zero, 
+                LNKA, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0x001DFFFF, 
+                Zero, 
+                LNKH, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0x0014FFFF, 
+                Zero, 
+                LNKA, 
+                Zero
+            }
         })
         Name (AR00, Package (0x1B)
         {
-            Package (0x04) { 0x001FFFFF, One, Zero, 0x13 }, 
-            Package (0x04) { 0x001FFFFF, 0x02, Zero, 0x12 }, 
-            Package (0x04) { 0x0016FFFF, Zero, Zero, 0x10 }, 
-            Package (0x04) { 0x0016FFFF, One, Zero, 0x13 }, 
-            Package (0x04) { 0x0016FFFF, 0x02, Zero, 0x12 }, 
-            Package (0x04) { 0x0016FFFF, 0x03, Zero, 0x11 }, 
-            Package (0x04) { 0x0015FFFF, One, Zero, 0x14 }, 
-            Package (0x04) { 0x0015FFFF, 0x02, Zero, 0x15 }, 
-            Package (0x04) { 0x0015FFFF, 0x03, Zero, 0x15 }, 
-            Package (0x04) { 0x0017FFFF, Zero, Zero, 0x16 }, 
-            Package (0x04) { 0x0013FFFF, Zero, Zero, 0x17 }, 
-            Package (0x04) { 0x0003FFFF, Zero, Zero, 0x10 }, 
-            Package (0x04) { 0x0004FFFF, Zero, Zero, 0x10 }, 
-            Package (0x04) { 0x0004FFFF, One, Zero, 0x11 }, 
-            Package (0x04) { 0x0004FFFF, 0x02, Zero, 0x12 }, 
-            Package (0x04) { 0x0004FFFF, 0x03, Zero, 0x13 }, 
-            Package (0x04) { 0x001AFFFF, Zero, Zero, 0x10 }, 
-            Package (0x04) { 0x001BFFFF, Zero, Zero, 0x16 }, 
-            Package (0x04) { 0x001CFFFF, Zero, Zero, 0x10 }, 
-            Package (0x04) { 0x001CFFFF, One, Zero, 0x11 }, 
-            Package (0x04) { 0x001CFFFF, 0x02, Zero, 0x12 }, 
-            Package (0x04) { 0x001CFFFF, 0x03, Zero, 0x13 }, 
-            Package (0x04) { 0x001FFFFF, Zero, Zero, 0x15 }, 
-            Package (0x04) { 0x001FFFFF, 0x03, Zero, 0x10 }, 
-            Package (0x04) { 0x0002FFFF, Zero, Zero, 0x10 }, 
-            Package (0x04) { 0x001DFFFF, Zero, Zero, 0x17 }, 
-            Package (0x04) { 0x0014FFFF, Zero, Zero, 0x10 }
+            Package (0x04)
+            {
+                0x001FFFFF, 
+                One, 
+                Zero, 
+                0x13
+            }, 
+
+            Package (0x04)
+            {
+                0x001FFFFF, 
+                0x02, 
+                Zero, 
+                0x12
+            }, 
+
+            Package (0x04)
+            {
+                0x0016FFFF, 
+                Zero, 
+                Zero, 
+                0x10
+            }, 
+
+            Package (0x04)
+            {
+                0x0016FFFF, 
+                One, 
+                Zero, 
+                0x13
+            }, 
+
+            Package (0x04)
+            {
+                0x0016FFFF, 
+                0x02, 
+                Zero, 
+                0x12
+            }, 
+
+            Package (0x04)
+            {
+                0x0016FFFF, 
+                0x03, 
+                Zero, 
+                0x11
+            }, 
+
+            Package (0x04)
+            {
+                0x0015FFFF, 
+                One, 
+                Zero, 
+                0x14
+            }, 
+
+            Package (0x04)
+            {
+                0x0015FFFF, 
+                0x02, 
+                Zero, 
+                0x15
+            }, 
+
+            Package (0x04)
+            {
+                0x0015FFFF, 
+                0x03, 
+                Zero, 
+                0x15
+            }, 
+
+            Package (0x04)
+            {
+                0x0017FFFF, 
+                Zero, 
+                Zero, 
+                0x16
+            }, 
+
+            Package (0x04)
+            {
+                0x0013FFFF, 
+                Zero, 
+                Zero, 
+                0x17
+            }, 
+
+            Package (0x04)
+            {
+                0x0003FFFF, 
+                Zero, 
+                Zero, 
+                0x10
+            }, 
+
+            Package (0x04)
+            {
+                0x0004FFFF, 
+                Zero, 
+                Zero, 
+                0x10
+            }, 
+
+            Package (0x04)
+            {
+                0x0004FFFF, 
+                One, 
+                Zero, 
+                0x11
+            }, 
+
+            Package (0x04)
+            {
+                0x0004FFFF, 
+                0x02, 
+                Zero, 
+                0x12
+            }, 
+
+            Package (0x04)
+            {
+                0x0004FFFF, 
+                0x03, 
+                Zero, 
+                0x13
+            }, 
+
+            Package (0x04)
+            {
+                0x001AFFFF, 
+                Zero, 
+                Zero, 
+                0x10
+            }, 
+
+            Package (0x04)
+            {
+                0x001BFFFF, 
+                Zero, 
+                Zero, 
+                0x16
+            }, 
+
+            Package (0x04)
+            {
+                0x001CFFFF, 
+                Zero, 
+                Zero, 
+                0x10
+            }, 
+
+            Package (0x04)
+            {
+                0x001CFFFF, 
+                One, 
+                Zero, 
+                0x11
+            }, 
+
+            Package (0x04)
+            {
+                0x001CFFFF, 
+                0x02, 
+                Zero, 
+                0x12
+            }, 
+
+            Package (0x04)
+            {
+                0x001CFFFF, 
+                0x03, 
+                Zero, 
+                0x13
+            }, 
+
+            Package (0x04)
+            {
+                0x001FFFFF, 
+                Zero, 
+                Zero, 
+                0x15
+            }, 
+
+            Package (0x04)
+            {
+                0x001FFFFF, 
+                0x03, 
+                Zero, 
+                0x10
+            }, 
+
+            Package (0x04)
+            {
+                0x0002FFFF, 
+                Zero, 
+                Zero, 
+                0x10
+            }, 
+
+            Package (0x04)
+            {
+                0x001DFFFF, 
+                Zero, 
+                Zero, 
+                0x17
+            }, 
+
+            Package (0x04)
+            {
+                0x0014FFFF, 
+                Zero, 
+                Zero, 
+                0x10
+            }
         })
         Name (PR04, Package (0x04)
         {
-            Package (0x04) { 0xFFFF, Zero, LNKA, Zero }, 
-            Package (0x04) { 0xFFFF, One, LNKB, Zero }, 
-            Package (0x04) { 0xFFFF, 0x02, LNKC, Zero }, 
-            Package (0x04) { 0xFFFF, 0x03, LNKD, Zero }
+            Package (0x04)
+            {
+                0xFFFF, 
+                Zero, 
+                LNKA, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0xFFFF, 
+                One, 
+                LNKB, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0xFFFF, 
+                0x02, 
+                LNKC, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0xFFFF, 
+                0x03, 
+                LNKD, 
+                Zero
+            }
         })
         Name (AR04, Package (0x04)
         {
-            Package (0x04) { 0xFFFF, Zero, Zero, 0x10 }, 
-            Package (0x04) { 0xFFFF, One, Zero, 0x11 }, 
-            Package (0x04) { 0xFFFF, 0x02, Zero, 0x12 }, 
-            Package (0x04) { 0xFFFF, 0x03, Zero, 0x13 }
+            Package (0x04)
+            {
+                0xFFFF, 
+                Zero, 
+                Zero, 
+                0x10
+            }, 
+
+            Package (0x04)
+            {
+                0xFFFF, 
+                One, 
+                Zero, 
+                0x11
+            }, 
+
+            Package (0x04)
+            {
+                0xFFFF, 
+                0x02, 
+                Zero, 
+                0x12
+            }, 
+
+            Package (0x04)
+            {
+                0xFFFF, 
+                0x03, 
+                Zero, 
+                0x13
+            }
         })
         Name (PR07, Package (0x04)
         {
-            Package (0x04) { 0xFFFF, Zero, LNKD, Zero }, 
-            Package (0x04) { 0xFFFF, One, LNKA, Zero }, 
-            Package (0x04) { 0xFFFF, 0x02, LNKB, Zero }, 
-            Package (0x04) { 0xFFFF, 0x03, LNKC, Zero }
+            Package (0x04)
+            {
+                0xFFFF, 
+                Zero, 
+                LNKD, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0xFFFF, 
+                One, 
+                LNKA, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0xFFFF, 
+                0x02, 
+                LNKB, 
+                Zero
+            }, 
+
+            Package (0x04)
+            {
+                0xFFFF, 
+                0x03, 
+                LNKC, 
+                Zero
+            }
         })
         Name (AR07, Package (0x04)
         {
-            Package (0x04) { 0xFFFF, Zero, Zero, 0x13 }, 
-            Package (0x04) { 0xFFFF, One, Zero, 0x10 }, 
-            Package (0x04) { 0xFFFF, 0x02, Zero, 0x11 }, 
-            Package (0x04) { 0xFFFF, 0x03, Zero, 0x12 }
+            Package (0x04)
+            {
+                0xFFFF, 
+                Zero, 
+                Zero, 
+                0x13
+            }, 
+
+            Package (0x04)
+            {
+                0xFFFF, 
+                One, 
+                Zero, 
+                0x10
+            }, 
+
+            Package (0x04)
+            {
+                0xFFFF, 
+                0x02, 
+                Zero, 
+                0x11
+            }, 
+
+            Package (0x04)
+            {
+                0xFFFF, 
+                0x03, 
+                Zero, 
+                0x12
+            }
         })
         Name (PRSA, ResourceTemplate ()
         {
             IRQ (Level, ActiveLow, Shared, )
-                {1,3,4,5,6,7,11,12,14,15}
+                {3,4,5,6,7,10,11,12,14,15}
         })
-        Name (PRSB, ResourceTemplate ()
-        {
-            IRQ (Level, ActiveLow, Shared, )
-                {1,3,4,5,6,7,10,12,14,15}
-        })
-        Alias (PRSB, PRSC)
-        Alias (PRSB, PRSD)
-        Alias (PRSB, PRSE)
-        Alias (PRSB, PRSF)
-        Alias (PRSB, PRSG)
-        Alias (PRSB, PRSH)
+        Alias (PRSA, PRSB)
+        Alias (PRSA, PRSC)
+        Alias (PRSA, PRSD)
+        Alias (PRSA, PRSE)
+        Alias (PRSA, PRSF)
+        Alias (PRSA, PRSG)
+        Alias (PRSA, PRSH)
         Device (PCI0)
         {
             Name (_HID, EisaId ("PNP0A08"))  // _HID: Hardware ID
@@ -2387,55 +2867,39 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Device (HPET)
                 {
                     Name (_HID, EisaId ("PNP0103"))  // _HID: Hardware ID
-                    Name (_UID, Zero)  // _UID: Unique ID
+                    Name (_CID, EisaId ("PNP0C01"))  // _CID: Compatible ID
+                    Name (_STA, 0x0F)  // _STA: Status
                     Name (BUF0, ResourceTemplate()
 {
-    IRQNoFlags() { 0, 8, 11, 15 }
+    IRQNoFlags() { 2, 8, 11, 15 }
 
+                        
+                        
                         Memory32Fixed (ReadWrite,
                             0xFED00000,         // Address Base
                             0x00000400,         // Address Length
                             _Y0F)
                     })
 
-                    Method (_STA, 0, NotSerialized)  // _STA: Status
-                    {
-                        If ((OSYS >= 0x07D1))
-                        {
-                            If (HPAE)
-                            {
-                                Return (0x0F)
-                            }
-                        }
-                        Else
-                        {
-                            If (HPAE)
-                            {
-                                Return (0x0B)
-                            }
-                        }
-
-                        Return (Zero)
-                    }
 
                     Method (_CRS, 0, Serialized)  // _CRS: Current Resource Settings
                     {
                         If (HPAE)
                         {
                             CreateDWordField (BUF0, \_SB.PCI0.LPCB.HPET._Y0F._BAS, HPT0)  // _BAS: Base Address
-                            If ((HPAS == One))
+                            If (LEqual (HPAS, One))
                             {
-                                HPT0 = 0xFED01000
+                                Store (0xFED01000, HPT0)
                             }
 
-                            If ((HPAS == 0x02))
+                            If (LEqual (HPAS, 0x02))
                             {
-                                HPT0 = 0xFED02000
+                                Store (0xFED02000, HPT0)
                             }
 
-                            If ((HPAS == 0x03))
+                            If (LEqual (HPAS, 0x03))
                             {
-                                HPT0 = 0xFED03000
+                                Store (0xFED03000, HPT0)
                             }
                         }
 
@@ -2550,7 +3014,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                             0x01,               // Alignment
                             0x02,               // Length
                             )
-                        
+                            
                     })
                 }
 
@@ -2568,17 +3032,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         IRQNoFlags ()
                             {13}
                     })
-                    Method (_STA, 0, NotSerialized)  // _STA: Status
-                    {
-                        If (((CDID & 0xF000) == 0x8000))
-                        {
-                            Return (0x1F)
-                        }
-                        Else
-                        {
-                            Return (Zero)
-                        }
-                    }
                 }
 
                 Device (LDRC)
@@ -2710,22 +3163,22 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     })
                     Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
                     {
-                        CreateWordField (BUF0, \_SB.PCI0.LPCB.LDRC._Y10._MIN, IO0M)  // _MIN: Minimum Base Address
-                        CreateWordField (BUF0, \_SB.PCI0.LPCB.LDRC._Y10._MAX, IO0X)  // _MAX: Maximum Base Address
-                        IO0M = GPBS
-                        IO0X = GPBS
-                        CreateWordField (BUF0, \_SB.PCI0.LPCB.LDRC._Y11._MIN, IO1M)  // _MIN: Minimum Base Address
-                        CreateWordField (BUF0, \_SB.PCI0.LPCB.LDRC._Y11._MAX, IO1X)  // _MAX: Maximum Base Address
-                        IO1M = (GPBS + 0x0100)
-                        IO1X = (GPBS + 0x0100)
-                        CreateWordField (BUF0, \_SB.PCI0.LPCB.LDRC._Y12._MIN, IO2M)  // _MIN: Minimum Base Address
-                        CreateWordField (BUF0, \_SB.PCI0.LPCB.LDRC._Y12._MAX, IO2X)  // _MAX: Maximum Base Address
-                        IO2M = (GPBS + 0x0200)
-                        IO2X = (GPBS + 0x0200)
-                        CreateWordField (BUF0, \_SB.PCI0.LPCB.LDRC._Y13._MIN, IO3M)  // _MIN: Minimum Base Address
-                        CreateWordField (BUF0, \_SB.PCI0.LPCB.LDRC._Y13._MAX, IO3X)  // _MAX: Maximum Base Address
-                        IO3M = (GPBS + 0x0300)
-                        IO3X = (GPBS + 0x0300)
+                        CreateWordField (BUF0, ^_Y10._MIN, IO0M)  // _MIN: Minimum Base Address
+                        CreateWordField (BUF0, ^_Y10._MAX, IO0X)  // _MAX: Maximum Base Address
+                        Store (GPBS, IO0M)
+                        Store (GPBS, IO0X)
+                        CreateWordField (BUF0, ^_Y11._MIN, IO1M)  // _MIN: Minimum Base Address
+                        CreateWordField (BUF0, ^_Y11._MAX, IO1X)  // _MAX: Maximum Base Address
+                        Store (Add (GPBS, 0x0100), IO1M)
+                        Store (Add (GPBS, 0x0100), IO1X)
+                        CreateWordField (BUF0, ^_Y12._MIN, IO2M)  // _MIN: Minimum Base Address
+                        CreateWordField (BUF0, ^_Y12._MAX, IO2X)  // _MAX: Maximum Base Address
+                        Store (Add (GPBS, 0x0200), IO2M)
+                        Store (Add (GPBS, 0x0200), IO2X)
+                        CreateWordField (BUF0, ^_Y13._MIN, IO3M)  // _MIN: Minimum Base Address
+                        CreateWordField (BUF0, ^_Y13._MAX, IO3X)  // _MAX: Maximum Base Address
+                        Store (Add (GPBS, 0x0300), IO3M)
+                        Store (Add (GPBS, 0x0300), IO3X)
                         Return (BUF0)
                     }
                 }
@@ -2741,8 +3194,15 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                             0x01,               // Alignment
                             0x08,               // Length
                             )
-                        
                     })
+                    OperationRegion (CMS0, SystemCMOS, 0x00, 0x40)
+                    Field (CMS0, ByteAcc, NoLock, Preserve)
+                    {
+                        Offset (0x38), 
+                        ISTB,   1, 
+                            ,   6, 
+                        ISLG,   1
+                    }
                 }
 
                 Device (TIMR)
@@ -2762,7 +3222,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                             0x10,               // Alignment
                             0x04,               // Length
                             )
-                        
                     })
                 }
 
@@ -2781,7 +3240,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     })
                     Method (_STA, 0, Serialized)  // _STA: Status
                     {
-                        If ((WDTE == One))
+                        If (LEqual (WDTE, One))
                         {
                             Return (0x0F)
                         }
@@ -2965,7 +3424,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     })
                     Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
                     {
-                        If ((MBEC & 0xFFFF))
+                        If (And (MBEC, 0xFFFF))
                         {
                             Return (CRS1)
                         }
@@ -3475,6 +3934,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
     Device (EC0)
         {
             Name (_HID, EisaId ("PNP0C09"))  // _HID: Hardware ID
+            Name (_UID, 0x00)  // _UID: Unique ID
             Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
             {
                 IO (Decode16,
@@ -3492,7 +3952,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             })
             Method (_GPE, 0, NotSerialized)  // _GPE: General Purpose Events
             {
-                Local0 = 0x0A
+                Store (0x0A, Local0)
                 Return (Local0)
             }
 
@@ -3501,19 +3961,19 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Name (ECFL, Ones)
             Method (ECAV, 0, NotSerialized)
             {
-                If ((SLPT >= 0x04))
+                If (LGreaterEqual (SLPT, 0x04))
                 {
                     Return (Zero)
                 }
 
-                If ((NVLK == One))
+                If (LEqual (NVLK, One))
                 {
                     Return (Zero)
                 }
 
-                If ((ECFL == Ones))
+                If (LEqual (ECFL, Ones))
                 {
-                    If ((_REV >= 0x02))
+                    If (LGreaterEqual (_REV, 0x02))
                     {
                         Return (One)
                     }
@@ -3543,172 +4003,172 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (PECI, 7, Serialized)
             {
-                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                While (((PBSY & 0x02) == 0x02))
+                Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
+                While (LEqual (And (PBSY, 0x02), 0x02))
                 {
-                    If ((Arg6 > 0x1000))
+                    If (LGreater (Arg6, 0x1000))
                     {
                         Return (Zero)
                     }
 
-                    Arg6 += One
+                    Add (Arg6, One, Arg6)
                     Sleep (0x0A)
                 }
 
-                PBSY &= 0xFD
-                HTAR = Arg0
-                HWLR = Arg1
-                HRLR = Arg2
-                HCMD = Arg3
+                And (PBSY, 0xFD, PBSY)
+                Store (Arg0, HTAR)
+                Store (Arg1, HWLR)
+                Store (Arg2, HRLR)
+                Store (Arg3, HCMD)
                 Name (TEMP, Zero)
-                TEMP = Zero
-                If ((Arg1 != Zero))
+                Store (Zero, TEMP)
+                If (LNotEqual (Arg1, Zero))
                 {
                     While (One)
                     {
-                        _T_0 = ToInteger (HCMD)
-                        If ((_T_0 == 0xF7))
+                        Store (ToInteger (HCMD), T_0)
+                        If (LEqual (T_0, 0xF7))
                         {
-                            TEMP = Zero
+                            Store (Zero, TEMP)
                             Break
                         }
                         Else
                         {
-                            If ((_T_0 == One))
+                            If (LEqual (T_0, One))
                             {
-                                TEMP = Zero
+                                Store (Zero, TEMP)
                                 Break
                             }
                             Else
                             {
-                                If ((_T_0 == 0x02))
+                                If (LEqual (T_0, 0x02))
                                 {
-                                    TEMP = Zero
+                                    Store (Zero, TEMP)
                                     Break
                                 }
                                 Else
                                 {
-                                    If ((_T_0 == 0xA1))
+                                    If (LEqual (T_0, 0xA1))
                                     {
-                                        TEMP = (Arg1 - One)
+                                        Store (Subtract (Arg1, One), TEMP)
                                         Break
                                     }
                                     Else
                                     {
-                                        If ((_T_0 == 0xA2))
+                                        If (LEqual (T_0, 0xA2))
                                         {
-                                            TEMP = (Arg1 - One)
+                                            Store (Subtract (Arg1, One), TEMP)
                                             Break
                                         }
                                         Else
                                         {
-                                            If ((_T_0 == 0xB1))
+                                            If (LEqual (T_0, 0xB1))
                                             {
-                                                TEMP = (Arg1 - One)
+                                                Store (Subtract (Arg1, One), TEMP)
                                                 Break
                                             }
                                             Else
                                             {
-                                                If ((_T_0 == 0xB2))
+                                                If (LEqual (T_0, 0xB2))
                                                 {
-                                                    TEMP = (Arg1 - One)
+                                                    Store (Subtract (Arg1, One), TEMP)
                                                     Break
                                                 }
                                                 Else
                                                 {
-                                                    If ((_T_0 == 0x61))
+                                                    If (LEqual (T_0, 0x61))
                                                     {
-                                                        TEMP = (Arg1 - One)
+                                                        Store (Subtract (Arg1, One), TEMP)
                                                         Break
                                                     }
                                                     Else
                                                     {
-                                                        If ((_T_0 == 0x62))
+                                                        If (LEqual (T_0, 0x62))
                                                         {
-                                                            TEMP = (Arg1 - One)
+                                                            Store (Subtract (Arg1, One), TEMP)
                                                             Break
                                                         }
                                                         Else
                                                         {
-                                                            If ((_T_0 == 0xE1))
+                                                            If (LEqual (T_0, 0xE1))
                                                             {
-                                                                TEMP = (Arg1 - One)
+                                                                Store (Subtract (Arg1, One), TEMP)
                                                                 Break
                                                             }
                                                             Else
                                                             {
-                                                                If ((_T_0 == 0xE2))
+                                                                If (LEqual (T_0, 0xE2))
                                                                 {
-                                                                    TEMP = (Arg1 - One)
+                                                                    Store (Subtract (Arg1, One), TEMP)
                                                                     Break
                                                                 }
                                                                 Else
                                                                 {
-                                                                    If ((_T_0 == 0xA5))
+                                                                    If (LEqual (T_0, 0xA5))
                                                                     {
-                                                                        HCTL |= 0x40
-                                                                        TEMP = (Arg1 - 0x02)
+                                                                        Or (HCTL, 0x40, HCTL)
+                                                                        Store (Subtract (Arg1, 0x02), TEMP)
                                                                         Break
                                                                     }
                                                                     Else
                                                                     {
-                                                                        If ((_T_0 == 0xA6))
+                                                                        If (LEqual (T_0, 0xA6))
                                                                         {
-                                                                            HCTL |= 0x40
-                                                                            TEMP = (Arg1 - 0x02)
+                                                                            Or (HCTL, 0x40, HCTL)
+                                                                            Store (Subtract (Arg1, 0x02), TEMP)
                                                                             Break
                                                                         }
                                                                         Else
                                                                         {
-                                                                            If ((_T_0 == 0xB5))
+                                                                            If (LEqual (T_0, 0xB5))
                                                                             {
-                                                                                HCTL |= 0x40
-                                                                                TEMP = (Arg1 - 0x02)
+                                                                                Or (HCTL, 0x40, HCTL)
+                                                                                Store (Subtract (Arg1, 0x02), TEMP)
                                                                                 Break
                                                                             }
                                                                             Else
                                                                             {
-                                                                                If ((_T_0 == 0xB6))
+                                                                                If (LEqual (T_0, 0xB6))
                                                                                 {
-                                                                                    HCTL |= 0x40
-                                                                                    TEMP = (Arg1 - 0x02)
+                                                                                    Or (HCTL, 0x40, HCTL)
+                                                                                    Store (Subtract (Arg1, 0x02), TEMP)
                                                                                     Break
                                                                                 }
                                                                                 Else
                                                                                 {
-                                                                                    If ((_T_0 == 0x65))
+                                                                                    If (LEqual (T_0, 0x65))
                                                                                     {
-                                                                                        HCTL |= 0x40
-                                                                                        TEMP = (Arg1 - 0x02)
+                                                                                        Or (HCTL, 0x40, HCTL)
+                                                                                        Store (Subtract (Arg1, 0x02), TEMP)
                                                                                         Break
                                                                                     }
                                                                                     Else
                                                                                     {
-                                                                                        If ((_T_0 == 0x66))
+                                                                                        If (LEqual (T_0, 0x66))
                                                                                         {
-                                                                                            HCTL |= 0x40
-                                                                                            TEMP = (Arg1 - 0x02)
+                                                                                            Or (HCTL, 0x40, HCTL)
+                                                                                            Store (Subtract (Arg1, 0x02), TEMP)
                                                                                             Break
                                                                                         }
                                                                                         Else
                                                                                         {
-                                                                                            If ((_T_0 == 0xE5))
+                                                                                            If (LEqual (T_0, 0xE5))
                                                                                             {
-                                                                                                HCTL |= 0x40
-                                                                                                TEMP = (Arg1 - 0x02)
+                                                                                                Or (HCTL, 0x40, HCTL)
+                                                                                                Store (Subtract (Arg1, 0x02), TEMP)
                                                                                                 Break
                                                                                             }
                                                                                             Else
                                                                                             {
-                                                                                                If ((_T_0 == 0xE6))
+                                                                                                If (LEqual (T_0, 0xE6))
                                                                                                 {
-                                                                                                    HCTL |= 0x40
-                                                                                                    TEMP = (Arg1 - 0x02)
+                                                                                                    Or (HCTL, 0x40, HCTL)
+                                                                                                    Store (Subtract (Arg1, 0x02), TEMP)
                                                                                                     Break
                                                                                                 }
                                                                                                 Else
                                                                                                 {
-                                                                                                    PBSY &= 0xFE
+                                                                                                    And (PBSY, 0xFE, PBSY)
                                                                                                     Return (Zero)
                                                                                                 }
                                                                                             }
@@ -3734,83 +4194,83 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     }
                 }
 
-                If ((TEMP > Zero))
+                If (LGreater (TEMP, Zero))
                 {
-                    Local0 = Zero
-                    While ((Local0 < TEMP))
+                    Store (Zero, Local0)
+                    While (LLess (Local0, TEMP))
                     {
-                        HWDR = DerefOf (Index (Arg4, Local0))
-                        Local0 += One
+                        Store (DerefOf (Index (Arg4, Local0)), HWDR)
+                        Add (Local0, One, Local0)
                     }
                 }
 
-                HCTL |= One
+                Or (HCTL, One, HCTL)
                 Name (TIME, 0x5000)
-                Local0 = Zero
-                While ((Local0 < TIME))
+                Store (Zero, Local0)
+                While (LLess (Local0, TIME))
                 {
-                    If ((HSTS & 0x80))
+                    If (And (HSTS, 0x80))
                     {
-                        HSTS = 0x80
-                        PBSY &= 0xFE
+                        Store (0x80, HSTS)
+                        And (PBSY, 0xFE, PBSY)
                         Return (Zero)
                     }
 
-                    If ((HSTS & 0x40))
+                    If (And (HSTS, 0x40))
                     {
-                        HSTS = 0x40
-                        PBSY &= 0xFE
+                        Store (0x40, HSTS)
+                        And (PBSY, 0xFE, PBSY)
                         Return (Zero)
                     }
 
-                    If ((HSTS & 0x20))
+                    If (And (HSTS, 0x20))
                     {
-                        HSTS = 0x20
-                        PBSY &= 0xFE
+                        Store (0x20, HSTS)
+                        And (PBSY, 0xFE, PBSY)
                         Return (Zero)
                     }
 
-                    If ((HSTS & 0x08))
+                    If (And (HSTS, 0x08))
                     {
-                        HSTS = 0x08
-                        PBSY &= 0xFE
+                        Store (0x08, HSTS)
+                        And (PBSY, 0xFE, PBSY)
                         Return (Zero)
                     }
 
-                    If ((HSTS & 0x04))
+                    If (And (HSTS, 0x04))
                     {
-                        HSTS = 0x04
-                        PBSY &= 0xFE
+                        Store (0x04, HSTS)
+                        And (PBSY, 0xFE, PBSY)
                         Return (Zero)
                     }
 
-                    If ((HSTS & 0x02))
+                    If (And (HSTS, 0x02))
                     {
-                        HSTS = 0x02
+                        Store (0x02, HSTS)
                         Break
                     }
                 }
 
-                If ((Local0 == TIME))
+                If (LEqual (Local0, TIME))
                 {
-                    PBSY &= 0xFE
+                    And (PBSY, 0xFE, PBSY)
                     Return (Zero)
                 }
                 Else
                 {
-                    Local0 = Zero
-                    While ((Local0 < HRLR))
+                    Store (Zero, Local0)
+                    While (LLess (Local0, HRLR))
                     {
-                        Local1 = HRDR
-                        Index (Arg5, Local0) = Local1
-                        Local0 += One
+                        Store (HRDR, Local1)
+                        Store (Local1, Index (Arg5, Local0))
+                        Add (Local0, One, Local0)
                     }
 
-                    PBSY &= 0xFE
+                    And (PBSY, 0xFE, PBSY)
                     Return (One)
                 }
 
-                PBSY &= 0xFE
+                And (PBSY, 0xFE, PBSY)
             }
 
             OperationRegion (ECOR, EmbeddedControl, Zero, 0xFF)
@@ -3834,8 +4294,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Offset (0x8A), 
                 HKEN,   1, 
                 Offset (0x93), 
-                TH00,8,TH01,8, 
-                TH10,8,TH11,8,
+                TH00, 8,TH01, 8, 
+                TH10, 8,TH11, 8, 
                 TSTP,   8, 
                 Offset (0x9C), 
                 CDT4,   8, 
@@ -3850,53 +4310,60 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 TH0R,   8, 
                 TH0L,   8, 
                 Offset (0xB0), 
-                B0PN,   16, 
+                B0P0,8,B0P1,8, 
                 Offset (0xB4), 
                 Offset (0xB6), 
                 Offset (0xB8), 
                 Offset (0xBA), 
                 Offset (0xBC), 
                 Offset (0xBE), 
-                B0TM,   16, 
-                B0C1,   16, 
-                B0C2,   16, 
-                BC30,8,BC31,8, 
-                B0C4,   16, 
+                B0T0,8,B0T1,8, 
+                B010,8,B011,8, 
+                B020,8,B021,8, 
+                BC30, 8,BC31, 8, 
+                B040,8,B041,8, 
                 Offset (0xD0), 
-                B1PN,   16, 
+                B1N0,8,B1N1,8, 
                 Offset (0xD4), 
                 Offset (0xD6), 
                 Offset (0xD8), 
                 Offset (0xDA), 
                 Offset (0xDC), 
                 Offset (0xDE), 
-                B1TM,   16, 
-                B1C1,   16, 
-                B1C2,   16, 
-                B1C3,   16, 
-                B1C4,   16, 
+                B1M0,8,B1M1,8, 
+                B110,8,B111,8, 
+                B120,8,B121,8, 
+                B130,8,B131,8, 
+                B140,8,B141,8, 
                 Offset (0xF0), 
                 Offset (0xF2), 
                 Offset (0xF4), 
-                B0S0,8,B0S1,8, 
+                B0S0, 8,B0S1, 8, 
                 Offset (0xF8), 
                 Offset (0xFA), 
                 Offset (0xFC), 
-                B1S0,8,B1S1,8
+                B1S0, 8,B1S1, 8
             }
+            Field (ECOR, ByteAcc, Lock, Preserve)
+                    {
+                        Offset (0x24), 
+                        SBDW,   16, 
+                        Offset (0x46), 
+                        SADW,   16
+                    }
 
             Name (SMBF, Zero)
             OperationRegion (SMBX, EmbeddedControl, 0x18, 0x28)
             Field (SMBX, ByteAcc, NoLock, Preserve)
             {
-                PRTC,   8, 
+                SPTR,   8, 
                 SSTS,   5, 
                     ,   1, 
                 ALFG,   1, 
                 CDFG,   1, 
-                ADDR,   8, 
-                CMDB,   8, 
-                BDAX,	256, 
+                SADR,   8, 
+                SCMD,   8, 
+                SBFR, 256, 
                 BCNT,   8, 
                     ,   1, 
                 ALAD,   7, 
@@ -3914,7 +4381,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 CDF2,   1, 
                 ADD2,   8, 
                 CMD2,   8, 
-                BDAY,	256, 
+                BDAY, 256, 
                 BCN2,   8, 
                     ,   1, 
                 ALA2,   7, 
@@ -3939,7 +4406,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Field (SMBX, ByteAcc, NoLock, Preserve)
             {
                 Offset (0x04), 
-                T2B0,8,T2B1,8,
+                DTB0, 8,
+DTB1, 8
             }
 
             OperationRegion (NSBS, EmbeddedControl, 0x40, 0x04)
@@ -3992,9 +4460,9 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (_INI, 0, NotSerialized)  // _INI: Initialize
             {
-                If ((MSOS () <= OSME))
+                If (LLessEqual (MSOS (), OSME))
                 {
-                    ECFL = One
+                    Store (One, ECFL)
                 }
 
                 KINI ()
@@ -4002,14 +4470,15 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (_REG, 2, NotSerialized)  // _REG: Region Availability
             {
-                If ((Arg0 == 0x03))
+                If (LEqual (Arg0, 0x03))
                 {
-                    ECFL = Arg1
+                    Store (Arg1, ECFL)
                 }
             }
+            Name (WBTG, One)
             Method (RE1B, 1, NotSerialized)
             {
-                OperationRegion(ERAM, EmbeddedControl, Arg0, 1)
+                OperationRegion(ERAM, EmbeddedControl, Arg0, One)
                 Field(ERAM, ByteAcc, NoLock, Preserve) { BYTE, 8 }
                 Return(BYTE)
             }
@@ -4018,7 +4487,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 ShiftRight(Arg1, 3, Arg1)
                 Name(TEMP, Buffer(Arg1) { })
                 Add(Arg0, Arg1, Arg1)
-                Store(0, Local0)
+                Store(Zero, Local0)
                 While (LLess(Arg0, Arg1))
                 {
                     Store(RE1B(Arg0), Index(TEMP, Local0))
@@ -4029,7 +4498,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             }
             Method (WE1B, 2, NotSerialized)
             {
-                OperationRegion(ERAM, EmbeddedControl, Arg0, 1)
+                OperationRegion(ERAM, EmbeddedControl, Arg0, One)
                 Field(ERAM, ByteAcc, NoLock, Preserve) { BYTE, 8 }
                 Store(Arg1, BYTE)
             }
@@ -4039,7 +4508,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Name(TEMP, Buffer(Arg1) { })
                 Store(Arg2, TEMP)
                 Add(Arg0, Arg1, Arg1)
-                Store(0, Local0)
+                Store(Zero, Local0)
                 While (LLess(Arg0, Arg1))
                 {
                     WE1B(Arg0, DerefOf(Index(TEMP, Local0)))
@@ -4047,6 +4516,19 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Increment(Local0)
                 }
             }
+            /*
+                    Device (SMB0)
+                    {
+                        Name (_HID, "ACPI0001")  // _HID: Hardware ID
+                        Name (_EC, 0x2010)  // _EC_: Embedded Controller
+                        Name (_STA, 0x0F)
+                        Device (SBS0)
+                        {
+                            Name (_HID, "ACPI0002")  // _HID: Hardware ID
+                            Name (\_SBS, 0x01)  // _SBS: Smart Battery Subsystem
+                        }
+                    }
+            */
         }
             }
             
@@ -4616,7 +5098,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Name (MODC, Zero)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                If ((AUVD != 0xFFFF))
+                If (LNotEqual (AUVD, 0xFFFF))
                 {
                     Return (0x0F)
                 }
@@ -4626,14 +5108,14 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (_INI, 0, NotSerialized)  // _INI: Initialize
             {
-                If ((((ABAR & 0xFFFFC004) != 0xFFFFC004) && ((
-                    ABAR & 0xFFFFC000) != Zero)))
+                If (LAnd (LNotEqual (And (ABAR, 0xFFFFC004), 0xFFFFC004), 
+                    LNotEqual (And (ABAR, 0xFFFFC000), Zero)))
                 {
-                    BARA = ABAR
+                    Store (ABAR, BARA)
                 }
             }
 
-            OperationRegion (RPCS, SystemMemory, \XBAS, 0x00018040)
+            OperationRegion (RPCS, SystemMemory, XBAS, 0x00018040)
             Field (RPCS, AnyAcc, NoLock, Preserve)
             {
                 Offset (0x18004), 
@@ -4650,11 +5132,11 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (ASTR, 0, Serialized)
             {
-                If ((((ABAR & 0xFFFFC004) != 0xFFFFC004) && ((
-                    ABAR & 0xFFFFC000) != Zero)))
+                If (LAnd (LNotEqual (And (ABAR, 0xFFFFC004), 0xFFFFC004), 
+                    LNotEqual (And (ABAR, 0xFFFFC000), Zero)))
                 {
-                    BBAR = (ABAR & 0xFFFFFFF0)
-                    BBAR += 0x1000
+                    And (ABAR, 0xFFFFFFF0, BBAR)
+                    Add (BBAR, 0x1000, BBAR)
                     OperationRegion (RPCY, SystemMemory, BBAR, 0x25)
                     Field (RPCY, DWordAcc, NoLock, Preserve)
                     {
@@ -4665,9 +5147,9 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         ADWA,   32
                     }
 
-                    EMWA = AUDA
-                    ADWA = AUDB
-                    EM4W = AUDC
+                    Store (AUDA, EMWA)
+                    Store (AUDB, ADWA)
+                    Store (AUDC, EM4W)
                 }
             }
 
@@ -4675,19 +5157,19 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             {
                 Name (CONT, 0x03E8)
                 Name (ADDR, 0x80000000)
-                ADDR = Arg0
+                Store (Arg0, ADDR)
                 OperationRegion (CCDC, SystemMemory, ADDR, 0x04)
                 Field (CCDC, ByteAcc, NoLock, Preserve)
                 {
                     CDEC,   32
                 }
 
-                If ((((ABAR & 0xFFFFC004) != 0xFFFFC004) && ((
-                    ABAR & 0xFFFFC000) != Zero)))
+                If (LAnd (LNotEqual (And (ABAR, 0xFFFFC004), 0xFFFFC004), 
+                    LNotEqual (And (ABAR, 0xFFFFC000), Zero)))
                 {
-                    If ((CDEC != Zero))
+                    If (LNotEqual (CDEC, Zero))
                     {
-                        BBAR = (ABAR & 0xFFFFFFF0)
+                        And (ABAR, 0xFFFFFFF0, BBAR)
                         OperationRegion (IPCV, SystemMemory, BBAR, 0x70)
                         Field (IPCV, DWordAcc, NoLock, Preserve)
                         {
@@ -4697,21 +5179,23 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                             AIRS,   16
                         }
 
-                        CONT = 0x03E8
-                        While ((((AIRS & One) == One) && (CONT != Zero)))
+                        Store (0x03E8, CONT)
+                        While (LAnd (LEqual (And (AIRS, One), One), LNotEqual (
+                            CONT, Zero)))
                         {
                             Stall (One)
-                            CONT--
+                            Decrement (CONT)
                         }
 
-                        AIRS |= 0x02
-                        AVIC = CDEC
-                        AIRS |= One
-                        CONT = 0x03E8
-                        While ((((AIRS & One) == One) && (CONT != Zero)))
+                        Or (AIRS, 0x02, AIRS)
+                        Store (CDEC, AVIC)
+                        Or (AIRS, One, AIRS)
+                        Store (0x03E8, CONT)
+                        While (LAnd (LEqual (And (AIRS, One), One), LNotEqual (
+                            CONT, Zero)))
                         {
                             Stall (One)
-                            CONT--
+                            Decrement (CONT)
                         }
                     }
                 }
@@ -4720,23 +5204,23 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Method (CXDC, 0, Serialized)
             {
                 Name (IDDX, 0x80000000)
-                If (((CCSA != Zero) && (CCNT != Zero)))
+                If (LAnd (LNotEqual (CCSA, Zero), LNotEqual (CCNT, Zero)))
                 {
-                    IDDX = CCSA
-                    While ((IDDX < (CCSA + (CCNT * 0x04))))
+                    Store (CCSA, IDDX)
+                    While (LLess (IDDX, Add (CCSA, Multiply (CCNT, 0x04))))
                     {
                         VSTR (IDDX)
-                        IDDX += 0x04
+                        Add (IDDX, 0x04, IDDX)
                     }
                 }
             }
 
             Method (ARST, 0, Serialized)
             {
-                If ((((ABAR & 0xFFFFC004) != 0xFFFFC004) && ((
-                    ABAR & 0xFFFFC000) != Zero)))
+                If (LAnd (LNotEqual (And (ABAR, 0xFFFFC004), 0xFFFFC004), 
+                    LNotEqual (And (ABAR, 0xFFFFC000), Zero)))
                 {
-                    BBAR = (ABAR & 0xFFFFFFF0)
+                    And (ABAR, 0xFFFFFFF0, BBAR)
                     OperationRegion (IPCV, SystemMemory, BBAR, 0xBF)
                     Field (IPCV, AnyAcc, NoLock, Preserve)
                     {
@@ -4752,21 +5236,21 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         OSD2,   32
                     }
 
-                    CORB &= 0xFFFFFFFD
-                    RIRB &= 0xFFFFFFFD
-                    OSD1 &= 0xFFFFFFFD
-                    OSD2 &= 0xFFFFFFFD
-                    CRST &= 0xFFFFFFFE
+                    And (CORB, 0xFFFFFFFD, CORB)
+                    And (RIRB, 0xFFFFFFFD, RIRB)
+                    And (OSD1, 0xFFFFFFFD, OSD1)
+                    And (OSD2, 0xFFFFFFFD, OSD2)
+                    And (CRST, 0xFFFFFFFE, CRST)
                 }
             }
 
             Method (AINI, 0, Serialized)
             {
                 Name (CONT, 0x03E8)
-                If ((((ABAR & 0xFFFFC004) != 0xFFFFC004) && ((
-                    ABAR & 0xFFFFC000) != Zero)))
+                If (LAnd (LNotEqual (And (ABAR, 0xFFFFC004), 0xFFFFC004), 
+                    LNotEqual (And (ABAR, 0xFFFFC000), Zero)))
                 {
-                    BBAR = (ABAR & 0xFFFFFFF0)
+                    And (ABAR, 0xFFFFFFF0, BBAR)
                     OperationRegion (IPCV, SystemMemory, BBAR, 0x70)
                     Field (IPCV, DWordAcc, NoLock, Preserve)
                     {
@@ -4781,30 +5265,33 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         AIRS,   16
                     }
 
-                    GCTL |= One
-                    CONT = 0x03E8
-                    While ((((GCTL & One) == Zero) && (CONT != Zero)))
+                    Or (GCTL, One, GCTL)
+                    Store (0x03E8, CONT)
+                    While (LAnd (LEqual (And (GCTL, One), Zero), LNotEqual (
+                        CONT, Zero)))
                     {
                         Stall (One)
-                        CONT--
+                        Decrement (CONT)
                     }
 
-                    GCAP &= 0xFFFF
-                    SSTS |= 0x0F
-                    GCTL &= 0xFFFFFFFE
-                    CONT = 0x03E8
-                    While ((((GCTL & One) == One) && (CONT != Zero)))
+                    And (GCAP, 0xFFFF, GCAP)
+                    Or (SSTS, 0x0F, SSTS)
+                    And (GCTL, 0xFFFFFFFE, GCTL)
+                    Store (0x03E8, CONT)
+                    While (LAnd (LEqual (And (GCTL, One), One), LNotEqual (
+                        CONT, Zero)))
                     {
                         Stall (One)
-                        CONT--
+                        Decrement (CONT)
                     }
 
-                    GCTL |= One
-                    CONT = 0x03E8
-                    While ((((GCTL & One) == Zero) && (CONT != Zero)))
+                    Or (GCTL, One, GCTL)
+                    Store (0x03E8, CONT)
+                    While (LAnd (LEqual (And (GCTL, One), Zero), LNotEqual (
+                        CONT, Zero)))
                     {
                         Stall (One)
-                        CONT--
+                        Decrement (CONT)
                     }
                 }
             }
@@ -4813,25 +5300,25 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             {
                 If (Arg0)
                 {
-                    If ((((ABAR & 0xFFFFC004) == 0xFFFFC004) || ((ABAR & 0xFFFFC000
-                        ) == Zero)))
+                    If (LOr (LEqual (And (ABAR, 0xFFFFC004), 0xFFFFC004), LEqual (And (
+                        ABAR, 0xFFFFC000), Zero)))
                     {
-                        If ((BARA != 0x80000000))
+                        If (LNotEqual (BARA, 0x80000000))
                         {
-                            TBAR = ABAR
-                            TCMD = ACMD
-                            ABAR = BARA
-                            ACMD = 0x06
-                            MODB = One
+                            Store (ABAR, TBAR)
+                            Store (ACMD, TCMD)
+                            Store (BARA, ABAR)
+                            Store (0x06, ACMD)
+                            Store (One, MODB)
                         }
                     }
                     Else
                     {
-                        If (((ACMD & 0x06) != 0x06))
+                        If (LNotEqual (And (ACMD, 0x06), 0x06))
                         {
-                            TCMD = ACMD
-                            ACMD = 0x06
-                            MODC = One
+                            Store (ACMD, TCMD)
+                            Store (0x06, ACMD)
+                            Store (One, MODC)
                         }
                     }
                 }
@@ -4839,26 +5326,25 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 {
                     If (MODB)
                     {
-                        If ((ABAR == BARA))
+                        If (LEqual (ABAR, BARA))
                         {
-                            ABAR = TBAR
-                            ACMD = TCMD
+                            Store (TBAR, ABAR)
+                            Store (TCMD, ACMD)
                         }
                     }
 
                     If (MODC)
                     {
-                        ACMD = TCMD
+                        Store (TCMD, ACMD)
                     }
                 }
             }
             Method (_DSM, 4, NotSerialized)
             {
-                If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
+                If (LEqual (Arg2, Zero)) { Return (Buffer(One) { 0x03 } ) }
                 Return (Package()
                 {
-                    "hda-gfx", Buffer() { "onboard-1" },
-                    "layout-id", Buffer() { 0x56, 0x00, 0x00, 0x00 },
+                    "hda-gfx", Buffer() { "onboard-1" }
                 })
             }
         }
@@ -4871,134 +5357,123 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             {
                 REG0,   32
             }
-            
+
+            Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
+            { 
+                    Return (Package (Zero) {})
+            }
+
             Method (_DOS, 1, NotSerialized)  // _DOS: Disable Output Switching
             {
-                DSEN = (Arg0 & 0x07)
-                If (((Arg0 & 0x03) == Zero))
-                {
-                    If (CondRefOf (HDOS))
-                    {
-                        HDOS ()
-                    }
-                }
-
+                Store (And (Arg0, 0x07), DSEN)
                 If (DRDY)
                 {
-                    DOSF = (Arg0 & 0x03)
-                    BRNC = (Arg0 >> 0x02)
-                    BRNC &= One
+                    And (Arg0, 0x03, DOSF)
+                    Store (ShiftRight (Arg0, 0x02), BRNC)
+                    And (BRNC, One, BRNC)
                 }
             }
 
             Method (_DOD, 0, NotSerialized)  // _DOD: Display Output Devices
             {
-                If (CondRefOf (IDAB))
+                    Store (Zero, NDID)
+                    If (LNotEqual (DIDL, Zero))
+                    {
+                        Store (SDDL (DDL2), DID1)
+                    }
+
+                    If (LNotEqual (DDL2, Zero))
+                    {
+                        Store (SDDL (DIDL), DID2)
+                    }
+
+                    If (LNotEqual (DDL3, Zero))
+                    {
+                        Store (SDDL (DDL3), DID3)
+                    }
+
+                    If (LNotEqual (DDL4, Zero))
+                    {
+                        Store (SDDL (DDL4), DID4)
+                    }
+
+                    If (LNotEqual (DDL5, Zero))
+                    {
+                        Store (SDDL (DDL5), DID5)
+                    }
+
+                    If (LNotEqual (DDL6, Zero))
+                    {
+                        Store (SDDL (DDL6), DID6)
+                    }
+
+                    If (LNotEqual (DDL7, Zero))
+                    {
+                        Store (SDDL (DDL7), DID7)
+                    }
+
+                    If (LNotEqual (DDL8, Zero))
+                    {
+                        Store (SDDL (DDL8), DID8)
+                    }
+
+                    If (LNotEqual (DDL9, Zero))
+                    {
+                        Store (SDDL (DDL9), DID9)
+                    }
+
+                    If (LNotEqual (DD10, Zero))
+                    {
+                        Store (SDDL (DD10), DIDA)
+                    }
+
+                    If (LNotEqual (DD11, Zero))
+                    {
+                        Store (SDDL (DD11), DIDB)
+                    }
+
+                    If (LNotEqual (DD12, Zero))
+                    {
+                        Store (SDDL (DD12), DIDC)
+                    }
+
+                    If (LNotEqual (DD13, Zero))
+                    {
+                        Store (SDDL (DD13), DIDD)
+                    }
+
+                    If (LNotEqual (DD14, Zero))
+                    {
+                        Store (SDDL (DD14), DIDE)
+                    }
+
+                    If (LNotEqual (DD15, Zero))
+                    {
+                        Store (SDDL (DD15), DIDF)
+                    }
+                If (LEqual (NDID, One))
                 {
-                    IDAB ()
-                }
-                Else
-                {
-                    NDID = Zero
-                    If ((DIDL != Zero))
-                    {
-                        DID1 = SDDL (DDL2)
-                    }
-
-                    If ((DDL2 != Zero))
-                    {
-                        DID2 = SDDL (DIDL)
-                    }
-
-                    If ((DDL3 != Zero))
-                    {
-                        DID3 = SDDL (DDL3)
-                    }
-
-                    If ((DDL4 != Zero))
-                    {
-                        DID4 = SDDL (DDL4)
-                    }
-
-                    If ((DDL5 != Zero))
-                    {
-                        DID5 = SDDL (DDL5)
-                    }
-
-                    If ((DDL6 != Zero))
-                    {
-                        DID6 = SDDL (DDL6)
-                    }
-
-                    If ((DDL7 != Zero))
-                    {
-                        DID7 = SDDL (DDL7)
-                    }
-
-                    If ((DDL8 != Zero))
-                    {
-                        DID8 = SDDL (DDL8)
-                    }
-
-                    If ((DDL9 != Zero))
-                    {
-                        DID9 = SDDL (DDL9)
-                    }
-
-                    If ((DD10 != Zero))
-                    {
-                        DIDA = SDDL (DD10)
-                    }
-
-                    If ((DD11 != Zero))
-                    {
-                        DIDB = SDDL (DD11)
-                    }
-
-                    If ((DD12 != Zero))
-                    {
-                        DIDC = SDDL (DD12)
-                    }
-
-                    If ((DD13 != Zero))
-                    {
-                        DIDD = SDDL (DD13)
-                    }
-
-                    If ((DD14 != Zero))
-                    {
-                        DIDE = SDDL (DD14)
-                    }
-
-                    If ((DD15 != Zero))
-                    {
-                        DIDF = SDDL (DD15)
-                    }
-                }
-
-                If ((NDID == One))
-                {
-                    Name (TMP1, Package (0x01)
+                    Name (TMP1, Package (One)
                     {
                         Ones
                     })
-                    Index (TMP1, Zero) = (0x00010000 | DID1)
+                    Store (Or (0x00010000, DID1), Index (TMP1, Zero))
                     Return (TMP1)
                 }
 
-                If ((NDID == 0x02))
+                If (LEqual (NDID, 0x02))
                 {
                     Name (TMP2, Package (0x02)
                     {
                         Ones, 
                         Ones
                     })
-                    Index (TMP2, Zero) = (0x00010000 | DID1)
-                    Index (TMP2, One) = (0x00010000 | DID2)
+                    Store (Or (0x00010000, DID1), Index (TMP2, Zero))
+                    Store (Or (0x00010000, DID2), Index (TMP2, One))
                     Return (TMP2)
                 }
 
-                If ((NDID == 0x03))
+                If (LEqual (NDID, 0x03))
                 {
                     Name (TMP3, Package (0x03)
                     {
@@ -5006,13 +5481,13 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Ones, 
                         Ones
                     })
-                    Index (TMP3, Zero) = (0x00010000 | DID1)
-                    Index (TMP3, One) = (0x00010000 | DID2)
-                    Index (TMP3, 0x02) = (0x00010000 | DID3)
+                    Store (Or (0x00010000, DID1), Index (TMP3, Zero))
+                    Store (Or (0x00010000, DID2), Index (TMP3, One))
+                    Store (Or (0x00010000, DID3), Index (TMP3, 0x02))
                     Return (TMP3)
                 }
 
-                If ((NDID == 0x04))
+                If (LEqual (NDID, 0x04))
                 {
                     Name (TMP4, Package (0x04)
                     {
@@ -5021,14 +5496,14 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Ones, 
                         Ones
                     })
-                    Index (TMP4, Zero) = (0x00010000 | DID1)
-                    Index (TMP4, One) = (0x00010000 | DID2)
-                    Index (TMP4, 0x02) = (0x00010000 | DID3)
-                    Index (TMP4, 0x03) = (0x00010000 | DID4)
+                    Store (Or (0x00010000, DID1), Index (TMP4, Zero))
+                    Store (Or (0x00010000, DID2), Index (TMP4, One))
+                    Store (Or (0x00010000, DID3), Index (TMP4, 0x02))
+                    Store (Or (0x00010000, DID4), Index (TMP4, 0x03))
                     Return (TMP4)
                 }
 
-                If ((NDID == 0x05))
+                If (LEqual (NDID, 0x05))
                 {
                     Name (TMP5, Package (0x05)
                     {
@@ -5038,15 +5513,15 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Ones, 
                         Ones
                     })
-                    Index (TMP5, Zero) = (0x00010000 | DID1)
-                    Index (TMP5, One) = (0x00010000 | DID2)
-                    Index (TMP5, 0x02) = (0x00010000 | DID3)
-                    Index (TMP5, 0x03) = (0x00010000 | DID4)
-                    Index (TMP5, 0x04) = (0x00010000 | DID5)
+                    Store (Or (0x00010000, DID1), Index (TMP5, Zero))
+                    Store (Or (0x00010000, DID2), Index (TMP5, One))
+                    Store (Or (0x00010000, DID3), Index (TMP5, 0x02))
+                    Store (Or (0x00010000, DID4), Index (TMP5, 0x03))
+                    Store (Or (0x00010000, DID5), Index (TMP5, 0x04))
                     Return (TMP5)
                 }
 
-                If ((NDID == 0x06))
+                If (LEqual (NDID, 0x06))
                 {
                     Name (TMP6, Package (0x06)
                     {
@@ -5057,16 +5532,16 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Ones, 
                         Ones
                     })
-                    Index (TMP6, Zero) = (0x00010000 | DID1)
-                    Index (TMP6, One) = (0x00010000 | DID2)
-                    Index (TMP6, 0x02) = (0x00010000 | DID3)
-                    Index (TMP6, 0x03) = (0x00010000 | DID4)
-                    Index (TMP6, 0x04) = (0x00010000 | DID5)
-                    Index (TMP6, 0x05) = (0x00010000 | DID6)
+                    Store (Or (0x00010000, DID1), Index (TMP6, Zero))
+                    Store (Or (0x00010000, DID2), Index (TMP6, One))
+                    Store (Or (0x00010000, DID3), Index (TMP6, 0x02))
+                    Store (Or (0x00010000, DID4), Index (TMP6, 0x03))
+                    Store (Or (0x00010000, DID5), Index (TMP6, 0x04))
+                    Store (Or (0x00010000, DID6), Index (TMP6, 0x05))
                     Return (TMP6)
                 }
 
-                If ((NDID == 0x07))
+                If (LEqual (NDID, 0x07))
                 {
                     Name (TMP7, Package (0x07)
                     {
@@ -5078,17 +5553,17 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Ones, 
                         Ones
                     })
-                    Index (TMP7, Zero) = (0x00010000 | DID1)
-                    Index (TMP7, One) = (0x00010000 | DID2)
-                    Index (TMP7, 0x02) = (0x00010000 | DID3)
-                    Index (TMP7, 0x03) = (0x00010000 | DID4)
-                    Index (TMP7, 0x04) = (0x00010000 | DID5)
-                    Index (TMP7, 0x05) = (0x00010000 | DID6)
-                    Index (TMP7, 0x06) = (0x00010000 | DID7)
+                    Store (Or (0x00010000, DID1), Index (TMP7, Zero))
+                    Store (Or (0x00010000, DID2), Index (TMP7, One))
+                    Store (Or (0x00010000, DID3), Index (TMP7, 0x02))
+                    Store (Or (0x00010000, DID4), Index (TMP7, 0x03))
+                    Store (Or (0x00010000, DID5), Index (TMP7, 0x04))
+                    Store (Or (0x00010000, DID6), Index (TMP7, 0x05))
+                    Store (Or (0x00010000, DID7), Index (TMP7, 0x06))
                     Return (TMP7)
                 }
 
-                If ((NDID == 0x08))
+                If (LEqual (NDID, 0x08))
                 {
                     Name (TMP8, Package (0x08)
                     {
@@ -5101,18 +5576,18 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Ones, 
                         Ones
                     })
-                    Index (TMP8, Zero) = (0x00010000 | DID1)
-                    Index (TMP8, One) = (0x00010000 | DID2)
-                    Index (TMP8, 0x02) = (0x00010000 | DID3)
-                    Index (TMP8, 0x03) = (0x00010000 | DID4)
-                    Index (TMP8, 0x04) = (0x00010000 | DID5)
-                    Index (TMP8, 0x05) = (0x00010000 | DID6)
-                    Index (TMP8, 0x06) = (0x00010000 | DID7)
-                    Index (TMP8, 0x07) = (0x00010000 | DID8)
+                    Store (Or (0x00010000, DID1), Index (TMP8, Zero))
+                    Store (Or (0x00010000, DID2), Index (TMP8, One))
+                    Store (Or (0x00010000, DID3), Index (TMP8, 0x02))
+                    Store (Or (0x00010000, DID4), Index (TMP8, 0x03))
+                    Store (Or (0x00010000, DID5), Index (TMP8, 0x04))
+                    Store (Or (0x00010000, DID6), Index (TMP8, 0x05))
+                    Store (Or (0x00010000, DID7), Index (TMP8, 0x06))
+                    Store (Or (0x00010000, DID8), Index (TMP8, 0x07))
                     Return (TMP8)
                 }
 
-                If ((NDID == 0x09))
+                If (LEqual (NDID, 0x09))
                 {
                     Name (TMP9, Package (0x09)
                     {
@@ -5126,19 +5601,19 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Ones, 
                         Ones
                     })
-                    Index (TMP9, Zero) = (0x00010000 | DID1)
-                    Index (TMP9, One) = (0x00010000 | DID2)
-                    Index (TMP9, 0x02) = (0x00010000 | DID3)
-                    Index (TMP9, 0x03) = (0x00010000 | DID4)
-                    Index (TMP9, 0x04) = (0x00010000 | DID5)
-                    Index (TMP9, 0x05) = (0x00010000 | DID6)
-                    Index (TMP9, 0x06) = (0x00010000 | DID7)
-                    Index (TMP9, 0x07) = (0x00010000 | DID8)
-                    Index (TMP9, 0x08) = (0x00010000 | DID9)
+                    Store (Or (0x00010000, DID1), Index (TMP9, Zero))
+                    Store (Or (0x00010000, DID2), Index (TMP9, One))
+                    Store (Or (0x00010000, DID3), Index (TMP9, 0x02))
+                    Store (Or (0x00010000, DID4), Index (TMP9, 0x03))
+                    Store (Or (0x00010000, DID5), Index (TMP9, 0x04))
+                    Store (Or (0x00010000, DID6), Index (TMP9, 0x05))
+                    Store (Or (0x00010000, DID7), Index (TMP9, 0x06))
+                    Store (Or (0x00010000, DID8), Index (TMP9, 0x07))
+                    Store (Or (0x00010000, DID9), Index (TMP9, 0x08))
                     Return (TMP9)
                 }
 
-                If ((NDID == 0x0A))
+                If (LEqual (NDID, 0x0A))
                 {
                     Name (TMPA, Package (0x0A)
                     {
@@ -5153,20 +5628,20 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Ones, 
                         Ones
                     })
-                    Index (TMPA, Zero) = (0x00010000 | DID1)
-                    Index (TMPA, One) = (0x00010000 | DID2)
-                    Index (TMPA, 0x02) = (0x00010000 | DID3)
-                    Index (TMPA, 0x03) = (0x00010000 | DID4)
-                    Index (TMPA, 0x04) = (0x00010000 | DID5)
-                    Index (TMPA, 0x05) = (0x00010000 | DID6)
-                    Index (TMPA, 0x06) = (0x00010000 | DID7)
-                    Index (TMPA, 0x07) = (0x00010000 | DID8)
-                    Index (TMPA, 0x08) = (0x00010000 | DID9)
-                    Index (TMPA, 0x09) = (0x00010000 | DIDA)
+                    Store (Or (0x00010000, DID1), Index (TMPA, Zero))
+                    Store (Or (0x00010000, DID2), Index (TMPA, One))
+                    Store (Or (0x00010000, DID3), Index (TMPA, 0x02))
+                    Store (Or (0x00010000, DID4), Index (TMPA, 0x03))
+                    Store (Or (0x00010000, DID5), Index (TMPA, 0x04))
+                    Store (Or (0x00010000, DID6), Index (TMPA, 0x05))
+                    Store (Or (0x00010000, DID7), Index (TMPA, 0x06))
+                    Store (Or (0x00010000, DID8), Index (TMPA, 0x07))
+                    Store (Or (0x00010000, DID9), Index (TMPA, 0x08))
+                    Store (Or (0x00010000, DIDA), Index (TMPA, 0x09))
                     Return (TMPA)
                 }
 
-                If ((NDID == 0x0B))
+                If (LEqual (NDID, 0x0B))
                 {
                     Name (TMPB, Package (0x0B)
                     {
@@ -5182,21 +5657,21 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Ones, 
                         Ones
                     })
-                    Index (TMPB, Zero) = (0x00010000 | DID1)
-                    Index (TMPB, One) = (0x00010000 | DID2)
-                    Index (TMPB, 0x02) = (0x00010000 | DID3)
-                    Index (TMPB, 0x03) = (0x00010000 | DID4)
-                    Index (TMPB, 0x04) = (0x00010000 | DID5)
-                    Index (TMPB, 0x05) = (0x00010000 | DID6)
-                    Index (TMPB, 0x06) = (0x00010000 | DID7)
-                    Index (TMPB, 0x07) = (0x00010000 | DID8)
-                    Index (TMPB, 0x08) = (0x00010000 | DID9)
-                    Index (TMPB, 0x09) = (0x00010000 | DIDA)
-                    Index (TMPB, 0x0A) = (0x00010000 | DIDB)
+                    Store (Or (0x00010000, DID1), Index (TMPB, Zero))
+                    Store (Or (0x00010000, DID2), Index (TMPB, One))
+                    Store (Or (0x00010000, DID3), Index (TMPB, 0x02))
+                    Store (Or (0x00010000, DID4), Index (TMPB, 0x03))
+                    Store (Or (0x00010000, DID5), Index (TMPB, 0x04))
+                    Store (Or (0x00010000, DID6), Index (TMPB, 0x05))
+                    Store (Or (0x00010000, DID7), Index (TMPB, 0x06))
+                    Store (Or (0x00010000, DID8), Index (TMPB, 0x07))
+                    Store (Or (0x00010000, DID9), Index (TMPB, 0x08))
+                    Store (Or (0x00010000, DIDA), Index (TMPB, 0x09))
+                    Store (Or (0x00010000, DIDB), Index (TMPB, 0x0A))
                     Return (TMPB)
                 }
 
-                If ((NDID == 0x0C))
+                If (LEqual (NDID, 0x0C))
                 {
                     Name (TMPC, Package (0x0C)
                     {
@@ -5213,22 +5688,22 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Ones, 
                         Ones
                     })
-                    Index (TMPC, Zero) = (0x00010000 | DID1)
-                    Index (TMPC, One) = (0x00010000 | DID2)
-                    Index (TMPC, 0x02) = (0x00010000 | DID3)
-                    Index (TMPC, 0x03) = (0x00010000 | DID4)
-                    Index (TMPC, 0x04) = (0x00010000 | DID5)
-                    Index (TMPC, 0x05) = (0x00010000 | DID6)
-                    Index (TMPC, 0x06) = (0x00010000 | DID7)
-                    Index (TMPC, 0x07) = (0x00010000 | DID8)
-                    Index (TMPC, 0x08) = (0x00010000 | DID9)
-                    Index (TMPC, 0x09) = (0x00010000 | DIDA)
-                    Index (TMPC, 0x0A) = (0x00010000 | DIDB)
-                    Index (TMPC, 0x0B) = (0x00010000 | DIDC)
+                    Store (Or (0x00010000, DID1), Index (TMPC, Zero))
+                    Store (Or (0x00010000, DID2), Index (TMPC, One))
+                    Store (Or (0x00010000, DID3), Index (TMPC, 0x02))
+                    Store (Or (0x00010000, DID4), Index (TMPC, 0x03))
+                    Store (Or (0x00010000, DID5), Index (TMPC, 0x04))
+                    Store (Or (0x00010000, DID6), Index (TMPC, 0x05))
+                    Store (Or (0x00010000, DID7), Index (TMPC, 0x06))
+                    Store (Or (0x00010000, DID8), Index (TMPC, 0x07))
+                    Store (Or (0x00010000, DID9), Index (TMPC, 0x08))
+                    Store (Or (0x00010000, DIDA), Index (TMPC, 0x09))
+                    Store (Or (0x00010000, DIDB), Index (TMPC, 0x0A))
+                    Store (Or (0x00010000, DIDC), Index (TMPC, 0x0B))
                     Return (TMPC)
                 }
 
-                If ((NDID == 0x0D))
+                If (LEqual (NDID, 0x0D))
                 {
                     Name (TMPD, Package (0x0D)
                     {
@@ -5246,23 +5721,23 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Ones, 
                         Ones
                     })
-                    Index (TMPD, Zero) = (0x00010000 | DID1)
-                    Index (TMPD, One) = (0x00010000 | DID2)
-                    Index (TMPD, 0x02) = (0x00010000 | DID3)
-                    Index (TMPD, 0x03) = (0x00010000 | DID4)
-                    Index (TMPD, 0x04) = (0x00010000 | DID5)
-                    Index (TMPD, 0x05) = (0x00010000 | DID6)
-                    Index (TMPD, 0x06) = (0x00010000 | DID7)
-                    Index (TMPD, 0x07) = (0x00010000 | DID8)
-                    Index (TMPD, 0x08) = (0x00010000 | DID9)
-                    Index (TMPD, 0x09) = (0x00010000 | DIDA)
-                    Index (TMPD, 0x0A) = (0x00010000 | DIDB)
-                    Index (TMPD, 0x0B) = (0x00010000 | DIDC)
-                    Index (TMPD, 0x0C) = (0x00010000 | DIDD)
+                    Store (Or (0x00010000, DID1), Index (TMPD, Zero))
+                    Store (Or (0x00010000, DID2), Index (TMPD, One))
+                    Store (Or (0x00010000, DID3), Index (TMPD, 0x02))
+                    Store (Or (0x00010000, DID4), Index (TMPD, 0x03))
+                    Store (Or (0x00010000, DID5), Index (TMPD, 0x04))
+                    Store (Or (0x00010000, DID6), Index (TMPD, 0x05))
+                    Store (Or (0x00010000, DID7), Index (TMPD, 0x06))
+                    Store (Or (0x00010000, DID8), Index (TMPD, 0x07))
+                    Store (Or (0x00010000, DID9), Index (TMPD, 0x08))
+                    Store (Or (0x00010000, DIDA), Index (TMPD, 0x09))
+                    Store (Or (0x00010000, DIDB), Index (TMPD, 0x0A))
+                    Store (Or (0x00010000, DIDC), Index (TMPD, 0x0B))
+                    Store (Or (0x00010000, DIDD), Index (TMPD, 0x0C))
                     Return (TMPD)
                 }
 
-                If ((NDID == 0x0E))
+                If (LEqual (NDID, 0x0E))
                 {
                     Name (TMPE, Package (0x0E)
                     {
@@ -5281,24 +5756,24 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Ones, 
                         Ones
                     })
-                    Index (TMPE, Zero) = (0x00010000 | DID1)
-                    Index (TMPE, One) = (0x00010000 | DID2)
-                    Index (TMPE, 0x02) = (0x00010000 | DID3)
-                    Index (TMPE, 0x03) = (0x00010000 | DID4)
-                    Index (TMPE, 0x04) = (0x00010000 | DID5)
-                    Index (TMPE, 0x05) = (0x00010000 | DID6)
-                    Index (TMPE, 0x06) = (0x00010000 | DID7)
-                    Index (TMPE, 0x07) = (0x00010000 | DID8)
-                    Index (TMPE, 0x08) = (0x00010000 | DID9)
-                    Index (TMPE, 0x09) = (0x00010000 | DIDA)
-                    Index (TMPE, 0x0A) = (0x00010000 | DIDB)
-                    Index (TMPE, 0x0B) = (0x00010000 | DIDC)
-                    Index (TMPE, 0x0C) = (0x00010000 | DIDD)
-                    Index (TMPE, 0x0D) = (0x00010000 | DIDE)
+                    Store (Or (0x00010000, DID1), Index (TMPE, Zero))
+                    Store (Or (0x00010000, DID2), Index (TMPE, One))
+                    Store (Or (0x00010000, DID3), Index (TMPE, 0x02))
+                    Store (Or (0x00010000, DID4), Index (TMPE, 0x03))
+                    Store (Or (0x00010000, DID5), Index (TMPE, 0x04))
+                    Store (Or (0x00010000, DID6), Index (TMPE, 0x05))
+                    Store (Or (0x00010000, DID7), Index (TMPE, 0x06))
+                    Store (Or (0x00010000, DID8), Index (TMPE, 0x07))
+                    Store (Or (0x00010000, DID9), Index (TMPE, 0x08))
+                    Store (Or (0x00010000, DIDA), Index (TMPE, 0x09))
+                    Store (Or (0x00010000, DIDB), Index (TMPE, 0x0A))
+                    Store (Or (0x00010000, DIDC), Index (TMPE, 0x0B))
+                    Store (Or (0x00010000, DIDD), Index (TMPE, 0x0C))
+                    Store (Or (0x00010000, DIDE), Index (TMPE, 0x0D))
                     Return (TMPE)
                 }
 
-                If ((NDID == 0x0F))
+                If (LEqual (NDID, 0x0F))
                 {
                     Name (TMPF, Package (0x0F)
                     {
@@ -5318,25 +5793,25 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Ones, 
                         Ones
                     })
-                    Index (TMPF, Zero) = (0x00010000 | DID1)
-                    Index (TMPF, One) = (0x00010000 | DID2)
-                    Index (TMPF, 0x02) = (0x00010000 | DID3)
-                    Index (TMPF, 0x03) = (0x00010000 | DID4)
-                    Index (TMPF, 0x04) = (0x00010000 | DID5)
-                    Index (TMPF, 0x05) = (0x00010000 | DID6)
-                    Index (TMPF, 0x06) = (0x00010000 | DID7)
-                    Index (TMPF, 0x07) = (0x00010000 | DID8)
-                    Index (TMPF, 0x08) = (0x00010000 | DID9)
-                    Index (TMPF, 0x09) = (0x00010000 | DIDA)
-                    Index (TMPF, 0x0A) = (0x00010000 | DIDB)
-                    Index (TMPF, 0x0B) = (0x00010000 | DIDC)
-                    Index (TMPF, 0x0C) = (0x00010000 | DIDD)
-                    Index (TMPF, 0x0D) = (0x00010000 | DIDE)
-                    Index (TMPF, 0x0E) = (0x00010000 | DIDF)
+                    Store (Or (0x00010000, DID1), Index (TMPF, Zero))
+                    Store (Or (0x00010000, DID2), Index (TMPF, One))
+                    Store (Or (0x00010000, DID3), Index (TMPF, 0x02))
+                    Store (Or (0x00010000, DID4), Index (TMPF, 0x03))
+                    Store (Or (0x00010000, DID5), Index (TMPF, 0x04))
+                    Store (Or (0x00010000, DID6), Index (TMPF, 0x05))
+                    Store (Or (0x00010000, DID7), Index (TMPF, 0x06))
+                    Store (Or (0x00010000, DID8), Index (TMPF, 0x07))
+                    Store (Or (0x00010000, DID9), Index (TMPF, 0x08))
+                    Store (Or (0x00010000, DIDA), Index (TMPF, 0x09))
+                    Store (Or (0x00010000, DIDB), Index (TMPF, 0x0A))
+                    Store (Or (0x00010000, DIDC), Index (TMPF, 0x0B))
+                    Store (Or (0x00010000, DIDD), Index (TMPF, 0x0C))
+                    Store (Or (0x00010000, DIDE), Index (TMPF, 0x0D))
+                    Store (Or (0x00010000, DIDF), Index (TMPF, 0x0E))
                     Return (TMPF)
                 }
 
-                Return (Package (0x01)
+                Return (Package (One)
                 {
                     0x0400
                 })
@@ -5346,21 +5821,21 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             {
                 Method (_ADR, 0, Serialized)  // _ADR: Address
                 {
-                    If (((0x0F00 & DID1) == 0x0400))
+                    If (LEqual (And (0x0F00, DID1), 0x0400))
                     {
-                        EDPV = One
-                        NXDX = NXD1
-                        DIDX = DID1
+                        Store (One, EDPV)
+                        Store (NXD1, NXDX)
+                        Store (DID1, DIDX)
                         Return (One)
                     }
 
-                    If ((DID1 == Zero))
+                    If (LEqual (DID1, Zero))
                     {
                         Return (One)
                     }
                     Else
                     {
-                        Return ((0xFFFF & DID1))
+                        Return (And (0xFFFF, DID1))
                     }
                 }
 
@@ -5371,7 +5846,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
                 {
-                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    If (LAnd (LEqual (And (SGMD, 0x7F), One), CondRefOf (SNXD
+                        )))
                     {
                         Return (NXD1)
                     }
@@ -5381,9 +5857,9 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
                 {
-                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    If (LEqual (And (Arg0, 0xC0000000), 0xC0000000))
                     {
-                        CSTE = NSTE
+                        Store (NSTE, CSTE)
                     }
                 }
             }
@@ -5392,27 +5868,27 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             {
                 Method (_ADR, 0, Serialized)  // _ADR: Address
                 {
-                    If (((0x0F00 & DID2) == 0x0400))
+                    If (LEqual (And (0x0F00, DID2), 0x0400))
                     {
-                        EDPV = 0x02
-                        NXDX = NXD2
-                        DIDX = DID2
+                        Store (0x02, EDPV)
+                        Store (NXD2, NXDX)
+                        Store (DID2, DIDX)
                         Return (0x02)
                     }
 
-                    If ((DID2 == Zero))
+                    If (LEqual (DID2, Zero))
                     {
                         Return (0x02)
                     }
                     Else
                     {
-                        Return ((0xFFFF & DID2))
+                        Return (And (0xFFFF, DID2))
                     }
                 }
 
                 Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
                 {
-                    If ((LIDS == Zero))
+                    If (LEqual (LIDS, Zero))
                     {
                         Return (Zero)
                     }
@@ -5422,7 +5898,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
                 {
-                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    If (LAnd (LEqual (And (SGMD, 0x7F), One), CondRefOf (SNXD
+                        )))
                     {
                         Return (NXD2)
                     }
@@ -5432,9 +5909,9 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
                 {
-                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    If (LEqual (And (Arg0, 0xC0000000), 0xC0000000))
                     {
-                        CSTE = NSTE
+                        Store (NSTE, CSTE)
                     }
                 }
             }
@@ -5443,27 +5920,27 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             {
                 Method (_ADR, 0, Serialized)  // _ADR: Address
                 {
-                    If (((0x0F00 & DID3) == 0x0400))
+                    If (LEqual (And (0x0F00, DID3), 0x0400))
                     {
-                        EDPV = 0x03
-                        NXDX = NXD3
-                        DIDX = DID3
+                        Store (0x03, EDPV)
+                        Store (NXD3, NXDX)
+                        Store (DID3, DIDX)
                         Return (0x03)
                     }
 
-                    If ((DID3 == Zero))
+                    If (LEqual (DID3, Zero))
                     {
                         Return (0x03)
                     }
                     Else
                     {
-                        Return ((0xFFFF & DID3))
+                        Return (And (0xFFFF, DID3))
                     }
                 }
 
                 Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
                 {
-                    If ((DID3 == Zero))
+                    If (LEqual (DID3, Zero))
                     {
                         Return (0x0B)
                     }
@@ -5475,7 +5952,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
                 {
-                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    If (LAnd (LEqual (And (SGMD, 0x7F), One), CondRefOf (SNXD
+                        )))
                     {
                         Return (NXD3)
                     }
@@ -5485,9 +5963,9 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
                 {
-                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    If (LEqual (And (Arg0, 0xC0000000), 0xC0000000))
                     {
-                        CSTE = NSTE
+                        Store (NSTE, CSTE)
                     }
                 }
             }
@@ -5496,27 +5974,27 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             {
                 Method (_ADR, 0, Serialized)  // _ADR: Address
                 {
-                    If (((0x0F00 & DID4) == 0x0400))
+                    If (LEqual (And (0x0F00, DID4), 0x0400))
                     {
-                        EDPV = 0x04
-                        NXDX = NXD4
-                        DIDX = DID4
+                        Store (0x04, EDPV)
+                        Store (NXD4, NXDX)
+                        Store (DID4, DIDX)
                         Return (0x04)
                     }
 
-                    If ((DID4 == Zero))
+                    If (LEqual (DID4, Zero))
                     {
                         Return (0x04)
                     }
                     Else
                     {
-                        Return ((0xFFFF & DID4))
+                        Return (And (0xFFFF, DID4))
                     }
                 }
 
                 Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
                 {
-                    If ((DID4 == Zero))
+                    If (LEqual (DID4, Zero))
                     {
                         Return (0x0B)
                     }
@@ -5528,7 +6006,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
                 {
-                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    If (LAnd (LEqual (And (SGMD, 0x7F), One), CondRefOf (SNXD
+                        )))
                     {
                         Return (NXD4)
                     }
@@ -5538,9 +6017,9 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
                 {
-                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    If (LEqual (And (Arg0, 0xC0000000), 0xC0000000))
                     {
-                        CSTE = NSTE
+                        Store (NSTE, CSTE)
                     }
                 }
             }
@@ -5549,27 +6028,27 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             {
                 Method (_ADR, 0, Serialized)  // _ADR: Address
                 {
-                    If (((0x0F00 & DID5) == 0x0400))
+                    If (LEqual (And (0x0F00, DID5), 0x0400))
                     {
-                        EDPV = 0x05
-                        NXDX = NXD5
-                        DIDX = DID5
+                        Store (0x05, EDPV)
+                        Store (NXD5, NXDX)
+                        Store (DID5, DIDX)
                         Return (0x05)
                     }
 
-                    If ((DID5 == Zero))
+                    If (LEqual (DID5, Zero))
                     {
                         Return (0x05)
                     }
                     Else
                     {
-                        Return ((0xFFFF & DID5))
+                        Return (And (0xFFFF, DID5))
                     }
                 }
 
                 Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
                 {
-                    If ((DID5 == Zero))
+                    If (LEqual (DID5, Zero))
                     {
                         Return (0x0B)
                     }
@@ -5581,7 +6060,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
                 {
-                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    If (LAnd (LEqual (And (SGMD, 0x7F), One), CondRefOf (SNXD
+                        )))
                     {
                         Return (NXD5)
                     }
@@ -5591,9 +6071,9 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
                 {
-                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    If (LEqual (And (Arg0, 0xC0000000), 0xC0000000))
                     {
-                        CSTE = NSTE
+                        Store (NSTE, CSTE)
                     }
                 }
             }
@@ -5602,27 +6082,27 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             {
                 Method (_ADR, 0, Serialized)  // _ADR: Address
                 {
-                    If (((0x0F00 & DID6) == 0x0400))
+                    If (LEqual (And (0x0F00, DID6), 0x0400))
                     {
-                        EDPV = 0x06
-                        NXDX = NXD6
-                        DIDX = DID6
+                        Store (0x06, EDPV)
+                        Store (NXD6, NXDX)
+                        Store (DID6, DIDX)
                         Return (0x06)
                     }
 
-                    If ((DID6 == Zero))
+                    If (LEqual (DID6, Zero))
                     {
                         Return (0x06)
                     }
                     Else
                     {
-                        Return ((0xFFFF & DID6))
+                        Return (And (0xFFFF, DID6))
                     }
                 }
 
                 Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
                 {
-                    If ((DID6 == Zero))
+                    If (LEqual (DID6, Zero))
                     {
                         Return (0x0B)
                     }
@@ -5634,7 +6114,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
                 {
-                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    If (LAnd (LEqual (And (SGMD, 0x7F), One), CondRefOf (SNXD
+                        )))
                     {
                         Return (NXD6)
                     }
@@ -5644,9 +6125,9 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
                 {
-                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    If (LEqual (And (Arg0, 0xC0000000), 0xC0000000))
                     {
-                        CSTE = NSTE
+                        Store (NSTE, CSTE)
                     }
                 }
             }
@@ -5655,27 +6136,27 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             {
                 Method (_ADR, 0, Serialized)  // _ADR: Address
                 {
-                    If (((0x0F00 & DID7) == 0x0400))
+                    If (LEqual (And (0x0F00, DID7), 0x0400))
                     {
-                        EDPV = 0x07
-                        NXDX = NXD7
-                        DIDX = DID7
+                        Store (0x07, EDPV)
+                        Store (NXD7, NXDX)
+                        Store (DID7, DIDX)
                         Return (0x07)
                     }
 
-                    If ((DID7 == Zero))
+                    If (LEqual (DID7, Zero))
                     {
                         Return (0x07)
                     }
                     Else
                     {
-                        Return ((0xFFFF & DID7))
+                        Return (And (0xFFFF, DID7))
                     }
                 }
 
                 Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
                 {
-                    If ((DID7 == Zero))
+                    If (LEqual (DID7, Zero))
                     {
                         Return (0x0B)
                     }
@@ -5687,7 +6168,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
                 {
-                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    If (LAnd (LEqual (And (SGMD, 0x7F), One), CondRefOf (SNXD
+                        )))
                     {
                         Return (NXD7)
                     }
@@ -5697,9 +6179,9 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
                 {
-                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    If (LEqual (And (Arg0, 0xC0000000), 0xC0000000))
                     {
-                        CSTE = NSTE
+                        Store (NSTE, CSTE)
                     }
                 }
             }
@@ -5708,27 +6190,27 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             {
                 Method (_ADR, 0, Serialized)  // _ADR: Address
                 {
-                    If (((0x0F00 & DID8) == 0x0400))
+                    If (LEqual (And (0x0F00, DID8), 0x0400))
                     {
-                        EDPV = 0x08
-                        NXDX = NXD8
-                        DIDX = DID8
+                        Store (0x08, EDPV)
+                        Store (NXD8, NXDX)
+                        Store (DID8, DIDX)
                         Return (0x08)
                     }
 
-                    If ((DID8 == Zero))
+                    If (LEqual (DID8, Zero))
                     {
                         Return (0x08)
                     }
                     Else
                     {
-                        Return ((0xFFFF & DID8))
+                        Return (And (0xFFFF, DID8))
                     }
                 }
 
                 Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
                 {
-                    If ((DID8 == Zero))
+                    If (LEqual (DID8, Zero))
                     {
                         Return (0x0B)
                     }
@@ -5740,7 +6222,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
                 {
-                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    If (LAnd (LEqual (And (SGMD, 0x7F), One), CondRefOf (SNXD
+                        )))
                     {
                         Return (NXD8)
                     }
@@ -5750,9 +6233,9 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
                 {
-                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    If (LEqual (And (Arg0, 0xC0000000), 0xC0000000))
                     {
-                        CSTE = NSTE
+                        Store (NSTE, CSTE)
                     }
                 }
             }
@@ -5761,27 +6244,27 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             {
                 Method (_ADR, 0, Serialized)  // _ADR: Address
                 {
-                    If (((0x0F00 & DID9) == 0x0400))
+                    If (LEqual (And (0x0F00, DID9), 0x0400))
                     {
-                        EDPV = 0x09
-                        NXDX = NXD8
-                        DIDX = DID9
+                        Store (0x09, EDPV)
+                        Store (NXD8, NXDX)
+                        Store (DID9, DIDX)
                         Return (0x09)
                     }
 
-                    If ((DID9 == Zero))
+                    If (LEqual (DID9, Zero))
                     {
                         Return (0x09)
                     }
                     Else
                     {
-                        Return ((0xFFFF & DID9))
+                        Return (And (0xFFFF, DID9))
                     }
                 }
 
                 Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
                 {
-                    If ((DID9 == Zero))
+                    If (LEqual (DID9, Zero))
                     {
                         Return (0x0B)
                     }
@@ -5793,7 +6276,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
                 {
-                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    If (LAnd (LEqual (And (SGMD, 0x7F), One), CondRefOf (SNXD
+                        )))
                     {
                         Return (NXD8)
                     }
@@ -5803,9 +6287,9 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
                 {
-                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    If (LEqual (And (Arg0, 0xC0000000), 0xC0000000))
                     {
-                        CSTE = NSTE
+                        Store (NSTE, CSTE)
                     }
                 }
             }
@@ -5814,27 +6298,27 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             {
                 Method (_ADR, 0, Serialized)  // _ADR: Address
                 {
-                    If (((0x0F00 & DIDA) == 0x0400))
+                    If (LEqual (And (0x0F00, DIDA), 0x0400))
                     {
-                        EDPV = 0x0A
-                        NXDX = NXD8
-                        DIDX = DIDA
+                        Store (0x0A, EDPV)
+                        Store (NXD8, NXDX)
+                        Store (DIDA, DIDX)
                         Return (0x0A)
                     }
 
-                    If ((DIDA == Zero))
+                    If (LEqual (DIDA, Zero))
                     {
                         Return (0x0A)
                     }
                     Else
                     {
-                        Return ((0xFFFF & DIDA))
+                        Return (And (0xFFFF, DIDA))
                     }
                 }
 
                 Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
                 {
-                    If ((DIDA == Zero))
+                    If (LEqual (DIDA, Zero))
                     {
                         Return (0x0B)
                     }
@@ -5846,7 +6330,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
                 {
-                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    If (LAnd (LEqual (And (SGMD, 0x7F), One), CondRefOf (SNXD
+                        )))
                     {
                         Return (NXD8)
                     }
@@ -5856,9 +6341,9 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
                 {
-                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    If (LEqual (And (Arg0, 0xC0000000), 0xC0000000))
                     {
-                        CSTE = NSTE
+                        Store (NSTE, CSTE)
                     }
                 }
             }
@@ -5867,27 +6352,27 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             {
                 Method (_ADR, 0, Serialized)  // _ADR: Address
                 {
-                    If (((0x0F00 & DIDB) == 0x0400))
+                    If (LEqual (And (0x0F00, DIDB), 0x0400))
                     {
-                        EDPV = 0x0B
-                        NXDX = NXD8
-                        DIDX = DIDB
+                        Store (0x0B, EDPV)
+                        Store (NXD8, NXDX)
+                        Store (DIDB, DIDX)
                         Return (0x0B)
                     }
 
-                    If ((DIDB == Zero))
+                    If (LEqual (DIDB, Zero))
                     {
                         Return (0x0B)
                     }
                     Else
                     {
-                        Return ((0xFFFF & DIDB))
+                        Return (And (0xFFFF, DIDB))
                     }
                 }
 
                 Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
                 {
-                    If ((DIDB == Zero))
+                    If (LEqual (DIDB, Zero))
                     {
                         Return (0x0B)
                     }
@@ -5899,7 +6384,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
                 {
-                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    If (LAnd (LEqual (And (SGMD, 0x7F), One), CondRefOf (SNXD
+                        )))
                     {
                         Return (NXD8)
                     }
@@ -5909,9 +6395,9 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
                 {
-                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    If (LEqual (And (Arg0, 0xC0000000), 0xC0000000))
                     {
-                        CSTE = NSTE
+                        Store (NSTE, CSTE)
                     }
                 }
             }
@@ -5920,27 +6406,27 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             {
                 Method (_ADR, 0, Serialized)  // _ADR: Address
                 {
-                    If (((0x0F00 & DIDC) == 0x0400))
+                    If (LEqual (And (0x0F00, DIDC), 0x0400))
                     {
-                        EDPV = 0x0C
-                        NXDX = NXD8
-                        DIDX = DIDC
+                        Store (0x0C, EDPV)
+                        Store (NXD8, NXDX)
+                        Store (DIDC, DIDX)
                         Return (0x0C)
                     }
 
-                    If ((DIDC == Zero))
+                    If (LEqual (DIDC, Zero))
                     {
                         Return (0x0C)
                     }
                     Else
                     {
-                        Return ((0xFFFF & DIDC))
+                        Return (And (0xFFFF, DIDC))
                     }
                 }
 
                 Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
                 {
-                    If ((DIDC == Zero))
+                    If (LEqual (DIDC, Zero))
                     {
                         Return (0x0C)
                     }
@@ -5952,7 +6438,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
                 {
-                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    If (LAnd (LEqual (And (SGMD, 0x7F), One), CondRefOf (SNXD
+                        )))
                     {
                         Return (NXD8)
                     }
@@ -5962,9 +6449,9 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
                 {
-                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    If (LEqual (And (Arg0, 0xC0000000), 0xC0000000))
                     {
-                        CSTE = NSTE
+                        Store (NSTE, CSTE)
                     }
                 }
             }
@@ -5973,27 +6460,27 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             {
                 Method (_ADR, 0, Serialized)  // _ADR: Address
                 {
-                    If (((0x0F00 & DIDD) == 0x0400))
+                    If (LEqual (And (0x0F00, DIDD), 0x0400))
                     {
-                        EDPV = 0x0D
-                        NXDX = NXD8
-                        DIDX = DIDD
+                        Store (0x0D, EDPV)
+                        Store (NXD8, NXDX)
+                        Store (DIDD, DIDX)
                         Return (0x0D)
                     }
 
-                    If ((DIDD == Zero))
+                    If (LEqual (DIDD, Zero))
                     {
                         Return (0x0D)
                     }
                     Else
                     {
-                        Return ((0xFFFF & DIDD))
+                        Return (And (0xFFFF, DIDD))
                     }
                 }
 
                 Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
                 {
-                    If ((DIDD == Zero))
+                    If (LEqual (DIDD, Zero))
                     {
                         Return (0x0D)
                     }
@@ -6005,7 +6492,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
                 {
-                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    If (LAnd (LEqual (And (SGMD, 0x7F), One), CondRefOf (SNXD
+                        )))
                     {
                         Return (NXD8)
                     }
@@ -6015,9 +6503,9 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
                 {
-                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    If (LEqual (And (Arg0, 0xC0000000), 0xC0000000))
                     {
-                        CSTE = NSTE
+                        Store (NSTE, CSTE)
                     }
                 }
             }
@@ -6026,27 +6514,27 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             {
                 Method (_ADR, 0, Serialized)  // _ADR: Address
                 {
-                    If (((0x0F00 & DIDE) == 0x0400))
+                    If (LEqual (And (0x0F00, DIDE), 0x0400))
                     {
-                        EDPV = 0x0E
-                        NXDX = NXD8
-                        DIDX = DIDE
+                        Store (0x0E, EDPV)
+                        Store (NXD8, NXDX)
+                        Store (DIDE, DIDX)
                         Return (0x0E)
                     }
 
-                    If ((DIDE == Zero))
+                    If (LEqual (DIDE, Zero))
                     {
                         Return (0x0E)
                     }
                     Else
                     {
-                        Return ((0xFFFF & DIDE))
+                        Return (And (0xFFFF, DIDE))
                     }
                 }
 
                 Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
                 {
-                    If ((DIDE == Zero))
+                    If (LEqual (DIDE, Zero))
                     {
                         Return (0x0E)
                     }
@@ -6058,7 +6546,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
                 {
-                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    If (LAnd (LEqual (And (SGMD, 0x7F), One), CondRefOf (SNXD
+                        )))
                     {
                         Return (NXD8)
                     }
@@ -6068,9 +6557,9 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
                 {
-                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    If (LEqual (And (Arg0, 0xC0000000), 0xC0000000))
                     {
-                        CSTE = NSTE
+                        Store (NSTE, CSTE)
                     }
                 }
             }
@@ -6079,27 +6568,27 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             {
                 Method (_ADR, 0, Serialized)  // _ADR: Address
                 {
-                    If (((0x0F00 & DIDF) == 0x0400))
+                    If (LEqual (And (0x0F00, DIDF), 0x0400))
                     {
-                        EDPV = 0x0F
-                        NXDX = NXD8
-                        DIDX = DIDF
+                        Store (0x0F, EDPV)
+                        Store (NXD8, NXDX)
+                        Store (DIDF, DIDX)
                         Return (0x0F)
                     }
 
-                    If ((DIDF == Zero))
+                    If (LEqual (DIDF, Zero))
                     {
                         Return (0x0F)
                     }
                     Else
                     {
-                        Return ((0xFFFF & DIDF))
+                        Return (And (0xFFFF, DIDF))
                     }
                 }
 
                 Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
                 {
-                    If ((DIDC == Zero))
+                    If (LEqual (DIDC, Zero))
                     {
                         Return (0x0F)
                     }
@@ -6111,7 +6600,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
                 {
-                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    If (LAnd (LEqual (And (SGMD, 0x7F), One), CondRefOf (SNXD
+                        )))
                     {
                         Return (NXD8)
                     }
@@ -6121,9 +6611,9 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
                 {
-                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    If (LEqual (And (Arg0, 0xC0000000), 0xC0000000))
                     {
-                        CSTE = NSTE
+                        Store (NSTE, CSTE)
                     }
                 }
             }
@@ -6132,19 +6622,19 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             {
                 Method (_ADR, 0, Serialized)  // _ADR: Address
                 {
-                    If ((EDPV == Zero))
+                    If (LEqual (EDPV, Zero))
                     {
                         Return (0x1F)
                     }
                     Else
                     {
-                        Return ((0xFFFF & DIDX))
+                        Return (And (0xFFFF, DIDX))
                     }
                 }
 
                 Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
                 {
-                    If ((EDPV == Zero))
+                    If (LEqual (EDPV, Zero))
                     {
                         Return (Zero)
                     }
@@ -6156,7 +6646,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DGS, 0, NotSerialized)  // _DGS: Display Graphics State
                 {
-                    If ((((SGMD & 0x7F) == One) && CondRefOf (SNXD)))
+                    If (LAnd (LEqual (And (SGMD, 0x7F), One), CondRefOf (SNXD
+                        )))
                     {
                         Return (NXDX)
                     }
@@ -6166,9 +6657,9 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_DSS, 1, NotSerialized)  // _DSS: Device Set State
                 {
-                    If (((Arg0 & 0xC0000000) == 0xC0000000))
+                    If (LEqual (And (Arg0, 0xC0000000), 0xC0000000))
                     {
-                        CSTE = NSTE
+                        Store (NSTE, CSTE)
                     }
                 }
 
@@ -6176,40 +6667,41 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 {
                     If (ARDY)
                     {
-                        Local1 = BRTI
-                        Local1 <<= 0x04
-                        Local0 = DerefOf (Index (\_SB.PCI0.LPCB.EC0.PWAC, Local1))
-                        TCHE |= 0x08
-                        ASLC |= 0x08
-                        PFMB = Local0
-                        PFMB |= 0x0100
-                        ASLE = One
+                        Store (BRTI, Local1)
+                        ShiftLeft (Local1, 0x04, Local1)
+                        Store (DerefOf (Index (^^^LPCB.EC0.PWAC, Local1)), Local0)
+                        Or (TCHE, 0x08, TCHE)
+                        Or (ASLC, 0x08, ASLC)
+                        Store (Local0, PFMB)
+                        Or (PFMB, 0x0100, PFMB)
+                        Store (One, ASLE)
                     }
                 }
 
                 Method (_BCL, 0, NotSerialized)  // _BCL: Brightness Control Levels
                 {
-                    If ((\MSOS () >= \OSW8))
+                    If (LGreaterEqual (MSOS (), OSW8))
                     {
-                        Local0 = (0x64 + One)
-                        Local0 += 0x02
+                        Add (0x64, One, Local0)
+                        Add (Local0, 0x02, Local0)
                         Name (BRPP, Package (0x67) {})
-                        Index (BRPP, Zero) = 0x64
-                        Index (BRPP, One) = 0x28
-                        Local1 = 0x02
-                        Local2 = 0x64
-                        While ((Local1 < Local0))
+                        Store (0x64, Index (BRPP, Zero))
+                        Store (0x28, Index (BRPP, One))
+                        Store (0x02, Local1)
+                        Store (0x64, Local2)
+                        While (LLess (Local1, Local0))
                         {
-                            Index (BRPP, Local1) = Local2
-                            Local1++
-                            Local2--
+                            Store (Local2, Index (BRPP, Local1))
+                            Increment (Local1)
+                            Decrement (Local2)
                         }
 
-                        Local0 = Zero
-                        While ((Local0 <= 0x0A))
+                        Store (Zero, Local0)
+                        While (LLessEqual (Local0, 0x0A))
                         {
-                            Index (PCTG, (0x0A - Local0)) = (Local0 * 0x0A)
-                            Local0++
+                            Store (Multiply (Local0, 0x0A), Index (PCTG, Subtract (0x0A, Local0
+                                )))
+                            Increment (Local0)
                         }
 
                         MINB ()
@@ -6217,18 +6709,18 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     }
                     Else
                     {
-                        Local0 = Zero
-                        Local4 = BRTI
-                        Local4 <<= 0x04
-                        While ((Local0 < 0x0B))
+                        Store (Zero, Local0)
+                        Store (BRTI, Local4)
+                        ShiftLeft (Local4, 0x04, Local4)
+                        While (LLess (Local0, 0x0B))
                         {
-                            Local3 = (0x0B - Local0)
-                            Local3 -= One
-                            Local3 = (Local4 + Local3)
-                            Local1 = DerefOf (Index (\_SB.PCI0.LPCB.EC0.PWAC, Local3))
-                            Local2 = ((Local1 * 0x64) / 0xFF)
-                            Index (PCTG, Local0) = Local2
-                            Local0++
+                            Subtract (0x0B, Local0, Local3)
+                            Subtract (Local3, One, Local3)
+                            Store (Add (Local4, Local3), Local3)
+                            Store (DerefOf (Index (^^^LPCB.EC0.PWAC, Local3)), Local1)
+                            Store (Divide (Multiply (Local1, 0x64), 0xFF, ), Local2)
+                            Store (Local2, Index (PCTG, Local0))
+                            Increment (Local0)
                         }
 
                         MINB ()
@@ -6238,34 +6730,35 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_BCM, 1, NotSerialized)  // _BCM: Brightness Control Method
                 {
-                    BCMD = One
-                    Local0 = GCBL (Arg0)
-                    LBTN = (0x0A - Local0)
+                    \RMDT.P1 ("LCDD BCM")
+                    Store (One, BCMD)
+                    Store (GCBL (Arg0), Local0)
+                    Subtract (0x0A, Local0, LBTN)
                     If (BRNC)
                     {
-                        \_SB.PCI0.IGPU.AINT (One, Arg0)
+                        AINT (One, Arg0)
                     }
                     Else
                     {
-                        \_SB.PCI0.LPCB.EC0.STBR ()
+                        ^^^LPCB.EC0.STBR ()
                     }
                 }
 
                 Method (_BQC, 0, NotSerialized)  // _BQC: Brightness Query Current
                 {
-                    If ((\MSOS () >= \OSW8))
+                    If (LGreaterEqual (MSOS (), OSW8))
                     {
-                        Local0 = (CBLV & 0x7FFFFFFF)
+                        And (CBLV, 0x7FFFFFFF, Local0)
                         Return (Local0)
                     }
                     Else
                     {
-                        Local1 = BRTI
-                        Local1 <<= 0x04
-                        Local2 = LBTN
-                        Local2 = (Local1 + Local2)
-                        Local3 = (DerefOf (Index (\_SB.PCI0.LPCB.EC0.PWAC, Local2)) * 0x64)
-                        Local3 = (Local3 / 0xFF)
+                        Store (BRTI, Local1)
+                        ShiftLeft (Local1, 0x04, Local1)
+                        Store (LBTN, Local2)
+                        Store (Add (Local1, Local2), Local2)
+                        Store (Multiply (DerefOf (Index (^^^LPCB.EC0.PWAC, Local2)), 0x64), Local3)
+                        Store (Divide (Local3, 0xFF, ), Local3)
                         Return (Local3)
                     }
                 }
@@ -6273,132 +6766,132 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (SDDL, 1, NotSerialized)
             {
-                NDID++
-                Local0 = (Arg0 & 0x0F0F)
-                Local1 = (0x80000000 | Local0)
-                If ((DIDL == Local0))
+                Increment (NDID)
+                Store (And (Arg0, 0x0F0F), Local0)
+                Or (0x80000000, Local0, Local1)
+                If (LEqual (DIDL, Local0))
                 {
                     Return (Local1)
                 }
 
-                If ((DDL2 == Local0))
+                If (LEqual (DDL2, Local0))
                 {
                     Return (Local1)
                 }
 
-                If ((DDL3 == Local0))
+                If (LEqual (DDL3, Local0))
                 {
                     Return (Local1)
                 }
 
-                If ((DDL4 == Local0))
+                If (LEqual (DDL4, Local0))
                 {
                     Return (Local1)
                 }
 
-                If ((DDL5 == Local0))
+                If (LEqual (DDL5, Local0))
                 {
                     Return (Local1)
                 }
 
-                If ((DDL6 == Local0))
+                If (LEqual (DDL6, Local0))
                 {
                     Return (Local1)
                 }
 
-                If ((DDL7 == Local0))
+                If (LEqual (DDL7, Local0))
                 {
                     Return (Local1)
                 }
 
-                If ((DDL8 == Local0))
+                If (LEqual (DDL8, Local0))
                 {
                     Return (Local1)
                 }
 
-                If ((DDL9 == Local0))
+                If (LEqual (DDL9, Local0))
                 {
                     Return (Local1)
                 }
 
-                If ((DD10 == Local0))
+                If (LEqual (DD10, Local0))
                 {
                     Return (Local1)
                 }
 
-                If ((DD11 == Local0))
+                If (LEqual (DD11, Local0))
                 {
                     Return (Local1)
                 }
 
-                If ((DD12 == Local0))
+                If (LEqual (DD12, Local0))
                 {
                     Return (Local1)
                 }
 
-                If ((DD13 == Local0))
+                If (LEqual (DD13, Local0))
                 {
                     Return (Local1)
                 }
 
-                If ((DD14 == Local0))
+                If (LEqual (DD14, Local0))
                 {
                     Return (Local1)
                 }
 
-                If ((DD15 == Local0))
+                If (LEqual (DD15, Local0))
                 {
                     Return (Local1)
                 }
 
-                NDID--
+                Decrement (NDID)
                 Return (Zero)
             }
 
             Method (CDDS, 1, NotSerialized)
             {
-                Local0 = (Arg0 & 0x0F0F)
-                If ((Zero == Local0))
+                Store (And (Arg0, 0x0F0F), Local0)
+                If (LEqual (Zero, Local0))
                 {
                     Return (0x1D)
                 }
 
-                If ((CADL == Local0))
+                If (LEqual (CADL, Local0))
                 {
                     Return (0x1F)
                 }
 
-                If ((CAL2 == Local0))
+                If (LEqual (CAL2, Local0))
                 {
                     Return (0x1F)
                 }
 
-                If ((CAL3 == Local0))
+                If (LEqual (CAL3, Local0))
                 {
                     Return (0x1F)
                 }
 
-                If ((CAL4 == Local0))
+                If (LEqual (CAL4, Local0))
                 {
                     Return (0x1F)
                 }
 
-                If ((CAL5 == Local0))
+                If (LEqual (CAL5, Local0))
                 {
                     Return (0x1F)
                 }
 
-                If ((CAL6 == Local0))
+                If (LEqual (CAL6, Local0))
                 {
                     Return (0x1F)
                 }
 
-                If ((CAL7 == Local0))
+                If (LEqual (CAL7, Local0))
                 {
                     Return (0x1F)
                 }
 
-                If ((CAL8 == Local0))
+                If (LEqual (CAL8, Local0))
                 {
                     Return (0x1F)
                 }
@@ -6408,48 +6901,48 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (NDDS, 1, NotSerialized)
             {
-                Local0 = (Arg0 & 0x0F0F)
-                If ((Zero == Local0))
+                Store (And (Arg0, 0x0F0F), Local0)
+                If (LEqual (Zero, Local0))
                 {
                     Return (Zero)
                 }
 
-                If ((NADL == Local0))
+                If (LEqual (NADL, Local0))
                 {
                     Return (One)
                 }
 
-                If ((NDL2 == Local0))
+                If (LEqual (NDL2, Local0))
                 {
                     Return (One)
                 }
 
-                If ((NDL3 == Local0))
+                If (LEqual (NDL3, Local0))
                 {
                     Return (One)
                 }
 
-                If ((NDL4 == Local0))
+                If (LEqual (NDL4, Local0))
                 {
                     Return (One)
                 }
 
-                If ((NDL5 == Local0))
+                If (LEqual (NDL5, Local0))
                 {
                     Return (One)
                 }
 
-                If ((NDL6 == Local0))
+                If (LEqual (NDL6, Local0))
                 {
                     Return (One)
                 }
 
-                If ((NDL7 == Local0))
+                If (LEqual (NDL7, Local0))
                 {
                     Return (One)
                 }
 
-                If ((NDL8 == Local0))
+                If (LEqual (NDL8, Local0))
                 {
                     Return (One)
                 }
@@ -6457,7 +6950,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Return (Zero)
             }
 
-            Scope (\_SB.PCI0)
+            Scope (^^PCI0)
             {
                 OperationRegion (MCHP, PCI_Config, 0x40, 0xC0)
                 Field (MCHP, AnyAcc, NoLock, Preserve)
@@ -6497,6 +6990,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Offset (0xBC), 
                 ASLS,   32
             }
+
+
 
             OperationRegion (IGDM, SystemMemory, ASLB, 0x2000)
             Field (IGDM, AnyAcc, NoLock, Preserve)
@@ -6666,317 +7161,307 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Name (CRIT, 0x04)
             Name (NCRT, 0x06)
             Method (GSCI, 0, Serialized)
-            {
-                Method (GBDA, 0, Serialized)
                 {
-                    If ((GESF == Zero))
+                    Method (GBDA, 0, Serialized)
                     {
-                        PARM = 0x0659
-                        GESF = Zero
-                        Return (SUCC)
-                    }
-
-                    If ((GESF == One))
-                    {
-                        PARM = 0x00300482
-                        If ((S0ID == One))
+                        If (LEqual (GESF, 0x00))
                         {
-                            PARM |= 0x0100
+                            Store (0x00020000, PARM)
+                            Store (Zero, GESF)
+                            Return (SUCC)
                         }
 
-                        GESF = Zero
-                        Return (SUCC)
-                    }
-
-                    If ((GESF == 0x04))
-                    {
-                        PARM &= 0xEFFF0000
-                        PARM &= (DerefOf (Index (DBTB, IBTT)) << 0x10)
-                        PARM |= IBTT
-                        GESF = Zero
-                        Return (SUCC)
-                    }
-
-                    If ((GESF == 0x05))
-                    {
-                        PARM = IPSC
-                        PARM |= (IPAT << 0x08)
-                        PARM += 0x0100
-                        PARM |= (LIDS << 0x10)
-                        PARM += 0x00010000
-                        PARM |= (IBIA << 0x14)
-                        GESF = Zero
-                        Return (SUCC)
-                    }
-
-                    If ((GESF == 0x07))
-                    {
-                        PARM = GIVD
-                        PARM ^= One
-                        PARM |= (GMFN << One)
-                        PARM |= 0x1800
-                        PARM |= (IDMS << 0x11)
-                        PARM |= (DerefOf (Index (DerefOf (Index (CDCT, HVCO)), CDVL)) << 
-                            0x15)
-                        GESF = One
-                        Return (SUCC)
-                    }
-
-                    If ((GESF == 0x0A))
-                    {
-                        PARM = Zero
-                        If (ISSC)
+                        If (LEqual (GESF, 0x01))
                         {
-                            PARM |= 0x03
+                            Store (0x00200000, PARM)
+                            Store (Zero, GESF)
+                            Return (SUCC)
                         }
 
-                        GESF = Zero
-                        Return (SUCC)
-                    }
-
-                    If ((GESF == 0x0B))
-                    {
-                        PARM = KSV0
-                        GESF = KSV1
-                        Return (SUCC)
-                    }
-
-                    GESF = Zero
-                    Return (CRIT)
-                }
-
-                Method (SBCB, 0, Serialized)
-                {
-                    If ((GESF == Zero))
-                    {
-                        PARM = Zero
-                        PARM = 0x000F87DD
-                        GESF = Zero
-                        Return (SUCC)
-                    }
-
-                    If ((GESF == One))
-                    {
-                        GESF = Zero
-                        PARM = Zero
-                        Return (SUCC)
-                    }
-
-                    If ((GESF == 0x03))
-                    {
-                        GESF = Zero
-                        PARM = Zero
-                        Return (SUCC)
-                    }
-
-                    If ((GESF == 0x04))
-                    {
-                        GESF = Zero
-                        PARM = Zero
-                        Return (SUCC)
-                    }
-
-                    If ((GESF == 0x05))
-                    {
-                        GESF = Zero
-                        PARM = Zero
-                        Return (SUCC)
-                    }
-
-                    If ((GESF == 0x07))
-                    {
-                        If ((S0ID == One))
+                        If (LEqual (GESF, 0x04))
                         {
-                            If (((PARM & 0xFF) == One))
+                            And (PARM, 0xEFFF0000, PARM)
+                            And (PARM, ShiftLeft (DerefOf (Index (DBTB, IBTT)), 0x10), 
+                                PARM)
+                            Or (IBTT, PARM, PARM)
+                            Store (Zero, GESF)
+                            Return (SUCC)
+                        }
+
+                        If (LEqual (GESF, 0x05))
+                        {
+                            Store (IPSC, PARM)
+                            Or (PARM, ShiftLeft (IPAT, 0x08), PARM)
+                            Add (PARM, 0x0100, PARM)
+                            Or (PARM, ShiftLeft (LIDS, 0x10), PARM)
+                            Add (PARM, 0x00010000, PARM)
+                            Or (PARM, ShiftLeft (IBIA, 0x14), PARM)
+                            Store (Zero, GESF)
+                            Return (SUCC)
+                        }
+
+                        If (LEqual (GESF, 0x06))
+                        {
+                            Store (Zero, GESF)
+                            Return (SUCC)
+                        }
+
+                        If (LEqual (GESF, 0x07))
+                        {
+                            Store (GIVD, PARM)
+                            XOr (PARM, 0x01, PARM)
+                            Or (PARM, ShiftLeft (GMFN, 0x01), PARM)
+                            Or (PARM, ShiftLeft (0x03, 0x0B), PARM)
+                            Or (PARM, ShiftLeft (IDMS, 0x11), PARM)
+                            Or (ShiftLeft (DerefOf (Index (DerefOf (Index (CDCT, HVCO)), CDVL
+                                )), 0x15), PARM, PARM)
+                            Store (0x01, GESF)
+                            Return (SUCC)
+                        }
+
+                        If (LEqual (GESF, 0x0A))
+                        {
+                            Store (0x00, PARM)
+                            If (ISSC)
                             {
-                                \GUAM (One)
+                                Or (PARM, 0x03, PARM)
                             }
+
+                            Store (0x00, GESF)
+                            Return (SUCC)
                         }
 
-                        If ((PARM == Zero))
+                        If (LEqual (GESF, 0x0B))
                         {
-                            Local0 = CLID
-                            If ((0x80000000 & Local0))
+                            Store (KSV0, PARM)
+                            Store (KSV1, GESF)
+                            Return (SUCC)
+                        }
+
+                        Store (Zero, GESF)
+                        Return (CRIT)
+                    }
+
+                    Method (SBCB, 0, Serialized)
+                    {
+                        If (LEqual (GESF, 0x00))
+                        {
+                            Store (0x00, PARM)
+                            Store (0x00020000, PARM)
+                            Store (Zero, GESF)
+                            Return (SUCC)
+                        }
+
+                        If (LEqual (GESF, 0x01))
+                        {
+                            Store (0x00, PARM)
+                            Store (Zero, GESF)
+                            Store (0x00200000, PARM)
+                            Return (SUCC)
+                        }
+
+                        If (LEqual (GESF, 0x03))
+                        {
+                            Store (Zero, GESF)
+                            Store (Zero, PARM)
+                            Return (SUCC)
+                        }
+
+                        If (LEqual (GESF, 0x04))
+                        {
+                            Store (Zero, GESF)
+                            Store (Zero, PARM)
+                            Return (SUCC)
+                        }
+
+                        If (LEqual (GESF, 0x05))
+                        {
+                            Store (Zero, GESF)
+                            Store (Zero, PARM)
+                            Return (SUCC)
+                        }
+
+                        If (LEqual (GESF, 0x06))
+                        {
+                            Store (Zero, GESF)
+                            Store (Zero, PARM)
+                            Return (SUCC)
+                        }
+
+                        If (LEqual (GESF, 0x07))
+                        {
+                            If (LEqual (PARM, 0x00))
                             {
-                                CLID &= 0x0F
-                                GLID (CLID)
+                                Store (CLID, Local0)
+                                If (And (0x80000000, Local0))
+                                {
+                                    And (CLID, 0x0F, CLID)
+                                    GLID (CLID)
+                                }
                             }
+
+                            Store (Zero, GESF)
+                            Store (Zero, PARM)
+                            Return (SUCC)
                         }
 
-                        GESF = Zero
-                        PARM = Zero
-                        Return (SUCC)
-                    }
-
-                    If ((GESF == 0x08))
-                    {
-                        If ((S0ID == One))
+                        If (LEqual (GESF, 0x08))
                         {
-                            Local0 = ((PARM >> 0x08) & 0xFF)
-                            If ((Local0 == Zero))
+                            Store (Zero, GESF)
+                            Store (Zero, PARM)
+                            Return (SUCC)
+                        }
+
+                        If (LEqual (GESF, 0x09))
+                        {
+                            And (PARM, 0xFF, IBTT)
+                            Store (Zero, GESF)
+                            Store (Zero, PARM)
+                            Return (SUCC)
+                        }
+
+                        If (LEqual (GESF, 0x0A))
+                        {
+                            And (PARM, 0xFF, IPSC)
+                            If (And (ShiftRight (PARM, 0x08), 0xFF))
                             {
-                                \GUAM (Zero)
+                                And (ShiftRight (PARM, 0x08), 0xFF, IPAT)
+                                Decrement (IPAT)
                             }
+
+                            And (ShiftRight (PARM, 0x14), 0x07, IBIA)
+                            Store (Zero, GESF)
+                            Store (Zero, PARM)
+                            Return (SUCC)
                         }
 
-                        GESF = Zero
-                        PARM = Zero
-                        Return (SUCC)
-                    }
-
-                    If ((GESF == 0x09))
-                    {
-                        IBTT = (PARM & 0xFF)
-                        GESF = Zero
-                        PARM = Zero
-                        Return (SUCC)
-                    }
-
-                    If ((GESF == 0x0A))
-                    {
-                        IPSC = (PARM & 0xFF)
-                        If (((PARM >> 0x08) & 0xFF))
+                        If (LEqual (GESF, 0x0B))
                         {
-                            IPAT = ((PARM >> 0x08) & 0xFF)
-                            IPAT--
-                        }
-
-                        IBIA = ((PARM >> 0x14) & 0x07)
-                        GESF = Zero
-                        PARM = Zero
-                        Return (SUCC)
-                    }
-
-                    If ((GESF == 0x0B))
-                    {
-                        IF1E = ((PARM >> One) & One)
-                        If ((PARM & 0x0001E000))
-                        {
-                            IDMS = ((PARM >> 0x0D) & 0x0F)
-                        }
-                        Else
-                        {
-                            IDMS = ((PARM >> 0x11) & 0x0F)
-                        }
-
-                        GESF = Zero
-                        PARM = Zero
-                        Return (SUCC)
-                    }
-
-                    If ((GESF == 0x10))
-                    {
-                        GESF = Zero
-                        PARM = Zero
-                        Return (SUCC)
-                    }
-
-                    If ((GESF == 0x11))
-                    {
-                        PARM = (LIDS << 0x08)
-                        PARM += 0x0100
-                        GESF = Zero
-                        Return (SUCC)
-                    }
-
-                    If ((GESF == 0x12))
-                    {
-                        If ((PARM & One))
-                        {
-                            If (((PARM >> One) == One))
+                            And (ShiftRight (PARM, 0x01), 0x01, IF1E)
+                            If (And (PARM, ShiftLeft (0x0F, 0x0D)))
                             {
-                                ISSC = One
+                                And (ShiftRight (PARM, 0x0D), 0x0F, IDMS)
                             }
                             Else
                             {
-                                GESF = Zero
-                                Return (CRIT)
+                                And (ShiftRight (PARM, 0x11), 0x0F, IDMS)
                             }
+
+                            Store (Zero, GESF)
+                            Store (Zero, PARM)
+                            Return (SUCC)
                         }
-                        Else
+
+                        If (LEqual (GESF, 0x10))
                         {
-                            ISSC = Zero
+                            Store (Zero, GESF)
+                            Store (Zero, PARM)
+                            Return (SUCC)
                         }
 
-                        GESF = Zero
-                        PARM = Zero
-                        Return (SUCC)
-                    }
-
-                    If ((GESF == 0x13))
-                    {
-                        GESF = Zero
-                        PARM = Zero
-                        Return (SUCC)
-                    }
-
-                    If ((GESF == 0x14))
-                    {
-                        PAVP = (PARM & 0x0F)
-                        GESF = Zero
-                        PARM = Zero
-                        Return (SUCC)
-                    }
-
-                    If ((GESF == 0x15))
-                    {
-                        If ((PARM == One))
+                        If (LEqual (GESF, 0x11))
                         {
-                            \_SB.PCI0.AUDE |= 0x20
-                            \_SB.PCI0.HDAU.ABWA (One)
-                            \_SB.PCI0.HDAU.ARST ()
-                            \_SB.PCI0.HDAU.ASTR ()
-                            \_SB.PCI0.HDAU.AINI ()
-                            \_SB.PCI0.HDAU.CXDC ()
-                            \_SB.PCI0.HDAU.ABWA (Zero)
-                            Notify (\_SB.PCI0, Zero)
+                            Store (ShiftLeft (LIDS, 0x08), PARM)
+                            Add (PARM, 0x0100, PARM)
+                            Store (Zero, GESF)
+                            Return (SUCC)
                         }
 
-                        If ((PARM == Zero))
+                        If (LEqual (GESF, 0x12))
                         {
-                            \_SB.PCI0.AUDE &= 0xDF
-                            Notify (\_SB.PCI0, Zero)
+                            If (And (PARM, 0x01))
+                            {
+                                If (LEqual (ShiftRight (PARM, 0x01), 0x01))
+                                {
+                                    Store (0x01, ISSC)
+                                }
+                                Else
+                                {
+                                    Store (Zero, GESF)
+                                    Return (CRIT)
+                                }
+                            }
+                            Else
+                            {
+                                Store (0x00, ISSC)
+                            }
+
+                            Store (Zero, GESF)
+                            Store (Zero, PARM)
+                            Return (SUCC)
                         }
 
-                        GESF = Zero
-                        PARM = Zero
+                        If (LEqual (GESF, 0x13))
+                        {
+                            Store (Zero, GESF)
+                            Store (Zero, PARM)
+                            Return (SUCC)
+                        }
+
+                        If (LEqual (GESF, 0x14))
+                        {
+                            And (PARM, 0x0F, PAVP)
+                            Store (Zero, GESF)
+                            Store (Zero, PARM)
+                            Return (SUCC)
+                        }
+
+                        If (LEqual (GESF, 0x15))
+                        {
+                            If (LEqual (PARM, 0x01))
+                            {
+                                Or (\_SB.PCI0.AUDE, 0x20, \_SB.PCI0.AUDE)
+                                \_SB.PCI0.HDAU.ASTR ()
+                                \_SB.PCI0.HDAU.AINI ()
+                                \_SB.PCI0.HDAU.CXDC ()
+                                Notify (\_SB.PCI0, 0x00)
+                            }
+
+                            If (LEqual (PARM, 0x00))
+                            {
+                                And (\_SB.PCI0.AUDE, 0xDF, \_SB.PCI0.AUDE)
+                                Notify (\_SB.PCI0, 0x00)
+                            }
+
+                            Store (Zero, GESF)
+                            Store (Zero, PARM)
+                            Return (SUCC)
+                        }
+
+                        Store (Zero, GESF)
                         Return (SUCC)
                     }
 
-                    GESF = Zero
-                    Return (SUCC)
-                }
+                    If (LEqual (GEFC, 0x04))
+                    {
+                        Store (GBDA (), GXFC)
+                    }
 
-                If ((GEFC == 0x04))
-                {
-                    GXFC = GBDA ()
-                }
+                    If (LEqual (GEFC, 0x06))
+                    {
+                        Store (SBCB (), GXFC)
+                    }
 
-                If ((GEFC == 0x06))
-                {
-                    GXFC = SBCB ()
+                    Store (0x00, GEFC)
+                    Store (0x01, SCIS)
+                    Store (0x00, GSSE)
+                    Store (0x00, SCIE)
+                    Return (Zero)
                 }
-
-                GEFC = Zero
-                SCIS = One
-                GSSE = Zero
-                SCIE = Zero
-                Return (Zero)
-            }
 
             Method (PDRD, 0, NotSerialized)
             {
-                Return (!DRDY)
+                Return (LNot (DRDY))
             }
 
             Method (PSTS, 0, NotSerialized)
             {
-                If ((CSTS > 0x02))
+                If (LGreater (CSTS, 0x02))
                 {
                     Sleep (ASLP)
                 }
 
-                Return ((CSTS == 0x03))
+                Return (LEqual (CSTS, 0x03))
             }
 
             Method (GNOT, 2, NotSerialized)
@@ -6986,52 +7471,43 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Return (One)
                 }
 
-                CEVT = Arg0
-                CSTS = 0x03
-                If (((CHPD == Zero) && (Arg1 == Zero)))
+                Store (Arg0, CEVT)
+                Store (0x03, CSTS)
+                If (LAnd (LEqual (CHPD, Zero), LEqual (Arg1, Zero)))
                 {
-                    If (((OSYS > 0x07D0) || (OSYS < 0x07D6)))
+                    If (LOr (LGreater (OSYS, 0x07D0), LLess (OSYS, 0x07D6)))
                     {
-                        Notify (\_SB.PCI0, Arg1)
+                        Notify (PCI0, Arg1)
                     }
                     Else
                     {
-                        Notify (\_SB.PCI0.IGPU, Arg1)
+                        Notify (IGPU, Arg1)
                     }
                 }
-
-                If (CondRefOf (HNOT))
-                {
-                    HNOT (Arg0)
-                }
-                Else
-                {
-                    Notify (\_SB.PCI0.IGPU, 0x80)
-                }
-
+                    Notify (IGPU, 0x80)
                 Return (Zero)
             }
 
             Method (GHDS, 1, NotSerialized)
             {
-                TIDX = Arg0
+                Store (Arg0, TIDX)
                 Return (GNOT (One, Zero))
             }
 
             Method (GLID, 1, NotSerialized)
             {
-                If ((Arg0 == One))
+                If (LEqual (Arg0, One))
                 {
-                    CLID = 0x03
+                    Store (0x03, CLID)
                 }
                 Else
                 {
-                    CLID = Arg0
+                    Store (Arg0, CLID)
                 }
 
                 If (GNOT (0x02, Zero))
                 {
-                    CLID |= 0x80000000
+                    Or (CLID, 0x80000000, CLID)
                     Return (One)
                 }
 
@@ -7040,25 +7516,25 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (GDCK, 1, NotSerialized)
             {
-                CDCK = Arg0
+                Store (Arg0, CDCK)
                 Return (GNOT (0x04, Zero))
             }
 
             Method (PARD, 0, NotSerialized)
             {
-                If (!ARDY)
+                If (LNot (ARDY))
                 {
                     Sleep (ASLP)
                 }
 
-                Return (!ARDY)
+                Return (LNot (ARDY))
             }
 
             Method (IUEH, 1, Serialized)
             {
-                IUER &= 0xC0
-                IUER ^= (One << Arg0)
-                If ((Arg0 <= 0x04))
+                And (IUER, 0xC0, IUER)
+                XOr (IUER, ShiftLeft (One, Arg0), IUER)
+                If (LLessEqual (Arg0, 0x04))
                 {
                     Return (AINT (0x05, Zero))
                 }
@@ -7070,7 +7546,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (AINT, 2, NotSerialized)
             {
-                If (!(TCHE & (One << Arg0)))
+                If (LNot (And (TCHE, ShiftLeft (One, Arg0))))
                 {
                     Return (One)
                 }
@@ -7080,105 +7556,105 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Return (One)
                 }
 
-                If (((Arg0 >= 0x05) && (Arg0 <= 0x07)))
+                If (LAnd (LGreaterEqual (Arg0, 0x05), LLessEqual (Arg0, 0x07)))
                 {
-                    ASLC = (One << Arg0)
-                    ASLE = One
-                    Local2 = Zero
-                    While (((Local2 < 0xFA) && (ASLC != Zero)))
+                    Store (ShiftLeft (One, Arg0), ASLC)
+                    Store (One, ASLE)
+                    Store (Zero, Local2)
+                    While (LAnd (LLess (Local2, 0xFA), LNotEqual (ASLC, Zero)))
                     {
                         Sleep (0x04)
-                        Local2++
+                        Increment (Local2)
                     }
 
                     Return (Zero)
                 }
 
-                If ((Arg0 == 0x02))
+                If (LEqual (Arg0, 0x02))
                 {
                     If (CPFM)
                     {
-                        Local0 = (CPFM & 0x0F)
-                        Local1 = (EPFM & 0x0F)
-                        If ((Local0 == One))
+                        And (CPFM, 0x0F, Local0)
+                        And (EPFM, 0x0F, Local1)
+                        If (LEqual (Local0, One))
                         {
-                            If ((Local1 & 0x06))
+                            If (And (Local1, 0x06))
                             {
-                                PFIT = 0x06
+                                Store (0x06, PFIT)
                             }
                             Else
                             {
-                                If ((Local1 & 0x08))
+                                If (And (Local1, 0x08))
                                 {
-                                    PFIT = 0x08
+                                    Store (0x08, PFIT)
                                 }
                                 Else
                                 {
-                                    PFIT = One
+                                    Store (One, PFIT)
                                 }
                             }
                         }
 
-                        If ((Local0 == 0x06))
+                        If (LEqual (Local0, 0x06))
                         {
-                            If ((Local1 & 0x08))
+                            If (And (Local1, 0x08))
                             {
-                                PFIT = 0x08
+                                Store (0x08, PFIT)
                             }
                             Else
                             {
-                                If ((Local1 & One))
+                                If (And (Local1, One))
                                 {
-                                    PFIT = One
+                                    Store (One, PFIT)
                                 }
                                 Else
                                 {
-                                    PFIT = 0x06
+                                    Store (0x06, PFIT)
                                 }
                             }
                         }
 
-                        If ((Local0 == 0x08))
+                        If (LEqual (Local0, 0x08))
                         {
-                            If ((Local1 & One))
+                            If (And (Local1, One))
                             {
-                                PFIT = One
+                                Store (One, PFIT)
                             }
                             Else
                             {
-                                If ((Local1 & 0x06))
+                                If (And (Local1, 0x06))
                                 {
-                                    PFIT = 0x06
+                                    Store (0x06, PFIT)
                                 }
                                 Else
                                 {
-                                    PFIT = 0x08
+                                    Store (0x08, PFIT)
                                 }
                             }
                         }
                     }
                     Else
                     {
-                        PFIT ^= 0x07
+                        XOr (PFIT, 0x07, PFIT)
                     }
 
-                    PFIT |= 0x80000000
-                    ASLC = 0x04
+                    Or (PFIT, 0x80000000, PFIT)
+                    Store (0x04, ASLC)
                 }
                 Else
                 {
-                    If ((Arg0 == One))
+                    If (LEqual (Arg0, One))
                     {
-                        BCLP = ((Arg1 * 0xFF) / 0x64)
-                        BCLP |= 0x80000000
-                        ASLC = 0x02
+                        Store (Divide (Multiply (Arg1, 0xFF), 0x64, ), BCLP)
+                        Or (BCLP, 0x80000000, BCLP)
+                        Store (0x02, ASLC)
                     }
                     Else
                     {
-                        If ((Arg0 == Zero))
+                        If (LEqual (Arg0, Zero))
                         {
-                            ALSI = Arg1
-                            ASLC = One
+                            Store (Arg1, ALSI)
+                            Store (One, ASLC)
                         }
                         Else
                         {
@@ -7187,15 +7663,15 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     }
                 }
 
-                ASLE = One
+                Store (One, ASLE)
                 Return (Zero)
             }
 
             Method (SCIP, 0, NotSerialized)
             {
-                If ((OVER != Zero))
+                If (LNotEqual (OVER, Zero))
                 {
-                    Return (!GSMI)
+                    Return (LNot (GSMI))
                 }
 
                 Return (Zero)
@@ -7204,223 +7680,223 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Name (OPBS, 0xFFFFFF00)
             Method (OPTS, 1, NotSerialized)
             {
-                If ((\_SB.VGAF & One))
+                If (And (VGAF, One))
                 {
-                    If ((Arg0 == 0x03))
+                    If (LEqual (Arg0, 0x03))
                     {
-                        OPBS = ASLS
+                        Store (ASLS, OPBS)
                     }
                 }
             }
 
             Method (OWAK, 1, NotSerialized)
             {
-                If ((\_SB.VGAF & One))
+                If (And (VGAF, One))
                 {
-                    If ((Arg0 == 0x03))
+                    If (LEqual (Arg0, 0x03))
                     {
-                        ASLS = OPBS
-                        GSES = One
+                        Store (OPBS, ASLS)
+                        Store (One, GSES)
                     }
 
-                    \_SB.PCI0.IGPU.CLID = One
+                    Store (One, CLID)
                 }
             }
 
             Method (OGCD, 0, NotSerialized)
             {
-                If ((CADL == Zero))
+                If (LEqual (CADL, Zero))
                 {
-                    \_SB.CSTE = LCDM
+                    Store (LCDM, CSTE)
                     Return (Zero)
                 }
 
-                \_SB.CSTE = OA2D (CADL)
-                If ((CAL2 == Zero))
-                {
-                    Return (Zero)
-                }
-
-                \_SB.CSTE |= OA2D (CAL2)
-                If ((CAL3 == Zero))
+                Store (OA2D (CADL), CSTE)
+                If (LEqual (CAL2, Zero))
                 {
                     Return (Zero)
                 }
 
-                \_SB.CSTE |= OA2D (CAL3)
-                If ((CAL4 == Zero))
+                Or (OA2D (CAL2), CSTE, CSTE)
+                If (LEqual (CAL3, Zero))
                 {
                     Return (Zero)
                 }
 
-                \_SB.CSTE |= OA2D (CAL4)
-                If ((CAL5 == Zero))
+                Or (OA2D (CAL3), CSTE, CSTE)
+                If (LEqual (CAL4, Zero))
                 {
                     Return (Zero)
                 }
 
-                \_SB.CSTE |= OA2D (CAL5)
-                If ((CAL6 == Zero))
+                Or (OA2D (CAL4), CSTE, CSTE)
+                If (LEqual (CAL5, Zero))
                 {
                     Return (Zero)
                 }
 
-                \_SB.CSTE |= OA2D (CAL6)
-                If ((CAL7 == Zero))
+                Or (OA2D (CAL5), CSTE, CSTE)
+                If (LEqual (CAL6, Zero))
                 {
                     Return (Zero)
                 }
 
-                \_SB.CSTE |= OA2D (CAL7)
-                If ((CAL8 == Zero))
+                Or (OA2D (CAL6), CSTE, CSTE)
+                If (LEqual (CAL7, Zero))
                 {
                     Return (Zero)
                 }
 
-                \_SB.CSTE |= OA2D (CAL8)
+                Or (OA2D (CAL7), CSTE, CSTE)
+                If (LEqual (CAL8, Zero))
+                {
+                    Return (Zero)
+                }
+
+                Or (OA2D (CAL8), CSTE, CSTE)
                 Return (Zero)
             }
 
             Method (OGND, 0, NotSerialized)
             {
-                If ((NADL == Zero))
+                If (LEqual (NADL, Zero))
                 {
-                    \_SB.NSTE = LCDM
+                    Store (LCDM, NSTE)
                     Return (Zero)
                 }
 
-                \_SB.NSTE = OA2D (NADL)
-                If ((NDL2 == Zero))
-                {
-                    Return (Zero)
-                }
-
-                \_SB.NSTE |= OA2D (NDL2)
-                If ((NDL3 == Zero))
+                Store (OA2D (NADL), NSTE)
+                If (LEqual (NDL2, Zero))
                 {
                     Return (Zero)
                 }
 
-                \_SB.NSTE |= OA2D (NDL3)
-                If ((NDL4 == Zero))
+                Or (OA2D (NDL2), NSTE, NSTE)
+                If (LEqual (NDL3, Zero))
                 {
                     Return (Zero)
                 }
 
-                \_SB.NSTE |= OA2D (NDL4)
-                If ((NDL5 == Zero))
+                Or (OA2D (NDL3), NSTE, NSTE)
+                If (LEqual (NDL4, Zero))
                 {
                     Return (Zero)
                 }
 
-                \_SB.NSTE |= OA2D (NDL5)
-                If ((NDL6 == Zero))
+                Or (OA2D (NDL4), NSTE, NSTE)
+                If (LEqual (NDL5, Zero))
                 {
                     Return (Zero)
                 }
 
-                \_SB.NSTE |= OA2D (NDL6)
-                If ((NDL7 == Zero))
+                Or (OA2D (NDL5), NSTE, NSTE)
+                If (LEqual (NDL6, Zero))
                 {
                     Return (Zero)
                 }
 
-                \_SB.NSTE |= OA2D (NDL7)
-                If ((NDL8 == Zero))
+                Or (OA2D (NDL6), NSTE, NSTE)
+                If (LEqual (NDL7, Zero))
                 {
                     Return (Zero)
                 }
 
-                \_SB.NSTE |= OA2D (NDL8)
+                Or (OA2D (NDL7), NSTE, NSTE)
+                If (LEqual (NDL8, Zero))
+                {
+                    Return (Zero)
+                }
+
+                Or (OA2D (NDL8), NSTE, NSTE)
                 Return (Zero)
             }
 
             Method (OGCA, 0, NotSerialized)
             {
                 SOID ()
-                If ((CPDL == Zero))
+                If (LEqual (CPDL, Zero))
                 {
-                    \_SB.OCAD = LCDM
+                    Store (LCDM, OCAD)
                     Return (Zero)
                 }
 
-                \_SB.OCAD = OA2D (CPDL)
-                If ((CPL2 == Zero))
-                {
-                    Return (Zero)
-                }
-
-                \_SB.OCAD |= OA2D (CPL2)
-                If ((CPL3 == Zero))
+                Store (OA2D (CPDL), OCAD)
+                If (LEqual (CPL2, Zero))
                 {
                     Return (Zero)
                 }
 
-                \_SB.OCAD |= OA2D (CPL3)
-                If ((CPL4 == Zero))
+                Or (OA2D (CPL2), OCAD, OCAD)
+                If (LEqual (CPL3, Zero))
                 {
                     Return (Zero)
                 }
 
-                \_SB.OCAD |= OA2D (CPL4)
-                If ((CPL5 == Zero))
+                Or (OA2D (CPL3), OCAD, OCAD)
+                If (LEqual (CPL4, Zero))
                 {
                     Return (Zero)
                 }
 
-                \_SB.OCAD |= OA2D (CPL5)
-                If ((CPL6 == Zero))
+                Or (OA2D (CPL4), OCAD, OCAD)
+                If (LEqual (CPL5, Zero))
                 {
                     Return (Zero)
                 }
 
-                \_SB.OCAD |= OA2D (CPL6)
-                If ((CPL7 == Zero))
+                Or (OA2D (CPL5), OCAD, OCAD)
+                If (LEqual (CPL6, Zero))
                 {
                     Return (Zero)
                 }
 
-                \_SB.OCAD |= OA2D (CPL7)
-                If ((CPL8 == Zero))
+                Or (OA2D (CPL6), OCAD, OCAD)
+                If (LEqual (CPL7, Zero))
                 {
                     Return (Zero)
                 }
 
-                \_SB.OCAD |= OA2D (CPL8)
+                Or (OA2D (CPL7), OCAD, OCAD)
+                If (LEqual (CPL8, Zero))
+                {
+                    Return (Zero)
+                }
+
+                Or (OA2D (CPL8), OCAD, OCAD)
                 Return (Zero)
             }
 
             Method (OA2D, 1, NotSerialized)
             {
-                Local0 = Zero
-                If ((Arg0 == LFID))
+                Store (Zero, Local0)
+                If (LEqual (Arg0, LFID))
                 {
-                    Local0 |= LCDM
+                    Or (Local0, LCDM, Local0)
                 }
 
-                If ((Arg0 == CRID))
+                If (LEqual (Arg0, CRID))
                 {
-                    Local0 |= CRTM
+                    Or (Local0, CRTM, Local0)
                 }
 
-                If ((Arg0 == TVID))
+                If (LEqual (Arg0, TVID))
                 {
-                    Local0 |= TVOM
+                    Or (Local0, TVOM, Local0)
                 }
 
-                If ((Arg0 == HDID))
+                If (LEqual (Arg0, HDID))
                 {
-                    Local0 |= HDMM
+                    Or (Local0, HDMM, Local0)
                 }
 
-                If ((Arg0 == DVID))
+                If (LEqual (Arg0, DVID))
                 {
-                    Local0 |= DVIM
+                    Or (Local0, DVIM, Local0)
                 }
 
-                If ((Arg0 == DPID))
+                If (LEqual (Arg0, DPID))
                 {
-                    Local0 |= DPOM
+                    Or (Local0, DPOM, Local0)
                 }
 
                 Return (Local0)
@@ -7428,33 +7904,33 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (D2OA, 1, NotSerialized)
             {
-                Local0 = Zero
-                If ((Arg0 & LCDM))
+                Store (Zero, Local0)
+                If (And (Arg0, LCDM))
                 {
                     Return (LFID)
                 }
 
-                If ((Arg0 & CRTM))
+                If (And (Arg0, CRTM))
                 {
                     Return (CRID)
                 }
 
-                If ((Arg0 & TVOM))
+                If (And (Arg0, TVOM))
                 {
                     Return (TVID)
                 }
 
-                If ((Arg0 & HDMM))
+                If (And (Arg0, HDMM))
                 {
                     Return (HDID)
                 }
 
-                If ((Arg0 & DVIM))
+                If (And (Arg0, DVIM))
                 {
                     Return (DVID)
                 }
 
-                If ((Arg0 & DPOM))
+                If (And (Arg0, DPOM))
                 {
                     Return (DPID)
                 }
@@ -7465,36 +7941,36 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Name (DDID, Zero)
             Method (WNDD, 1, NotSerialized)
             {
-                DDID = GDOA (Arg0)
-                NADL = DDID
-                DDID = GDOA (Arg0)
-                NDL2 = DDID
-                DDID = GDOA (Arg0)
-                NDL3 = DDID
-                DDID = GDOA (Arg0)
-                NDL4 = DDID
-                DDID = GDOA (Arg0)
-                NDL5 = DDID
-                DDID = GDOA (Arg0)
-                NDL6 = DDID
-                DDID = GDOA (Arg0)
-                NDL7 = DDID
-                DDID = GDOA (Arg0)
-                NDL8 = DDID
-                CONT = Zero
+                Store (GDOA (Arg0), DDID)
+                Store (DDID, NADL)
+                Store (GDOA (Arg0), DDID)
+                Store (DDID, NDL2)
+                Store (GDOA (Arg0), DDID)
+                Store (DDID, NDL3)
+                Store (GDOA (Arg0), DDID)
+                Store (DDID, NDL4)
+                Store (GDOA (Arg0), DDID)
+                Store (DDID, NDL5)
+                Store (GDOA (Arg0), DDID)
+                Store (DDID, NDL6)
+                Store (GDOA (Arg0), DDID)
+                Store (DDID, NDL7)
+                Store (GDOA (Arg0), DDID)
+                Store (DDID, NDL8)
+                Store (Zero, CONT)
             }
 
             Name (CONT, Zero)
             Method (GDOA, 1, NotSerialized)
             {
-                While ((CONT < 0x08))
+                While (LLess (CONT, 0x08))
                 {
-                    Local0 = One
-                    Local0 <<= CONT
-                    Local1 = (\_SB.NSTE & Local0)
-                    CONT++
-                    Local1 = D2OA (Local1)
-                    If ((Local1 != Zero))
+                    Store (One, Local0)
+                    ShiftLeft (Local0, CONT, Local0)
+                    And (NSTE, Local0, Local1)
+                    Increment (CONT)
+                    Store (D2OA (Local1), Local1)
+                    If (LNotEqual (Local1, Zero))
                     {
                         Return (Local1)
                     }
@@ -7511,25 +7987,25 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Name (DVID, Ones)
             Method (GOID, 1, NotSerialized)
             {
-                Local0 = (Arg0 & 0x0F00)
-                If ((Local0 == 0x0100))
+                And (Arg0, 0x0F00, Local0)
+                If (LEqual (Local0, 0x0100))
                 {
-                    CRID = Arg0
+                    Store (Arg0, CRID)
                 }
 
-                If ((Local0 == 0x0200))
+                If (LEqual (Local0, 0x0200))
                 {
-                    TVID = Arg0
+                    Store (Arg0, TVID)
                 }
 
-                If ((Local0 == 0x0400))
+                If (LEqual (Local0, 0x0400))
                 {
-                    LFID = Arg0
+                    Store (Arg0, LFID)
                 }
 
-                If ((Arg0 == 0x0300))
+                If (LEqual (Arg0, 0x0300))
                 {
-                    HDID = Arg0
+                    Store (Arg0, HDID)
                 }
             }
 
@@ -7545,7 +8021,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 GOID (CPL8)
             }
 
-            Device (\_SB.MEM2)
+            Device (^^MEM2)
             {
                 Name (_HID, EisaId ("PNP0C01"))  // _HID: Hardware ID
                 Name (_UID, 0x02)  // _UID: Unique ID
@@ -7560,18 +8036,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         0x00001000,         // Address Length
                         )
                 })
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (IGDS)
-                    {
-                        If ((PNHM == 0x000306C1))
-                        {
-                            Return (0x0F)
-                        }
-                    }
-
-                    Return (Zero)
-                }
 
                 Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
                 {
@@ -7604,7 +8068,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Name (DPOM, 0x8080)
             Method (PRST, 0, NotSerialized)
             {
-                If ((REG0 == Ones))
+                If (LEqual (REG0, Ones))
                 {
                     Return (Zero)
                 }
@@ -7621,38 +8085,38 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (D2AF, 1, NotSerialized)
             {
-                Local0 = Zero
-                If ((Arg0 & LCDM))
+                Store (Zero, Local0)
+                If (And (Arg0, LCDM))
                 {
-                    Local0 |= One
+                    Or (Local0, One, Local0)
                 }
 
-                If ((Arg0 & CRTM))
+                If (And (Arg0, CRTM))
                 {
-                    Local0 |= 0x02
+                    Or (Local0, 0x02, Local0)
                 }
 
-                If ((Arg0 & TVOM))
+                If (And (Arg0, TVOM))
                 {
-                    Local0 |= 0x04
+                    Or (Local0, 0x04, Local0)
                 }
 
-                If ((Arg0 & DVIM))
+                If (And (Arg0, DVIM))
                 {
-                    Local0 |= 0x08
+                    Or (Local0, 0x08, Local0)
                 }
 
-                If ((Arg0 & HDMM))
+                If (And (Arg0, HDMM))
                 {
-                    Local0 |= 0x10
+                    Or (Local0, 0x10, Local0)
                 }
 
-                If ((Arg0 & DPOM))
+                If (And (Arg0, DPOM))
                 {
-                    Local0 |= 0x20
+                    Or (Local0, 0x20, Local0)
                 }
 
-                If (!Local0)
+                If (LNot (Local0))
                 {
                     Return (NXTD)
                 }
@@ -7663,23 +8127,23 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Method (GCDD, 0, NotSerialized)
             {
                 OGCD ()
-                Return (\_SB.CSTE)
+                Return (CSTE)
             }
 
             Method (GCBL, 1, NotSerialized)
             {
-                Local0 = Zero
-                Arg0 &= 0x7FFFFFFF
-                While ((Local0 < 0x0A))
+                Store (Zero, Local0)
+                And (Arg0, 0x7FFFFFFF, Arg0)
+                While (LLess (Local0, 0x0A))
                 {
-                    Local1 = DerefOf (Index (PCTG, Local0))
-                    Local2 = DerefOf (Index (PCTG, (Local0 + One)))
-                    If (((Arg0 <= Local1) && (Arg0 > Local2)))
+                    Store (DerefOf (Index (PCTG, Local0)), Local1)
+                    Store (DerefOf (Index (PCTG, Add (Local0, One))), Local2)
+                    If (LAnd (LLessEqual (Arg0, Local1), LGreater (Arg0, Local2)))
                     {
                         Break
                     }
 
-                    Local0++
+                    Increment (Local0)
                 }
 
                 Return (Local0)
@@ -7690,69 +8154,69 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 If (BRNC)
                 {
                     GCDD ()
-                    Local0 = (D2AF (\_SB.CSTE) & One)
-                    If ((Local0 == Zero))
+                    Store (And (D2AF (CSTE), One), Local0)
+                    If (LEqual (Local0, Zero))
                     {
                         Return (Zero)
                     }
 
-                    Local0 = CBLV
-                    BCMD = Zero
+                    Store (CBLV, Local0)
+                    Store (Zero, BCMD)
                     Notify (LCDD, 0x86)
-                    Local2 = 0x012C
-                    Local1 = (Local0 & 0x7FFFFFFF)
-                    If ((Local1 >= DerefOf (Index (PCTG, One))))
+                    Store (0x012C, Local2)
+                    And (Local0, 0x7FFFFFFF, Local1)
+                    If (LGreaterEqual (Local1, DerefOf (Index (PCTG, One))))
                     {
-                        Local2 = Zero
-                        Local1 = One
+                        Store (Zero, Local2)
+                        Store (One, Local1)
                     }
 
-                    If ((\MSOS () < \OSW8))
+                    If (LLess (MSOS (), OSW8))
                     {
-                        While ((!BCMD && Local2))
+                        While (LAnd (LNot (BCMD), Local2))
                         {
-                            Local1 = CBLV
-                            If (!(Local1 & 0x80000000))
+                            Store (CBLV, Local1)
+                            If (LNot (And (Local1, 0x80000000)))
                             {
-                                Local1 = Local0
+                                Store (Local0, Local1)
                             }
 
-                            If ((Local0 == Local1))
+                            If (LEqual (Local0, Local1))
                             {
                                 Sleep (0x0A)
-                                Local2--
-                                Local1 = Zero
+                                Decrement (Local2)
+                                Store (Zero, Local1)
                             }
                             Else
                             {
-                                Local2 = Zero
-                                Local1 = One
+                                Store (Zero, Local2)
+                                Store (One, Local1)
                             }
                         }
                     }
 
-                    If ((!BCMD && Local1))
+                    If (LAnd (LNot (BCMD), Local1))
                     {
-                        If ((\MSOS () < \OSW8))
+                        If (LLess (MSOS (), OSW8))
                         {
-                            Local3 = GCBL (CBLV)
-                            Local3 = (0x0A - Local3)
-                            LBTN = Local3
+                            Store (GCBL (CBLV), Local3)
+                            Subtract (0x0A, Local3, Local3)
+                            Store (Local3, LBTN)
                         }
                     }
                 }
                 Else
                 {
-                    If ((LBTN < 0x0F))
+                    If (LLess (LBTN, 0x0F))
                     {
-                        LBTN++
+                        Increment (LBTN)
                     }
                     Else
                     {
-                        LBTN = 0x0F
+                        Store (0x0F, LBTN)
                     }
 
-                    \_SB.PCI0.LPCB.EC0.STBR ()
+                    ^^LPCB.EC0.STBR ()
                 }
 
                 Return (Zero)
@@ -7763,70 +8227,70 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 If (BRNC)
                 {
                     GCDD ()
-                    Local0 = (D2AF (\_SB.CSTE) & One)
-                    If ((Local0 == Zero))
+                    Store (And (D2AF (CSTE), One), Local0)
+                    If (LEqual (Local0, Zero))
                     {
                         Return (Zero)
                     }
 
-                    Local0 = CBLV
-                    BCMD = Zero
+                    Store (CBLV, Local0)
+                    Store (Zero, BCMD)
                     Notify (LCDD, 0x87)
-                    Local2 = 0x012C
-                    Local1 = (Local0 & 0x7FFFFFFF)
-                    If ((Local1 <= DerefOf (Index (PCTG, 0x0A))))
+                    Store (0x012C, Local2)
+                    And (Local0, 0x7FFFFFFF, Local1)
+                    If (LLessEqual (Local1, DerefOf (Index (PCTG, 0x0A))))
                     {
-                        Local2 = Zero
-                        Local1 = One
+                        Store (Zero, Local2)
+                        Store (One, Local1)
                     }
 
-                    If ((\MSOS () < \OSW8))
+                    If (LLess (MSOS (), OSW8))
                     {
-                        While ((!BCMD && Local2))
+                        While (LAnd (LNot (BCMD), Local2))
                         {
-                            Local1 = CBLV
-                            If (!(Local1 & 0x80000000))
+                            Store (CBLV, Local1)
+                            If (LNot (And (Local1, 0x80000000)))
                             {
-                                Local1 = Local0
+                                Store (Local0, Local1)
                             }
 
-                            If ((Local0 == Local1))
+                            If (LEqual (Local0, Local1))
                             {
                                 Sleep (0x0A)
-                                Local2--
-                                Local1 = Zero
+                                Decrement (Local2)
+                                Store (Zero, Local1)
                             }
                             Else
                             {
-                                Local2 = Zero
-                                Local1 = One
+                                Store (Zero, Local2)
+                                Store (One, Local1)
                             }
                         }
                     }
 
-                    If ((!BCMD && Local1))
+                    If (LAnd (LNot (BCMD), Local1))
                     {
-                        If ((\MSOS () < \OSW8))
+                        If (LLess (MSOS (), OSW8))
                         {
-                            Local3 = GCBL (CBLV)
-                            Local3 = (0x0A - Local3)
-                            LBTN = Local3
+                            Store (GCBL (CBLV), Local3)
+                            Subtract (0x0A, Local3, Local3)
+                            Store (Local3, LBTN)
                         }
                     }
                 }
                 Else
                 {
-                    If ((LBTN > Zero))
+                    If (LGreater (LBTN, Zero))
                     {
-                        LBTN--
+                        Decrement (LBTN)
                     }
 
-                    If ((LBTN > 0x0F))
+                    If (LGreater (LBTN, 0x0F))
                     {
-                        LBTN = 0x0F
+                        Store (0x0F, LBTN)
                     }
 
-                    \_SB.PCI0.LPCB.EC0.STBR ()
+                    ^^LPCB.EC0.STBR ()
                 }
 
                 Return (Zero)
@@ -7834,7 +8298,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (ADVD, 0, NotSerialized)
             {
-                If ((DOSF & 0x03))
+                If (And (DOSF, 0x03))
                 {
                     GCDD ()
                     GCAD ()
@@ -7850,28 +8314,28 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 {
                     If (UPDN)
                     {
-                        NXTD = D2AF (\_SB.CSTE)
-                        UPDN = Zero
+                        Store (D2AF (CSTE), NXTD)
+                        Store (Zero, UPDN)
                     }
 
-                    Local0 = Zero
-                    Local1 = D2AF (\_SB.OCAD)
-                    Local2 = Zero
-                    If ((\_SB.VGAF & One))
+                    Store (Zero, Local0)
+                    Store (D2AF (OCAD), Local1)
+                    Store (Zero, Local2)
+                    If (And (VGAF, One))
                     {
-                        Local2 = (\_SB.VBIF & 0x08)
+                        And (VBIF, 0x08, Local2)
                     }
 
-                    If (((Local2 == 0x08) & (\_SB.VGAF & One)))
+                    If (And (LEqual (Local2, 0x08), And (VGAF, One)))
                     {
-                        NXTD &= Local1
-                        Local0 = NXTD
+                        And (NXTD, Local1, NXTD)
+                        Store (NXTD, Local0)
                     }
 
-                    While ((NXTD != Local0))
+                    While (LNotEqual (NXTD, Local0))
                     {
                         GNAD ()
-                        Local0 = (NXTD & Local1)
+                        And (NXTD, Local1, Local0)
                     }
 
                     Return (NXTD)
@@ -7883,140 +8347,140 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Method (GCAD, 0, NotSerialized)
             {
                 OGCA ()
-                Return (\_SB.OCAD)
+                Return (OCAD)
             }
 
             Method (GVIF, 0, NotSerialized)
             {
-                \_SB.VBIF = 0x67
-                \_SB.SFUN = Zero
+                Store (0x67, VBIF)
+                Store (Zero, SFUN)
                 ISMI (0x95)
-                Return (\_SB.VBIF)
+                Return (VBIF)
             }
 
             Method (GNAD, 0, NotSerialized)
             {
-                NXTD++
-                If (((DOSF == One) && (NXTD == 0x03)))
+                Increment (NXTD)
+                If (LAnd (LEqual (DOSF, One), LEqual (NXTD, 0x03)))
                 {
-                    NXTD++
+                    Increment (NXTD)
                 }
 
-                If ((DOSF & 0x03))
+                If (And (DOSF, 0x03))
                 {
-                    If ((NXTD == 0x05))
+                    If (LEqual (NXTD, 0x05))
                     {
-                        NXTD++
+                        Increment (NXTD)
                     }
 
-                    If ((NXTD == 0x06))
+                    If (LEqual (NXTD, 0x06))
                     {
-                        NXTD++
-                    }
-                }
-
-                If ((NXTD == 0x07))
-                {
-                    NXTD++
-                }
-
-                If ((DOSF & 0x03))
-                {
-                    If ((NXTD == 0x09))
-                    {
-                        NXTD++
+                        Increment (NXTD)
                     }
                 }
 
-                If (((DOSF == One) && (NXTD == 0x0A)))
+                If (LEqual (NXTD, 0x07))
                 {
-                    NXTD++
+                    Increment (NXTD)
                 }
 
-                If ((NXTD == 0x0B))
+                If (And (DOSF, 0x03))
                 {
-                    NXTD++
-                }
-
-                If (((DOSF == One) && (NXTD == 0x0C)))
-                {
-                    NXTD++
-                }
-
-                While (((NXTD > 0x0C) && (NXTD < 0x10)))
-                {
-                    NXTD++
-                }
-
-                If ((DOSF == One))
-                {
-                    If ((NXTD == 0x11))
+                    If (LEqual (NXTD, 0x09))
                     {
-                        NXTD++
-                    }
-
-                    If ((NXTD == 0x12))
-                    {
-                        NXTD++
+                        Increment (NXTD)
                     }
                 }
 
-                If ((NXTD == 0x13))
+                If (LAnd (LEqual (DOSF, One), LEqual (NXTD, 0x0A)))
                 {
-                    NXTD++
+                    Increment (NXTD)
                 }
 
-                If ((DOSF == One))
+                If (LEqual (NXTD, 0x0B))
                 {
-                    While (((NXTD >= 0x14) && (NXTD < 0x20)))
+                    Increment (NXTD)
+                }
+
+                If (LAnd (LEqual (DOSF, One), LEqual (NXTD, 0x0C)))
+                {
+                    Increment (NXTD)
+                }
+
+                While (LAnd (LGreater (NXTD, 0x0C), LLess (NXTD, 0x10)))
+                {
+                    Increment (NXTD)
+                }
+
+                If (LEqual (DOSF, One))
+                {
+                    If (LEqual (NXTD, 0x11))
                     {
-                        NXTD++
+                        Increment (NXTD)
                     }
 
-                    If ((NXTD == 0x21))
+                    If (LEqual (NXTD, 0x12))
                     {
-                        NXTD++
-                    }
-
-                    If ((NXTD == 0x22))
-                    {
-                        NXTD++
+                        Increment (NXTD)
                     }
                 }
 
-                If ((NXTD == 0x23))
+                If (LEqual (NXTD, 0x13))
                 {
-                    NXTD++
+                    Increment (NXTD)
                 }
 
-                If (((DOSF == One) && (NXTD == 0x24)))
+                If (LEqual (DOSF, One))
                 {
-                    NXTD++
+                    While (LAnd (LGreaterEqual (NXTD, 0x14), LLess (NXTD, 0x20)))
+                    {
+                        Increment (NXTD)
+                    }
+
+                    If (LEqual (NXTD, 0x21))
+                    {
+                        Increment (NXTD)
+                    }
+
+                    If (LEqual (NXTD, 0x22))
+                    {
+                        Increment (NXTD)
+                    }
                 }
 
-                While (((NXTD > 0x24) && (NXTD < 0x28)))
+                If (LEqual (NXTD, 0x23))
                 {
-                    NXTD++
+                    Increment (NXTD)
                 }
 
-                If (((DOSF == One) && (NXTD == 0x28)))
+                If (LAnd (LEqual (DOSF, One), LEqual (NXTD, 0x24)))
                 {
-                    NXTD++
+                    Increment (NXTD)
                 }
 
-                While (((NXTD > 0x28) && (NXTD < 0x30)))
+                While (LAnd (LGreater (NXTD, 0x24), LLess (NXTD, 0x28)))
                 {
-                    NXTD++
+                    Increment (NXTD)
                 }
 
-                If (((DOSF == One) && (NXTD == 0x30)))
+                If (LAnd (LEqual (DOSF, One), LEqual (NXTD, 0x28)))
                 {
-                    NXTD++
+                    Increment (NXTD)
                 }
 
-                If ((NXTD > 0x30))
+                While (LAnd (LGreater (NXTD, 0x28), LLess (NXTD, 0x30)))
                 {
-                    NXTD = One
+                    Increment (NXTD)
+                }
+
+                If (LAnd (LEqual (DOSF, One), LEqual (NXTD, 0x30)))
+                {
+                    Increment (NXTD)
+                }
+
+                If (LGreater (NXTD, 0x30))
+                {
+                    Store (One, NXTD)
                 }
 
                 Return (Zero)
@@ -8025,45 +8489,45 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Method (GNDD, 0, NotSerialized)
             {
                 OGND ()
-                Return (\_SB.NSTE)
+                Return (NSTE)
             }
 
             Name (DOSF, One)
             Name (UPDN, One)
             Method (AF2D, 1, NotSerialized)
             {
-                Local0 = Zero
-                If ((Arg0 & One))
+                Store (Zero, Local0)
+                If (And (Arg0, One))
                 {
-                    Local0 |= LCDM
+                    Or (Local0, LCDM, Local0)
                 }
 
-                If ((Arg0 & 0x02))
+                If (And (Arg0, 0x02))
                 {
-                    Local0 |= CRTM
+                    Or (Local0, CRTM, Local0)
                 }
 
-                If ((Arg0 & 0x04))
+                If (And (Arg0, 0x04))
                 {
-                    Local0 |= TVOM
+                    Or (Local0, TVOM, Local0)
                 }
 
-                If ((Arg0 & 0x08))
+                If (And (Arg0, 0x08))
                 {
-                    Local0 |= DVIM
+                    Or (Local0, DVIM, Local0)
                 }
 
-                If ((Arg0 & 0x10))
+                If (And (Arg0, 0x10))
                 {
-                    Local0 |= HDMM
+                    Or (Local0, HDMM, Local0)
                 }
 
-                If ((Arg0 & 0x20))
+                If (And (Arg0, 0x20))
                 {
-                    Local0 |= DPOM
+                    Or (Local0, DPOM, Local0)
                 }
 
-                If (!Local0)
+                If (LNot (Local0))
                 {
                     Return (LCDM)
                 }
@@ -8073,50 +8537,50 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (SWHD, 1, Serialized)
             {
-                UPDN = One
-                If ((DOSF == One))
+                Store (One, UPDN)
+                If (LEqual (DOSF, One))
                 {
                     If (\NATK ())
                     {
-                        \_SB.SFUN = Zero
+                        Store (Zero, SFUN)
                     }
                     Else
                     {
-                        \_SB.SFUN = 0x04
+                        Store (0x04, SFUN)
                     }
 
-                    \_SB.SSTE = Arg0
+                    Store (Arg0, SSTE)
                     If (\NATK ())
                     {
-                        \_SB.NSTE = AF2D (Arg0)
-                        \_SB.SSTE = \_SB.NSTE
+                        Store (AF2D (Arg0), NSTE)
+                        Store (NSTE, SSTE)
                     }
 
                     ISMI (0x94)
-                    Notify (\_SB.PCI0.IGPU, 0x81)
+                    Notify (IGPU, 0x81)
                 }
                 Else
                 {
-                    \_SB.PCI0.IGPU.CEVT = One
-                    \_SB.PCI0.IGPU.CSTS = 0x03
-                    If ((\_SB.OCAD != \_SB.OPAD))
+                    Store (One, CEVT)
+                    Store (0x03, CSTS)
+                    If (LNotEqual (OCAD, OPAD))
                     {
-                        \_SB.OPAD = \_SB.OCAD
-                        If ((OSFG == OSXP))
+                        Store (OCAD, OPAD)
+                        If (LEqual (OSFG, OSXP))
                         {
-                            Notify (\_SB.PCI0, Zero)
+                            Notify (PCI0, Zero)
                         }
                         Else
                         {
-                            Notify (\_SB.PCI0.IGPU, Zero)
+                            Notify (IGPU, Zero)
                         }
 
                         Sleep (0x03E8)
                     }
 
-                    \_SB.NSTE = AF2D (Arg0)
-                    WNDD (\_SB.NSTE)
-                    Notify (\_SB.PCI0.IGPU, 0x80)
+                    Store (AF2D (Arg0), NSTE)
+                    WNDD (NSTE)
+                    Notify (IGPU, 0x80)
                 }
 
                 Return (Zero)
@@ -8124,7 +8588,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (GCDS, 0, NotSerialized)
             {
-                If ((DOSF & 0x03))
+                If (And (DOSF, 0x03))
                 {
                     GCDD ()
                     GCAD ()
@@ -8136,12 +8600,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     OGCD ()
                 }
 
-                Return (D2AF (\_SB.CSTE))
-            }
-            OperationRegion (RMPC, PCI_Config, 0x10, 4)
-            Field (RMPC, AnyAcc, NoLock, Preserve)
-            {
-                BAR1,32,
+                Return (D2AF (CSTE))
             }
             Method (_DSM, 4, NotSerialized)
             {
@@ -8150,6 +8609,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 {
                     "AAPL,ig-platform-id", Buffer() { 0x08, 0x00, 0x2e, 0x0a },
                     "hda-gfx", Buffer() { "onboard-1" },
+                    "AAPL00,DualLink", Buffer() { 0x01, 0x00, 0x00, 0x00 },
+                    "graphic-options", Buffer () { 0x0C, 0x00, 0x00, 0x00 },
                     "AAPL00,override-no-edid", Buffer () {
                     0,255,255,255,255,255,255,0,77,16,32,160,
                     0,0,0,0,0,23,1,4,165,29,17,120,
@@ -8164,6 +8625,11 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     74,87,49,52,10,32,0,165
                     },
                 })
+            }
+            OperationRegion (RMPC, PCI_Config, 0x10, 4)
+            Field (RMPC, AnyAcc, NoLock, Preserve)
+            {
+                BAR1,32,
             }
         }
         
@@ -11121,18 +11587,18 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     ,   6, 
                 PMES,   1
             }
+            
+            // Name (_CRS, ResourceTemplate () { IRQNoFlags () {6, 10} })
 
-            Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-            {
-                Return (GPRW (0x6D, 0x04))
-            }
+            Method (_PRW, 0, NotSerialized) { Return (GPRW (0x0D, 0x04)) }
             Method (_DSM, 4, NotSerialized)
             {
-                If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
+                If (LEqual (Arg2, Zero)) { Return (Buffer(One) { 0x03 } ) }
                 Return (Package()
                 {
-                    "layout-id", Buffer() { 0x56, 0x00, 0x00, 0x00 },  // Change to your LayoutID
-                    "MaximumBootBeepVolume", 77,
+                    "layout-id", Buffer() { 0x56, 0x00, 0x00, 0x00 },
+                    "PinConfigurations", Buffer(Zero) {},
+                    //"MaximumBootBeepVolume", 77,
                 })
             }
         }
@@ -11296,7 +11762,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 SBAR,   11
             }
 
-            OperationRegion (SMBI, SystemIO, (SBAR << 0x05), 0x10)
+            OperationRegion (SMBI, SystemIO, ShiftLeft (SBAR, 0x05), 0x10)
             Field (SMBI, ByteAcc, NoLock, Preserve)
             {
                 HSTS,   8, 
@@ -11319,14 +11785,14 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Return (Zero)
                 }
 
-                I2CE = Zero
-                HSTS = 0xBF
-                TXSA = Arg0
-                HCOM = Arg1
-                HCON = 0x48
+                Store (Zero, I2CE)
+                Store (0xBF, HSTS)
+                Store (Arg0, TXSA)
+                Store (Arg1, HCOM)
+                Store (0x48, HCON)
                 If (COMP ())
                 {
-                    HSTS |= 0xFF
+                    Or (HSTS, 0xFF, HSTS)
                     Return (One)
                 }
 
@@ -11340,13 +11806,13 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Return (0xFFFF)
                 }
 
-                I2CE = Zero
-                HSTS = 0xBF
-                TXSA = (Arg0 | One)
-                HCON = 0x44
+                Store (Zero, I2CE)
+                Store (0xBF, HSTS)
+                Store (Or (Arg0, One), TXSA)
+                Store (0x44, HCON)
                 If (COMP ())
                 {
-                    HSTS |= 0xFF
+                    Or (HSTS, 0xFF, HSTS)
                     Return (DAT0)
                 }
 
@@ -11360,15 +11826,15 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Return (Zero)
                 }
 
-                I2CE = Zero
-                HSTS = 0xBF
-                TXSA = Arg0
-                HCOM = Arg1
-                DAT0 = Arg2
-                HCON = 0x48
+                Store (Zero, I2CE)
+                Store (0xBF, HSTS)
+                Store (Arg0, TXSA)
+                Store (Arg1, HCOM)
+                Store (Arg2, DAT0)
+                Store (0x48, HCON)
                 If (COMP ())
                 {
-                    HSTS |= 0xFF
+                    Or (HSTS, 0xFF, HSTS)
                     Return (One)
                 }
 
@@ -11382,14 +11848,14 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Return (0xFFFF)
                 }
 
-                I2CE = Zero
-                HSTS = 0xBF
-                TXSA = (Arg0 | One)
-                HCOM = Arg1
-                HCON = 0x48
+                Store (Zero, I2CE)
+                Store (0xBF, HSTS)
+                Store (Or (Arg0, One), TXSA)
+                Store (Arg1, HCOM)
+                Store (0x48, HCON)
                 If (COMP ())
                 {
-                    HSTS |= 0xFF
+                    Or (HSTS, 0xFF, HSTS)
                     Return (DAT0)
                 }
 
@@ -11403,16 +11869,16 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Return (Zero)
                 }
 
-                I2CE = Zero
-                HSTS = 0xBF
-                TXSA = Arg0
-                HCOM = Arg1
-                DAT1 = (Arg2 & 0xFF)
-                DAT0 = ((Arg2 >> 0x08) & 0xFF)
-                HCON = 0x4C
+                Store (Zero, I2CE)
+                Store (0xBF, HSTS)
+                Store (Arg0, TXSA)
+                Store (Arg1, HCOM)
+                And (Arg2, 0xFF, DAT1)
+                And (ShiftRight (Arg2, 0x08), 0xFF, DAT0)
+                Store (0x4C, HCON)
                 If (COMP ())
                 {
-                    HSTS |= 0xFF
+                    Or (HSTS, 0xFF, HSTS)
                     Return (One)
                 }
 
@@ -11426,15 +11892,15 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Return (0xFFFF)
                 }
 
-                I2CE = Zero
-                HSTS = 0xBF
-                TXSA = (Arg0 | One)
-                HCOM = Arg1
-                HCON = 0x4C
+                Store (Zero, I2CE)
+                Store (0xBF, HSTS)
+                Store (Or (Arg0, One), TXSA)
+                Store (Arg1, HCOM)
+                Store (0x4C, HCON)
                 If (COMP ())
                 {
-                    HSTS |= 0xFF
-                    Return (((DAT0 << 0x08) | DAT1))
+                    Or (HSTS, 0xFF, HSTS)
+                    Return (Or (ShiftLeft (DAT0, 0x08), DAT1))
                 }
 
                 Return (0xFFFFFFFF)
@@ -11447,40 +11913,40 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Return (Zero)
                 }
 
-                I2CE = Arg3
-                HSTS = 0xBF
-                TXSA = Arg0
-                HCOM = Arg1
-                DAT0 = SizeOf (Arg2)
-                Local1 = Zero
-                HBDR = DerefOf (Index (Arg2, Zero))
-                HCON = 0x54
-                While ((SizeOf (Arg2) > Local1))
+                Store (Arg3, I2CE)
+                Store (0xBF, HSTS)
+                Store (Arg0, TXSA)
+                Store (Arg1, HCOM)
+                Store (SizeOf (Arg2), DAT0)
+                Store (Zero, Local1)
+                Store (DerefOf (Index (Arg2, Zero)), HBDR)
+                Store (0x54, HCON)
+                While (LGreater (SizeOf (Arg2), Local1))
                 {
-                    Local0 = 0x0FA0
-                    While ((!(HSTS & 0x80) && Local0))
+                    Store (0x0FA0, Local0)
+                    While (LAnd (LNot (And (HSTS, 0x80)), Local0))
                     {
-                        Local0--
+                        Decrement (Local0)
                         Stall (0x32)
                     }
 
-                    If (!Local0)
+                    If (LNot (Local0))
                     {
                         KILL ()
                         Return (Zero)
                     }
 
-                    HSTS = 0x80
-                    Local1++
-                    If ((SizeOf (Arg2) > Local1))
+                    Store (0x80, HSTS)
+                    Increment (Local1)
+                    If (LGreater (SizeOf (Arg2), Local1))
                     {
-                        HBDR = DerefOf (Index (Arg2, Local1))
+                        Store (DerefOf (Index (Arg2, Local1)), HBDR)
                     }
                 }
 
                 If (COMP ())
                 {
-                    HSTS |= 0xFF
+                    Or (HSTS, 0xFF, HSTS)
                     Return (One)
                 }
 
@@ -11495,50 +11961,50 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Return (Zero)
                 }
 
-                I2CE = Arg2
-                HSTS = 0xBF
-                TXSA = (Arg0 | One)
-                HCOM = Arg1
-                HCON = 0x54
-                Local0 = 0x0FA0
-                While ((!(HSTS & 0x80) && Local0))
+                Store (Arg2, I2CE)
+                Store (0xBF, HSTS)
+                Store (Or (Arg0, One), TXSA)
+                Store (Arg1, HCOM)
+                Store (0x54, HCON)
+                Store (0x0FA0, Local0)
+                While (LAnd (LNot (And (HSTS, 0x80)), Local0))
                 {
-                    Local0--
+                    Decrement (Local0)
                     Stall (0x32)
                 }
 
-                If (!Local0)
+                If (LNot (Local0))
                 {
                     KILL ()
                     Return (Zero)
                 }
 
-                Index (TBUF, Zero) = DAT0
-                HSTS = 0x80
-                Local1 = One
-                While ((Local1 < DerefOf (Index (TBUF, Zero))))
+                Store (DAT0, Index (TBUF, Zero))
+                Store (0x80, HSTS)
+                Store (One, Local1)
+                While (LLess (Local1, DerefOf (Index (TBUF, Zero))))
                 {
-                    Local0 = 0x0FA0
-                    While ((!(HSTS & 0x80) && Local0))
+                    Store (0x0FA0, Local0)
+                    While (LAnd (LNot (And (HSTS, 0x80)), Local0))
                     {
-                        Local0--
+                        Decrement (Local0)
                         Stall (0x32)
                     }
 
-                    If (!Local0)
+                    If (LNot (Local0))
                     {
                         KILL ()
                         Return (Zero)
                     }
 
-                    Index (TBUF, Local1) = HBDR
-                    HSTS = 0x80
-                    Local1++
+                    Store (HBDR, Index (TBUF, Local1))
+                    Store (0x80, HSTS)
+                    Increment (Local1)
                 }
 
                 If (COMP ())
                 {
-                    HSTS |= 0xFF
+                    Or (HSTS, 0xFF, HSTS)
                     Return (TBUF)
                 }
 
@@ -11547,32 +12013,32 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (STRT, 0, Serialized)
             {
-                Local0 = 0xC8
+                Store (0xC8, Local0)
                 While (Local0)
                 {
-                    If ((HSTS & 0x40))
+                    If (And (HSTS, 0x40))
                     {
-                        Local0--
+                        Decrement (Local0)
                         Sleep (One)
-                        If ((Local0 == Zero))
+                        If (LEqual (Local0, Zero))
                         {
                             Return (One)
                         }
                     }
                     Else
                     {
-                        Local0 = Zero
+                        Store (Zero, Local0)
                     }
                 }
 
-                Local0 = 0x0FA0
+                Store (0x0FA0, Local0)
                 While (Local0)
                 {
-                    If ((HSTS & One))
+                    If (And (HSTS, One))
                     {
-                        Local0--
+                        Decrement (Local0)
                         Stall (0x32)
-                        If ((Local0 == Zero))
+                        If (LEqual (Local0, Zero))
                         {
                             KILL ()
                         }
@@ -11588,18 +12054,18 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (COMP, 0, Serialized)
             {
-                Local0 = 0x0FA0
+                Store (0x0FA0, Local0)
                 While (Local0)
                 {
-                    If ((HSTS & 0x02))
+                    If (And (HSTS, 0x02))
                     {
                         Return (One)
                     }
                     Else
                     {
-                        Local0--
+                        Decrement (Local0)
                         Stall (0x32)
-                        If ((Local0 == Zero))
+                        If (LEqual (Local0, Zero))
                         {
                             KILL ()
                         }
@@ -11611,14 +12077,20 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (KILL, 0, Serialized)
             {
-                HCON |= 0x02
-                HSTS |= 0xFF
+                Or (HCON, 0x02, HCON)
+                Or (HSTS, 0xFF, HSTS)
             }
             Device (BUS0)
-            {
-                Name (_CID, "smbus")  // _CID: Compatible ID
-                Name (_ADR, 0x00)  // _ADR: Address
-            }
+                {
+                    Name (_CID, "smbus")  // _CID: Compatible ID
+                    Name (_ADR, 0x00)  // _ADR: Address
+                }
+
+                Device (BUS1)
+                {
+                    Name (_CID, "smbus")  // _CID: Compatible ID
+                    Name (_ADR, 0x01)  // _ADR: Address
+                }
         }
         Device (PDRC)
         {
@@ -12320,130 +12792,113 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
     Scope (_GPE)
     {
-        Method (_L69, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
+        Method (_L09, 0, NotSerialized)
         {
-            If (((RP1D == Zero) && (\_SB.PCI0.RP01.RPAV == One)))
+            If (LAnd (LEqual (RP1D, Zero), LEqual (\_SB.PCI0.RP01.RPAV, One)))
             {
                 \_SB.PCI0.RP01.HPME ()
                 Notify (\_SB.PCI0.RP01, 0x02)
             }
 
-            If (((RP4D == Zero) && (\_SB.PCI0.RP04.RPAV == One)))
+            If (LAnd (LEqual (RP4D, Zero), LEqual (\_SB.PCI0.RP04.RPAV, One)))
             {
                 \_SB.PCI0.RP04.HPME ()
                 Notify (\_SB.PCI0.RP04, 0x02)
             }
         }
-
-        Method (_L6D, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
+        
+        Method (_L0D, 0, NotSerialized)
         {
-            If ((\_SB.PCI0.EHC1.PMEE && \_SB.PCI0.EHC1.PMES))
-            {
-                Notify (\_SB.PCI0.EHC1, 0x02)
-            }
-
-            If ((\_SB.PCI0.EHC2.PMEE && \_SB.PCI0.EHC2.PMES))
-            {
-                Notify (\_SB.PCI0.EHC2, 0x02)
-            }
-
-            If ((\_SB.PCI0.XHC1.PMEE && \_SB.PCI0.XHC1.PMES))
-            {
-                Notify (\_SB.PCI0.XHC1, 0x02)
-            }
-            Else
-            {
-                If ((\_SB.PCI0.XHC1.PMEE == Zero))
-                {
-                    \_SB.PCI0.XHC1.PMES = One
-                }
-            }
-
-            If ((\_SB.PCI0.HDEF.PMEE && \_SB.PCI0.HDEF.PMES))
+            If (LAnd (\_SB.PCI0.HDEF.PMEE, \_SB.PCI0.HDEF.PMES))
             {
                 Notify (\_SB.PCI0.HDEF, 0x02)
             }
         }
 
-        Method (_L61, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
+        Method (_L01, 0, NotSerialized)
         {
-            L01C += One
+            Add (L01C, One, L01C)
             P8XH (Zero, One)
             P8XH (One, L01C)
-            If (((RP1D == Zero) && \_SB.PCI0.RP01.HPSX))
+            If (LAnd (LEqual (RP1D, Zero), \_SB.PCI0.RP01.HPSX))
             {
                 Sleep (0x64)
                 If (\_SB.PCI0.RP01.PDCX)
                 {
-                    \_SB.PCI0.RP01.PDCX = One
-                    \_SB.PCI0.RP01.HPSX = One
-                    If (!\_SB.PCI0.RP01.PDSX)
+                    Store (One, \_SB.PCI0.RP01.PDCX)
+                    Store (One, \_SB.PCI0.RP01.HPSX)
+                    If (LNot (\_SB.PCI0.RP01.PDSX))
                     {
-                        \_SB.PCI0.RP01.L0SE = Zero
+                        Store (Zero, \_SB.PCI0.RP01.L0SE)
                     }
 
                     Notify (\_SB.PCI0.RP01, Zero)
                 }
                 Else
                 {
-                    \_SB.PCI0.RP01.HPSX = One
+                    Store (One, \_SB.PCI0.RP01.HPSX)
                 }
             }
 
-            If (((RP4D == Zero) && \_SB.PCI0.RP04.HPSX))
+            If (LAnd (LEqual (RP4D, Zero), \_SB.PCI0.RP04.HPSX))
             {
                 Sleep (0x64)
                 If (\_SB.PCI0.RP04.PDCX)
                 {
-                    \_SB.PCI0.RP04.PDCX = One
-                    \_SB.PCI0.RP04.HPSX = One
-                    If (!\_SB.PCI0.RP04.PDSX)
+                    Store (One, \_SB.PCI0.RP04.PDCX)
+                    Store (One, \_SB.PCI0.RP04.HPSX)
+                    If (LNot (\_SB.PCI0.RP04.PDSX))
                     {
-                        \_SB.PCI0.RP04.L0SE = Zero
+                        Store (Zero, \_SB.PCI0.RP04.L0SE)
                     }
 
                     Notify (\_SB.PCI0.RP04, Zero)
                 }
                 Else
                 {
-                    \_SB.PCI0.RP04.HPSX = One
+                    Store (One, \_SB.PCI0.RP04.HPSX)
                 }
             }
         }
 
-        Method (_L62, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
+        Method (_L02, 0, NotSerialized)
         {
-            GPEC = Zero
+            Store (Zero, GPEC)
             If (CondRefOf (DTSE))
             {
-                If ((DTSE >= One))
+                If (LGreaterEqual (DTSE, One))
                 {
                     Notify (\_TZ.THRM, 0x80)
                 }
             }
-
-            If (CondRefOf (\_SB.PCCD.PENB))
-            {
-                If ((\_SB.PCCD.PENB == One))
-                {
-                    Notify (\_SB.PCCD, 0x80)
-                }
-            }
         }
 
-        Method (_L66, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
+        Method (_L06, 0, NotSerialized)
         {
-            If ((\_SB.PCI0.IGPU.GSSE && !GSMI))
+            If (LAnd (\_SB.PCI0.IGPU.GSSE, LNot (GSMI)))
             {
                 \_SB.PCI0.IGPU.GSCI ()
             }
         }
 
-        Method (_L67, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
+        Method (_L07, 0, NotSerialized)
         {
-            \_SB.PCI0.SBUS.HSTS = 0x20
+            Store (0x20, \_SB.PCI0.SBUS.HSTS)
         }
-    }
+        
+        Method (_L13, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
+            {
+                If (LEqual (PFLV, FDTP))
+                {
+                    Return (Zero)
+                }
+
+                Store (Zero, GPE3)
+                And (\GL08, 0xEF, \GL08)
+                Notify (\_SB.PCI0.SAT0, 0x82)
+                Return (Zero)
+            }
+            }
 
     Scope (\)
     {
@@ -13425,7 +13880,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
     {
         Name (BADR, 0x0B)
         Name (CADR, 0x09)
-        Name (SADR, 0x0A)
         Method (_QA1, 0, NotSerialized)  // _Qxx: EC Query
         {
             If (DBUG == 2) { \rmdt.p1("EC _QA1 enter") }
@@ -14606,33 +15060,33 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         Name (SBBY, 0x1A)
         Method (SWTC, 1, Serialized)
         {
-            Local0 = UKER
-            Local1 = 0x03
-            While ((Local0 && Local1))
+            Store (UKER, Local0)
+            Store (0x03, Local1)
+            While (LAnd (Local0, Local1))
             {
-                Local2 = 0x23
+                Store (0x23, Local2)
                 While (Local2)
                 {
-                    If (PRTC)
+                    If (SPTR)
                     {
                         Sleep (One)
-                        Local2--
+                        Decrement (Local2)
                     }
                     Else
                     {
-                        Local2 = Zero
-                        Local0 = SSTS
+                        Store (Zero, Local2)
+                        Store (SSTS, Local0)
                     }
                 }
 
                 If (Local0)
                 {
-                    PRTC = Zero
-                    Local1--
+                    Store (Zero, SPTR)
+                    Decrement (Local1)
                     If (Local1)
                     {
                         Sleep (One)
-                        PRTC = Arg0
+                        Store (Arg0, SPTR)
                     }
                 }
             }
@@ -14642,26 +15096,26 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (SMBR, 3, Serialized)
         {
-            Local0 = Package (0x03)
+            Store (Package (0x03)
                 {
                     0x07, 
                     Zero, 
                     Zero
-                }
-            If (!ECAV ())
+                }, Local0)
+            If (LNot (ECAV ()))
             {
                 Return (Local0)
             }
 
-            If ((Arg0 != RDBL))
+            If (LNotEqual (Arg0, RDBL))
             {
-                If ((Arg0 != RDWD))
+                If (LNotEqual (Arg0, RDWD))
                 {
-                    If ((Arg0 != RDBT))
+                    If (LNotEqual (Arg0, RDBT))
                     {
-                        If ((Arg0 != RCBT))
+                        If (LNotEqual (Arg0, RCBT))
                         {
-                            If ((Arg0 != RDQK))
+                            If (LNotEqual (Arg0, RDQK))
                             {
                                 Return (Local0)
                             }
@@ -14671,63 +15125,63 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             }
 
             Acquire (MUEC, 0xFFFF)
-            Local1 = PRTC
-            Local2 = Zero
-            While ((Local1 != Zero))
+            Store (SPTR, Local1)
+            Store (Zero, Local2)
+            While (LNotEqual (Local1, Zero))
             {
                 Stall (0x0A)
-                Local2++
-                If ((Local2 > 0x03E8))
+                Increment (Local2)
+                If (LGreater (Local2, 0x03E8))
                 {
-                    Index (Local0, Zero) = SBBY
-                    Local1 = Zero
+                    Store (SBBY, Index (Local0, Zero))
+                    Store (Zero, Local1)
                 }
                 Else
                 {
-                    Local1 = PRTC
+                    Store (SPTR, Local1)
                 }
             }
 
-            If ((Local2 <= 0x03E8))
+            If (LLessEqual (Local2, 0x03E8))
             {
-                Local3 = (Arg1 << One)
-                Local3 |= One
-                ADDR = Local3
-                If ((Arg0 != RDQK))
+                ShiftLeft (Arg1, One, Local3)
+                Or (Local3, One, Local3)
+                Store (Local3, SADR)
+                If (LNotEqual (Arg0, RDQK))
                 {
-                    If ((Arg0 != RCBT))
+                    If (LNotEqual (Arg0, RCBT))
                     {
-                        CMDB = Arg2
+                        Store (Arg2, SCMD)
                     }
                 }
 
-                WECB (0x1C, 0x0100, Zero)
-                PRTC = Arg0
-                Index (Local0, Zero) = SWTC (Arg0)
-                If ((DerefOf (Index (Local0, Zero)) == Zero))
+                WECB(0x1c,256,Zero)
+                Store (Arg0, SPTR)
+                Store (SWTC (Arg0), Index (Local0, Zero))
+                If (LEqual (DerefOf (Index (Local0, Zero)), Zero))
                 {
-                    If ((Arg0 == RDBL))
+                    If (LEqual (Arg0, RDBL))
                     {
-                        Index (Local0, One) = BCNT
-                        Index (Local0, 0x02) = RECB (0x1C, 0x0100)
+                        Store (BCNT, Index (Local0, One))
+                        Store (RECB(0x1c,256), Index (Local0, 0x02))
                     }
 
-                    If ((Arg0 == RDWD))
+                    If (LEqual (Arg0, RDWD))
                     {
-                        Index (Local0, One) = 0x02
-                        Index (Local0, 0x02) = B1B2 (T2B0, T2B1)
+                        Store (0x02, Index (Local0, One))
+                        Store (B1B2 (DTB0, DTB1), Index (Local0, 0x02))
                     }
 
-                    If ((Arg0 == RDBT))
+                    If (LEqual (Arg0, RDBT))
                     {
-                        Index (Local0, One) = One
-                        Index (Local0, 0x02) = DAT0
+                        Store (One, Index (Local0, One))
+                        Store (DAT0, Index (Local0, 0x02))
                     }
 
-                    If ((Arg0 == RCBT))
+                    If (LEqual (Arg0, RCBT))
                     {
-                        Index (Local0, One) = One
-                        Index (Local0, 0x02) = DAT0
+                        Store (One, Index (Local0, One))
+                        Store (DAT0, Index (Local0, 0x02))
                     }
                 }
             }
@@ -14738,24 +15192,24 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (SMBW, 5, Serialized)
         {
-            Local0 = Package (0x01)
+            Store (Package (One)
                 {
                     0x07
-                }
-            If (!ECAV ())
+                }, Local0)
+            If (LNot (ECAV ()))
             {
                 Return (Local0)
             }
 
-            If ((Arg0 != WRBL))
+            If (LNotEqual (Arg0, WRBL))
             {
-                If ((Arg0 != WRWD))
+                If (LNotEqual (Arg0, WRWD))
                 {
-                    If ((Arg0 != WRBT))
+                    If (LNotEqual (Arg0, WRBT))
                     {
-                        If ((Arg0 != SDBT))
+                        If (LNotEqual (Arg0, SDBT))
                         {
-                            If ((Arg0 != WRQK))
+                            If (LNotEqual (Arg0, WRQK))
                             {
                                 Return (Local0)
                             }
@@ -14765,66 +15219,66 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             }
 
             Acquire (MUEC, 0xFFFF)
-            Local1 = PRTC
-            Local2 = Zero
-            While ((Local1 != Zero))
+            Store (SPTR, Local1)
+            Store (Zero, Local2)
+            While (LNotEqual (Local1, Zero))
             {
                 Stall (0x0A)
-                Local2++
-                If ((Local2 > 0x03E8))
+                Increment (Local2)
+                If (LGreater (Local2, 0x03E8))
                 {
-                    Index (Local0, Zero) = SBBY
-                    Local1 = Zero
+                    Store (SBBY, Index (Local0, Zero))
+                    Store (Zero, Local1)
                 }
                 Else
                 {
-                    Local1 = PRTC
+                    Store (SPTR, Local1)
                 }
             }
 
-            If ((Local2 <= 0x03E8))
+            If (LLessEqual (Local2, 0x03E8))
             {
-                WECB (0x1C, 0x0100, Zero)
-                Local3 = (Arg1 << One)
-                ADDR = Local3
-                If ((Arg0 != WRQK))
+                WECB(0x1c,256,Zero)
+                ShiftLeft (Arg1, One, Local3)
+                Store (Local3, SADR)
+                If (LNotEqual (Arg0, WRQK))
                 {
-                    If ((Arg0 != SDBT))
+                    If (LNotEqual (Arg0, SDBT))
                     {
-                        CMDB = Arg2
+                        Store (Arg2, SCMD)
                     }
                 }
 
-                If ((Arg0 == WRBL))
+                If (LEqual (Arg0, WRBL))
                 {
-                    BCNT = Arg3
-                    WECB (0x1C, 0x0100, Arg4)
+                    Store (Arg3, BCNT)
+                    WECB(0x1c,256,Arg4)
                 }
 
-                If ((Arg0 == WRWD))
+                If (LEqual (Arg0, WRWD))
                 {
-                    T2B0 = Arg4
-                    T2B1 = (Arg4 >> 0x08)
+                    Store (Arg4, Local4)
+Store (Local4, DTB0)
+Store (ShiftRight (Local4, 8), DTB1) 
                 }
 
-                If ((Arg0 == WRBT))
+                If (LEqual (Arg0, WRBT))
                 {
-                    DAT0 = Arg4
+                    Store (Arg4, DAT0)
                 }
 
-                If ((Arg0 == SDBT))
+                If (LEqual (Arg0, SDBT))
                 {
-                    DAT0 = Arg4
+                    Store (Arg4, DAT0)
                 }
 
-                PRTC = Arg0
-                Index (Local0, Zero) = SWTC (Arg0)
+                Store (Arg0, SPTR)
+                Store (SWTC (Arg0), Index (Local0, Zero))
             }
 
             Release (MUEC)
             Return (Local0)
         }
-
         Mutex (MUEP, 0x00)
         Method (RBEP, 1, NotSerialized)
         {
@@ -14912,15 +15366,15 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (ECSB, 7, NotSerialized)
         {
-            Local1 = Package (0x05)
+            Store (Package (0x05)
                 {
                     0x11, 
                     Zero, 
                     Zero, 
                     Zero, 
                     Buffer (0x20) {}
-                }
-            If ((Arg0 > One))
+                }, Local1)
+            If (LGreater (Arg0, One))
             {
                 Return (Local1)
             }
@@ -14928,82 +15382,82 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             If (ECAV ())
             {
                 Acquire (MUEC, 0xFFFF)
-                If ((Arg0 == Zero))
+                If (LEqual (Arg0, Zero))
                 {
-                    Local0 = PRTC
+                    Store (SPTR, Local0)
                 }
                 Else
                 {
-                    Local0 = PRT2
+                    Store (PRT2, Local0)
                 }
 
-                Local2 = Zero
-                While ((Local0 != Zero))
+                Store (Zero, Local2)
+                While (LNotEqual (Local0, Zero))
                 {
                     Stall (0x0A)
-                    Local2++
-                    If ((Local2 > 0x03E8))
+                    Increment (Local2)
+                    If (LGreater (Local2, 0x03E8))
                     {
-                        Index (Local1, Zero) = SBBY
-                        Local0 = Zero
+                        Store (SBBY, Index (Local1, Zero))
+                        Store (Zero, Local0)
                     }
                     Else
                     {
-                        If ((Arg0 == Zero))
+                        If (LEqual (Arg0, Zero))
                         {
-                            Local0 = PRTC
+                            Store (SPTR, Local0)
                         }
                         Else
                         {
-                            Local0 = PRT2
+                            Store (PRT2, Local0)
                         }
                     }
                 }
 
-                If ((Local2 <= 0x03E8))
+                If (LLessEqual (Local2, 0x03E8))
                 {
-                    If ((Arg0 == Zero))
+                    If (LEqual (Arg0, Zero))
                     {
-                        ADDR = Arg2
-                        CMDB = Arg3
-                        If (((Arg1 == 0x0A) || (Arg1 == 0x0B)))
+                        Store (Arg2, SADR)
+                        Store (Arg3, SCMD)
+                        If (LOr (LEqual (Arg1, 0x0A), LEqual (Arg1, 0x0B)))
                         {
-                            BCNT = DerefOf (Index (Arg6, Zero))
-                            WECB (0x1C, 0x0100, DerefOf (Index (Arg6, One)))
+                            Store (DerefOf (Index (Arg6, Zero)), BCNT)
+                            WECB(0x1c,256,DerefOf (Index (Arg6, One)))
                         }
                         Else
                         {
-                            DAT0 = Arg4
-                            DAT1 = Arg5
+                            Store (Arg4, DAT0)
+                            Store (Arg5, DAT1)
                         }
 
-                        PRTC = Arg1
+                        Store (Arg1, SPTR)
                     }
                     Else
                     {
-                        ADD2 = Arg2
-                        CMD2 = Arg3
-                        If (((Arg1 == 0x0A) || (Arg1 == 0x0B)))
+                        Store (Arg2, ADD2)
+                        Store (Arg3, CMD2)
+                        If (LOr (LEqual (Arg1, 0x0A), LEqual (Arg1, 0x0B)))
                         {
-                            BCN2 = DerefOf (Index (Arg6, Zero))
-                            WECB (0x44, 0x0100, DerefOf (Index (Arg6, One)))
+                            Store (DerefOf (Index (Arg6, Zero)), BCN2)
+                            WECB(0x44,256,DerefOf (Index (Arg6, One)))
                         }
                         Else
                         {
-                            DA20 = Arg4
-                            DA21 = Arg5
+                            Store (Arg4, DA20)
+                            Store (Arg5, DA21)
                         }
 
-                        PRT2 = Arg1
+                        Store (Arg1, PRT2)
                     }
 
-                    Local0 = 0x7F
-                    If ((Arg0 == Zero))
+                    Store (0x7F, Local0)
+                    If (LEqual (Arg0, Zero))
                     {
-                        While (PRTC)
+                        While (SPTR)
                         {
                             Sleep (One)
-                            Local0--
+                            Decrement (Local0)
                         }
                     }
                     Else
@@ -15011,40 +15465,40 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         While (PRT2)
                         {
                             Sleep (One)
-                            Local0--
+                            Decrement (Local0)
                         }
                     }
 
                     If (Local0)
                     {
-                        If ((Arg0 == Zero))
+                        If (LEqual (Arg0, Zero))
                         {
-                            Local0 = SSTS
-                            Index (Local1, One) = DAT0
-                            Index (Local1, 0x02) = DAT1
-                            Index (Local1, 0x03) = BCNT
-                            Index (Local1, 0x04) = RECB (0x1C, 0x0100)
+                            Store (SSTS, Local0)
+                            Store (DAT0, Index (Local1, One))
+                            Store (DAT1, Index (Local1, 0x02))
+                            Store (BCNT, Index (Local1, 0x03))
+                            Store (RECB(0x1c,256), Index (Local1, 0x04))
                         }
                         Else
                         {
-                            Local0 = SST2
-                            Index (Local1, One) = DA20
-                            Index (Local1, 0x02) = DA21
-                            Index (Local1, 0x03) = BCN2
-                            Index (Local1, 0x04) = RECB (0x44, 0x0100)
+                            Store (SST2, Local0)
+                            Store (DA20, Index (Local1, One))
+                            Store (DA21, Index (Local1, 0x02))
+                            Store (BCN2, Index (Local1, 0x03))
+                            Store (RECB(0x44,256), Index (Local1, 0x04))
                         }
 
-                        Local0 &= 0x1F
+                        And (Local0, 0x1F, Local0)
                         If (Local0)
                         {
-                            Local0 += 0x10
+                            Add (Local0, 0x10, Local0)
                         }
 
-                        Index (Local1, Zero) = Local0
+                        Store (Local0, Index (Local1, Zero))
                     }
                     Else
                     {
-                        Index (Local1, Zero) = 0x10
+                        Store (0x10, Index (Local1, Zero))
                     }
                 }
 
