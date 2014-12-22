@@ -18,12 +18,39 @@
 			<key>Rtc8Allowed</key>
 			<true/>
 			<key>SlpSmiAtWake</key>
-			<true/>
+			<false/>
 		</dict>
+		<key>DropTables</key>
+		<array>
+			<dict>
+				<key>Signature</key>
+				<string>SSDT</string>
+				<key>TableId</key>
+				<string>IsctTabl</string>
+			</dict>
+			<dict>
+				<key>Signature</key>
+				<string>SSDT</string>
+				<key>TableId</key>
+				<string>SaSsdt </string>
+			</dict>
+			<dict>
+				<key>Signature</key>
+				<string>SSDT</string>
+				<key>TableId</key>
+				<string>DptfTabl</string>
+			</dict>
+			<dict>
+				<key>Signature</key>
+				<string>SSDT</string>
+				<key>TableId</key>
+				<string>Cpu0Ist</string>
+			</dict>
+		</array>
 		<key>SSDT</key>
 		<dict>
 			<key>DropOem</key>
-			<true/>
+			<false/>
 			<key>Generate</key>
 			<dict>
 				<key>CStates</key>
@@ -48,7 +75,7 @@
 		<key>NeverHibernate</key>
 		<false/>
 		<key>Timeout</key>
-		<string>1</string>
+		<integer>0</integer>
 		<key>XMPDetection</key>
 		<false/>
 	</dict>
@@ -192,7 +219,7 @@
 		<key>KernelLapic</key>
 		<false/>
 		<key>KernelPm</key>
-		<false/>
+		<true/>
 		<key>KextPatchesAllowed</key>
 		<true/>
 		<key>KextsToPatch</key>
@@ -202,13 +229,27 @@
 				<string>Trim Enabler</string>
 				<key>Find</key>
 				<data>
-				AEFQUExFIFNTRAA=
+				QVBQTEUgU1NEAA==
 				</data>
 				<key>Name</key>
 				<string>IOAHCIBlockStorage</string>
 				<key>Replace</key>
 				<data>
-				AAAAAAAAAAAAAAA=
+				AAAAAAAAAAAAAA==
+				</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Second Stage patch 1</string>
+				<key>Find</key>
+				<data>
+				QYjE6xE=
+				</data>
+				<key>Name</key>
+				<string>IOGraphicsFamily</string>
+				<key>Replace</key>
+				<data>
+				QYjE6zE=
 				</data>
 			</dict>
 			<dict>
@@ -216,13 +257,13 @@
 				<string>Second Stage patch 2</string>
 				<key>Find</key>
 				<data>
-				QYjE6wM=
+				hcB0a0g=
 				</data>
 				<key>Name</key>
 				<string>IOGraphicsFamily</string>
 				<key>Replace</key>
 				<data>
-				QYjE6yM=
+				McB0W0g=
 				</data>
 			</dict>
 			<dict>
@@ -241,30 +282,72 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>AirPort AC Patch</string>
+				<string>XHCI Sleep Fix</string>
 				<key>Find</key>
 				<data>
-				WFQAKxgsIQAg
+				xoDIAAAAAQ==
 				</data>
 				<key>Name</key>
-				<string>AirPortBrcm4360</string>
+				<string>AppleUSBXHCI</string>
 				<key>Replace</key>
 				<data>
-				WFQICjYcRwAK
+				xoDIAAAAAA==
 				</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>BT4.0 HandOff &amp; Hotspot</string>
+				<string>AppleHDA ALC283 patch #1</string>
 				<key>Find</key>
 				<data>
-				i4eMAQAA
+				PYQI7BA=
+				</data>
+				<key>Name</key>
+				<string>AppleHDA</string>
+				<key>Replace</key>
+				<data>
+				PQAAAAA=
+				</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>AppleHDA ALC283 patch #2</string>
+				<key>Find</key>
+				<data>
+				PYUI7BA=
+				</data>
+				<key>Name</key>
+				<string>AppleHDA</string>
+				<key>Replace</key>
+				<data>
+				PQAAAAA=
+				</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>AppleHDA ALC283 patch #3</string>
+				<key>Find</key>
+				<data>
+				PYQZ1BE=
+				</data>
+				<key>Name</key>
+				<string>AppleHDA</string>
+				<key>Replace</key>
+				<data>
+				PYIC7BA=
+				</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>BT4 HandOff &amp; HotSpot</string>
+				<key>Find</key>
+				<data>
+				SIXAdFwPt0g=
 				</data>
 				<key>Name</key>
 				<string>IOBluetoothFamily</string>
 				<key>Replace</key>
 				<data>
-				uA8AAACQ
+				Qb4PAAAA61k=
 				</data>
 			</dict>
 		</array>
@@ -278,13 +361,11 @@
 		<key>Board-ID</key>
 		<string>Mac-189A3D4F975D5FFC</string>
 		<key>BoardSerialNumber</key>
-		<string>XXXXXXXXXXXXXXXXXX</string>
+		<string>C17NxxxxG3QJxxxxx</string>
 		<key>ProductName</key>
 		<string>MacBookPro11,1</string>
 		<key>SerialNumber</key>
-		<string>XXXXXXXXXXXX</string>
-		<key>SmUUID</key>
-		<string>XXXXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXX</string>
+		<string>C17NxxxxG3QJ</string>
 	</dict>
 	<key>SystemParameters</key>
 	<dict>
