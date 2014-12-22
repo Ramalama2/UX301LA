@@ -1,2 +1,0 @@
-into device label ADBG remove_entry;
-into_all all code_regex ADBG\s+\(.*\) removeall_matched;
