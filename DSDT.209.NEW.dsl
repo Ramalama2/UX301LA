@@ -11257,6 +11257,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 }
             }
         }
+        
+        Device (SAT1) { Name (_ADR, 0x001F0005) }
 
         Device (SBUS)
         {
