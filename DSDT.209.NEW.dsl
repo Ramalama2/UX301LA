@@ -1873,29 +1873,29 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             {
                 Name (_ADR, 0x001F0000)  // _ADR: Address
                 OperationRegion (RX40, PCI_Config, 0x40, 0x10)
-        Field (RX40, ByteAcc, NoLock, Preserve)
-        {
-            Offset (0x0C), 
-            GPLK,   1
-        }
+                Field (RX40, ByteAcc, NoLock, Preserve)
+                {
+                    Offset (0x0C), 
+                    GPLK,   1
+                }
 
-        OperationRegion (RXA0, PCI_Config, 0xA0, 0x20)
-        Field (RXA0, ByteAcc, NoLock, Preserve)
-        {
-                ,   9, 
-            PBLV,   1, 
-            BCPE,   1, 
-            Offset (0x10), 
-                ,   1, 
-            PBMS,   1, 
-                ,   1, 
-            PMCS,   1, 
-            ECNS,   1, 
-            Offset (0x11), 
-            ECT1,   16, 
-            ELEN,   1, 
-            Offset (0x14)
-        }
+                OperationRegion (RXA0, PCI_Config, 0xA0, 0x20)
+                Field (RXA0, ByteAcc, NoLock, Preserve)
+                {
+                        ,   9, 
+                    PBLV,   1, 
+                    BCPE,   1, 
+                    Offset (0x10), 
+                        ,   1, 
+                    PBMS,   1, 
+                        ,   1, 
+                    PMCS,   1, 
+                    ECNS,   1, 
+                    Offset (0x11), 
+                    ECT1,   16, 
+                    ELEN,   1, 
+                    Offset (0x14)
+                }
                 Scope (\_SB)
                 {
                     OperationRegion (PCI0.LPCB.LPC1, PCI_Config, Zero, 0x0100)
@@ -2733,7 +2733,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                             0x01,               // Alignment
                             0x08,               // Length
                             )
-                        
                     })
                 }
 
@@ -2754,7 +2753,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                             0x10,               // Alignment
                             0x04,               // Length
                             )
-                        
                     })
                 }
 
@@ -2773,14 +2771,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     })
                     Method (_STA, 0, Serialized)  // _STA: Status
                     {
-                        If ((WDTE == One))
-                        {
-                            Return (0x0F)
-                        }
-                        Else
-                        {
-                            Return (Zero)
-                        }
+                        Return (0x0F)
                     }
 
                     Method (_CRS, 0, Serialized)  // _CRS: Current Resource Settings
@@ -4439,32 +4430,12 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         }
     }
 
-    Name (RPA0, 0x001C0000)
-    Name (RPA1, 0x001C0001)
-    Name (RPA2, 0x001C0002)
-    Name (RPA3, 0x001C0003)
-    Name (RPA4, 0x001C0004)
-    Name (RPA5, 0x001C0005)
-    Name (RPA6, 0x001C0006)
-    Name (RPA7, 0x001C0007)
     Name (PCHS, 0x00000002)
     Name (SRMB, 0xF7FE0000)
     Name (PML1, 0x00001003)
-    Name (PML2, 0x00001003)
-    Name (PML3, 0x00001003)
     Name (PML4, 0x00001003)
-    Name (PML5, 0x00001003)
-    Name (PML6, 0x00001003)
-    Name (PML7, 0xFFFFFFFF)
-    Name (PML8, 0xFFFFFFFF)
     Name (PNL1, 0x00001003)
-    Name (PNL2, 0x00001003)
-    Name (PNL3, 0x00001003)
     Name (PNL4, 0x00001003)
-    Name (PNL5, 0x00001003)
-    Name (PNL6, 0x00001003)
-    Name (PNL7, 0xFFFFFFFF)
-    Name (PNL8, 0xFFFFFFFF)
     Scope (\)
     {
         Name (OSDW, Zero)
@@ -4472,12 +4443,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         Field (IO_D, ByteAcc, NoLock, Preserve)
         {
             TRPD,   8
-        }
-
-        OperationRegion (IO_H, SystemIO, 0x1000, 0x04)
-        Field (IO_H, ByteAcc, NoLock, Preserve)
-        {
-            TRPH,   8
         }
 
         OperationRegion (PMLP, SystemIO, (PMBS + 0x80), 0x20)
@@ -8141,20 +8106,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Return (Package()
                 {
                     "AAPL,ig-platform-id", Buffer() { 0x08, 0x00, 0x2e, 0x0a },
-                    "hda-gfx", Buffer() { "onboard-1" },
-                    "AAPL00,override-no-edid", Buffer () {
-                    0,255,255,255,255,255,255,0,77,16,32,160,
-                    0,0,0,0,0,23,1,4,165,29,17,120,
-                    6,222,80,163,84,76,153,38,15,80,84,0,
-                    0,0,1,1,1,1,1,1,1,1,1,1,
-                    1,1,1,1,1,1,86,94,0,160,160,160,
-                    41,80,48,32,53,0,38,165,16,0,0,24,
-                    0,0,0,16,0,0,0,0,0,0,0,0,
-                    0,0,0,0,0,0,0,0,0,16,0,0,
-                    0,0,0,0,0,0,0,0,0,0,0,0,
-                    0,0,0,252,0,76,81,49,51,51,84,49,
-                    74,87,49,52,10,32,0,165
-                    },
+                    "hda-gfx", Buffer() { "onboard-1" }
                 })
             }
         }
@@ -8162,27 +8114,29 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         Device (EHC1)
         {
             Name (_ADR, 0x001D0000)  // _ADR: Address
-            OperationRegion (PWKE, PCI_Config, 0x54, 0x12)
-            Field (PWKE, DWordAcc, NoLock, Preserve)
+            OperationRegion (PWKE, PCI_Config, Zero, 0x0100)
+            Field (PWKE, AnyAcc, NoLock, Preserve)
             {
-                Offset (0x01), 
+                DVID,   16, 
+                Offset (0x54), 
+                Offset (0x55), 
                 PMEE,   1, 
                     ,   6, 
-                PMES,   1, 
-                Offset (0x0E), 
-                    ,   1, 
-                PWUC,   8
+                PMES,   1
             }
-
-            Method (_PSW, 1, NotSerialized)  // _PSW: Power State Wake
+            
+            Method (_DSW, 3, NotSerialized)  // _DSW: Device Sleep Wake
             {
-                If (Arg0)
+                PMEE = Arg0
+            }
+            
+            Method (GPEH, 0, NotSerialized)
+            {
+                If (DVID == 0xFFFF) {}
+                ElseIf (LAnd (PMEE, PMES))
                 {
-                    PWUC = Ones
-                }
-                Else
-                {
-                    PWUC = Zero
+                    PMES = One
+                    Notify (EHC1, 0x02)
                 }
             }
 
@@ -8704,7 +8658,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Name (_ADR, One)  // _ADR: Address
                     Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
                     {
-                        OUPC (Zero)
+                        OUPC (Zero, Zero)
                         Return (BUPC)
                     }
 
@@ -8720,7 +8674,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Name (_ADR, 0x02)  // _ADR: Address
                     Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
                     {
-                        OUPC (One)
+                        OUPC (One, Zero)
                         Return (BUPC)
                     }
 
@@ -8736,7 +8690,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Name (_ADR, 0x03)  // _ADR: Address
                     Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
                     {
-                        OUPC (0x02)
+                        OUPC (0x02, Zero)
                         Return (BUPC)
                     }
 
@@ -8752,7 +8706,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Name (_ADR, 0x04)  // _ADR: Address
                     Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
                     {
-                        OUPC (0x03)
+                        OUPC (0x03, Zero)
                         Return (BUPC)
                     }
 
@@ -8768,7 +8722,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Name (_ADR, 0x05)  // _ADR: Address
                     Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
                     {
-                        OUPC (0x04)
+                        OUPC (0x04, Zero)
                         Return (BUPC)
                     }
 
@@ -8784,7 +8738,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Name (_ADR, 0x06)  // _ADR: Address
                     Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
                     {
-                        OUPC (0x05)
+                        OUPC (0x05, Zero)
                         Return (BUPC)
                     }
 
@@ -8800,7 +8754,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Name (_ADR, 0x07)  // _ADR: Address
                     Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
                     {
-                        OUPC (0x06)
+                        OUPC (0x06, Zero)
                         Return (BUPC)
                     }
 
@@ -8816,7 +8770,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Name (_ADR, 0x08)  // _ADR: Address
                     Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
                     {
-                        OUPC (0x07)
+                        OUPC (0x07, Zero)
                         Return (BUPC)
                     }
 
@@ -8831,7 +8785,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
             {
-                Return (GPRW (0x6D, 0x03))
+                Return (GPRW (0x0D, 0x03))
             }
             Method (_DSM, 4, NotSerialized)
             {
@@ -8854,27 +8808,29 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         Device (EHC2)
         {
             Name (_ADR, 0x001A0000)  // _ADR: Address
-            OperationRegion (PWKE, PCI_Config, 0x54, 0x12)
-            Field (PWKE, DWordAcc, NoLock, Preserve)
+            OperationRegion (PWKE, PCI_Config, Zero, 0x0100)
+            Field (PWKE, AnyAcc, NoLock, Preserve)
             {
-                Offset (0x01), 
+                DVID,   16, 
+                Offset (0x54), 
+                Offset (0x55), 
                 PMEE,   1, 
                     ,   6, 
-                PMES,   1, 
-                Offset (0x0E), 
-                    ,   1, 
-                PWUC,   6
+                PMES,   1
             }
 
-            Method (_PSW, 1, NotSerialized)  // _PSW: Power State Wake
+            Method (_DSW, 3, NotSerialized)  // _DSW: Device Sleep Wake
             {
-                If (Arg0)
+                PMEE = Arg0
+            }
+            
+            Method (GPEH, 0, NotSerialized)
+            {
+                If (DVID == 0xFFFF) {}
+                ElseIf (LAnd (PMEE, PMES))
                 {
-                    PWUC = Ones
-                }
-                Else
-                {
-                    PWUC = Zero
+                    PMES = One
+                    Notify (EHC2, 0x02)
                 }
             }
 
@@ -9229,7 +9185,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Name (_ADR, One)  // _ADR: Address
                     Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
                     {
-                        OUPC (0x08)
+                        OUPC (0x08, Zero)
                         Return (BUPC)
                     }
 
@@ -9245,7 +9201,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Name (_ADR, 0x02)  // _ADR: Address
                     Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
                     {
-                        OUPC (0x09)
+                        OUPC (0x09, Zero)
                         Return (BUPC)
                     }
 
@@ -9261,7 +9217,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Name (_ADR, 0x03)  // _ADR: Address
                     Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
                     {
-                        OUPC (0x0A)
+                        OUPC (0x0A, Zero)
                         Return (BUPC)
                     }
 
@@ -9277,7 +9233,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Name (_ADR, 0x04)  // _ADR: Address
                     Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
                     {
-                        OUPC (0x0B)
+                        OUPC (0x0B, Zero)
                         Return (BUPC)
                     }
 
@@ -9293,7 +9249,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Name (_ADR, 0x05)  // _ADR: Address
                     Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
                     {
-                        OUPC (0x0C)
+                        OUPC (0x0C, Zero)
                         Return (BUPC)
                     }
 
@@ -9309,7 +9265,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Name (_ADR, 0x06)  // _ADR: Address
                     Method (_UPC, 0, NotSerialized)  // _UPC: USB Port Capabilities
                     {
-                        OUPC (0x0D)
+                        OUPC (0x0D, Zero)
                         Return (BUPC)
                     }
 
@@ -9324,7 +9280,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
             {
-                Return (GPRW (0x6D, 0x03))
+                Return (GPRW (0x0D, 0x03))
             }
             Method (_DSM, 4, NotSerialized)
             {
@@ -9365,6 +9321,11 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 PMEE,   1, 
                     ,   6, 
                 PMES,   1, 
+                Offset (0xA8), 
+                    ,   13, 
+                MW13,   1, 
+                MW14,   1, 
+                Offset (0xAC), 
                 Offset (0xB0), 
                     ,   13, 
                 MB13,   1, 
@@ -9384,6 +9345,16 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 PDBM,   16, 
                 Offset (0x10), 
                 MEMB,   64
+            }
+            
+            Method (GPEH, 0, NotSerialized)
+            {
+                If (DVID == 0xFFFF) {}
+                Else {
+                Local0 = PMES
+                PMES = One
+                If (LAnd (PMEE, Local0)) { Notify (XHC1, 0x02) }
+                }
             }
 
             Method (PR2S, 1, Serialized)
@@ -9717,8 +9688,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (_PS3, 0, Serialized)  // _PS3: Power State 3
             {
-                If ((DVID != 0xFFFF))
-                {
                 PMES = One
                 PMEE = One
                 Local2 = MEMB
@@ -9778,7 +9747,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 PDBM &= 0xFFFFFFFFFFFFFFFD
                 MEMB = Local2
                 PDBM = Local1
-                }
             }
 
             Method (CUID, 1, Serialized)
@@ -11075,7 +11043,12 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
             {
-                Return (GPRW (0x6D, 0x03))
+                Return (GPRW (0x0D, 0x03))
+            }
+            
+            Method (_DSW, 3, NotSerialized)  // _DSW: Device Sleep Wake
+            {
+                Store (Arg0, PMEE)
             }
             Method (_DSM, 4, NotSerialized)
             {
@@ -11099,31 +11072,50 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         Device (HDEF)
         {
             Name (_ADR, 0x001B0000)  // _ADR: Address
-            OperationRegion (HDAR, PCI_Config, 0x4C, 0x10)
-            Field (HDAR, WordAcc, NoLock, Preserve)
+            OperationRegion (HDAR, PCI_Config, Zero, 0x0100)
+            Field (HDAR, AnyAcc, NoLock, Preserve)
             {
+                DVID,   16, 
+                Offset (0x4C), 
                 DCKA,   1, 
-                Offset (0x01), 
+                Offset (0x4D), 
                 DCKM,   1, 
                     ,   6, 
                 DCKS,   1, 
-                Offset (0x08), 
-                Offset (0x09), 
+                Offset (0x54), 
+                Offset (0x55), 
                 PMEE,   1, 
                     ,   6, 
                 PMES,   1
             }
+            
+            Method (_DSW, 3, NotSerialized)  // _DSW: Device Sleep Wake
+            {
+                Store (Arg0, PMEE)
+            }
 
             Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
             {
-                Return (GPRW (0x6D, 0x04))
+                Return (GPRW (0x0D, 0x04))
             }
+            
+            Method (GPEH, 0, NotSerialized)
+            {
+                If (DVID == 0xFFFF) {}
+                ElseIf (LAnd (PMEE, PMES))
+                {
+                    PMES = One
+                    Notify (HDEF, 0x02)
+                }
+            }
+            
             Method (_DSM, 4, NotSerialized)
             {
                 If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
                 Return (Package()
                 {
-                    "layout-id", Buffer() { 0x56, 0x00, 0x00, 0x00 },  // Change to your LayoutID
+                    "layout-id", Buffer() {86,0,0,0},  // Change to your LayoutID
+                    "PinConfigurations", Buffer () {0,1,160,144,16,1,16,144,32,16,33,3},
                     "MaximumBootBeepVolume", 77,
                 })
             }
@@ -11264,11 +11256,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Return (PIB2)
                 }
             }
-        }
-
-        Device (SAT1)
-        {
-            Name (_ADR, 0x001F0005)  // _ADR: Address
         }
 
         Device (SBUS)
@@ -11720,73 +11707,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         C2LE,   1, 
         Offset (0x04)
     }
-
-    Method (UXDV, 1, Serialized)
-    {
-        Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
-        Local0 = 0xFF
-        While (One)
-        {
-            _T_0 = (Arg0 + Zero)
-            If ((_T_0 == 0x03F8))
-            {
-                Local0 = Zero
-            }
-            Else
-            {
-                If ((_T_0 == 0x02F8))
-                {
-                    Local0 = One
-                }
-                Else
-                {
-                    If ((_T_0 == 0x0220))
-                    {
-                        Local0 = 0x02
-                    }
-                    Else
-                    {
-                        If ((_T_0 == 0x0228))
-                        {
-                            Local0 = 0x03
-                        }
-                        Else
-                        {
-                            If ((_T_0 == 0x0238))
-                            {
-                                Local0 = 0x04
-                            }
-                            Else
-                            {
-                                If ((_T_0 == 0x02E8))
-                                {
-                                    Local0 = 0x05
-                                }
-                                Else
-                                {
-                                    If ((_T_0 == 0x0338))
-                                    {
-                                        Local0 = 0x06
-                                    }
-                                    Else
-                                    {
-                                        If ((_T_0 == 0x03E8))
-                                        {
-                                            Local0 = 0x07
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            Break
-        }
-
-        Return (Local0)
-    }
     
     Scope (_PR)
     {
@@ -11801,53 +11721,11 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
     }
 
     Mutex (MUTX, 0x00)
-    OperationRegion (DEB0, SystemIO, 0x80, One)
-    Field (DEB0, ByteAcc, NoLock, Preserve)
-    {
-        DBG8,   8
-    }
-
-    OperationRegion (DEB1, SystemIO, 0x90, 0x02)
-    Field (DEB1, WordAcc, NoLock, Preserve)
-    {
-        DBG9,   16
-    }
 
     OperationRegion (PH80, SystemIO, 0x80, 0x04)
     Field (PH80, DWordAcc, Lock, Preserve)
     {
         P80H,   32
-    }
-
-    Method (P8XH, 2, Serialized)
-    {
-        If ((Arg0 == Zero))
-        {
-            P80D = ((P80D & 0xFFFFFF00) | Arg1)
-        }
-
-        If ((Arg0 == One))
-        {
-            P80D = ((P80D & 0xFFFF00FF) | (Arg1 << 0x08))
-        }
-
-        If ((Arg0 == 0x02))
-        {
-            P80D = ((P80D & 0xFF00FFFF) | (Arg1 << 0x10))
-        }
-
-        If ((Arg0 == 0x03))
-        {
-            P80D = ((P80D & 0x00FFFFFF) | (Arg1 << 0x18))
-        }
-
-        P80H = P80D
-    }
-
-    OperationRegion (SPRT, SystemIO, 0xB2, 0x02)
-    Field (SPRT, ByteAcc, Lock, Preserve)
-    {
-        SSMP,   8
     }
 
     Method (_PIC, 1, NotSerialized)  // _PIC: Interrupt Model
@@ -11896,8 +11774,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 }
             }
         }
-
-        If (((Arg0 == 0x03) || (Arg0 == 0x04))) {}
     }
 
     Method (_WAK, 1, Serialized)  // _WAK: Wake
@@ -11973,7 +11849,141 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         })
     }
 
-    Method (GETB, 3, Serialized)
+    Scope (_SB.PCI0)
+    {
+        Method (NHPG, 0, Serialized)
+        {
+            ^RP01.HPEX = Zero
+            ^RP04.HPEX = Zero
+            ^RP01.HPSX = One
+            ^RP04.HPSX = One
+        }
+
+        Method (NPME, 0, Serialized)
+        {
+            ^RP01.PMEX = Zero
+            ^RP04.PMEX = Zero
+            ^RP01.PMSX = One
+            ^RP04.PMSX = One
+        }
+    }
+
+    Scope (\)
+    {
+        Name (PICM, Zero)
+        Name (PRWP, Package () { Zero, Zero })
+        Method (P8XH, 2, Serialized)
+    {
+        If ((Arg0 == Zero))
+        {
+            P80D = ((P80D & 0xFFFFFF00) | Arg1)
+        }
+
+        If ((Arg0 == One))
+        {
+            P80D = ((P80D & 0xFFFF00FF) | (Arg1 << 0x08))
+        }
+
+        If ((Arg0 == 0x02))
+        {
+            P80D = ((P80D & 0xFF00FFFF) | (Arg1 << 0x10))
+        }
+
+        If ((Arg0 == 0x03))
+        {
+            P80D = ((P80D & 0x00FFFFFF) | (Arg1 << 0x18))
+        }
+
+        P80H = P80D
+    }
+        Method (GPRW, 2, NotSerialized)
+        {
+            Index (PRWP, Zero) = Arg0
+            Local0 = (SS1 << One)
+            Local0 |= (SS2 << 0x02)
+            Local0 |= (SS3 << 0x03)
+            Local0 |= (SS4 << 0x04)
+            If (((One << Arg1) & Local0))
+            {
+                Index (PRWP, One) = Arg1
+            }
+            Else
+            {
+                Local0 >>= One
+                FindSetLeftBit (Local0, Index (PRWP, One))
+            }
+
+            Return (PRWP)
+        }
+        
+        Method (UXDV, 1, Serialized)
+    {
+        Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
+        Local0 = 0xFF
+        While (One)
+        {
+            _T_0 = (Arg0 + Zero)
+            If ((_T_0 == 0x03F8))
+            {
+                Local0 = Zero
+            }
+            Else
+            {
+                If ((_T_0 == 0x02F8))
+                {
+                    Local0 = One
+                }
+                Else
+                {
+                    If ((_T_0 == 0x0220))
+                    {
+                        Local0 = 0x02
+                    }
+                    Else
+                    {
+                        If ((_T_0 == 0x0228))
+                        {
+                            Local0 = 0x03
+                        }
+                        Else
+                        {
+                            If ((_T_0 == 0x0238))
+                            {
+                                Local0 = 0x04
+                            }
+                            Else
+                            {
+                                If ((_T_0 == 0x02E8))
+                                {
+                                    Local0 = 0x05
+                                }
+                                Else
+                                {
+                                    If ((_T_0 == 0x0338))
+                                    {
+                                        Local0 = 0x06
+                                    }
+                                    Else
+                                    {
+                                        If ((_T_0 == 0x03E8))
+                                        {
+                                            Local0 = 0x07
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            Break
+        }
+
+        Return (Local0)
+    }
+        
+        Method (GETB, 3, Serialized)
     {
         Local0 = (Arg0 * 0x08)
         Local1 = (Arg1 * 0x08)
@@ -12203,53 +12213,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Return (SMIF)
     }
-
-    Scope (_SB.PCI0)
-    {
-        Method (NHPG, 0, Serialized)
-        {
-            ^RP01.HPEX = Zero
-            ^RP04.HPEX = Zero
-            ^RP01.HPSX = One
-            ^RP04.HPSX = One
-        }
-
-        Method (NPME, 0, Serialized)
-        {
-            ^RP01.PMEX = Zero
-            ^RP04.PMEX = Zero
-            ^RP01.PMSX = One
-            ^RP04.PMSX = One
-        }
-    }
-
-    Scope (\)
-    {
-        Name (PICM, Zero)
-        Name (PRWP, Package (0x02)
-        {
-            Zero, 
-            Zero
-        })
-        Method (GPRW, 2, NotSerialized)
-        {
-            Index (PRWP, Zero) = Arg0
-            Local0 = (SS1 << One)
-            Local0 |= (SS2 << 0x02)
-            Local0 |= (SS3 << 0x03)
-            Local0 |= (SS4 << 0x04)
-            If (((One << Arg1) & Local0))
-            {
-                Index (PRWP, One) = Arg1
-            }
-            Else
-            {
-                Local0 >>= One
-                FindSetLeftBit (Local0, Index (PRWP, One))
-            }
-
-            Return (PRWP)
-        }
+    Method (B1B2, 2, NotSerialized) { Return(Or(Arg0, ShiftLeft(Arg1, 8))) }
     }
 
     Scope (_SB)
@@ -12314,47 +12278,27 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
     {
         Method (_L69, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
         {
-            If (((RP1D == Zero) && (\_SB.PCI0.RP01.RPAV == One)))
-            {
-                \_SB.PCI0.RP01.HPME ()
                 Notify (\_SB.PCI0.RP01, 0x02)
-            }
-
-            If (((RP4D == Zero) && (\_SB.PCI0.RP04.RPAV == One)))
-            {
-                \_SB.PCI0.RP04.HPME ()
                 Notify (\_SB.PCI0.RP04, 0x02)
-            }
+                Notify (\_SB.PCI0.RP04.PXSX, 0x02)
+        }
+        
+        Method (LXDH, 0, NotSerialized)
+        {
+            \_SB.PCI0.XHC1.GPEH ()
+            \_SB.PCI0.EHC1.GPEH ()
+            \_SB.PCI0.EHC2.GPEH ()
+            \_SB.PCI0.HDEF.GPEH ()
         }
 
-        Method (_L6D, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
+        Method (_L0D, 0, Serialized)  // _Lxx: Level-Triggered GPE
         {
-            If ((\_SB.PCI0.EHC1.PMEE && \_SB.PCI0.EHC1.PMES))
-            {
-                Notify (\_SB.PCI0.EHC1, 0x02)
-            }
-
-            If ((\_SB.PCI0.EHC2.PMEE && \_SB.PCI0.EHC2.PMES))
-            {
-                Notify (\_SB.PCI0.EHC2, 0x02)
-            }
-
-            If ((\_SB.PCI0.XHC1.PMEE && \_SB.PCI0.XHC1.PMES))
-            {
-                Notify (\_SB.PCI0.XHC1, 0x02)
-            }
-            Else
-            {
-                If ((\_SB.PCI0.XHC1.PMEE == Zero))
-                {
-                    \_SB.PCI0.XHC1.PMES = One
-                }
-            }
-
-            If ((\_SB.PCI0.HDEF.PMEE && \_SB.PCI0.HDEF.PMES))
-            {
-                Notify (\_SB.PCI0.HDEF, 0x02)
-            }
+            LXDH ()
+        }
+        
+        Method (_L6D, 0, Serialized)  // _Lxx: Level-Triggered GPE
+        {
+            LXDH ()
         }
 
         Method (_L61, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
@@ -12425,9 +12369,16 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_L66, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
         {
-            If ((\_SB.PCI0.IGPU.GSSE && !GSMI))
+            If (LAnd (\_SB.PCI0.IGPU.GSSE, LNot (GSMI)))
             {
                 \_SB.PCI0.IGPU.GSCI ()
+            }
+            Else
+            {
+                Store (0x00, \_SB.PCI0.IGPU.GEFC)
+                Store (0x01, SCIS)
+                Store (0x00, \_SB.PCI0.IGPU.GSSE)
+                Store (0x00, \_SB.PCI0.IGPU.SCIE)
             }
         }
 
@@ -12856,22 +12807,10 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Name (_UID, "ATK")  // _UID: Unique ID
             Name (ATKQ, Package (0x10)
             {
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF, 
-                0xFFFFFFFF
+                0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 
+                0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 
+                0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 
+                0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF
             })
             Name (AQHI, Zero)
             Name (AQTI, 0x0F)
@@ -12989,20 +12928,14 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Return (^^LPCB.EC0.ACAP ())
             }
 
-            Name (_PCL, Package (0x01)  // _PCL: Power Consumer List
-            {
-                PCI0
-            })
+            Name (_PCL, Package () { ^^PCI0 })
         }
 
         Device (BAT0)
         {
             Name (_HID, EisaId ("PNP0C0A"))  // _HID: Hardware ID
             Name (_UID, Zero)  // _UID: Unique ID
-            Name (_PCL, Package (0x01)  // _PCL: Power Consumer List
-            {
-                PCI0
-            })
+            Name (_PCL, Package () { ^^PCI0 })
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
                 If (^^LPCB.EC0.BATP (Zero))
@@ -15240,6 +15173,122 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         Name (TSP, 0x0A)
         Name (TC1, 0x02)
         Name (TC2, 0x0A)
+        
+        Device (RMDT)
+    {
+        Name (_HID, "RMD0000")
+        Name (RING, Package(256) { })
+        Mutex (RTMX, 0)
+        Name (HEAD, 0)
+        Name (TAIL, 0)
+        // PUSH: Use to push a trace item into RING for ACPIDebug.kext
+        Method (PUSH, 1, NotSerialized)
+        {
+            Acquire(RTMX, 0xFFFF)
+            // push new item at HEAD
+            Add(HEAD, 1, Local0)
+            If (LGreaterEqual(Local0, SizeOf(RING))) { Store(0, Local0) }
+            if (LNotEqual(Local0, TAIL))
+            {
+                Store(Arg0, Index(RING, HEAD))
+                Store(Local0, HEAD)
+            }
+            Release(RTMX)
+            Notify(RMDT, 0x80)
+        }
+        // FTCH: Used by ACPIDebug.kext to fetch an item from RING
+        Method (FTCH, 0, NotSerialized)
+        {
+            Acquire(RTMX, 0xFFFF)
+            // pull item from TAIL and return it
+            Store(0, Local0)
+            if (LNotEqual(HEAD, TAIL))
+            {
+                Store(DerefOf(Index(RING, TAIL)), Local0)
+                Increment(TAIL)
+                If (LGreaterEqual(TAIL, SizeOf(RING))) { Store(0, TAIL) }
+            }
+            Release(RTMX)
+            Return(Local0)
+        }
+        // COUN: Used by ACPIDebug.kext to determine number of items in RING
+        Method (COUN, 0, NotSerialized)
+        {
+            Acquire(RTMX, 0xFFFF)
+            // return count of items in RING
+            Subtract(HEAD, TAIL, Local0)
+            if (LLess(Local0, 0)) { Add(Local0, SizeOf(RING), Local0) }
+            Release(RTMX)
+            Return(Local0)
+        }
+        // Helper functions for multiple params at one time
+        Method (P1, 1, NotSerialized) { PUSH(Arg0) }
+        Method (P2, 2, Serialized)
+        {
+            Name (TEMP, Package(2) { })
+            Store(Arg0, Index(TEMP, 0))
+            Store(Arg1, Index(TEMP, 1))
+            PUSH(TEMP)
+        }
+        Method (P3, 3, Serialized)
+        {
+            Name (TEMP, Package(3) { })
+            Store(Arg0, Index(TEMP, 0))
+            Store(Arg1, Index(TEMP, 1))
+            Store(Arg2, Index(TEMP, 2))
+            PUSH(TEMP)
+        }
+        Method (P4, 4, Serialized)
+        {
+            Name (TEMP, Package(4) { })
+            Store(Arg0, Index(TEMP, 0))
+            Store(Arg1, Index(TEMP, 1))
+            Store(Arg2, Index(TEMP, 2))
+            Store(Arg3, Index(TEMP, 3))
+            PUSH(TEMP)
+        }
+        Method (P5, 5, Serialized)
+        {
+            Name (TEMP, Package(5) { })
+            Store(Arg0, Index(TEMP, 0))
+            Store(Arg1, Index(TEMP, 1))
+            Store(Arg2, Index(TEMP, 2))
+            Store(Arg3, Index(TEMP, 3))
+            Store(Arg4, Index(TEMP, 4))
+            PUSH(TEMP)
+        }
+        Method (P6, 6, Serialized)
+        {
+            Name (TEMP, Package(6) { })
+            Store(Arg0, Index(TEMP, 0))
+            Store(Arg1, Index(TEMP, 1))
+            Store(Arg2, Index(TEMP, 2))
+            Store(Arg3, Index(TEMP, 3))
+            Store(Arg4, Index(TEMP, 4))
+            Store(Arg5, Index(TEMP, 5))
+            PUSH(TEMP)
+        }
+        Method (P7, 7, Serialized)
+        {
+            Name (TEMP, Package(7) { })
+            Store(Arg0, Index(TEMP, 0))
+            Store(Arg1, Index(TEMP, 1))
+            Store(Arg2, Index(TEMP, 2))
+            Store(Arg3, Index(TEMP, 3))
+            Store(Arg4, Index(TEMP, 4))
+            Store(Arg5, Index(TEMP, 5))
+            Store(Arg6, Index(TEMP, 6))
+            PUSH(TEMP)
+        }
+    }
+    
+    Device (SMCD)
+    {
+        Name (_HID, "MON0000")  // _HID: Hardware ID
+        Name (TACH, Package () { "Right Fan", "FAN0", "Left Fan", "FAN1" })
+        Method (FAN0, 0, Serialized) { Return (\_SB.PCI0.LPCB.EC0.TACH (Zero)) }
+        Method (FAN1, 0, Serialized) { Return (\_SB.PCI0.LPCB.EC0.TACH (One)) }
+    }
     }
 
     Scope (_TZ)
@@ -16406,37 +16455,33 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
     {
         Device (ALS)
         {
-            Method (_HID, 0, NotSerialized)  // _HID: Hardware ID
-            {
-                If ((MSOS () >= OSW7))
-                {
-                    Return ("ACPI0008")
-                }
-                Else
-                {
-                    Return ("PNP0C02")
-                }
-            }
-
-            Method (_STA, 0, NotSerialized)  // _STA: Status
-            {
-                Return (0x0B)
-            }
-
-            Method (_DIS, 0, NotSerialized)  // _DIS: Disable Device
-            {
-            }
-
+            Name (_HID, "ACPI0008")
+            Name (_STA, 0x0F)  // _STA: Status
             Name (LUXL, Zero)
             Method (_ALI, 0, NotSerialized)  // _ALI: Ambient Light Illuminance
             {
                 Return (^^PCI0.LPCB.EC0.RALS ())
             }
 
-            Method (_ALR, 0, NotSerialized)  // _ALR: Ambient Light Response
+            Name (_ALR, Package ()  // _ALR: Ambient Light Response
             {
-                Return (OALR)
-            }
+                Package () { 0x14, Zero },
+                Package () { 0x14, 0x19 },
+                Package () { 0x28, 0x32 },
+                Package () { 0x32, 0x64 },
+                Package () { 0x41, 0x96 },
+                Package () { 0x50, 0xC8 },
+                Package () { 0x64, 0x012C },
+                Package () { 0x7D, 0x0190 },
+                Package () { 0x9B, 0x01F4 },
+                Package () { 0xC3, 0x0258 },
+                Package () { 0xF0, 0x02BC },
+                Package () { 0x0127, 0x0320 },
+                Package () { 0x0168, 0x0384 },
+                Package () { 0x01B8, 0x03E8 },
+                Package () { 0x0217, 0x04E2 },
+                Package () { 0x0294, 0x05DC }
+            })
         }
 
         Device (LID)
@@ -16446,30 +16491,15 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             {
                 Local0 = One
                 Local0 = ^^PCI0.LPCB.EC0.RPIN (0x11)
-                If ((Local0 == Ones))
-                {
-                    Local0 = One
-                }
-
-                If ((VGAF & One))
-                {
-                    ^^PCI0.IGPU.CLID = One
-                }
-
+                If ((Local0 == Ones)) { Local0 = One }
+                If ((VGAF & One)) { ^^PCI0.IGPU.CLID = One }
                 Return (Local0)
             }
         }
         Device (SLPB)
         {
             Name (_HID, EisaId ("PNP0C0E"))  // _HID: Hardware ID
-            Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-            {
-                Return (Package (0x02)
-                {
-                    0x0B, 
-                    0x04
-                })
-            }
+            Name (_PRW, Package () { 0x0B, 0x04 })
         }
 
         Name (XCPD, Zero)
@@ -16995,10 +17025,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 PEPS |= One
             }
         }
-    }
 
-    Scope (\)
-    {
         OperationRegion (SMB0, SystemIO, \_SB.SMBB, 0x10)
         Field (SMB0, ByteAcc, NoLock, Preserve)
         {
@@ -17324,35 +17351,35 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             /* 0000 */  0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07,
             /* 0008 */  0x07, 0x07, 0x07, 0x07, 0x07, 0x07             
         })
-        Name (BUPC, Package (0x04)
+        Name (BUPC, Package (0x04) { 0xFF, Zero, Zero, Zero })
+        Name (BPLD, Buffer (0x10) { 0x81, 0x00, 0x31, 0x00 })
+        Method (OUPC, 2, Serialized)
         {
-            0xFF, 
-            Zero, 
-            Zero, 
-            Zero
-        })
-        Name (BPLD, Buffer (0x10)
-        {
-             0x81, 0x00, 0x31, 0x00                         
-        })
-        Method (OUPC, 1, Serialized)
-        {
-            Local0 = DerefOf (Index (CNTB, Arg0))
-            Index (BUPC, Zero) = Local0
+            Store (DerefOf (Index (CNTB, Arg0)), Local0)
+            Store (Local0, Index (BUPC, Zero))
+            If (LEqual (Arg1, One))
+            {
+                Store (0x03, Index (BUPC, One))
+            }
         }
 
         Method (OPLD, 1, Serialized)
         {
-            Local0 = DerefOf (Index (VISB, Arg0))
-            Local1 = DerefOf (Index (BPLD, 0x08))
-            Local1 &= 0xFE
-            Local1 |= Local0
-            Index (BPLD, 0x08) = Local1
-            Local0 = DerefOf (Index (SHPB, Arg0))
-            Local1 = DerefOf (Index (BPLD, 0x09))
-            Local1 &= 0xC3
-            Local1 |= Local0
-            Index (BPLD, 0x09) = Local1
+            Store (DerefOf (Index (VISB, Arg0)), Local0)
+            Store (DerefOf (Index (BPLD, 0x08)), Local1)
+            And (Local1, 0xFE, Local1)
+            Or (Local1, Local0, Local1)
+            Store (Local1, Index (BPLD, 0x08))
+            Store (DerefOf (Index (SHPB, Arg0)), Local0)
+            Store (DerefOf (Index (BPLD, 0x09)), Local1)
+            And (Local1, 0xC3, Local1)
+            Or (Local1, Local0, Local1)
+            Store (Local1, Index (BPLD, 0x09))
+            Store (DerefOf (Index (BPLD, 0x0A)), Local0)
+            Store (DerefOf (Index (BPLD, 0x0B)), Local1)
+            Store (Add (Arg0, One), Local2)
+            Store (Or (And (Local0, 0x7F), ShiftLeft (And (Local2, One), 0x07)), Index (BPLD, 0x0A))
+            Store (Or (And (Local1, 0x80), ShiftRight (And (Local2, 0xFE), One)), Index (BPLD, 0x0B))
         }
         
         Method (PRJW, 1, Serialized)
@@ -17613,153 +17640,12 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         }
     }
 
-    Name (OALR, Package (0x10)
-    {
-        Package (0x02)
-        {
-            0x14, 
-            Zero
-        }, 
-
-        Package (0x02)
-        {
-            0x14, 
-            0x19
-        }, 
-
-        Package (0x02)
-        {
-            0x28, 
-            0x32
-        }, 
-
-        Package (0x02)
-        {
-            0x32, 
-            0x64
-        }, 
-
-        Package (0x02)
-        {
-            0x41, 
-            0x96
-        }, 
-
-        Package (0x02)
-        {
-            0x50, 
-            0xC8
-        }, 
-
-        Package (0x02)
-        {
-            0x64, 
-            0x012C
-        }, 
-
-        Package (0x02)
-        {
-            0x7D, 
-            0x0190
-        }, 
-
-        Package (0x02)
-        {
-            0x9B, 
-            0x01F4
-        }, 
-
-        Package (0x02)
-        {
-            0xC3, 
-            0x0258
-        }, 
-
-        Package (0x02)
-        {
-            0xF0, 
-            0x02BC
-        }, 
-
-        Package (0x02)
-        {
-            0x0127, 
-            0x0320
-        }, 
-
-        Package (0x02)
-        {
-            0x0168, 
-            0x0384
-        }, 
-
-        Package (0x02)
-        {
-            0x01B8, 
-            0x03E8
-        }, 
-
-        Package (0x02)
-        {
-            0x0217, 
-            0x04E2
-        }, 
-
-        Package (0x02)
-        {
-            0x0294, 
-            0x05DC
-        }
-    })
-
-    Name (_S0, Package (0x04)  // _S0_: S0 System State
-    {
-        Zero, 
-        Zero, 
-        Zero, 
-        Zero
-    })
+    Name (_S0, Package (0x04) { Zero, Zero, Zero, Zero })
+    If (SS1) { Name (_S1, Package (0x04) { One, Zero, Zero, Zero }) }
+    If (SS3) { Name (_S3, Package (0x04) { 0x05, Zero, Zero, Zero }) }
+    If (SS4) { Name (_S4, Package (0x04) { 0x06, Zero, Zero, Zero }) }
+    Name (_S5, Package (0x04) { 0x07, Zero, Zero, Zero })
     
-    If (SS1)
-    {
-        Name (_S1, Package (0x04)  // _S3_: S3 System State
-        {
-            One, 
-            Zero, 
-            Zero, 
-            Zero
-        })
-    }
-    
-    If (SS3)
-    {
-        Name (_S3, Package (0x04)  // _S3_: S3 System State
-        {
-            0x05, 
-            Zero, 
-            Zero, 
-            Zero
-        })
-    }
-    
-    If (SS4)
-    {
-        Name (_S4, Package (0x04)  // _S4_: S4 System State
-        {
-            0x06, 
-            Zero, 
-            Zero, 
-            Zero
-        })
-    }
-
-    Name (_S5, Package (0x04)  // _S5_: S5 System State
-    {
-        0x07, 
-        Zero, 
-        Zero, 
-        Zero
-    })
     Method (PTS, 1, NotSerialized)
     {
         If (Arg0)
@@ -17774,122 +17660,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         \_SB.ATKD.GENW (Arg0)
         \_SB.PCI0.IGPU.OWAK (Arg0)
         OEMW (Arg0)
-    }
-    
-    Device (RMDT)
-    {
-        Name (_HID, "RMD0000")
-        Name (RING, Package(256) { })
-        Mutex (RTMX, 0)
-        Name (HEAD, 0)
-        Name (TAIL, 0)
-        // PUSH: Use to push a trace item into RING for ACPIDebug.kext
-        Method (PUSH, 1, NotSerialized)
-        {
-            Acquire(RTMX, 0xFFFF)
-            // push new item at HEAD
-            Add(HEAD, 1, Local0)
-            If (LGreaterEqual(Local0, SizeOf(RING))) { Store(0, Local0) }
-            if (LNotEqual(Local0, TAIL))
-            {
-                Store(Arg0, Index(RING, HEAD))
-                Store(Local0, HEAD)
-            }
-            Release(RTMX)
-            Notify(RMDT, 0x80)
-        }
-        // FTCH: Used by ACPIDebug.kext to fetch an item from RING
-        Method (FTCH, 0, NotSerialized)
-        {
-            Acquire(RTMX, 0xFFFF)
-            // pull item from TAIL and return it
-            Store(0, Local0)
-            if (LNotEqual(HEAD, TAIL))
-            {
-                Store(DerefOf(Index(RING, TAIL)), Local0)
-                Increment(TAIL)
-                If (LGreaterEqual(TAIL, SizeOf(RING))) { Store(0, TAIL) }
-            }
-            Release(RTMX)
-            Return(Local0)
-        }
-        // COUN: Used by ACPIDebug.kext to determine number of items in RING
-        Method (COUN, 0, NotSerialized)
-        {
-            Acquire(RTMX, 0xFFFF)
-            // return count of items in RING
-            Subtract(HEAD, TAIL, Local0)
-            if (LLess(Local0, 0)) { Add(Local0, SizeOf(RING), Local0) }
-            Release(RTMX)
-            Return(Local0)
-        }
-        // Helper functions for multiple params at one time
-        Method (P1, 1, NotSerialized) { PUSH(Arg0) }
-        Method (P2, 2, Serialized)
-        {
-            Name (TEMP, Package(2) { })
-            Store(Arg0, Index(TEMP, 0))
-            Store(Arg1, Index(TEMP, 1))
-            PUSH(TEMP)
-        }
-        Method (P3, 3, Serialized)
-        {
-            Name (TEMP, Package(3) { })
-            Store(Arg0, Index(TEMP, 0))
-            Store(Arg1, Index(TEMP, 1))
-            Store(Arg2, Index(TEMP, 2))
-            PUSH(TEMP)
-        }
-        Method (P4, 4, Serialized)
-        {
-            Name (TEMP, Package(4) { })
-            Store(Arg0, Index(TEMP, 0))
-            Store(Arg1, Index(TEMP, 1))
-            Store(Arg2, Index(TEMP, 2))
-            Store(Arg3, Index(TEMP, 3))
-            PUSH(TEMP)
-        }
-        Method (P5, 5, Serialized)
-        {
-            Name (TEMP, Package(5) { })
-            Store(Arg0, Index(TEMP, 0))
-            Store(Arg1, Index(TEMP, 1))
-            Store(Arg2, Index(TEMP, 2))
-            Store(Arg3, Index(TEMP, 3))
-            Store(Arg4, Index(TEMP, 4))
-            PUSH(TEMP)
-        }
-        Method (P6, 6, Serialized)
-        {
-            Name (TEMP, Package(6) { })
-            Store(Arg0, Index(TEMP, 0))
-            Store(Arg1, Index(TEMP, 1))
-            Store(Arg2, Index(TEMP, 2))
-            Store(Arg3, Index(TEMP, 3))
-            Store(Arg4, Index(TEMP, 4))
-            Store(Arg5, Index(TEMP, 5))
-            PUSH(TEMP)
-        }
-        Method (P7, 7, Serialized)
-        {
-            Name (TEMP, Package(7) { })
-            Store(Arg0, Index(TEMP, 0))
-            Store(Arg1, Index(TEMP, 1))
-            Store(Arg2, Index(TEMP, 2))
-            Store(Arg3, Index(TEMP, 3))
-            Store(Arg4, Index(TEMP, 4))
-            Store(Arg5, Index(TEMP, 5))
-            Store(Arg6, Index(TEMP, 6))
-            PUSH(TEMP)
-        }
-    }
-    Method (B1B2, 2, NotSerialized) { Return(Or(Arg0, ShiftLeft(Arg1, 8))) }
-    Device (SMCD)
-    {
-        Name (_HID, "MON0000")  // _HID: Hardware ID
-        Name (TACH, Package () { "Right Fan", "FAN0", "Left Fan", "FAN1" })
-        Method (FAN0, 0, Serialized) { Return (\_SB.PCI0.LPCB.EC0.TACH (Zero)) }
-        Method (FAN1, 0, Serialized) { Return (\_SB.PCI0.LPCB.EC0.TACH (One)) }
     }
 }
 
