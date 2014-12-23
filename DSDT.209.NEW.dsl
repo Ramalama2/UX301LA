@@ -41,94 +41,14 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
     Name (PMBS, 0x1800)
     Name (GPBS, 0x1C00)
-    Name (SMIP, 0xB2)
-    Name (APCB, 0xFEC00000)
-    Name (APCL, 0x1000)
-    Name (SMCR, 0x1830)
-    Name (HPTB, 0xFED00000)
-    Name (HPTC, 0xFED1F404)
-    Name (FLSZ, 0x00600000)
     Name (SRCB, 0xFED1C000)
-    Name (RCLN, 0x4000)
     Name (PEBS, 0xF8000000)
     Name (PELN, 0x04000000)
-    Name (LAPB, 0xFEE00000)
-    Name (EGPB, 0xFED19000)
-    Name (MCHB, 0xFED10000)
-    Name (VTBS, 0xFED90000)
-    Name (VTLN, 0x4000)
-    Name (ACPH, 0xDE)
-    Name (ASSB, Zero)
-    Name (AOTB, Zero)
-    Name (AAXB, Zero)
-    Name (HIDK, 0x0303D041)
-    Name (HIDM, 0x030FD041)
-    Name (CIDK, 0x0B03D041)
-    Name (CIDM, 0x130FD041)
-    Name (PEHP, One)
-    Name (SHPC, Zero)
-    Name (PEPM, One)
-    Name (PEER, One)
-    Name (PECS, One)
-    Name (ITKE, Zero)
-    Name (FMBL, One)
-    Name (FDTP, 0x02)
-    Name (FUPS, 0x03)
-    Name (FUWS, 0x04)
-    Name (BGR, One)
-    Name (BFR, 0x02)
-    Name (BBR, 0x03)
-    Name (BWC, 0x04)
-    Name (BWT1, 0x20)
-    Name (BFHC, 0x0100)
-    Name (TRTP, One)
-    Name (WDTE, One)
-    Name (TRTD, 0x02)
-    Name (TRTI, 0x03)
-    Name (PFTI, 0x04)
-    Name (GCDD, One)
-    Name (DSTA, 0x0A)
-    Name (DSLO, 0x0C)
-    Name (DSLC, 0x0E)
-    Name (PITS, 0x10)
-    Name (SBCS, 0x12)
-    Name (SALS, 0x13)
-    Name (LSSS, 0x2A)
-    Name (SOOT, 0x35)
-    Name (PDBR, 0x4D)
-    Name (BW1P, 0x21)
-    Name (BW2C, 0x22)
-    Name (BW2P, 0x23)
-    Name (BSPC, 0x24)
-    Name (BSPP, 0x25)
-    Name (BICO, 0x27)
-    Name (BICC, 0x28)
-    Name (BHB, 0x30)
-    Name (BFS2, 0x31)
-    Name (BFS3, 0x32)
-    Name (BFS4, 0x33)
-    Name (BRH, 0x35)
-    Name (DSSP, Zero)
-    Name (FHPP, One)
-    Name (SMIA, 0xB2)
-    Name (SMIB, 0xB3)
-    Name (OFST, 0x35)
-    Name (TCMF, Zero)
-    Name (TMF1, Zero)
-    Name (TMF2, Zero)
-    Name (TMF3, Zero)
-    Name (TRST, 0x02)
-    Name (MBEC, Zero)
-    Name (PMLN, 0x0100)
-    Name (GPLN, 0x0400)
     Name (MBLF, 0x0A)
     Name (SS1, Zero)
     Name (SS2, Zero)
     Name (SS3, One)
     Name (SS4, One)
-    Name (IOST, 0x4400)
-    Name (TOPM, 0x00000000)
-    Name (ROMS, 0xFFE00000)
     Name (VGAF, One)
     OperationRegion (GNVS, SystemMemory, 0xDAB06C18, 0x02B2)
     Field (GNVS, AnyAcc, Lock, Preserve)
@@ -2301,7 +2221,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     })
                 }
 
-    Device (EC0)
+        Device (EC0)
         {
             Name (_HID, EisaId ("PNP0C09"))  // _HID: Hardware ID
             Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
@@ -2355,291 +2275,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 }
 
                 Return (ECFL)
-            }
-
-            OperationRegion (PECO, SystemIO, 0x0260, 0x08)
-            Field (PECO, ByteAcc, Lock, Preserve)
-            {
-                HSTS,   8, 
-                HCTL,   8, 
-                HCMD,   8, 
-                HTAR,   8, 
-                HWLR,   8, 
-                HRLR,   8, 
-                HWDR,   8, 
-                HRDR,   8
-            }
-
-            Method (PECI, 7, Serialized)
-            {
-                Name (T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                While (((PBSY & 0x02) == 0x02))
-                {
-                    If ((Arg6 > 0x1000))
-                    {
-                        Return (Zero)
-                    }
-
-                    Arg6 += One
-                    Sleep (0x0A)
-                }
-
-                PBSY &= 0xFD
-                HTAR = Arg0
-                HWLR = Arg1
-                HRLR = Arg2
-                HCMD = Arg3
-                Name (TEMP, Zero)
-                TEMP = Zero
-                If ((Arg1 != Zero))
-                {
-                    While (One)
-                    {
-                        T_0 = ToInteger (HCMD)
-                        If ((T_0 == 0xF7))
-                        {
-                            TEMP = Zero
-                            Break
-                        }
-                        Else
-                        {
-                            If ((T_0 == One))
-                            {
-                                TEMP = Zero
-                                Break
-                            }
-                            Else
-                            {
-                                If ((T_0 == 0x02))
-                                {
-                                    TEMP = Zero
-                                    Break
-                                }
-                                Else
-                                {
-                                    If ((T_0 == 0xA1))
-                                    {
-                                        TEMP = (Arg1 - One)
-                                        Break
-                                    }
-                                    Else
-                                    {
-                                        If ((T_0 == 0xA2))
-                                        {
-                                            TEMP = (Arg1 - One)
-                                            Break
-                                        }
-                                        Else
-                                        {
-                                            If ((T_0 == 0xB1))
-                                            {
-                                                TEMP = (Arg1 - One)
-                                                Break
-                                            }
-                                            Else
-                                            {
-                                                If ((T_0 == 0xB2))
-                                                {
-                                                    TEMP = (Arg1 - One)
-                                                    Break
-                                                }
-                                                Else
-                                                {
-                                                    If ((T_0 == 0x61))
-                                                    {
-                                                        TEMP = (Arg1 - One)
-                                                        Break
-                                                    }
-                                                    Else
-                                                    {
-                                                        If ((T_0 == 0x62))
-                                                        {
-                                                            TEMP = (Arg1 - One)
-                                                            Break
-                                                        }
-                                                        Else
-                                                        {
-                                                            If ((T_0 == 0xE1))
-                                                            {
-                                                                TEMP = (Arg1 - One)
-                                                                Break
-                                                            }
-                                                            Else
-                                                            {
-                                                                If ((T_0 == 0xE2))
-                                                                {
-                                                                    TEMP = (Arg1 - One)
-                                                                    Break
-                                                                }
-                                                                Else
-                                                                {
-                                                                    If ((T_0 == 0xA5))
-                                                                    {
-                                                                        HCTL |= 0x40
-                                                                        TEMP = (Arg1 - 0x02)
-                                                                        Break
-                                                                    }
-                                                                    Else
-                                                                    {
-                                                                        If ((T_0 == 0xA6))
-                                                                        {
-                                                                            HCTL |= 0x40
-                                                                            TEMP = (Arg1 - 0x02)
-                                                                            Break
-                                                                        }
-                                                                        Else
-                                                                        {
-                                                                            If ((T_0 == 0xB5))
-                                                                            {
-                                                                                HCTL |= 0x40
-                                                                                TEMP = (Arg1 - 0x02)
-                                                                                Break
-                                                                            }
-                                                                            Else
-                                                                            {
-                                                                                If ((T_0 == 0xB6))
-                                                                                {
-                                                                                    HCTL |= 0x40
-                                                                                    TEMP = (Arg1 - 0x02)
-                                                                                    Break
-                                                                                }
-                                                                                Else
-                                                                                {
-                                                                                    If ((T_0 == 0x65))
-                                                                                    {
-                                                                                        HCTL |= 0x40
-                                                                                        TEMP = (Arg1 - 0x02)
-                                                                                        Break
-                                                                                    }
-                                                                                    Else
-                                                                                    {
-                                                                                        If ((T_0 == 0x66))
-                                                                                        {
-                                                                                            HCTL |= 0x40
-                                                                                            TEMP = (Arg1 - 0x02)
-                                                                                            Break
-                                                                                        }
-                                                                                        Else
-                                                                                        {
-                                                                                            If ((T_0 == 0xE5))
-                                                                                            {
-                                                                                                HCTL |= 0x40
-                                                                                                TEMP = (Arg1 - 0x02)
-                                                                                                Break
-                                                                                            }
-                                                                                            Else
-                                                                                            {
-                                                                                                If ((T_0 == 0xE6))
-                                                                                                {
-                                                                                                    HCTL |= 0x40
-                                                                                                    TEMP = (Arg1 - 0x02)
-                                                                                                    Break
-                                                                                                }
-                                                                                                Else
-                                                                                                {
-                                                                                                    PBSY &= 0xFE
-                                                                                                    Return (Zero)
-                                                                                                }
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
-                        Break
-                    }
-                }
-
-                If ((TEMP > Zero))
-                {
-                    Local0 = Zero
-                    While ((Local0 < TEMP))
-                    {
-                        HWDR = DerefOf (Index (Arg4, Local0))
-                        Local0 += One
-                    }
-                }
-
-                HCTL |= One
-                Name (TIME, 0x5000)
-                Local0 = Zero
-                While ((Local0 < TIME))
-                {
-                    If ((HSTS & 0x80))
-                    {
-                        HSTS = 0x80
-                        PBSY &= 0xFE
-                        Return (Zero)
-                    }
-
-                    If ((HSTS & 0x40))
-                    {
-                        HSTS = 0x40
-                        PBSY &= 0xFE
-                        Return (Zero)
-                    }
-
-                    If ((HSTS & 0x20))
-                    {
-                        HSTS = 0x20
-                        PBSY &= 0xFE
-                        Return (Zero)
-                    }
-
-                    If ((HSTS & 0x08))
-                    {
-                        HSTS = 0x08
-                        PBSY &= 0xFE
-                        Return (Zero)
-                    }
-
-                    If ((HSTS & 0x04))
-                    {
-                        HSTS = 0x04
-                        PBSY &= 0xFE
-                        Return (Zero)
-                    }
-
-                    If ((HSTS & 0x02))
-                    {
-                        HSTS = 0x02
-                        Break
-                    }
-                }
-
-                If ((Local0 == TIME))
-                {
-                    PBSY &= 0xFE
-                    Return (Zero)
-                }
-                Else
-                {
-                    Local0 = Zero
-                    While ((Local0 < HRLR))
-                    {
-                        Local1 = HRDR
-                        Index (Arg5, Local0) = Local1
-                        Local0 += One
-                    }
-
-                    PBSY &= 0xFE
-                    Return (One)
-                }
-
-                PBSY &= 0xFE
             }
 
             OperationRegion (ECOR, EmbeddedControl, Zero, 0xFF)
@@ -2880,7 +2515,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             }
             
             Device (PDRC)
-        {
+            {
             Name (_HID, EisaId ("PNP0C02"))  // _HID: Hardware ID
             Name (_UID, One)  // _UID: Unique ID
             Name (BUF0, ResourceTemplate ()
@@ -3101,7 +2736,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Return (Arg3)
         }
         
-        OperationRegion (ECMS, SystemIO, 0x72, 0x02)
+            OperationRegion (ECMS, SystemIO, 0x72, 0x02)
             Field (ECMS, ByteAcc, Lock, Preserve)
             {
                 EIND,   8, 
@@ -3363,8 +2998,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         Name (OBFF, Zero)
         Name (LMSL, Zero)
         Name (LNSL, Zero)
-        Name (LTRS, Zero)
-        Name (OBFS, Zero)
         Device (HDAU)
         {
             Name (_ADR, 0x00030000)  // _ADR: Address
@@ -9192,14 +8825,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     }
                 }
 
-                Method (HPHK, 0, NotSerialized)
-                {
-                    PDCX = One
-                    HPSX = One
-                    LDIS = Zero
-                    Sleep (0xFA)
-                }
-
                 Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
                 {
                     Return (GPRW (0x69, 0x04))
@@ -9292,14 +8917,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     {
                         RPAV = One
                     }
-                }
-
-                Method (HPHK, 0, NotSerialized)
-                {
-                    PDCX = One
-                    HPSX = One
-                    LDIS = Zero
-                    Sleep (0xFA)
                 }
 
                 Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
@@ -9715,31 +9332,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             }
         }
     }
-
-    OperationRegion (_SB.PCI0.LPCB.LPCR, PCI_Config, 0x80, 0x04)
-    Field (\_SB.PCI0.LPCB.LPCR, ByteAcc, NoLock, Preserve)
-    {
-        CADR,   3, 
-            ,   1, 
-        CBDR,   3, 
-        Offset (0x01), 
-        LTDR,   2, 
-            ,   2, 
-        FDDR,   1, 
-        Offset (0x02), 
-        CALE,   1, 
-        CBLE,   1, 
-        LTLE,   1, 
-        FDLE,   1, 
-        Offset (0x03), 
-        GLLE,   1, 
-        GHLE,   1, 
-        KCLE,   1, 
-        MCLE,   1, 
-        C1LE,   1, 
-        C2LE,   1, 
-        Offset (0x04)
-    }
     
     Scope (_PR)
     {
@@ -9752,8 +9344,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         Processor (CPU6, 0x07, 0x00001810, 0x06) {}
         Processor (CPU7, 0x08, 0x00001810, 0x06) {}
     }
-
-    Mutex(MUTX, 0)
 
     OperationRegion (PH80, SystemIO, 0x80, 0x04)
     Field (PH80, DWordAcc, Lock, Preserve)
@@ -9920,55 +9510,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         Name (TC1, 0x02)
         Name (TC2, 0x0A)
         Name (OSDW, Zero)
-        OperationRegion (PMLP, SystemIO, (PMBS + 0x80), 0x20)
-        Field (PMLP, ByteAcc, NoLock, Preserve)
-        {
-            Offset (0x10), 
-            Offset (0x11), 
-            GE08,   1, 
-                ,   8, 
-            GE17,   1, 
-                ,   27, 
-            GE45,   1, 
-                ,   5, 
-            GE51,   1, 
-            Offset (0x20)
-        }
-
-        Field (PMLP, ByteAcc, NoLock, WriteAsZeros)
-        {
-            Offset (0x01), 
-            GS08,   1, 
-                ,   8, 
-            GS17,   1, 
-                ,   27, 
-            GS45,   1, 
-                ,   5, 
-            GS51,   1, 
-            Offset (0x10)
-        }
-
-        OperationRegion (GPRL, SystemIO, GPBS, 0x40)
-        Field (GPRL, ByteAcc, NoLock, Preserve)
-        {
-            Offset (0x01), 
-            GO08,   1, 
-            GO09,   1, 
-                ,   3, 
-            GO13,   1, 
-            GO14,   1, 
-                ,   2, 
-            GO17,   1, 
-                ,   27, 
-            GO45,   1, 
-                ,   5, 
-            GO51,   1, 
-            Offset (0x10), 
-            Offset (0x30), 
-            GR00,   32, 
-            GR01,   32, 
-            GR02,   32
-        }
 
         OperationRegion (RCRB, SystemMemory, SRCB, 0x4000)
         Field (RCRB, DWordAcc, Lock, Preserve)
@@ -10478,7 +10019,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 }
             }
 
-            SBRW (Arg0)
             If ((Arg0 == 0x04))
             {
                 Notify (\_SB.SLPB, 0x02)
@@ -10493,7 +10033,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
     {
         Name (BADR, 0x0B)
         Name (CADR, 0x09)
-        Name (SADR, 0x0A)
         Method (_QA1, 0, NotSerialized)  // _Qxx: EC Query
         {
             If (DBUG == 2) { \rmdt.p1("EC _QA1 enter") }
@@ -11218,25 +10757,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Return (Local1)
         }
 
-        Method (FNCT, 2, Serialized)
-        {
-            If (ECAV ())
-            {
-                Acquire (MUEC, 0xFFFF)
-                CDT2 = Arg0
-                CDT1 = Arg1
-                CMD1 = 0xC4
-                Local0 = 0x7F
-                While ((Local0 && CMD1))
-                {
-                    Sleep (One)
-                    Local0--
-                }
-
-                Release (MUEC)
-            }
-        }
-
         Name (WRQK, 0x02)
         Name (RDQK, 0x03)
         Name (SDBT, 0x04)
@@ -11389,370 +10909,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Return (Local0)
         }
 
-        Method (SMBW, 5, Serialized)
-        {
-            Local0 = Package (0x01)
-                {
-                    0x07
-                }
-            If (!ECAV ())
-            {
-                Return (Local0)
-            }
-
-            If ((Arg0 != WRBL))
-            {
-                If ((Arg0 != WRWD))
-                {
-                    If ((Arg0 != WRBT))
-                    {
-                        If ((Arg0 != SDBT))
-                        {
-                            If ((Arg0 != WRQK))
-                            {
-                                Return (Local0)
-                            }
-                        }
-                    }
-                }
-            }
-
-            Acquire (MUEC, 0xFFFF)
-            Local1 = PRTC
-            Local2 = Zero
-            While ((Local1 != Zero))
-            {
-                Stall (0x0A)
-                Local2++
-                If ((Local2 > 0x03E8))
-                {
-                    Index (Local0, Zero) = SBBY
-                    Local1 = Zero
-                }
-                Else
-                {
-                    Local1 = PRTC
-                }
-            }
-
-            If ((Local2 <= 0x03E8))
-            {
-                WECB (0x1C, 0x0100, Zero)
-                Local3 = (Arg1 << One)
-                ADDR = Local3
-                If ((Arg0 != WRQK))
-                {
-                    If ((Arg0 != SDBT))
-                    {
-                        CMDB = Arg2
-                    }
-                }
-
-                If ((Arg0 == WRBL))
-                {
-                    BCNT = Arg3
-                    WECB (0x1C, 0x0100, Arg4)
-                }
-
-                If ((Arg0 == WRWD))
-                {
-                    T2B0 = Arg4
-                    T2B1 = (Arg4 >> 0x08)
-                }
-
-                If ((Arg0 == WRBT))
-                {
-                    DAT0 = Arg4
-                }
-
-                If ((Arg0 == SDBT))
-                {
-                    DAT0 = Arg4
-                }
-
-                PRTC = Arg0
-                Index (Local0, Zero) = SWTC (Arg0)
-            }
-
-            Release (MUEC)
-            Return (Local0)
-        }
-
-        Mutex(MUEP, 0)
-        Method (RBEP, 1, NotSerialized)
-        {
-            Local1 = 0xFFFF
-            Acquire (MUEP, 0xFFFF)
-            Local3 = RRAM (0x0620)
-            Local4 = (Local3 & 0x7F)
-            WRAM (0x0620, Local4)
-            Local2 = 0x10
-            Local1 = 0x10
-            While (((Local1 == 0x10) & (Local2 != Zero)))
-            {
-                SMBW (WRWD, BADR, Zero, 0x02, 0x0635)
-                SMBW (WRWD, BADR, Zero, 0x02, 0x0606)
-                Local0 = SMBR (RDBT, 0x50, Arg0)
-                Local1 = DerefOf (Index (Local0, Zero))
-                Local2--
-            }
-
-            WRAM (0x0620, Local3)
-            Local1 <<= 0x08
-            Local1 |= DerefOf (Index (Local0, 0x02))
-            Release (MUEP)
-            Return (Local1)
-        }
-
-        Method (WBEP, 2, NotSerialized)
-        {
-            Local1 = 0xFFFF
-            Acquire (MUEP, 0xFFFF)
-            Local3 = RRAM (0x0620)
-            Local4 = (Local3 & 0x7F)
-            WRAM (0x0620, Local4)
-            Local2 = 0x10
-            Local1 = 0x10
-            While (((Local1 == 0x10) & (Local2 != Zero)))
-            {
-                SMBW (WRWD, BADR, Zero, 0x02, 0x0635)
-                SMBW (WRWD, BADR, Zero, 0x02, 0x0606)
-                Local0 = SMBW (WRBT, 0x50, Arg0, One, Arg1)
-                Local1 = DerefOf (Index (Local0, Zero))
-                Local2--
-            }
-
-            WRAM (0x0620, Local3)
-            Release (MUEP)
-            Return (Local1)
-        }
-
-        Method (ECXT, 6, NotSerialized)
-        {
-            If (ECAV ())
-            {
-                Acquire (MU4T, 0xFFFF)
-                Local0 = Package (0x06)
-                    {
-                        0x10, 
-                        Zero, 
-                        Zero, 
-                        Zero, 
-                        Zero, 
-                        Zero
-                    }
-                CMD = Arg0
-                EDA1 = Arg1
-                EDA2 = Arg2
-                EDA3 = Arg3
-                EDA4 = Arg4
-                EDA5 = Arg5
-                ECAC ()
-                Index (Local0, Zero) = CMD
-                Index (Local0, One) = EDA1
-                Index (Local0, 0x02) = EDA2
-                Index (Local0, 0x03) = EDA3
-                Index (Local0, 0x04) = EDA4
-                Index (Local0, 0x05) = EDA5
-                Release (MU4T)
-                Return (Local0)
-            }
-            Else
-            {
-                Return (Zero)
-            }
-        }
-
-        Method (ECSB, 7, NotSerialized)
-        {
-            Local1 = Package (0x05)
-                {
-                    0x11, 
-                    Zero, 
-                    Zero, 
-                    Zero, 
-                    Buffer (0x20) {}
-                }
-            If ((Arg0 > One))
-            {
-                Return (Local1)
-            }
-
-            If (ECAV ())
-            {
-                Acquire (MUEC, 0xFFFF)
-                If ((Arg0 == Zero))
-                {
-                    Local0 = PRTC
-                }
-                Else
-                {
-                    Local0 = PRT2
-                }
-
-                Local2 = Zero
-                While ((Local0 != Zero))
-                {
-                    Stall (0x0A)
-                    Local2++
-                    If ((Local2 > 0x03E8))
-                    {
-                        Index (Local1, Zero) = SBBY
-                        Local0 = Zero
-                    }
-                    Else
-                    {
-                        If ((Arg0 == Zero))
-                        {
-                            Local0 = PRTC
-                        }
-                        Else
-                        {
-                            Local0 = PRT2
-                        }
-                    }
-                }
-
-                If ((Local2 <= 0x03E8))
-                {
-                    If ((Arg0 == Zero))
-                    {
-                        ADDR = Arg2
-                        CMDB = Arg3
-                        If (((Arg1 == 0x0A) || (Arg1 == 0x0B)))
-                        {
-                            BCNT = DerefOf (Index (Arg6, Zero))
-                            WECB (0x1C, 0x0100, DerefOf (Index (Arg6, One)))
-                        }
-                        Else
-                        {
-                            DAT0 = Arg4
-                            DAT1 = Arg5
-                        }
-
-                        PRTC = Arg1
-                    }
-                    Else
-                    {
-                        ADD2 = Arg2
-                        CMD2 = Arg3
-                        If (((Arg1 == 0x0A) || (Arg1 == 0x0B)))
-                        {
-                            BCN2 = DerefOf (Index (Arg6, Zero))
-                            WECB (0x44, 0x0100, DerefOf (Index (Arg6, One)))
-                        }
-                        Else
-                        {
-                            DA20 = Arg4
-                            DA21 = Arg5
-                        }
-
-                        PRT2 = Arg1
-                    }
-
-                    Local0 = 0x7F
-                    If ((Arg0 == Zero))
-                    {
-                        While (PRTC)
-                        {
-                            Sleep (One)
-                            Local0--
-                        }
-                    }
-                    Else
-                    {
-                        While (PRT2)
-                        {
-                            Sleep (One)
-                            Local0--
-                        }
-                    }
-
-                    If (Local0)
-                    {
-                        If ((Arg0 == Zero))
-                        {
-                            Local0 = SSTS
-                            Index (Local1, One) = DAT0
-                            Index (Local1, 0x02) = DAT1
-                            Index (Local1, 0x03) = BCNT
-                            Index (Local1, 0x04) = RECB (0x1C, 0x0100)
-                        }
-                        Else
-                        {
-                            Local0 = SST2
-                            Index (Local1, One) = DA20
-                            Index (Local1, 0x02) = DA21
-                            Index (Local1, 0x03) = BCN2
-                            Index (Local1, 0x04) = RECB (0x44, 0x0100)
-                        }
-
-                        Local0 &= 0x1F
-                        If (Local0)
-                        {
-                            Local0 += 0x10
-                        }
-
-                        Index (Local1, Zero) = Local0
-                    }
-                    Else
-                    {
-                        Index (Local1, Zero) = 0x10
-                    }
-                }
-
-                Release (MUEC)
-            }
-
-            Return (Local1)
-        }
-
-        Method (TPSW, 1, NotSerialized)
-        {
-            Local0 = (Arg0 & One)
-            If (Local0)
-            {
-                ECXT (0xB6, 0xB8, One, One, Zero, Zero)
-            }
-            Else
-            {
-                ECXT (0xB6, 0xB8, One, 0x02, Zero, Zero)
-            }
-        }
-
-        Method (TPST, 0, NotSerialized)
-        {
-            Local0 = ECXT (0xB6, 0xB8, 0x02, Zero, Zero, Zero)
-            Local1 = DerefOf (Index (Local0, One))
-            If ((Local1 == Zero))
-            {
-                Return (One)
-            }
-            Else
-            {
-                Return (Zero)
-            }
-        }
-
-        Method (LBSW, 1, NotSerialized)
-        {
-            If ((Arg0 == One))
-            {
-                ECXT (0xB6, 0xB9, One, Zero, Zero, Zero)
-            }
-            Else
-            {
-                ECXT (0xB6, 0xB9, 0x02, Zero, Zero, Zero)
-            }
-        }
-
-        Method (LBST, 0, NotSerialized)
-        {
-            Local0 = RRAM (0x044A)
-            Local0 &= 0x03
-            Return (Local0)
-        }
-
         Method (TALS, 1, NotSerialized)
         {
             Local0 = (LSTP & One)
@@ -11870,23 +11026,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             {
                 Acquire (MU4T, 0xFFFF)
                 CMD = Arg0
-                ECAC ()
-                Release (MU4T)
-                Return (Zero)
-            }
-
-            Return (Ones)
-        }
-
-        Method (SCTF, 2, Serialized)
-        {
-            If (ECAV ())
-            {
-                Acquire (MU4T, 0xFFFF)
-                CMD = 0xFF
-                EDA1 = 0xB3
-                EDA2 = Arg0
-                EDA3 = Arg1
                 ECAC ()
                 Release (MU4T)
                 Return (Zero)
@@ -13104,21 +12243,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Name (_PRW, Package () { 0x0B, 0x04 })
         }
         
-        
-
-        Name (XCPD, Zero)
-        Name (XNPT, One)
-        Name (XCAP, 0x02)
-        Name (XDCP, 0x04)
-        Name (XDCT, 0x08)
-        Name (XDST, 0x0A)
-        Name (XLCP, 0x0C)
-        Name (XLCT, 0x10)
-        Name (XLST, 0x12)
-        Name (XSCP, 0x14)
-        Name (XSCT, 0x18)
-        Name (XSST, 0x1A)
-        Name (XRCT, 0x1C)
         Mutex(MUTE, 0)
 
         Method (RDPE, 1, NotSerialized)
@@ -13243,87 +12367,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Offset (0x66)
         }
 
-        OperationRegion (GPIS, SystemIO, PMBS, 0x50)
-        Field (GPIS, ByteAcc, NoLock, Preserve)
-        {
-            Offset (0x22), 
-            GS00,   16
-        }
-
-        OperationRegion (GP01, SystemIO, GPBS, 0x64)
-        Field (GP01, ByteAcc, NoLock, Preserve)
-        {
-            GU00,   8, 
-            GU01,   8, 
-            GU02,   8, 
-            GU03,   8, 
-            GIO0,   8, 
-            GIO1,   8, 
-            GIO2,   8, 
-            GIO3,   8, 
-            Offset (0x0C), 
-            Offset (0x0D), 
-            GL01,   8, 
-            GL02,   8, 
-                ,   3, 
-            GP27,   1, 
-            GP28,   1, 
-            Offset (0x10), 
-            Offset (0x18), 
-            Offset (0x19), 
-            GB01,   8, 
-            GB02,   8, 
-            GB03,   8, 
-            Offset (0x2C), 
-            GIV0,   8, 
-            GIV1,   8, 
-            GIV2,   8, 
-            GIV3,   8, 
-            GU04,   8, 
-            GU05,   8, 
-            GU06,   8, 
-            GU07,   8, 
-            GIO4,   8, 
-            GIO5,   8, 
-            GIO6,   8, 
-            GIO7,   8, 
-                ,   5, 
-                ,   1, 
-            Offset (0x39), 
-            GL05,   8, 
-            GL06,   8, 
-            GL07,   8, 
-            Offset (0x40), 
-            GU08,   8, 
-            GU09,   8, 
-            GU0A,   8, 
-            GU0B,   8, 
-            GIO8,   8, 
-            GIO9,   8, 
-            GIOA,   8, 
-            GIOB,   8, 
-            GL08,   8, 
-            GL09,   8, 
-            GL0A,   8, 
-            GL0B,   8
-        }
-
-        OperationRegion (GPIO, SystemIO, GPBS, 0x80)
-        Field (GPIO, ByteAcc, NoLock, Preserve)
-        {
-            Offset (0x0C), 
-            GL00,   16, 
-            GL10,   16, 
-            Offset (0x18), 
-            GB00,   32, 
-            Offset (0x2C), 
-            GP00,   16, 
-            Offset (0x38), 
-            GL20,   32, 
-            Offset (0x48), 
-            GL40,   32
-        }
-
         OperationRegion (RCBA, SystemMemory, 0xFED1C000, 0x4000)
         Field (RCBA, ByteAcc, NoLock, Preserve)
         {
@@ -13365,15 +12408,9 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             \_SB.PCI0.LPCB.GPLK = Local7
         }
 
-        Name (PMEW, Zero)
         Method (SBRS, 1, NotSerialized)
         {
             CPXS ()
-        }
-
-        Method (SBRW, 1, NotSerialized)
-        {
-            PMEW = SBPS
         }
 
         Method (STRP, 1, NotSerialized)
