@@ -1,23 +1,4 @@
-/*
- * Intel ACPI Component Architecture
- * AML/ASL+ Disassembler version 20141107-64 [Nov 13 2014]
- * Copyright (c) 2000 - 2014 Intel Corporation
- * 
- * Disassembling to symbolic ASL+ operators
- *
- * Disassembly of ./AML/DSDT.aml, Wed Dec  3 22:54:39 2014
- *
- * Original Table Header:
- *     Signature        "DSDT"
- *     Length           0x00016A41 (92737)
- *     Revision         0x02
- *     Checksum         0x07
- *     OEM ID           "_ASUS_"
- *     OEM Table ID     "Notebook"
- *     OEM Revision     0x00000012 (18)
- *     Compiler ID      "INTL"
- *     Compiler Version 0x20120711 (538052369)
- */
+
 DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 {
     External (HDOS, MethodObj)    // Warning: Unresolved method, guessing 0 arguments
@@ -3255,6 +3236,16 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             }
         }
         
+        OperationRegion (MCHP, PCI_Config, 0x40, 0xC0)
+                Field (MCHP, AnyAcc, NoLock, Preserve)
+                {
+                    Offset (0x14), 
+                    AUDE,   8, 
+                    Offset (0x60), 
+                    TASM,   10, 
+                    Offset (0x62)
+                }
+        
         Device (IGPU)
         {
             Name (_ADR, 0x00020000)  // _ADR: Address
@@ -3285,10 +3276,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (_DOD, 0, NotSerialized)  // _DOD: Display Output Devices
             {
-                If (CondRefOf (IDAB))
-                {
-                    IDAB ()
-                }
+                If (CondRefOf (IDAB)) {}
                 Else
                 {
                     NDID = Zero
@@ -4432,19 +4420,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Return (Zero)
             }
 
-            Scope (\_SB.PCI0)
-            {
-                OperationRegion (MCHP, PCI_Config, 0x40, 0xC0)
-                Field (MCHP, AnyAcc, NoLock, Preserve)
-                {
-                    Offset (0x14), 
-                    AUDE,   8, 
-                    Offset (0x60), 
-                    TASM,   10, 
-                    Offset (0x62)
-                }
-            }
-
             OperationRegion (IGDP, PCI_Config, 0x40, 0xC0)
             Field (IGDP, AnyAcc, NoLock, Preserve)
             {
@@ -5518,40 +5493,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 GOID (CPL6)
                 GOID (CPL7)
                 GOID (CPL8)
-            }
-
-            Device (\_SB.MEM2)
-            {
-                Name (_HID, EisaId ("PNP0C01"))  // _HID: Hardware ID
-                Name (_UID, 0x02)  // _UID: Unique ID
-                Name (CRS2, ResourceTemplate ()
-                {
-                    Memory32Fixed (ReadWrite,
-                        0x20000000,         // Address Base
-                        0x00200000,         // Address Length
-                        )
-                    Memory32Fixed (ReadWrite,
-                        0x40004000,         // Address Base
-                        0x00001000,         // Address Length
-                        )
-                })
-                Method (_STA, 0, NotSerialized)  // _STA: Status
-                {
-                    If (IGDS)
-                    {
-                        If ((PNHM == 0x000306C1))
-                        {
-                            Return (0x0F)
-                        }
-                    }
-
-                    Return (Zero)
-                }
-
-                Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-                {
-                    Return (CRS2)
-                }
             }
 
             Name (HGAP, Zero)
@@ -12230,6 +12171,23 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Return (Local0)
             }
         }
+        
+        Device (MEM2)
+            {
+                Name (_HID, EisaId ("PNP0C01"))  // _HID: Hardware ID
+                Name (_UID, 0x02)  // _UID: Unique ID
+                Name (_CRS, ResourceTemplate ()
+                {
+                    Memory32Fixed (ReadWrite,
+                        0x20000000,         // Address Base
+                        0x00200000,         // Address Length
+                        )
+                    Memory32Fixed (ReadWrite,
+                        0x40004000,         // Address Base
+                        0x00001000,         // Address Length
+                        )
+                })
+            }
         
         Device (PWRB)
         {
