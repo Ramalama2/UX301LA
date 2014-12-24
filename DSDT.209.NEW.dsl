@@ -670,6 +670,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Name (_UID, Zero)  // _UID: Unique ID
             Method (_PRT, 0, NotSerialized)  // _PRT: PCI Routing Table
             {
+                
                 If (PICM)
                 {
                     Return (AR00 ())
@@ -1094,12 +1095,12 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             If ((CTRL & One))
                             {
-                                NHPG ()
+                    NHPG ()
                             }
 
                             If ((CTRL & 0x04))
                             {
-                                NPME ()
+                    NPME ()
                             }
                         }
                     }
@@ -1251,7 +1252,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Name (_UID, One)  // _UID: Unique ID
                         Method (_DIS, 0, Serialized)  // _DIS: Disable Device
                         {
-                            PARC |= 0x80
+                    PARC |= 0x80
                         }
 
                         Method (_PRS, 0, Serialized)  // _PRS: Possible Resource Settings
@@ -1263,8 +1264,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Name (RTLA, ResourceTemplate ()
                             {
-                                IRQ (Level, ActiveLow, Shared, )
-                                    {}
+                    IRQ (Level, ActiveLow, Shared, )
+                        {}
                             })
                             CreateWordField (RTLA, One, IRQ0)
                             IRQ0 = Zero
@@ -1274,7 +1275,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                         Method (_SRS, 1, Serialized)  // _SRS: Set Resource Settings
                         {
-                            CreateWordField (Arg0, One, IRQ0)
+                    CreateWordField (Arg0, One, IRQ0)
                             FindSetRightBit (IRQ0, Local0)
                             Local0--
                             PARC = Local0
@@ -1282,13 +1283,13 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                         Method (_STA, 0, Serialized)  // _STA: Status
                         {
-                            If ((PARC & 0x80))
+                    If ((PARC & 0x80))
                             {
-                                Return (0x09)
+                    Return (0x09)
                             }
                             Else
                             {
-                                Return (0x0B)
+                    Return (0x0B)
                             }
                         }
                     }
@@ -1299,7 +1300,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Name (_UID, 0x02)  // _UID: Unique ID
                         Method (_DIS, 0, Serialized)  // _DIS: Disable Device
                         {
-                            PBRC |= 0x80
+                    PBRC |= 0x80
                         }
 
                         Method (_PRS, 0, Serialized)  // _PRS: Possible Resource Settings
@@ -1311,8 +1312,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Name (RTLB, ResourceTemplate ()
                             {
-                                IRQ (Level, ActiveLow, Shared, )
-                                    {}
+                    IRQ (Level, ActiveLow, Shared, )
+                        {}
                             })
                             CreateWordField (RTLB, One, IRQ0)
                             IRQ0 = Zero
@@ -1322,7 +1323,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                         Method (_SRS, 1, Serialized)  // _SRS: Set Resource Settings
                         {
-                            CreateWordField (Arg0, One, IRQ0)
+                    CreateWordField (Arg0, One, IRQ0)
                             FindSetRightBit (IRQ0, Local0)
                             Local0--
                             PBRC = Local0
@@ -1330,13 +1331,13 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                         Method (_STA, 0, Serialized)  // _STA: Status
                         {
-                            If ((PBRC & 0x80))
+                    If ((PBRC & 0x80))
                             {
-                                Return (0x09)
+                    Return (0x09)
                             }
                             Else
                             {
-                                Return (0x0B)
+                    Return (0x0B)
                             }
                         }
                     }
@@ -1347,7 +1348,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Name (_UID, 0x03)  // _UID: Unique ID
                         Method (_DIS, 0, Serialized)  // _DIS: Disable Device
                         {
-                            PCRC |= 0x80
+                    PCRC |= 0x80
                         }
 
                         Method (_PRS, 0, Serialized)  // _PRS: Possible Resource Settings
@@ -1359,8 +1360,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Name (RTLC, ResourceTemplate ()
                             {
-                                IRQ (Level, ActiveLow, Shared, )
-                                    {}
+                    IRQ (Level, ActiveLow, Shared, )
+                        {}
                             })
                             CreateWordField (RTLC, One, IRQ0)
                             IRQ0 = Zero
@@ -1370,7 +1371,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                         Method (_SRS, 1, Serialized)  // _SRS: Set Resource Settings
                         {
-                            CreateWordField (Arg0, One, IRQ0)
+                    CreateWordField (Arg0, One, IRQ0)
                             FindSetRightBit (IRQ0, Local0)
                             Local0--
                             PCRC = Local0
@@ -1378,13 +1379,13 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                         Method (_STA, 0, Serialized)  // _STA: Status
                         {
-                            If ((PCRC & 0x80))
+                    If ((PCRC & 0x80))
                             {
-                                Return (0x09)
+                    Return (0x09)
                             }
                             Else
                             {
-                                Return (0x0B)
+                    Return (0x0B)
                             }
                         }
                     }
@@ -1395,7 +1396,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Name (_UID, 0x04)  // _UID: Unique ID
                         Method (_DIS, 0, Serialized)  // _DIS: Disable Device
                         {
-                            PDRC |= 0x80
+                    PDRC |= 0x80
                         }
 
                         Method (_PRS, 0, Serialized)  // _PRS: Possible Resource Settings
@@ -1407,8 +1408,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Name (RTLD, ResourceTemplate ()
                             {
-                                IRQ (Level, ActiveLow, Shared, )
-                                    {}
+                    IRQ (Level, ActiveLow, Shared, )
+                        {}
                             })
                             CreateWordField (RTLD, One, IRQ0)
                             IRQ0 = Zero
@@ -1418,7 +1419,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                         Method (_SRS, 1, Serialized)  // _SRS: Set Resource Settings
                         {
-                            CreateWordField (Arg0, One, IRQ0)
+                    CreateWordField (Arg0, One, IRQ0)
                             FindSetRightBit (IRQ0, Local0)
                             Local0--
                             PDRC = Local0
@@ -1426,13 +1427,13 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                         Method (_STA, 0, Serialized)  // _STA: Status
                         {
-                            If ((PDRC & 0x80))
+                    If ((PDRC & 0x80))
                             {
-                                Return (0x09)
+                    Return (0x09)
                             }
                             Else
                             {
-                                Return (0x0B)
+                    Return (0x0B)
                             }
                         }
                     }
@@ -1443,7 +1444,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Name (_UID, 0x05)  // _UID: Unique ID
                         Method (_DIS, 0, Serialized)  // _DIS: Disable Device
                         {
-                            PERC |= 0x80
+                    PERC |= 0x80
                         }
 
                         Method (_PRS, 0, Serialized)  // _PRS: Possible Resource Settings
@@ -1455,8 +1456,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Name (RTLE, ResourceTemplate ()
                             {
-                                IRQ (Level, ActiveLow, Shared, )
-                                    {}
+                    IRQ (Level, ActiveLow, Shared, )
+                        {}
                             })
                             CreateWordField (RTLE, One, IRQ0)
                             IRQ0 = Zero
@@ -1466,7 +1467,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                         Method (_SRS, 1, Serialized)  // _SRS: Set Resource Settings
                         {
-                            CreateWordField (Arg0, One, IRQ0)
+                    CreateWordField (Arg0, One, IRQ0)
                             FindSetRightBit (IRQ0, Local0)
                             Local0--
                             PERC = Local0
@@ -1474,13 +1475,13 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                         Method (_STA, 0, Serialized)  // _STA: Status
                         {
-                            If ((PERC & 0x80))
+                    If ((PERC & 0x80))
                             {
-                                Return (0x09)
+                    Return (0x09)
                             }
                             Else
                             {
-                                Return (0x0B)
+                    Return (0x0B)
                             }
                         }
                     }
@@ -1491,7 +1492,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Name (_UID, 0x06)  // _UID: Unique ID
                         Method (_DIS, 0, Serialized)  // _DIS: Disable Device
                         {
-                            PFRC |= 0x80
+                    PFRC |= 0x80
                         }
 
                         Method (_PRS, 0, Serialized)  // _PRS: Possible Resource Settings
@@ -1503,8 +1504,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Name (RTLF, ResourceTemplate ()
                             {
-                                IRQ (Level, ActiveLow, Shared, )
-                                    {}
+                    IRQ (Level, ActiveLow, Shared, )
+                        {}
                             })
                             CreateWordField (RTLF, One, IRQ0)
                             IRQ0 = Zero
@@ -1514,7 +1515,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                         Method (_SRS, 1, Serialized)  // _SRS: Set Resource Settings
                         {
-                            CreateWordField (Arg0, One, IRQ0)
+                    CreateWordField (Arg0, One, IRQ0)
                             FindSetRightBit (IRQ0, Local0)
                             Local0--
                             PFRC = Local0
@@ -1522,13 +1523,13 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                         Method (_STA, 0, Serialized)  // _STA: Status
                         {
-                            If ((PFRC & 0x80))
+                    If ((PFRC & 0x80))
                             {
-                                Return (0x09)
+                    Return (0x09)
                             }
                             Else
                             {
-                                Return (0x0B)
+                    Return (0x0B)
                             }
                         }
                     }
@@ -1539,7 +1540,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Name (_UID, 0x07)  // _UID: Unique ID
                         Method (_DIS, 0, Serialized)  // _DIS: Disable Device
                         {
-                            PGRC |= 0x80
+                    PGRC |= 0x80
                         }
 
                         Method (_PRS, 0, Serialized)  // _PRS: Possible Resource Settings
@@ -1551,8 +1552,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Name (RTLG, ResourceTemplate ()
                             {
-                                IRQ (Level, ActiveLow, Shared, )
-                                    {}
+                    IRQ (Level, ActiveLow, Shared, )
+                        {}
                             })
                             CreateWordField (RTLG, One, IRQ0)
                             IRQ0 = Zero
@@ -1562,7 +1563,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                         Method (_SRS, 1, Serialized)  // _SRS: Set Resource Settings
                         {
-                            CreateWordField (Arg0, One, IRQ0)
+                    CreateWordField (Arg0, One, IRQ0)
                             FindSetRightBit (IRQ0, Local0)
                             Local0--
                             PGRC = Local0
@@ -1570,13 +1571,13 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                         Method (_STA, 0, Serialized)  // _STA: Status
                         {
-                            If ((PGRC & 0x80))
+                    If ((PGRC & 0x80))
                             {
-                                Return (0x09)
+                    Return (0x09)
                             }
                             Else
                             {
-                                Return (0x0B)
+                    Return (0x0B)
                             }
                         }
                     }
@@ -1587,7 +1588,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         Name (_UID, 0x08)  // _UID: Unique ID
                         Method (_DIS, 0, Serialized)  // _DIS: Disable Device
                         {
-                            PHRC |= 0x80
+                    PHRC |= 0x80
                         }
 
                         Method (_PRS, 0, Serialized)  // _PRS: Possible Resource Settings
@@ -1599,8 +1600,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Name (RTLH, ResourceTemplate ()
                             {
-                                IRQ (Level, ActiveLow, Shared, )
-                                    {}
+                    IRQ (Level, ActiveLow, Shared, )
+                        {}
                             })
                             CreateWordField (RTLH, One, IRQ0)
                             IRQ0 = Zero
@@ -1610,7 +1611,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                         Method (_SRS, 1, Serialized)  // _SRS: Set Resource Settings
                         {
-                            CreateWordField (Arg0, One, IRQ0)
+                    CreateWordField (Arg0, One, IRQ0)
                             FindSetRightBit (IRQ0, Local0)
                             Local0--
                             PHRC = Local0
@@ -1618,13 +1619,13 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                         Method (_STA, 0, Serialized)  // _STA: Status
                         {
-                            If ((PHRC & 0x80))
+                    If ((PHRC & 0x80))
                             {
-                                Return (0x09)
+                    Return (0x09)
                             }
                             Else
                             {
-                                Return (0x0B)
+                    Return (0x0B)
                             }
                         }
                     }
@@ -1721,17 +1722,17 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                             CreateDWordField (BUF0, \_SB.PCI0.LPCB.HPET._Y0F._BAS, HPT0)  // _BAS: Base Address
                             If ((HPAS == One))
                             {
-                                HPT0 = 0xFED01000
+                    HPT0 = 0xFED01000
                             }
 
                             If ((HPAS == 0x02))
                             {
-                                HPT0 = 0xFED02000
+                    HPT0 = 0xFED02000
                             }
 
                             If ((HPAS == 0x03))
                             {
-                                HPT0 = 0xFED03000
+                    HPT0 = 0xFED03000
                             }
                         }
 
@@ -2184,19 +2185,19 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         StartDependentFn (0x00, 0x00)
                         {
                             IO (Decode16,
-                                0x0060,             // Range Minimum
-                                0x0060,             // Range Maximum
-                                0x00,               // Alignment
-                                0x01,               // Length
-                                )
+                    0x0060,             // Range Minimum
+                    0x0060,             // Range Maximum
+                    0x00,               // Alignment
+                    0x01,               // Length
+                    )
                             IO (Decode16,
-                                0x0064,             // Range Minimum
-                                0x0064,             // Range Maximum
-                                0x00,               // Alignment
-                                0x01,               // Length
-                                )
+                    0x0064,             // Range Minimum
+                    0x0064,             // Range Maximum
+                    0x00,               // Alignment
+                    0x01,               // Length
+                    )
                             IRQNoFlags ()
-                                {1}
+                    {1}
                         }
                         EndDependentFn ()
                     })
@@ -2629,6 +2630,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             }
             Method (_INI, 0, NotSerialized)  // _INI: Initialize
             {
+                
                 SLBT = 0xC0    // 0xC0=Enabled, 0x80=Disabled
                 If ((LMAX > 0x0200)) { MAXL = LMAX }
                 ElseIf ((!MAXL || (MAXL < 0x0200))) { MAXL = 0x0AD9 LMAX = 0x0AD9 }
@@ -2679,8 +2681,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             If ((RTD3 == Zero))
                             {
-                                CAP0 &= 0x3B
-                                STS0 |= 0x10
+                    CAP0 &= 0x3B
+                    STS0 |= 0x10
                             }
                         }
                     }
@@ -2691,8 +2693,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             If ((^PCCD.PENB == Zero))
                             {
-                                CAP0 &= 0x1F
-                                STS0 |= 0x10
+                    CAP0 &= 0x1F
+                    STS0 |= 0x10
                             }
                         }
                         Else
@@ -3023,6 +3025,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (ASTR, 0, Serialized)
             {
+                
                 If ((((ABAR & 0xFFFFC004) != 0xFFFFC004) && ((
                     ABAR & 0xFFFFC000) != Zero)))
                 {
@@ -3046,6 +3049,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (VSTR, 1, Serialized)
             {
+                
                 Name (CONT, 0x03E8)
                 Name (ADDR, 0x80000000)
                 ADDR = Arg0
@@ -3092,6 +3096,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (CXDC, 0, Serialized)
             {
+                
                 Name (IDDX, 0x80000000)
                 If (((CCSA != Zero) && (CCNT != Zero)))
                 {
@@ -3106,6 +3111,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (ARST, 0, Serialized)
             {
+                
                 If ((((ABAR & 0xFFFFC004) != 0xFFFFC004) && ((
                     ABAR & 0xFFFFC000) != Zero)))
                 {
@@ -3135,6 +3141,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (AINI, 0, Serialized)
             {
+                
                 Name (CONT, 0x03E8)
                 If ((((ABAR & 0xFFFFC004) != 0xFFFFC004) && ((
                     ABAR & 0xFFFFC000) != Zero)))
@@ -3184,6 +3191,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (ABWA, 1, Serialized)
             {
+                
                 If (Arg0)
                 {
                     If ((((ABAR & 0xFFFFC004) == 0xFFFFC004) || ((ABAR & 0xFFFFC000
@@ -3230,8 +3238,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
                 Return (Package()
                 {
-                    "hda-gfx", Buffer() { "onboard-1" },
-                    "layout-id", Buffer() { 0x56, 0x00, 0x00, 0x00 },
+                    "hda-gfx", Buffer() { "onboard-1" }
                 })
             }
         }
@@ -3266,7 +3273,9 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     If (LEqual (Arg2, Zero)) { Return (Buffer(One) { 0x03 } ) }
                     Return (Package()
                     {
-                        "AAPL,ig-platform-id", Buffer() { 0x08, 0x00, 0x2e, 0x0a },
+                        "AAPL,ig-platform-id", Buffer() { 8,0,46,10 },
+                        "AAPL00,DualLink", Buffer() { 1,0,0,0 },
+                        "graphic-options", Buffer () { 12,0,0,0 },
                         "hda-gfx", Buffer() { "onboard-1" }
                     })
                 }
@@ -4209,6 +4218,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Name (OPBS, 0xFFFFFF00)
             Method (OPTS, 1, NotSerialized)
             {
+                
                 If (And (VGAF, One))
                 {
                     If (LEqual (Arg0, 0x03))
@@ -4220,6 +4230,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (OWAK, 1, NotSerialized)
             {
+                
                 If (And (VGAF, One))
                 {
                     If (LEqual (Arg0, 0x03))
@@ -4479,7 +4490,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             And (PARM, 0xEFFF0000, PARM)
                             And (PARM, ShiftLeft (DerefOf (Index (DBTB, IBTT)), 0x10), 
-                                PARM)
+                    PARM)
                             Or (IBTT, PARM, PARM)
                             Store (Zero, GESF)
                             Return (SUCC)
@@ -4511,7 +4522,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                             Or (PARM, ShiftLeft (0x03, 0x0B), PARM)
                             Or (PARM, ShiftLeft (IDMS, 0x11), PARM)
                             Or (ShiftLeft (DerefOf (Index (DerefOf (Index (CDCT, HVCO)), CDVL
-                                )), 0x15), PARM, PARM)
+                    )), 0x15), PARM, PARM)
                             Store (0x01, GESF)
                             Return (SUCC)
                         }
@@ -4521,7 +4532,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                             Store (0x00, PARM)
                             If (ISSC)
                             {
-                                Or (PARM, 0x03, PARM)
+                    Or (PARM, 0x03, PARM)
                             }
 
                             Store (0x00, GESF)
@@ -4589,12 +4600,12 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             If (LEqual (PARM, 0x00))
                             {
-                                Store (CLID, Local0)
-                                If (And (0x80000000, Local0))
-                                {
-                                    And (CLID, 0x0F, CLID)
-                                    GLID (CLID)
-                                }
+                    Store (CLID, Local0)
+                    If (And (0x80000000, Local0))
+                    {
+                        And (CLID, 0x0F, CLID)
+                        GLID (CLID)
+                    }
                             }
 
                             Store (Zero, GESF)
@@ -4622,8 +4633,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                             And (PARM, 0xFF, IPSC)
                             If (And (ShiftRight (PARM, 0x08), 0xFF))
                             {
-                                And (ShiftRight (PARM, 0x08), 0xFF, IPAT)
-                                Decrement (IPAT)
+                    And (ShiftRight (PARM, 0x08), 0xFF, IPAT)
+                    Decrement (IPAT)
                             }
 
                             And (ShiftRight (PARM, 0x14), 0x07, IBIA)
@@ -4637,11 +4648,11 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                             And (ShiftRight (PARM, 0x01), 0x01, IF1E)
                             If (And (PARM, ShiftLeft (0x0F, 0x0D)))
                             {
-                                And (ShiftRight (PARM, 0x0D), 0x0F, IDMS)
+                    And (ShiftRight (PARM, 0x0D), 0x0F, IDMS)
                             }
                             Else
                             {
-                                And (ShiftRight (PARM, 0x11), 0x0F, IDMS)
+                    And (ShiftRight (PARM, 0x11), 0x0F, IDMS)
                             }
 
                             Store (Zero, GESF)
@@ -4668,19 +4679,19 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             If (And (PARM, 0x01))
                             {
-                                If (LEqual (ShiftRight (PARM, 0x01), 0x01))
-                                {
-                                    Store (0x01, ISSC)
-                                }
-                                Else
-                                {
-                                    Store (Zero, GESF)
-                                    Return (CRIT)
-                                }
+                    If (LEqual (ShiftRight (PARM, 0x01), 0x01))
+                    {
+                        Store (0x01, ISSC)
+                    }
+                    Else
+                    {
+                        Store (Zero, GESF)
+                        Return (CRIT)
+                    }
                             }
                             Else
                             {
-                                Store (0x00, ISSC)
+                    Store (0x00, ISSC)
                             }
 
                             Store (Zero, GESF)
@@ -4707,17 +4718,17 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             If (LEqual (PARM, 0x01))
                             {
-                                Or (\_SB.PCI0.AUDE, 0x20, \_SB.PCI0.AUDE)
-                                \_SB.PCI0.HDAU.ASTR ()
-                                \_SB.PCI0.HDAU.AINI ()
-                                \_SB.PCI0.HDAU.CXDC ()
-                                Notify (\_SB.PCI0, 0x00)
+                    Or (\_SB.PCI0.AUDE, 0x20, \_SB.PCI0.AUDE)
+                    \_SB.PCI0.HDAU.ASTR ()
+                    \_SB.PCI0.HDAU.AINI ()
+                    \_SB.PCI0.HDAU.CXDC ()
+                    Notify (\_SB.PCI0, 0x00)
                             }
 
                             If (LEqual (PARM, 0x00))
                             {
-                                And (\_SB.PCI0.AUDE, 0xDF, \_SB.PCI0.AUDE)
-                                Notify (\_SB.PCI0, 0x00)
+                    And (\_SB.PCI0.AUDE, 0xDF, \_SB.PCI0.AUDE)
+                    Notify (\_SB.PCI0, 0x00)
                             }
 
                             Store (Zero, GESF)
@@ -4748,11 +4759,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (PDRD, 0, NotSerialized)
                 {
-                    If (LNot (DRDY))
-                    {
-                        Sleep (ASLP)
-                    }
-
                     Return (LNot (DRDY))
                 }
 
@@ -4837,6 +4843,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 
                 Method (PRST, 0, NotSerialized)
             {
+                
                 If (LEqual (REG0, Ones))
                 {
                     Return (Zero)
@@ -4867,59 +4874,59 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                             And (EPFM, 0x0F, Local1)
                             If (LEqual (Local0, 0x01))
                             {
-                                If (And (Local1, 0x06))
-                                {
-                                    Store (0x06, PFIT)
-                                }
-                                Else
-                                {
-                                    If (And (Local1, 0x08))
-                                    {
-                                        Store (0x08, PFIT)
-                                    }
-                                    Else
-                                    {
-                                        Store (0x01, PFIT)
-                                    }
-                                }
+                    If (And (Local1, 0x06))
+                    {
+                        Store (0x06, PFIT)
+                    }
+                    Else
+                    {
+                        If (And (Local1, 0x08))
+                        {
+                        Store (0x08, PFIT)
+                        }
+                        Else
+                        {
+                        Store (0x01, PFIT)
+                        }
+                    }
                             }
 
                             If (LEqual (Local0, 0x06))
                             {
-                                If (And (Local1, 0x08))
-                                {
-                                    Store (0x08, PFIT)
-                                }
-                                Else
-                                {
-                                    If (And (Local1, 0x01))
-                                    {
-                                        Store (0x01, PFIT)
-                                    }
-                                    Else
-                                    {
-                                        Store (0x06, PFIT)
-                                    }
-                                }
+                    If (And (Local1, 0x08))
+                    {
+                        Store (0x08, PFIT)
+                    }
+                    Else
+                    {
+                        If (And (Local1, 0x01))
+                        {
+                        Store (0x01, PFIT)
+                        }
+                        Else
+                        {
+                        Store (0x06, PFIT)
+                        }
+                    }
                             }
 
                             If (LEqual (Local0, 0x08))
                             {
-                                If (And (Local1, 0x01))
-                                {
-                                    Store (0x01, PFIT)
-                                }
-                                Else
-                                {
-                                    If (And (Local1, 0x06))
-                                    {
-                                        Store (0x06, PFIT)
-                                    }
-                                    Else
-                                    {
-                                        Store (0x08, PFIT)
-                                    }
-                                }
+                    If (And (Local1, 0x01))
+                    {
+                        Store (0x01, PFIT)
+                    }
+                    Else
+                    {
+                        If (And (Local1, 0x06))
+                        {
+                        Store (0x06, PFIT)
+                        }
+                        Else
+                        {
+                        Store (0x08, PFIT)
+                        }
+                    }
                             }
                         }
                         Else
@@ -4942,12 +4949,12 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             If (LEqual (Arg0, 0x00))
                             {
-                                Store (Arg1, ALSI)
-                                Store (0x01, ASLC)
+                    Store (Arg1, ALSI)
+                    Store (0x01, ASLC)
                             }
                             Else
                             {
-                                Return (0x01)
+                    Return (0x01)
                             }
                         }
                     }
@@ -5417,102 +5424,102 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             If ((T_0 == 0x02))
                             {
-                                Return (0x02)
+                    Return (0x02)
                             }
                             Else
                             {
-                                If ((T_0 == 0x03))
+                    If ((T_0 == 0x03))
+                    {
+                        Return (0x04)
+                    }
+                    Else
+                    {
+                        If ((T_0 == 0x04))
+                        {
+                        Return (0x08)
+                        }
+                        Else
+                        {
+                        If ((T_0 == 0x05))
+                        {
+                            Return (0x0100)
+                        }
+                        Else
+                        {
+                            If ((T_0 == 0x06))
+                            {
+                    Return (0x0200)
+                            }
+                            Else
+                            {
+                    If ((T_0 == 0x07))
+                    {
+                        Return (0x0400)
+                    }
+                    Else
+                    {
+                        If ((T_0 == 0x08))
+                        {
+                            Return (0x0800)
+                        }
+                        Else
+                        {
+                            If ((T_0 == 0x09))
+                            {
+                                Return (0x10)
+                            }
+                            Else
+                            {
+                                If ((T_0 == 0x0A))
                                 {
-                                    Return (0x04)
+                                    Return (0x20)
                                 }
                                 Else
                                 {
-                                    If ((T_0 == 0x04))
+                                    If ((T_0 == 0x0B))
                                     {
-                                        Return (0x08)
+                                        Return (0x1000)
                                     }
                                     Else
                                     {
-                                        If ((T_0 == 0x05))
+                                        If ((T_0 == 0x0C))
                                         {
-                                            Return (0x0100)
+                                            Return (0x2000)
                                         }
                                         Else
                                         {
-                                            If ((T_0 == 0x06))
+                                            If ((T_0 == 0x0D))
                                             {
-                                                Return (0x0200)
+                                                Return (0x40)
                                             }
                                             Else
                                             {
-                                                If ((T_0 == 0x07))
+                                                If ((T_0 == 0x0E))
                                                 {
-                                                    Return (0x0400)
+                                    Return (0x80)
                                                 }
                                                 Else
                                                 {
-                                                    If ((T_0 == 0x08))
-                                                    {
-                                                        Return (0x0800)
-                                                    }
-                                                    Else
-                                                    {
-                                                        If ((T_0 == 0x09))
-                                                        {
-                                                            Return (0x10)
-                                                        }
-                                                        Else
-                                                        {
-                                                            If ((T_0 == 0x0A))
-                                                            {
-                                                                Return (0x20)
-                                                            }
-                                                            Else
-                                                            {
-                                                                If ((T_0 == 0x0B))
-                                                                {
-                                                                    Return (0x1000)
-                                                                }
-                                                                Else
-                                                                {
-                                                                    If ((T_0 == 0x0C))
-                                                                    {
-                                                                        Return (0x2000)
-                                                                    }
-                                                                    Else
-                                                                    {
-                                                                        If ((T_0 == 0x0D))
-                                                                        {
-                                                                            Return (0x40)
-                                                                        }
-                                                                        Else
-                                                                        {
-                                                                            If ((T_0 == 0x0E))
-                                                                            {
-                                                                                Return (0x80)
-                                                                            }
-                                                                            Else
-                                                                            {
-                                                                                If ((T_0 == 0x0F))
-                                                                                {
-                                                                                    Return (0x4000)
-                                                                                }
-                                                                                Else
-                                                                                {
-                                                                                    Return (Zero)
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
+                                    If ((T_0 == 0x0F))
+                                    {
+                                        Return (0x4000)
+                                    }
+                                    Else
+                                    {
+                                        Return (Zero)
+                                    }
                                                 }
                                             }
                                         }
                                     }
                                 }
+                            }
+                        }
+                    }
+                            }
+                        }
+                        }
+                    }
                             }
                         }
 
@@ -5532,60 +5539,60 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             If ((T_1 == 0x02))
                             {
-                                Return (0x02)
+                    Return (0x02)
                             }
                             Else
                             {
-                                If ((T_1 == 0x03))
-                                {
-                                    Return (0x04)
-                                }
-                                Else
-                                {
-                                    If ((T_1 == 0x04))
-                                    {
-                                        Return (0x08)
-                                    }
-                                    Else
-                                    {
-                                        If ((T_1 == 0x05))
-                                        {
-                                            Return (0x10)
-                                        }
-                                        Else
-                                        {
-                                            If ((T_1 == 0x06))
-                                            {
-                                                Return (0x20)
-                                            }
-                                            Else
-                                            {
-                                                If ((T_1 == 0x07))
-                                                {
-                                                    Return (0x40)
-                                                }
-                                                Else
-                                                {
-                                                    If ((T_1 == 0x08))
-                                                    {
-                                                        Return (0x80)
-                                                    }
-                                                    Else
-                                                    {
-                                                        If ((T_1 == 0x09))
-                                                        {
-                                                            Return (0x0100)
-                                                        }
-                                                        Else
-                                                        {
-                                                            Return (Zero)
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
+                    If ((T_1 == 0x03))
+                    {
+                        Return (0x04)
+                    }
+                    Else
+                    {
+                        If ((T_1 == 0x04))
+                        {
+                        Return (0x08)
+                        }
+                        Else
+                        {
+                        If ((T_1 == 0x05))
+                        {
+                            Return (0x10)
+                        }
+                        Else
+                        {
+                            If ((T_1 == 0x06))
+                            {
+                    Return (0x20)
+                            }
+                            Else
+                            {
+                    If ((T_1 == 0x07))
+                    {
+                        Return (0x40)
+                    }
+                    Else
+                    {
+                        If ((T_1 == 0x08))
+                        {
+                            Return (0x80)
+                        }
+                        Else
+                        {
+                            If ((T_1 == 0x09))
+                            {
+                                Return (0x0100)
+                            }
+                            Else
+                            {
+                                Return (Zero)
+                            }
+                        }
+                    }
+                            }
+                        }
+                        }
+                    }
                             }
                         }
 
@@ -5814,22 +5821,22 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             If ((Arg0 > One))
                             {
-                                XSEL ()
+                    XSEL ()
                             }
                             Else
                             {
-                                CDW1 |= 0x0A
+                    CDW1 |= 0x0A
                             }
                         }
                         Else
                         {
                             If ((Arg0 > 0x02))
                             {
-                                XSEL ()
+                    XSEL ()
                             }
                             Else
                             {
-                                CDW1 |= 0x0A
+                    CDW1 |= 0x0A
                             }
                         }
                     }
@@ -5914,8 +5921,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Buffer (0x10)
                             {
-                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x69, 0x0C, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00 
+                    /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
+                    /* 0008 */  0x69, 0x0C, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00 
                             }
                         })
                         Local0 = DerefOf (Index (VISB, Zero))
@@ -5962,8 +5969,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Buffer (0x10)
                             {
-                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x69, 0x0C, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00 
+                    /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
+                    /* 0008 */  0x69, 0x0C, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00 
                             }
                         })
                         Local0 = DerefOf (Index (VISB, One))
@@ -6010,8 +6017,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Buffer (0x10)
                             {
-                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x71, 0x0C, 0x80, 0x01, 0x00, 0x00, 0x00, 0x00 
+                    /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
+                    /* 0008 */  0x71, 0x0C, 0x80, 0x01, 0x00, 0x00, 0x00, 0x00 
                             }
                         })
                         Local0 = DerefOf (Index (VISB, 0x02))
@@ -6058,8 +6065,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Buffer (0x10)
                             {
-                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x71, 0x0C, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00 
+                    /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
+                    /* 0008 */  0x71, 0x0C, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00 
                             }
                         })
                         Local0 = DerefOf (Index (VISB, 0x03))
@@ -6106,8 +6113,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Buffer (0x10)
                             {
-                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x69, 0x0C, 0x80, 0x02, 0x00, 0x00, 0x00, 0x00 
+                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                    /* 0008 */  0x69, 0x0C, 0x80, 0x02, 0x00, 0x00, 0x00, 0x00 
                             }
                         })
                         Local0 = DerefOf (Index (VISB, 0x04))
@@ -6154,8 +6161,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Buffer (0x10)
                             {
-                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x69, 0x0C, 0x00, 0x03, 0x00, 0x00, 0x00, 0x00 
+                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                    /* 0008 */  0x69, 0x0C, 0x00, 0x03, 0x00, 0x00, 0x00, 0x00 
                             }
                         })
                         Local0 = DerefOf (Index (VISB, 0x05))
@@ -6202,8 +6209,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Buffer (0x10)
                             {
-                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x71, 0x0C, 0x80, 0x03, 0x00, 0x00, 0x00, 0x00 
+                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                    /* 0008 */  0x71, 0x0C, 0x80, 0x03, 0x00, 0x00, 0x00, 0x00 
                             }
                         })
                         Local0 = DerefOf (Index (VISB, 0x06))
@@ -6250,8 +6257,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Buffer (0x10)
                             {
-                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x71, 0x0C, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00 
+                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                    /* 0008 */  0x71, 0x0C, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00 
                             }
                         })
                         Local0 = DerefOf (Index (VISB, 0x07))
@@ -6298,8 +6305,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Buffer (0x10)
                             {
-                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x71, 0x0C, 0x80, 0x04, 0x00, 0x00, 0x00, 0x00 
+                    /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
+                    /* 0008 */  0x71, 0x0C, 0x80, 0x04, 0x00, 0x00, 0x00, 0x00 
                             }
                         })
                         Local0 = DerefOf (Index (VISB, 0x08))
@@ -6373,8 +6380,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Buffer (0x10)
                             {
-                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x71, 0x0C, 0x00, 0x05, 0x00, 0x00, 0x00, 0x00 
+                    /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
+                    /* 0008 */  0x71, 0x0C, 0x00, 0x05, 0x00, 0x00, 0x00, 0x00 
                             }
                         })
                         Local0 = DerefOf (Index (VISB, 0x09))
@@ -6443,8 +6450,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Buffer (0x10)
                             {
-                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
+                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                    /* 0008 */  0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
                             }
                         })
                         Local0 = DerefOf (Index (VISB, 0x0A))
@@ -6513,8 +6520,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Buffer (0x10)
                             {
-                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
+                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                    /* 0008 */  0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
                             }
                         })
                         Local0 = DerefOf (Index (VISB, 0x0B))
@@ -6583,8 +6590,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Buffer (0x10)
                             {
-                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
+                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                    /* 0008 */  0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
                             }
                         })
                         Local0 = DerefOf (Index (VISB, 0x0C))
@@ -6642,8 +6649,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Buffer (0x10)
                             {
-                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
+                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                    /* 0008 */  0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
                             }
                         })
                         Local0 = DerefOf (Index (VISB, 0x0D))
@@ -6701,8 +6708,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Buffer (0x10)
                             {
-                                /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
+                    /* 0000 */  0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                    /* 0008 */  0x30, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
                             }
                         })
                         Local0 = DerefOf (Index (VISB, 0x0E))
@@ -6760,8 +6767,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Buffer (0x10)
                             {
-                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x69, 0x0C, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00 
+                    /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
+                    /* 0008 */  0x69, 0x0C, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00 
                             }
                         })
                         Local0 = DerefOf (Index (VISB, Zero))
@@ -6819,8 +6826,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Buffer (0x10)
                             {
-                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x69, 0x0C, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00 
+                    /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
+                    /* 0008 */  0x69, 0x0C, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00 
                             }
                         })
                         Local0 = DerefOf (Index (VISB, One))
@@ -6878,8 +6885,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Buffer (0x10)
                             {
-                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x71, 0x0C, 0x80, 0x01, 0x00, 0x00, 0x00, 0x00 
+                    /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
+                    /* 0008 */  0x71, 0x0C, 0x80, 0x01, 0x00, 0x00, 0x00, 0x00 
                             }
                         })
                         Local0 = DerefOf (Index (VISB, 0x02))
@@ -6937,8 +6944,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Buffer (0x10)
                             {
-                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x71, 0x0C, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00 
+                    /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
+                    /* 0008 */  0x71, 0x0C, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00 
                             }
                         })
                         Local0 = DerefOf (Index (VISB, 0x03))
@@ -6996,8 +7003,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Buffer (0x10)
                             {
-                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x71, 0x0C, 0x80, 0x02, 0x00, 0x00, 0x00, 0x00 
+                    /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
+                    /* 0008 */  0x71, 0x0C, 0x80, 0x02, 0x00, 0x00, 0x00, 0x00 
                             }
                         })
                         Local0 = DerefOf (Index (VISB, 0x04))
@@ -7055,8 +7062,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             Buffer (0x10)
                             {
-                                /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                /* 0008 */  0x71, 0x0C, 0x00, 0x03, 0x00, 0x00, 0x00, 0x00 
+                    /* 0000 */  0x01, 0xC6, 0x72, 0x00, 0x00, 0x00, 0x00, 0x00,
+                    /* 0008 */  0x71, 0x0C, 0x00, 0x03, 0x00, 0x00, 0x00, 0x00 
                             }
                         })
                         Local0 = DerefOf (Index (VISB, 0x05))
@@ -7263,6 +7270,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (SSXB, 2, Serialized)
             {
+                
                 If (STRT ())
                 {
                     Return (Zero)
@@ -7284,6 +7292,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (SRXB, 1, Serialized)
             {
+                
                 If (STRT ())
                 {
                     Return (0xFFFF)
@@ -7304,6 +7313,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (SWRB, 3, Serialized)
             {
+                
                 If (STRT ())
                 {
                     Return (Zero)
@@ -7326,6 +7336,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (SRDB, 2, Serialized)
             {
+                
                 If (STRT ())
                 {
                     Return (0xFFFF)
@@ -7347,6 +7358,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (SWRW, 3, Serialized)
             {
+                
                 If (STRT ())
                 {
                     Return (Zero)
@@ -7370,6 +7382,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (SRDW, 2, Serialized)
             {
+                
                 If (STRT ())
                 {
                     Return (0xFFFF)
@@ -7391,6 +7404,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (SBLW, 4, Serialized)
             {
+                
                 If (STRT ())
                 {
                     Return (Zero)
@@ -7438,6 +7452,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (SBLR, 3, Serialized)
             {
+                
                 Name (TBUF, Buffer (0x0100) {})
                 If (STRT ())
                 {
@@ -7496,6 +7511,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (STRT, 0, Serialized)
             {
+                
                 Local0 = 0xC8
                 While (Local0)
                 {
@@ -7537,6 +7553,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (COMP, 0, Serialized)
             {
+                
                 Local0 = 0x0FA0
                 While (Local0)
                 {
@@ -7560,6 +7577,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
             Method (KILL, 0, Serialized)
             {
+                
                 HCON |= 0x02
                 HSTS |= 0xFF
             }
@@ -7790,7 +7808,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     {
                         Return (GPRW (0x69, 0x03))
                     }
-                    
                     Method (_DSM, 4, NotSerialized)
                     {
                         If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
@@ -7938,11 +7955,11 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             If ((Local3 != Ones))
                             {
-                                If ((Local4 != Ones))
-                                {
-                                    FBIF (Local0, Local1, Local2, Local3, Local4)
-                                    CBIF ()
-                                }
+                    If ((Local4 != Ones))
+                    {
+                        FBIF (Local0, Local1, Local2, Local3, Local4)
+                        CBIF ()
+                    }
                             }
                         }
                     }
@@ -8092,8 +8109,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             If ((Local3 != Ones))
                             {
-                                FBST (Local0, Local1, Local2, Local3)
-                                CBST ()
+                    FBST (Local0, Local1, Local2, Local3)
+                    CBST ()
                             }
                         }
                     }
@@ -8734,18 +8751,18 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             If ((OSYS == 0x07D0))
                             {
-                                OSFG = OSME
+                    OSFG = OSME
                             }
                             Else
                             {
-                                If ((OSYS == 0x07CE))
-                                {
-                                    OSFG = OS98
-                                }
-                                Else
-                                {
-                                    OSFG = OSW8
-                                }
+                    If ((OSYS == 0x07CE))
+                    {
+                        OSFG = OS98
+                    }
+                    Else
+                    {
+                        OSFG = OSW8
+                    }
                             }
                         }
                     }
@@ -9664,7 +9681,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             If ((Arg0 != RDQK))
                             {
-                                Return (Local0)
+                    Return (Local0)
                             }
                         }
                     }
@@ -9812,18 +9829,18 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             If ((Local0 <= 0x0A))
                             {
-                                Local1 = 0x0190
+                    Local1 = 0x0190
                             }
                             Else
                             {
-                                If ((Local0 <= 0x0E))
-                                {
-                                    Local1 = 0x0258
-                                }
-                                Else
-                                {
-                                    Local1 = 0x0320
-                                }
+                    If ((Local0 <= 0x0E))
+                    {
+                        Local1 = 0x0258
+                    }
+                    Else
+                    {
+                        Local1 = 0x0320
+                    }
                             }
                         }
                     }
@@ -10096,14 +10113,14 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             If ((Local1 == 0x02))
                             {
-                                Local0 = One
+                    Local0 = One
                             }
                             Else
                             {
-                                If ((Local1 == 0x10))
-                                {
-                                    Local0 = One
-                                }
+                    If ((Local1 == 0x10))
+                    {
+                        Local0 = One
+                    }
                             }
                         }
                     }
@@ -10133,14 +10150,14 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             If ((Local1 == 0x02))
                             {
-                                Local0 = One
+                    Local0 = One
                             }
                             Else
                             {
-                                If ((Local1 == 0x10))
-                                {
-                                    Local0 = One
-                                }
+                    If ((Local1 == 0x10))
+                    {
+                        Local0 = One
+                    }
                             }
                         }
                     }
@@ -10746,14 +10763,14 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         {
                             If (((OLUX >= 0x05) && (Local1 < 0x05)))
                             {
-                                Local2 = One
+                    Local2 = One
                             }
                             Else
                             {
-                                If (((OLUX >= 0x03) && (Local1 < 0x03)))
-                                {
-                                    Local2 = One
-                                }
+                    If (((OLUX >= 0x03) && (Local1 < 0x03)))
+                    {
+                        Local2 = One
+                    }
                             }
                         }
                     }
@@ -11051,6 +11068,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Name (_HID, EisaId ("PNP0C0D"))  // _HID: Hardware ID
             Method (_LID, 0, NotSerialized)  // _LID: Lid Status
             {
+                
                 Local0 = One
                 Local0 = ^^PCI0.LPCB.EC0.RPIN (0x11)
                 If ((Local0 == Ones)) { Local0 = One }
