@@ -4112,12 +4112,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     PLUT,   592, 
                     PFMB,   32, 
                     CCDV,   32, 
-                    PCFT,   32,
-                    SROT,   32, 
-                    IUER,   32, 
-                    FDSP,   64, 
-                    FDSS,   32, 
-                    STAT,   32,
+                    PCFT,   32, 
                     Offset (0x400), 
                     GVD1,   49152, 
                     PHED,   32, 
@@ -9993,7 +9988,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 If (DBUG) {
                 If (GOFF) {
                     GOFF = Zero
-                    \rmdt.p2("STAT", \_SB.PCI0.IGPU.STAT)
                     \rmdt.p2("REG0", \_SB.PCI0.IGPU.REG0)
                     \rmdt.p2("ASLS", \_SB.PCI0.IGPU.ASLS)
                     } Else {
