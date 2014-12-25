@@ -18,8 +18,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
     External (PDC6, IntObj)
     External (PDC7, IntObj)
 
-    Name (SDON, Zero)
-    Name (SPON, Zero)
     Name (PMBS, 0x1800)
     Name (GPBS, 0x1C00)
     Name (SRCB, 0xFED1C000)
@@ -45,7 +43,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         PRM4,   8, 
         PRM5,   8, 
         P80D,   32, 
-        LIDS,   8, 
         PWRS,   8, 
         DBGS,   8, 
         THOF,   8, 
@@ -60,6 +57,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         DTS1,   8, 
         DTS2,   8, 
         DTSF,   8, 
+        Offset (0x1E), 
         Offset (0x25), 
         REVN,   8, 
         Offset (0x28), 
@@ -86,9 +84,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         Offset (0x42), 
         MEFE,   8, 
         DSTS,   8, 
-        Offset (0x46), 
-        TPMP,   8, 
-        TPME,   8, 
+        Offset (0x48), 
         MORD,   8, 
         TCGP,   8, 
         PPRP,   32, 
@@ -98,13 +94,15 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         GTF2,   56, 
         IDEM,   8, 
         GTF1,   56, 
-        BDID,   8, 
-        Offset (0x78), 
+        BID,    16, 
+        PLID,   8, 
+        ECTG,   8, 
+        Offset (0x70), 
         OSCC,   8, 
         NEXP,   8, 
-        SDGV,   8, 
-        SDDV,   8, 
-        Offset (0x81), 
+        SBV1,   8, 
+        SBV2,   8, 
+        Offset (0x7A), 
         DSEN,   8, 
         ECON,   8, 
         GPIC,   8, 
@@ -112,6 +110,15 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         L01C,   8, 
         VFN0,   8, 
         VFN1,   8, 
+        VFN2,   8, 
+        VFN3,   8, 
+        VFN4,   8, 
+        VFN5,   8, 
+        VFN6,   8, 
+        VFN7,   8, 
+        VFN8,   8, 
+        VFN9,   8, 
+        Offset (0x8F), 
         ATMC,   8, 
         PTMC,   8, 
         ATRA,   8, 
@@ -125,20 +132,221 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         PTPC,   8, 
         PFLV,   8, 
         BREV,   8, 
-        DPBM,   8, 
-        DPCM,   8, 
-        DPDM,   8, 
-        SDID,   8, 
-        BLCP,   8, 
-        BLCC,   8, 
-        Offset (0xA5), 
-        BLCT,   32, 
-        BLCB,   32, 
-        Offset (0xB2), 
-        NHIB,   32, 
-        GVNV,   32, 
-        MM64,   8, 
-        Offset (0x12C), 
+        PDTS,   8, 
+        PKGA,   8, 
+        PAMT,   8, 
+        AC0F,   8, 
+        AC1F,   8, 
+        DTS3,   8, 
+        DTS4,   8, 
+        Offset (0xB0), 
+        LTR1,   8, 
+        LTR2,   8, 
+        LTR3,   8, 
+        LTR4,   8, 
+        LTR5,   8, 
+        LTR6,   8, 
+        LTR7,   8, 
+        LTR8,   8, 
+        OBF1,   8, 
+        OBF2,   8, 
+        OBF3,   8, 
+        OBF4,   8, 
+        OBF5,   8, 
+        OBF6,   8, 
+        OBF7,   8, 
+        OBF8,   8, 
+        XHCI,   8, 
+        XTUB,   32, 
+        XTUS,   32, 
+        XMPB,   32, 
+        DDRF,   8, 
+        RTD3,   8, 
+        PEP0,   8, 
+        PEP3,   8, 
+        DPTF,   8, 
+        SADE,   8, 
+        SACR,   8, 
+        SAHT,   8, 
+        PCHD,   8, 
+        PCHC,   8, 
+        PCHH,   8, 
+        CTDP,   8, 
+        LPMP,   8, 
+        LPMV,   8, 
+        ECEU,   8, 
+        TGFG,   16, 
+        MEMD,   8, 
+        MEMC,   8, 
+        MEMH,   8, 
+        FND1,   8, 
+        FND2,   8, 
+        AMBD,   8, 
+        AMAT,   8, 
+        AMPT,   8, 
+        AMCT,   8, 
+        AMHT,   8, 
+        SKDE,   8, 
+        SKAT,   8, 
+        SKPT,   8, 
+        SKCT,   8, 
+        SKHT,   8, 
+        EFDE,   8, 
+        EFAT,   8, 
+        EFPT,   8, 
+        EFCT,   8, 
+        EFHT,   8, 
+        VRDE,   8, 
+        VRAT,   8, 
+        VRPT,   8, 
+        VRCT,   8, 
+        VRHT,   8, 
+        DPAP,   8, 
+        DPPP,   8, 
+        DPCP,   8, 
+        DCMP,   8, 
+        TRTV,   8, 
+        LPOE,   8, 
+        LPOP,   8, 
+        LPOS,   8, 
+        LPOW,   8, 
+        LPER,   8, 
+        PPSZ,   32, 
+        DISE,   8, 
+        PFMA,   64, 
+        PFMS,   8, 
+        PFIA,   16, 
+        ICNF,   8, 
+        DSP0,   32, 
+        DSP1,   32, 
+        NFCE,   8, 
+        CODS,   8, 
+        SNHE,   8, 
+        S0ID,   8, 
+        CTDB,   8, 
+        Offset (0x207), 
+        PWRE,   8, 
+        PWRP,   8, 
+        XHPR,   8, 
+        SDS0,   8, 
+        SDS1,   16, 
+        SDS2,   8, 
+        SDS3,   8, 
+        SDS4,   8, 
+        SDS5,   8, 
+        Offset (0x212), 
+        RIC0,   8, 
+        PEPY,   8, 
+        DVS0,   8, 
+        DVS1,   8, 
+        DVS2,   8, 
+        DVS3,   8, 
+        GBSX,   8, 
+        IUBE,   8, 
+        IUCE,   8, 
+        IUDE,   8, 
+        ECNO,   8, 
+        AUDD,   16, 
+        DSPD,   16, 
+        IC0D,   16, 
+        IC1D,   16, 
+        IC1S,   16, 
+        VRRD,   16, 
+        PSCP,   8, 
+        RWAG,   8, 
+        I20D,   16, 
+        I21D,   16, 
+        Offset (0x231), 
+        RCG0,   8, 
+        ECDB,   8, 
+        P2ME,   8, 
+        SSH0,   16, 
+        SSL0,   16, 
+        SSD0,   16, 
+        FMH0,   16, 
+        FML0,   16, 
+        FMD0,   16, 
+        FPH0,   16, 
+        FPL0,   16, 
+        FPD0,   16, 
+        SSH1,   16, 
+        SSL1,   16, 
+        SSD1,   16, 
+        FMH1,   16, 
+        FML1,   16, 
+        FMD1,   16, 
+        FPH1,   16, 
+        FPL1,   16, 
+        FPD1,   16, 
+        M0C0,   16, 
+        M1C0,   16, 
+        M2C0,   16, 
+        M0C1,   16, 
+        M1C1,   16, 
+        M2C1,   16, 
+        M0C2,   16, 
+        M1C2,   16, 
+        M0C3,   16, 
+        M1C3,   16, 
+        M0C4,   16, 
+        M1C4,   16, 
+        M0C5,   16, 
+        M1C5,   16, 
+        TBSF,   8, 
+        GIRQ,   32, 
+        DMTP,   8, 
+        DMTD,   8, 
+        DMSH,   8, 
+        LANP,   8, 
+        Offset (0x27E), 
+        SHSB,   8, 
+        PLCS,   8, 
+        PLVL,   16, 
+        GN1E,   8, 
+        G1AT,   8, 
+        G1PT,   8, 
+        G1CT,   8, 
+        G1HT,   8, 
+        GN2E,   8, 
+        G2AT,   8, 
+        G2PT,   8, 
+        G2CT,   8, 
+        G2HT,   8, 
+        WWSD,   8, 
+        CVSD,   8, 
+        SSDD,   8, 
+        INLD,   8, 
+        IFAT,   8, 
+        IFPT,   8, 
+        IFCT,   8, 
+        IFHT,   8, 
+        DOSD,   8, 
+        USBH,   8, 
+        BCV4,   8, 
+        WTV0,   8, 
+        WTV1,   8, 
+        APFU,   8, 
+        SOHP,   8, 
+        NOHP,   8, 
+        TBSE,   8, 
+        WKFN,   8, 
+        PEPC,   16, 
+        VRSD,   16, 
+        PB1E,   8, 
+        WAND,   8, 
+        WWAT,   8, 
+        WWPT,   8, 
+        WWCT,   8, 
+        WWHT,   8, 
+        Offset (0x2AD), 
+        MPLT,   16, 
+        GR13,   8, 
+        SPST,   8, 
+        ECLP,   8
+    }
+    OperationRegion (SANV, SystemMemory, 0xDAAE9E18, 0x016D)
+    Field (SANV, AnyAcc, Lock, Preserve)
+    {
         SARV,   32, 
         ASLB,   32, 
         IMON,   8, 
@@ -170,7 +378,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         NXD8,   32, 
         GSMI,   8, 
         PAVP,   8, 
-        LIDC,   8, 
+        LIDS,   8, 
         KSV0,   32, 
         KSV1,   8, 
         BBAR,   32, 
@@ -188,9 +396,9 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         DIDD,   32, 
         DIDE,   32, 
         DIDF,   32, 
-        CADR,   32, 
-        CCNT,   8, 
-        Offset (0x1F4), 
+        CCSA,   32, 
+        CCNT,   32, 
+        Offset (0xC8), 
         SGMD,   8, 
         SGFL,   8, 
         PWOK,   8, 
@@ -238,7 +446,21 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         NXDX,   32, 
         DIDX,   32, 
         PCSL,   8, 
-        SC7A,   8
+        SC7A,   8, 
+        DSEL,   8, 
+        ESEL,   8, 
+        PSEL,   8, 
+        MXD1,   32, 
+        MXD2,   32, 
+        MXD3,   32, 
+        MXD4,   32, 
+        MXD5,   32, 
+        MXD6,   32, 
+        MXD7,   32, 
+        MXD8,   32, 
+        PXFD,   8, 
+        EBAS,   32, 
+        HYSS,   32
     }
 
     Scope (_SB)
@@ -840,6 +1062,21 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 CreateDWordField (Local0, Zero, CDW1)
                 CreateDWordField (Local0, 0x04, CDW2)
                 CreateDWordField (Local0, 0x08, CDW3)
+                If (^XHC1.CUID (Arg0))
+                {
+                    Return (^XHC1.POSC (Arg1, Arg2, Arg3))
+                }
+                Else
+                {
+                    If ((MSOS () >= OSW8))
+                    {
+                        If ((XCNT == Zero))
+                        {
+                            ^XHC1.XSEL ()
+                            XCNT++
+                        }
+                    }
+                }
 
                 If ((Arg0 == GUID))
                 {
@@ -852,16 +1089,16 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                     If (NEXP)
                     {
-                        If (Not (And (CDW1, 0x01)))
+                        If (~(CDW1 & One))
                         {
-                            If (And (CTRL, 0x02))
+                            If ((CTRL & One))
                             {
-                                NHPG ()
+                    NHPG ()
                             }
 
-                            If (And (CTRL, 0x04))
+                            If ((CTRL & 0x04))
                             {
-                                NPME ()
+                    NPME ()
                             }
                         }
                     }
@@ -2433,6 +2670,58 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 }
             }
         }
+
+        Method (_OSC, 4, Serialized)  // _OSC: Operating System Capabilities
+        {
+            CreateDWordField (Arg3, Zero, STS0)
+            CreateDWordField (Arg3, 0x04, CAP0)
+            If ((Arg0 == ToUUID ("0811b06e-4a27-44f9-8d60-3cbbc22e7b48") /* Platform-wide Capabilities */))
+            {
+                If ((Arg1 == One))
+                {
+                    If ((CAP0 & 0x04))
+                    {
+                        If (((SGMD & 0x0F) != 0x02))
+                        {
+                            If ((RTD3 == Zero))
+                            {
+                    CAP0 &= 0x3B
+                    STS0 |= 0x10
+                            }
+                        }
+                    }
+
+                    If ((CAP0 & 0x20))
+                    {
+                        If (CondRefOf (\_SB.PCCD.PENB))
+                        {
+                            If ((^PCCD.PENB == Zero))
+                            {
+                    CAP0 &= 0x1F
+                    STS0 |= 0x10
+                            }
+                        }
+                        Else
+                        {
+                            CAP0 &= 0x1F
+                            STS0 |= 0x10
+                        }
+                    }
+                }
+                Else
+                {
+                    STS0 &= 0xFFFFFF00
+                    STS0 |= 0x0A
+                }
+            }
+            Else
+            {
+                STS0 &= 0xFFFFFF00
+                STS0 |= 0x06
+            }
+
+            Return (Arg3)
+        }
         
             OperationRegion (ECMS, SystemIO, 0x72, 0x02)
             Field (ECMS, ByteAcc, Lock, Preserve)
@@ -2813,10 +3102,10 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             {
                 
                 Name (IDDX, 0x80000000)
-                If (((CADR != Zero) && (CCNT != Zero)))
+                If (((CCSA != Zero) && (CCNT != Zero)))
                 {
-                    IDDX = CADR
-                    While ((IDDX < (CADR + (CCNT * 0x04))))
+                    IDDX = CCSA
+                    While ((IDDX < (CCSA + (CCNT * 0x04))))
                     {
                         VSTR (IDDX)
                         IDDX += 0x04
@@ -5499,8 +5788,65 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 PDBM = Local1
             }
 
+            Method (CUID, 1, Serialized)
+            {
+                If ((Arg0 == ToUUID ("7c9512a9-1705-4cb4-af7d-506a2423ab71")))
+                {
+                    Return (One)
+                }
+
+                Return (Zero)
+            }
+
+            Method (POSC, 3, Serialized)
+            {
+                CreateDWordField (Arg2, Zero, CDW1)
+                CreateDWordField (Arg2, 0x08, CDW3)
+                If ((XHCI == Zero))
+                {
+                    CDW1 |= 0x02
+                }
+
+                If (!(CDW1 & One))
+                {
+                    If ((CDW3 & One))
+                    {
+                        ESEL ()
+                    }
+                    Else
+                    {
+                        If (((^^LPCB.CDID & 0xF000) == 0x8000))
+                        {
+                            If ((Arg0 > One))
+                            {
+                    XSEL ()
+                            }
+                            Else
+                            {
+                    CDW1 |= 0x0A
+                            }
+                        }
+                        Else
+                        {
+                            If ((Arg0 > 0x02))
+                            {
+                    XSEL ()
+                            }
+                            Else
+                            {
+                    CDW1 |= 0x0A
+                            }
+                        }
+                    }
+                }
+
+                Return (Arg2)
+            }
+
             Method (XSEL, 0, Serialized)
             {
+                If (((XHCI == 0x02) || (XHCI == 0x03)))
+                {
                     ^^LPCB.XUSB = One
                     XRST = One
                     Local0 = Zero
@@ -5509,6 +5855,18 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Local0 = Zero
                     Local0 = (PR2 & 0xFFFF8000)
                     PR2 = (Local0 | PR2M)
+                }
+            }
+
+            Method (ESEL, 0, Serialized)
+            {
+                If (((XHCI == 0x02) || (XHCI == 0x03)))
+                {
+                    PR3 &= 0xFFFFFFC0
+                    PR2 &= 0xFFFF8000
+                    ^^LPCB.XUSB = Zero
+                    XRST = Zero
+                }
             }
 
             Method (XWAK, 0, Serialized)
@@ -6805,87 +7163,70 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         Device (SAT0)
         {
             Name (_ADR, 0x001F0002)  // _ADR: Address
+            Name (FDEV, Zero)
+            Name (FDRP, Zero)
+
             Device (PRT0)
             {
                 Name (_ADR, 0xFFFF)  // _ADR: Address
-                Method (_SDD, 1, NotSerialized)  // _SDD: Set Device Data
+                Method (_SDD, 1, Serialized)  // _SDD: Set Device Data
                 {
-                    Name (GBU0, Buffer (0x07)
-                    {
-                         0x00, 0x00, 0x00, 0x00, 0x00, 0xA0, 0x00
-                    })
-                    CreateByteField (GBU0, 0x00, GB00)
-                    CreateByteField (GBU0, 0x01, GB01)
-                    CreateByteField (GBU0, 0x02, GB02)
-                    CreateByteField (GBU0, 0x03, GB03)
-                    CreateByteField (GBU0, 0x04, GB04)
-                    CreateByteField (GBU0, 0x05, GB05)
-                    CreateByteField (GBU0, 0x06, GB06)
-                    If (LEqual (SizeOf (Arg0), 0x0200))
-                    {
-                        CreateWordField (Arg0, 0x9C, W780)
-                        If (And (W780, 0x08))
-                        {
-                            Store (0x10, GB00)
-                            Store (0x03, GB01)
-                            Store (0xEF, GB06)
-                        }
-                        Else
-                        {
-                            Store (0x90, GB00)
-                            Store (0x03, GB01)
-                            Store (0xEF, GB06)
-                        }
-                    }
-
-                    Store (GBU0, GTF0)
+                    CreateByteField (Arg0, 0x9D, BFDS)
+                    ToInteger (BFDS, FDEV)
+                    CreateByteField (Arg0, 0x9A, BFRP)
+                    ToInteger (BFRP, FDRP)
                 }
 
-                Method (_GTF, 0, NotSerialized)  // _GTF: Get Task File
+                Method (_GTF, 0, Serialized)  // _GTF: Get Task File
                 {
-                    Return (GTF0)
+                    If ((((DVS0 == One) && ((FDEV & One) == One)) && 
+                        ((FDRP & 0x80) == 0x80)))
+                    {
+                        Name (PIB1, Buffer (0x07)
+                        {
+                             0x10, 0x09, 0x00, 0x00, 0x00, 0xB0, 0xEF       
+                        })
+                        Return (PIB1)
+                    }
+
+                    Name (PIB2, Buffer (0x07)
+                    {
+                         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00       
+                    })
+                    Return (PIB2)
                 }
             }
 
             Device (PRT1)
             {
                 Name (_ADR, 0x0001FFFF)  // _ADR: Address
-                Method (_SDD, 1, NotSerialized)  // _SDD: Set Device Data
+                Name (FDEV, Zero)
+                Name (FDRP, Zero)
+                Method (_SDD, 1, Serialized)  // _SDD: Set Device Data
                 {
-                    Name (GBU1, Buffer (0x07)
-                    {
-                         0x00, 0x00, 0x00, 0x00, 0x00, 0xA0, 0x00
-                    })
-                    CreateByteField (GBU1, 0x00, GB10)
-                    CreateByteField (GBU1, 0x01, GB11)
-                    CreateByteField (GBU1, 0x02, GB12)
-                    CreateByteField (GBU1, 0x03, GB13)
-                    CreateByteField (GBU1, 0x04, GB14)
-                    CreateByteField (GBU1, 0x05, GB15)
-                    CreateByteField (GBU1, 0x06, GB16)
-                    If (LEqual (SizeOf (Arg0), 0x0200))
-                    {
-                        CreateWordField (Arg0, 0x9C, W790)
-                        If (And (W790, 0x08))
-                        {
-                            Store (0x10, GB10)
-                            Store (0x03, GB11)
-                            Store (0xEF, GB16)
-                        }
-                        Else
-                        {
-                            Store (0x90, GB10)
-                            Store (0x03, GB11)
-                            Store (0xEF, GB16)
-                        }
-                    }
-
-                    Store (GBU1, GTF1)
+                    CreateByteField (Arg0, 0x9D, BFDS)
+                    ToInteger (BFDS, FDEV)
+                    CreateByteField (Arg0, 0x9A, BFRP)
+                    ToInteger (BFRP, FDRP)
                 }
 
-                Method (_GTF, 0, NotSerialized)  // _GTF: Get Task File
+                Method (_GTF, 0, Serialized)  // _GTF: Get Task File
                 {
-                    Return (GTF1)
+                    If ((((DVS1 == One) && ((FDEV & One) == One)) && 
+                        ((FDRP & 0x80) == 0x80)))
+                    {
+                        Name (PIB1, Buffer (0x07)
+                        {
+                             0x10, 0x09, 0x00, 0x00, 0x00, 0xB0, 0xEF       
+                        })
+                        Return (PIB1)
+                    }
+
+                    Name (PIB2, Buffer (0x07)
+                    {
+                         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00       
+                    })
+                    Return (PIB2)
                 }
             }
             Method (_DSM, 4, NotSerialized)
@@ -7334,6 +7675,13 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 }
 
                 Name (RPAV, Zero)
+                Method (_INI, 0, NotSerialized)  // _INI: Initialize
+                {
+                    LTRE = LTR1
+                    LMSL = PML1
+                    LNSL = PNL1
+                    OBFF = OBF1
+                }
                 Method (_DSM, 4, NotSerialized)
                 {
                     If (LEqual (Arg2, Zero)) { Return (Buffer(One) { 0x03 } ) }
@@ -7421,9 +7769,13 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Name (RPAV, Zero)
                 Method (_INI, 0, NotSerialized)  // _INI: Initialize
-                {
-                    WFBT ()
-                }
+            {
+                LTRE = LTR4
+                LMSL = PML4
+                LNSL = PNL4
+                OBFF = OBF4
+                WFBT ()
+            }
                 Method (_DSM, 4, NotSerialized)
                 {
                     If (LEqual (Arg2, Zero)) { Return (Buffer(One) { 0x03 } ) }
@@ -7872,7 +8224,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_STA, 0, NotSerialized)  // _STA: Status
                 {
-                    If (SDON) { Return (0x0F) } Else { Return (Zero) }
+                    If (S0ID == One) { Return (0x0F) } Else { Return (Zero) }
                 }
             }
             Device (SPI1)
@@ -7906,7 +8258,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
                 Method (_STA, 0, NotSerialized)  // _STA: Status
                 {
-                    If (SPON) { Return (0x0F) } Else { Return (Zero) }
+                    If (S0ID == One) { Return (0x0F) } Else { Return (Zero) }
                 }
             }
     }
@@ -9993,7 +10345,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     } Else {
                     GOFF = One
                     \rmdt.p2("BDDC", \_SB.PCI0.IGPU.BDDC)
-                    \rmdt.p2("BRTL", \BRTL)
                     }
                 }
             ElseIf (OWGS) { OBTD (One) } Else { OBTD (Zero) }
