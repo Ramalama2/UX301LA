@@ -2995,7 +2995,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Name (MODC, Zero)
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                If ((AUVD != 0xFFFF))
+                If ((VID0 != 0xFFFF))
                 {
                     Return (0x0F)
                 }
@@ -3011,20 +3011,14 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     BARA = ABAR
                 }
             }
-
-            OperationRegion (RPCS, SystemMemory, \XBAS, 0x00018040)
-            Field (RPCS, AnyAcc, NoLock, Preserve)
+            
+            OperationRegion (HDAH, PCI_Config, 0x00, 0x40)
+            Field (HDAH, ByteAcc, NoLock, Preserve)
             {
-                Offset (0x18004), 
-                ACMD,   8, 
-                Offset (0x18010), 
+                VID0,   16, 
+                DID0,   16, 
+                Offset (0x10), 
                 ABAR,   32
-            }
-
-            OperationRegion (RPCZ, PCI_Config, Zero, 0x40)
-            Field (RPCZ, DWordAcc, Lock, Preserve)
-            {
-                AUVD,   16
             }
 
             Method (ASTR, 0, Serialized)
@@ -3113,39 +3107,8 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 }
             }
 
-            Method (ARST, 0, Serialized)
-            {
-                
-                If ((((ABAR & 0xFFFFC004) != 0xFFFFC004) && ((
-                    ABAR & 0xFFFFC000) != Zero)))
-                {
-                    BBAR = (ABAR & 0xFFFFFFF0)
-                    OperationRegion (IPCV, SystemMemory, BBAR, 0xBF)
-                    Field (IPCV, AnyAcc, NoLock, Preserve)
-                    {
-                        Offset (0x08), 
-                        CRST,   32, 
-                        Offset (0x4C), 
-                        CORB,   32, 
-                        Offset (0x5C), 
-                        RIRB,   32, 
-                        Offset (0x80), 
-                        OSD1,   32, 
-                        Offset (0xA0), 
-                        OSD2,   32
-                    }
-
-                    CORB &= 0xFFFFFFFD
-                    RIRB &= 0xFFFFFFFD
-                    OSD1 &= 0xFFFFFFFD
-                    OSD2 &= 0xFFFFFFFD
-                    CRST &= 0xFFFFFFFE
-                }
-            }
-
             Method (AINI, 0, Serialized)
             {
-                
                 Name (CONT, 0x03E8)
                 If ((((ABAR & 0xFFFFC004) != 0xFFFFC004) && ((
                     ABAR & 0xFFFFC000) != Zero)))
@@ -3193,50 +3156,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 }
             }
 
-            Method (ABWA, 1, Serialized)
-            {
-                
-                If (Arg0)
-                {
-                    If ((((ABAR & 0xFFFFC004) == 0xFFFFC004) || ((ABAR & 0xFFFFC000
-                        ) == Zero)))
-                    {
-                        If ((BARA != 0x80000000))
-                        {
-                            TBAR = ABAR
-                            TCMD = ACMD
-                            ABAR = BARA
-                            ACMD = 0x06
-                            MODB = One
-                        }
-                    }
-                    Else
-                    {
-                        If (((ACMD & 0x06) != 0x06))
-                        {
-                            TCMD = ACMD
-                            ACMD = 0x06
-                            MODC = One
-                        }
-                    }
-                }
-                Else
-                {
-                    If (MODB)
-                    {
-                        If ((ABAR == BARA))
-                        {
-                            ABAR = TBAR
-                            ACMD = TCMD
-                        }
-                    }
-
-                    If (MODC)
-                    {
-                        ACMD = TCMD
-                    }
-                }
-            }
             Method (_DSM, 4, NotSerialized)
             {
                 If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
@@ -4215,7 +4134,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Return (0x1D)
                 }
                 
-                Name (OPBS, 0xFFFFFF00)
+            Name (OPBS, 0xFFFFFF00)
             Method (OPTS, 1, NotSerialized)
             {
                 
@@ -4760,16 +4679,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Return (LNot (DRDY))
                 }
 
-                Method (PSTS, 0, NotSerialized)
-                {
-                    If (LGreater (CSTS, 0x02))
-                    {
-                        Sleep (ASLP)
-                    }
-
-                    Return (LEqual (CSTS, 0x03))
-                }
-
                 Method (GNOT, 2, NotSerialized)
                 {
                     If (PDRD ())
@@ -4803,12 +4712,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     Return (0x00)
                 }
 
-                Method (GHDS, 1, NotSerialized)
-                {
-                    Store (Arg0, TIDX)
-                    Return (GNOT (0x01, 0x00))
-                }
-
                 Method (GLID, 1, NotSerialized)
                 {
                     If (LEqual (Arg0, 0x01))
@@ -4821,12 +4724,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     }
 
                     Return (GNOT (0x02, 0x00))
-                }
-
-                Method (GDCK, 1, NotSerialized)
-                {
-                    Store (Arg0, CDCK)
-                    Return (GNOT (0x04, 0x00))
                 }
 
                 Method (PARD, 0, NotSerialized)
@@ -4958,16 +4855,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     }
 
                     Store (0x01, ASLE)
-                    Return (0x00)
-                }
-
-                Method (SCIP, 0, NotSerialized)
-                {
-                    If (LNotEqual (OVER, 0x00))
-                    {
-                        Return (LNot (GSMI))
-                    }
-
                     Return (0x00)
                 }
             }
@@ -5154,10 +5041,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             }
         }
 
-            Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-            {
-                Return (GPRW (0x0D, 0x03))
-            }
+            Name (_PRW, Package() { 0x0D, 0x03 })
             Method (_DSM, 4, NotSerialized)
             {
                 If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
@@ -5326,10 +5210,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             }
         }
 
-            Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-            {
-                Return (GPRW (0x0D, 0x03))
-            }
+            Name (_PRW, Package() { 0x0D, 0x03 })
             Method (_DSM, 4, NotSerialized)
             {
                 If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
@@ -7080,10 +6961,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 }
             }
 
-            Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-            {
-                Return (GPRW (0x0D, 0x03))
-            }
+            Name (_PRW, Package() { 0x0D, 0x03 })
             
             Method (_DSW, 3, NotSerialized)  // _DSW: Device Sleep Wake
             {
@@ -7133,10 +7011,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Store (Arg0, PMEE)
             }
 
-            Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-            {
-                Return (GPRW (0x0D, 0x04))
-            }
+            Name (_PRW, Package() { 0x0D, 0x04 })
             
             Method (GPEH, 0, NotSerialized)
             {
@@ -7699,10 +7574,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     }
                 }
 
-                Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-                {
-                    Return (GPRW (0x69, 0x04))
-                }
+                Name (_PRW, Package() { 0x69, 0x04 })
 
                 Method (_PRT, 0, NotSerialized)  // _PRT: PCI Routing Table
                 {
@@ -7793,10 +7665,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     }
                 }
 
-                Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-                {
-                    Return (GPRW (0x69, 0x04))
-                }
+                Name (_PRW, Package() { 0x69, 0x04 })
 
                 Method (_PRT, 0, NotSerialized)  // _PRT: PCI Routing Table
                 {
@@ -7822,10 +7691,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         PSTA,   2
                     }
 
-                    Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-                    {
-                        Return (GPRW (0x69, 0x03))
-                    }
+                    Name (_PRW, Package() { 0x69, 0x03 })
                     Method (_DSM, 4, NotSerialized)
                     {
                         If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
@@ -8520,25 +8386,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         P80H = P80D
     }
-        Method (GPRW, 2, NotSerialized)
-        {
-            Index (PRWP, Zero) = Arg0
-            Local0 = (SS1 << One)
-            Local0 |= (SS2 << 0x02)
-            Local0 |= (SS3 << 0x03)
-            Local0 |= (SS4 << 0x04)
-            If (((One << Arg1) & Local0))
-            {
-                Index (PRWP, One) = Arg1
-            }
-            Else
-            {
-                Local0 >>= One
-                FindSetLeftBit (Local0, Index (PRWP, One))
-            }
-
-            Return (PRWP)
-        }
 
     Method (PNOT, 0, Serialized)
     {
