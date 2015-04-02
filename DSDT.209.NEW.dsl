@@ -25,7 +25,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
     Name (PELN, 0x04000000)
     Name (MBLF, 0x0A)
     Name (SS1, Zero)
-    Name (SS2, Zero)
     Name (SS3, One)
     Name (SS4, One)
     Name (VGAF, One)
@@ -586,6 +585,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 
                 If (_OSI ("Darwin"))
                 {
+                    OSYS = 0x03E8
                     OSDW = One
                 }
 
@@ -5040,15 +5040,12 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 }
             }
         }
-
-            Name (_PRW, Package() { 0x0D, 0x03 })
+            Name(_PRW, Package() { 0x6D, 0 })
             Method (_DSM, 4, NotSerialized)
             {
                 If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
                 Return (Package()
                 {
-                    "AAPL,clock-id", Buffer() { 0x01 },
-                    "built-in", Buffer() { 0x00 },
                     "subsystem-id", Buffer() { 0x70, 0x72, 0x00, 0x00 },
                     "subsystem-vendor-id", Buffer() { 0x86, 0x80, 0x00, 0x00 },
                     "AAPL,current-available", 2100,
@@ -5210,14 +5207,12 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             }
         }
 
-            Name (_PRW, Package() { 0x0D, 0x03 })
+            Name(_PRW, Package() { 0x6D, 0 })
             Method (_DSM, 4, NotSerialized)
             {
                 If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
                 Return (Package()
                 {
-                    "AAPL,clock-id", Buffer() { 0x01 },
-                    "built-in", Buffer() { 0x00 },
                     "subsystem-id", Buffer() { 0x70, 0x72, 0x00, 0x00 },
                     "subsystem-vendor-id", Buffer() { 0x86, 0x80, 0x00, 0x00 },
                     "AAPL,current-available", 2100,
@@ -6960,20 +6955,17 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     }
                 }
             }
-
-            Name (_PRW, Package() { 0x0D, 0x03 })
-            
             Method (_DSW, 3, NotSerialized)  // _DSW: Device Sleep Wake
             {
                 Store (Arg0, PMEE)
             }
+            
+            Name(_PRW, Package() { 0x6D, 0 })
             Method (_DSM, 4, NotSerialized)
             {
                 If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
                 Return (Package()
                 {
-                    "AAPL,clock-id", Buffer() { 0x02 },
-                    "built-in", Buffer() { 0x00 },
                     "subsystem-id", Buffer() { 0x70, 0x72, 0x00, 0x00 },
                     "subsystem-vendor-id", Buffer() { 0x86, 0x80, 0x00, 0x00 },
                     "AAPL,current-available", 2100,
@@ -7011,8 +7003,6 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 Store (Arg0, PMEE)
             }
 
-            Name (_PRW, Package() { 0x0D, 0x04 })
-            
             Method (GPEH, 0, NotSerialized)
             {
                 If (DVID == 0xFFFF) {}
@@ -7033,6 +7023,7 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     "MaximumBootBeepVolume", 77,
                 })
             }
+            Name(_PRW, Package() { 0x6D, 0 })
         }
 
         Device (SAT0)
@@ -8261,22 +8252,9 @@ DefinitionBlock ("./AML/DSDT.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 
         Method (_L62, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
         {
-            GPEC = Zero
-            If (CondRefOf (DTSE))
-            {
-                If ((DTSE >= One))
-                {
-                    Notify (\_TZ.THRM, 0x80)
-                }
-            }
+            
+            // nothing
 
-            If (CondRefOf (\_SB.PCCD.PENB))
-            {
-                If ((\_SB.PCCD.PENB == One))
-                {
-                    Notify (\_SB.PCCD, 0x80)
-                }
-            }
         }
 
         Method (_L66, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
