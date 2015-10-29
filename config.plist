@@ -165,7 +165,7 @@
 		<key>AppleRTC</key>
 		<false/>
 		<key>AsusAICPUPM</key>
-		<false/>
+		<true/>
 		<key>Debug</key>
 		<false/>
 		<key>KernelCpu</key>
@@ -173,7 +173,7 @@
 		<key>KernelLapic</key>
 		<false/>
 		<key>KernelPm</key>
-		<false/>
+		<true/>
 		<key>KextPatchesAllowed</key>
 		<true/>
 		<key>KextsToPatch</key>
