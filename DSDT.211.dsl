@@ -5,20 +5,20 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of iASLZ22Cu8.aml, Mon Oct 26 00:56:56 2015
+ * Disassembly of iASLlk1kI7.aml, Thu Oct 29 22:04:57 2015
  *
  * Original Table Header:
  *     Signature        "DSDT"
- *     Length           0x0000B05C (45148)
+ *     Length           0x0000B025 (45093)
  *     Revision         0x02
- *     Checksum         0x0D
+ *     Checksum         0x5D
  *     OEM ID           "_ASUS_"
  *     OEM Table ID     "Notebook"
  *     OEM Revision     0x00000012 (18)
  *     Compiler ID      "INTL"
  *     Compiler Version 0x20150930 (538249520)
  */
-DefinitionBlock ("iASLZ22Cu8.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
+DefinitionBlock ("iASLlk1kI7.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 {
     Name (PMBS, 0x1800)
     Name (GPBS, 0x1C00)
@@ -7307,26 +7307,6 @@ DefinitionBlock ("iASLZ22Cu8.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 OBFF = OBF1 /* \OBF1 */
             }
 
-            Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-            {
-                If ((Arg2 == Zero))
-                {
-                    Return (Buffer (One)
-                    {
-                         0x03                                             /* . */
-                    })
-                }
-
-                Return (Package (0x02)
-                {
-                    "reg-ltrovr", 
-                    Buffer (0x08)
-                    {
-                         0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00   /* ........ */
-                    }
-                })
-            }
-
             Method (_REG, 2, NotSerialized)  // _REG: Region Availability
             {
                 If (((Arg0 == 0x02) && (Arg1 == One)))
@@ -7413,26 +7393,6 @@ DefinitionBlock ("iASLZ22Cu8.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 WFBT ()
             }
 
-            Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
-            {
-                If ((Arg2 == Zero))
-                {
-                    Return (Buffer (One)
-                    {
-                         0x03                                             /* . */
-                    })
-                }
-
-                Return (Package (0x02)
-                {
-                    "reg-ltrovr", 
-                    Buffer (0x08)
-                    {
-                         0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00   /* ........ */
-                    }
-                })
-            }
-
             Method (_REG, 2, NotSerialized)  // _REG: Region Availability
             {
                 If (((Arg0 == 0x02) && (Arg1 == One)))
@@ -7484,10 +7444,15 @@ DefinitionBlock ("iASLZ22Cu8.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         })
                     }
 
-                    Return (Package (0x02)
+                    Return (Package (0x04)
                     {
                         "compatible", 
-                        "pci14e4,43a0"
+                        "pci14e4,43a0", 
+                        "built-in", 
+                        Buffer (One)
+                        {
+                             0x01                                             /* . */
+                        }
                     })
                 }
             }
@@ -8040,22 +8005,30 @@ DefinitionBlock ("iASLZ22Cu8.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
     Name (BTDS, Zero)
     Method (_PTS, 1, NotSerialized)  // _PTS: Prepare To Sleep
     {
-        If (OWGS ())
+        If ((Arg0 != 0x05))
         {
-            OBTD (One)
-            BTDS = One
-        }
-        Else
-        {
-            BTDS = Zero
-        }
+            If (OWGS ())
+            {
+                OBTD (One)
+                BTDS = One
+            }
+            Else
+            {
+                BTDS = Zero
+            }
 
-        PTS (Arg0)
+            PTS (Arg0)
+        }
     }
 
     Method (_WAK, 1, Serialized)  // _WAK: Wake
     {
         PNOT ()
+        If (((Arg0 < One) || (Arg0 > 0x05)))
+        {
+            Arg0 = 0x03
+        }
+
         WAK (Arg0)
         If ((((\_SB.PCI0.HDAU.ABAR & 0xFFFFC004) != 0xFFFFC004) && ((
             \_SB.PCI0.HDAU.ABAR & 0xFFFFC000) != Zero)))
