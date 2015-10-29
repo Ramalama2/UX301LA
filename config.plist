@@ -349,7 +349,7 @@
 		<key>#BacklightLevel</key>
 		<string>0x0501  (Remove route (#) and this text if you use this config for USB Installer)</string>
 		<key>InjectKexts</key>
-		<false/>
+		<string>Detect</string>
 	</dict>
 </dict>
 </plist>
