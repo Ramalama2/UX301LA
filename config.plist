@@ -11,14 +11,12 @@
 			<key>Fixes</key>
 			<dict>
 				<key>FixRegions_10000000</key>
-				<false/>
+				<true/>
 				<key>NewWay_80000000</key>
-				<false/>
+				<true/>
 			</dict>
 			<key>Rtc8Allowed</key>
 			<true/>
-			<key>SlpSmiAtWake</key>
-			<false/>
 		</dict>
 		<key>DropTables</key>
 		<array>
@@ -38,86 +36,44 @@
 				<key>Signature</key>
 				<string>SSDT</string>
 				<key>TableId</key>
-				<string>DptfTabl</string>
+				<string>Cpu0Ist</string>
 			</dict>
 			<dict>
 				<key>Signature</key>
-				<string>SSDT</string>
-				<key>TableId</key>
-				<string>Cpu0Ist</string>
+				<string>BGRT</string>
+			</dict>
+			<dict>
+				<key>Signature</key>
+				<string>DMAR</string>
 			</dict>
 		</array>
 		<key>SSDT</key>
 		<dict>
 			<key>DropOem</key>
-			<false/>
+			<true/>
 			<key>Generate</key>
-			<dict>
-				<key>CStates</key>
-				<false/>
-				<key>PStates</key>
-				<false/>
-			</dict>
+			<false/>
 		</dict>
 	</dict>
 	<key>Boot</key>
 	<dict>
 		<key>Arguments</key>
-		<string>kext-dev-mode=1</string>
-		<key>CustomLogo</key>
+		<string>slide=0</string>
+		<key>Debug</key>
 		<false/>
 		<key>DefaultVolume</key>
 		<string>LastBootedVolume</string>
 		<key>Fast</key>
 		<false/>
-		<key>Log</key>
-		<false/>
-		<key>NeverHibernate</key>
+		<key>Secure</key>
 		<false/>
 		<key>Timeout</key>
 		<integer>0</integer>
-		<key>XMPDetection</key>
-		<false/>
 	</dict>
-	<key>ConfigName</key>
-	<string>Default</string>
 	<key>Devices</key>
 	<dict>
-		<key>Audio</key>
-		<dict>
-			<key>Inject</key>
-			<false/>
-		</dict>
-		<key>FakeID</key>
-		<dict>
-			<key>ATI</key>
-			<string>0x0</string>
-			<key>IMEI</key>
-			<string>0x0</string>
-			<key>IntelGFX</key>
-			<string>0x0</string>
-			<key>LAN</key>
-			<string>0x0</string>
-			<key>NVidia</key>
-			<string>0x0</string>
-			<key>SATA</key>
-			<string>0x0</string>
-			<key>WIFI</key>
-			<string>0x0</string>
-			<key>XHCI</key>
-			<string>0x0</string>
-		</dict>
-		<key>USB</key>
-		<dict>
-			<key>AddClockID</key>
-			<false/>
-			<key>FixOwnership</key>
-			<false/>
-			<key>HighCurrent</key>
-			<false/>
-			<key>Inject</key>
-			<false/>
-		</dict>
+		<key>SetIntelBacklight</key>
+		<true/>
 	</dict>
 	<key>GUI</key>
 	<dict>
@@ -127,31 +83,27 @@
 			<array>
 				<dict>
 					<key>FullTitle</key>
-					<string>OSX Yosemite</string>
+					<string>El Capitan</string>
 					<key>Type</key>
 					<string>OSX</string>
-					<key>Volume</key>
-					<string>Yosemite</string>
 					<key>VolumeType</key>
 					<string>Internal</string>
 				</dict>
 				<dict>
 					<key>FullTitle</key>
-					<string>OSX Mavericks</string>
+					<string>Windows 10</string>
 					<key>Type</key>
-					<string>OSX</string>
-					<key>Volume</key>
-					<string>Mavericks</string>
+					<string>Windows</string>
 					<key>VolumeType</key>
 					<string>Internal</string>
 				</dict>
 				<dict>
 					<key>FullTitle</key>
-					<string>Windows</string>
+					<string>Install Windows</string>
 					<key>Type</key>
 					<string>Windows</string>
 					<key>VolumeType</key>
-					<string>Internal</string>
+					<string>External</string>
 				</dict>
 				<dict>
 					<key>FullTitle</key>
@@ -177,8 +129,8 @@
 				</dict>
 			</array>
 		</dict>
-		<key>CustomIcons</key>
-		<false/>
+		<key>Language</key>
+		<string>de:0</string>
 		<key>Mouse</key>
 		<dict>
 			<key>Enabled</key>
@@ -186,11 +138,13 @@
 		</dict>
 		<key>Scan</key>
 		<dict>
+			<key>Entries</key>
+			<false/>
 			<key>Legacy</key>
 			<false/>
+			<key>Tool</key>
+			<false/>
 		</dict>
-		<key>TextOnly</key>
-		<false/>
 		<key>Theme</key>
 		<string>Mavstyle</string>
 	</dict>
@@ -219,53 +173,11 @@
 		<key>KernelLapic</key>
 		<false/>
 		<key>KernelPm</key>
-		<true/>
+		<false/>
 		<key>KextPatchesAllowed</key>
 		<true/>
 		<key>KextsToPatch</key>
 		<array>
-			<dict>
-				<key>Comment</key>
-				<string>Trim Enabler</string>
-				<key>Find</key>
-				<data>
-				QVBQTEUgU1NEAA==
-				</data>
-				<key>Name</key>
-				<string>IOAHCIBlockStorage</string>
-				<key>Replace</key>
-				<data>
-				AAAAAAAAAAAAAA==
-				</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>Second Stage patch 1</string>
-				<key>Find</key>
-				<data>
-				QYjE6xE=
-				</data>
-				<key>Name</key>
-				<string>IOGraphicsFamily</string>
-				<key>Replace</key>
-				<data>
-				QYjE6zE=
-				</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>Second Stage patch 2</string>
-				<key>Find</key>
-				<data>
-				hcB0a0g=
-				</data>
-				<key>Name</key>
-				<string>IOGraphicsFamily</string>
-				<key>Replace</key>
-				<data>
-				McB0W0g=
-				</data>
-			</dict>
 			<dict>
 				<key>Comment</key>
 				<string>AirPort Extreme Patch</string>
@@ -278,6 +190,20 @@
 				<key>Replace</key>
 				<data>
 				axAAAJCQ
+				</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Trim Enabler</string>
+				<key>Find</key>
+				<data>
+				AEFQUExFIFNTRAA=
+				</data>
+				<key>Name</key>
+				<string>IOAHCIBlockStorage</string>
+				<key>Replace</key>
+				<data>
+				AAAAAAAAAAAAAAA=
 				</data>
 			</dict>
 			<dict>
@@ -296,7 +222,7 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>AppleHDA ALC283 patch #1</string>
+				<string>AppleHDA ALC282 (1 of 4)</string>
 				<key>Find</key>
 				<data>
 				PYQI7BA=
@@ -310,7 +236,7 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>AppleHDA ALC283 patch #2</string>
+				<string>AppleHDA ALC282 (2 of 4)</string>
 				<key>Find</key>
 				<data>
 				PYUI7BA=
@@ -324,7 +250,7 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>AppleHDA ALC283 patch #3</string>
+				<string>AppleHDA ALC282 (3 of 4)</string>
 				<key>Find</key>
 				<data>
 				PYQZ1BE=
@@ -338,39 +264,92 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
-				<string>BT4 HandOff &amp; HotSpot</string>
+				<string>AppleHDA ALC282 (4 of 4)</string>
 				<key>Find</key>
 				<data>
-				SIXAdFwPt0g=
+				PYMZ1BE=
+				</data>
+				<key>Name</key>
+				<string>AppleHDA</string>
+				<key>Replace</key>
+				<data>
+				PQAAAAA=
+				</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>BootGlitchFix</string>
+				<key>Find</key>
+				<data>
+				AQAAdRc=
+				</data>
+				<key>Name</key>
+				<string>IOGraphicsFamily</string>
+				<key>Replace</key>
+				<data>
+				AQAAdBc=
+				</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>10.11 BT4LE-Handoff-Hotspot</string>
+				<key>Find</key>
+				<data>
+				SIX/dEdIiwc=
 				</data>
 				<key>Name</key>
 				<string>IOBluetoothFamily</string>
 				<key>Replace</key>
 				<data>
-				Qb4PAAAA61k=
+				Qb4PAAAA60Q=
+				</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Change WIFI DE(4445)/US(5553)/RU(5255)</string>
+				<key>Find</key>
+				<data>
+				QYP8/3QsSA==
+				</data>
+				<key>Name</key>
+				<string>AirPortBrcm4360</string>
+				<key>Replace</key>
+				<data>
+				ZscGREXrKw==
 				</data>
 			</dict>
 		</array>
 	</dict>
+	<key>RtVariables</key>
+	<dict>
+		<key>CsrActiveConfig</key>
+		<string>0x3</string>
+		<key>ROM</key>
+		<string>Change from String to Data and use your Wifi MAC Adress here without ::::::: (means only the Numbers/Letters)</string>
+	</dict>
 	<key>SMBIOS</key>
 	<dict>
 		<key>BiosReleaseDate</key>
-		<string>08/29/2014</string>
+		<string>09/08/2015</string>
 		<key>BiosVersion</key>
-		<string>MBP111.88Z.0138.B11.1408291433</string>
+		<string>MBP111.88Z.0138.B16.1509081438</string>
 		<key>Board-ID</key>
 		<string>Mac-189A3D4F975D5FFC</string>
 		<key>BoardSerialNumber</key>
-		<string>C17NxxxxG3QJxxxxx</string>
+		<string>C02NxxxxG3QHxxxxx  (Change the 4 xxxx and 5 xxxxx to anything you want)</string>
 		<key>ProductName</key>
 		<string>MacBookPro11,1</string>
 		<key>SerialNumber</key>
-		<string>C17NxxxxG3QJ</string>
+		<string>C02NxxxxG3QH (use the same 4 xxxx like above here)</string>
+		<key>SmUUID</key>
+		<string>terminal-&gt;UUIDGEN, and change the last section (latest12 chars) to your Wifi Mac Adress</string>
 	</dict>
 	<key>SystemParameters</key>
 	<dict>
+		<key>#BacklightLevel</key>
+		<string>0x0501  (Remove route (#) and this text if you use this config for USB Installer)</string>
 		<key>InjectKexts</key>
-		<string>Detect</string>
+		<false/>
 	</dict>
 </dict>
 </plist>
