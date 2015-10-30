@@ -5,20 +5,20 @@
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of iASLlk1kI7.aml, Thu Oct 29 22:04:57 2015
+ * Disassembly of iASL747pCf.aml, Fri Oct 30 03:26:53 2015
  *
  * Original Table Header:
  *     Signature        "DSDT"
- *     Length           0x0000B025 (45093)
+ *     Length           0x0000AECE (44750)
  *     Revision         0x02
- *     Checksum         0x5D
+ *     Checksum         0x68
  *     OEM ID           "_ASUS_"
  *     OEM Table ID     "Notebook"
  *     OEM Revision     0x00000012 (18)
  *     Compiler ID      "INTL"
  *     Compiler Version 0x20150930 (538249520)
  */
-DefinitionBlock ("iASLlk1kI7.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
+DefinitionBlock ("iASL747pCf.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
 {
     Name (PMBS, 0x1800)
     Name (GPBS, 0x1C00)
@@ -29,7 +29,7 @@ DefinitionBlock ("iASLlk1kI7.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
     Name (SS3, One)
     Name (SS4, One)
     Name (VGAF, One)
-    OperationRegion (GNVS, SystemMemory, 0xDAB07C18, 0x02B2)
+    OperationRegion (GNVS, SystemMemory, 0xDAAFEC18, 0x02B2)
     Field (GNVS, AnyAcc, Lock, Preserve)
     {
         OSYS,   16, 
@@ -345,7 +345,7 @@ DefinitionBlock ("iASLlk1kI7.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
         ECLP,   8
     }
 
-    OperationRegion (SANV, SystemMemory, 0xDAAEAE18, 0x016D)
+    OperationRegion (SANV, SystemMemory, 0xDAAE1E18, 0x016D)
     Field (SANV, AnyAcc, Lock, Preserve)
     {
         SARV,   32, 
@@ -7419,7 +7419,6 @@ DefinitionBlock ("iASLlk1kI7.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
             Device (ARPT)
             {
                 Name (_ADR, Zero)  // _ADR: Address
-                Name (_SUN, One)  // _SUN: Slot User Number
                 OperationRegion (MINP, PCI_Config, Zero, 0x80)
                 Field (MINP, ByteAcc, NoLock, Preserve)
                 {
@@ -7444,15 +7443,10 @@ DefinitionBlock ("iASLlk1kI7.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                         })
                     }
 
-                    Return (Package (0x04)
+                    Return (Package (0x02)
                     {
                         "compatible", 
-                        "pci14e4,43a0", 
-                        "built-in", 
-                        Buffer (One)
-                        {
-                             0x01                                             /* . */
-                        }
+                        "pci14e4,43a0"
                     })
                 }
             }
@@ -7882,84 +7876,6 @@ DefinitionBlock ("iASLlk1kI7.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                 }
             }
         }
-
-        Device (SDMA)
-        {
-            Name (_CID, "INTL9C60" /* Intel Baytrail SOC DMA Controller */)  // _CID: Compatible ID
-            Name (_UID, One)  // _UID: Unique ID
-            Name (_ADR, 0x00150000)  // _ADR: Address
-            Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
-            {
-                Interrupt (ResourceConsumer, Level, ActiveLow, Shared, ,, )
-                {
-                    0x00000015,
-                }
-            })
-            Method (_HRV, 0, NotSerialized)  // _HRV: Hardware Revision
-            {
-                Return (^^LPCB.CRID) /* \_SB_.PCI0.LPCB.CRID */
-            }
-
-            Method (_STA, 0, NotSerialized)  // _STA: Status
-            {
-                If ((S0ID == One))
-                {
-                    Return (0x0F)
-                }
-                Else
-                {
-                    Return (Zero)
-                }
-            }
-        }
-
-        Device (SPI1)
-        {
-            Name (_CID, "INT33C1" /* Intel Serial I/O SPI Host Controller */)  // _CID: Compatible ID
-            Name (_DDN, "Intel(R) Low Power Subsystem SPI Host Controller - 9C66")  // _DDN: DOS Device Name
-            Name (_UID, 0x02)  // _UID: Unique ID
-            Name (_ADR, 0x00150004)  // _ADR: Address
-            Name (RBUF, ResourceTemplate ()
-            {
-                Interrupt (ResourceConsumer, Level, ActiveLow, Shared, ,, )
-                {
-                    0x00000015,
-                }
-            })
-            Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-            {
-                Name (DBUF, ResourceTemplate ()
-                {
-                    FixedDMA (0x0010, 0x0000, Width32bit, )
-                    FixedDMA (0x0011, 0x0001, Width32bit, )
-                })
-                If (^^SDMA._STA ())
-                {
-                    Return (ConcatenateResTemplate (RBUF, DBUF))
-                }
-                Else
-                {
-                    Return (RBUF) /* \_SB_.PCI0.SPI1.RBUF */
-                }
-            }
-
-            Method (_HRV, 0, NotSerialized)  // _HRV: Hardware Revision
-            {
-                Return (^^LPCB.CRID) /* \_SB_.PCI0.LPCB.CRID */
-            }
-
-            Method (_STA, 0, NotSerialized)  // _STA: Status
-            {
-                If ((S0ID == One))
-                {
-                    Return (0x0F)
-                }
-                Else
-                {
-                    Return (Zero)
-                }
-            }
-        }
     }
 
     Scope (_PR)
@@ -8129,10 +8045,6 @@ DefinitionBlock ("iASLlk1kI7.aml", "DSDT", 2, "_ASUS_", "Notebook", 0x00000012)
                     \_SB.PCI0.RP04.HPSX = One
                 }
             }
-        }
-
-        Method (_L62, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
-        {
         }
 
         Method (_L66, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
