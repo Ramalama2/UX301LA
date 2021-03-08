@@ -1,3 +1,19 @@
+UPDATE: 08.03.2021
+Last Update, working with Catalina!
+1. -> SLE goes to /System/Library/Extensions -> Use "Kext Utility"
+2. -> Clover goes into Your EFi Partition
+3. -> TouchpadScripts (Only for the included Touchpad kext in SLE folder) -> Extract anywhere and let it autostart (under users/your username, see TouchPadSS.png). Basically it is a script that changes touchpadsettings, because there is no working touchpadsetting gui xD
+4. -> This Clover wont run without unlocked MSR 0xe2 (CFG unlock). If you can't mod your bios (you don't need), but you need to edit the config.plist inside clover and enable AsusAICPUPM=true. I patched my bios, you can find howtos how to do it, i think i wrote even one too in one of my repos. However, "AsusAICPUPM=true" is a work around, a patched bios is a proper way. (Maybe asus even unlocked it in meantime in the bios options). You will find out. Cheers!
+
+
+This here is my old text, some of this, might be wrong at this time, but Mojave & Catalina runs fine! Dont't even expect Big Sur, at least not from me!
+
+Cheers :-)
+
+/EDIT
+
+-----------------------------------
+
 UX301LA Support
 
 In this Repo is everything you need, to get OSX Capitan 10.11+ Running.
